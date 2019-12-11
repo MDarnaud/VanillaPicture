@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<?php include 'countrieslist.php'?>
+<?php include 'countrieslist.php' ?>
+<?php include 'server.php'?>
 <html lang="en">
 	<head>
 		<title>Register</title>
@@ -7,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 
@@ -15,18 +16,18 @@
 		<header id="header" class="alt">
 			<nav id="nav">
 				<ul>
-					<li class="current"><a href="homepage.php">Home</a></li>
+					<li class="current"><a href="../homepage.php">Home</a></li>
 					<li>
 						<a href="" class="dropdown">Portfolio</a>
 						<ul>
 							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
 						</ul>
 					</li>
-					<li><a href="announcement.php">Announcement</a></li>
-					<li><a href="agenda.php">Agenda</a></li>
-					<li><a href="packages.php">Packages</a></li>
-					<li><a href="reservation.php">Request a Shoot</a></li>
-					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="../announcement.php">Announcement</a></li>
+					<li><a href="../agenda.php">Agenda</a></li>
+					<li><a href="../packages.php">Packages</a></li>
+					<li><a href="../reservation.php">Request a Shoot</a></li>
+					<li><a href="../login.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -40,42 +41,41 @@
 								<h1>Sign up</h1>
 								<p>Create a new account here</p>
 							</header>
-
+                        <div style="margin:auto">
 							<div class="row gtr-200">
-								<div class="col-6 col-12-medium">
 									<!-- Form -->
 										<h3>Register</h3>
-										<form method="post" action="#">
-											<div class="row gtr-uniform ">
-
-												<div class="col-8 col-12-xsmall">
-													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Username" />
+										<form method="post" action="register.php">
+                                            <?php include "errors.php"?>
+											<div class="row gtr-uniform">
+                                                <div class="col-8 col-12-xsmall">
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" />
                                                 </div>
 												<div class="col-8 col-12-xsmall">
-													<input type="password" name="demo-password" id="demo-password" value="" placeholder="Password" />
+													<input type="password" name="password_1" id="password_1" value="" placeholder="Password" />
 												</div>
-												<div class="col-8 col-12-xsmall">
-													<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-												</div>
+                                                <div class="col-8 col-12-xsmall">
+                                                    <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password" />
+                                                </div>
                                                 <div class="col-8 col-12-xsmall">
                                                     <h3>About you...</h3>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="demo-firstname" id="demo-firstname" value="" placeholder="First Name" />
+                                                    <input type="text" name="firstname" id="firstname" value="" placeholder="First Name" />
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="demo-lastname" id="demo-lastname" value="" placeholder="Last Name" />
+                                                    <input type="text" name="lastname" id="lastname" value="" placeholder="Last Name" />
                                                 </div>
 												<div class="col-8 col-12-xsmall">
 													<p>Date of Birth</p>
-													<input type="date" name="demo-dob" id="demo-dob" value="" placeholder="Date of Birth" />
+													<input type="date" name="dob" id="dob" value="" placeholder="Date of Birth" />
 												</div>
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="demo-name" id="demo-address" value="" placeholder="Address" />
+													<input type="text" name="address" id="address" value="" placeholder="Address" />
 												</div>
 												<div class="col-8 col-12-xsmall">
 <!--													<input type="text" name="demo-name" id="demo-country" value="" placeholder="Country" />-->
-												        <select name="countries">
+												        <select name="countries" id="countries">
                                                             <option value="" selected disabled hidden>-Select Country-</option>
                                                             <?php
                                                             foreach($countries as $key => $value) {
@@ -87,20 +87,23 @@
                                                         </select>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="demo-name" id="demo-state" value="" placeholder="State" />
+													<input type="text" name="state" id="state" value="" placeholder="State" />
 												</div>
 												<!-- Break -->
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Sign up" class="primary" /></li>
+                                                        <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
 														<li><input type="reset" value="Reset" /></li>
 													</ul>
 												</div>
 											</div>
 										</form>
-								</div>
 							</div>
 						</div>
+                        <p>
+                            Already a member? <a href="../login.php">Sign in</a>
+                        </p>
+                    </div>
 					</div>
 			</div>
 
@@ -114,12 +117,13 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>
+

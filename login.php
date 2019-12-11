@@ -39,7 +39,7 @@
 						<!-- Elements -->
 							<header class="major">
 								<h1>LOGIN</h1>
-								<p>Not a member yet? Register <a href="register.php"><strong style="color:dodgerblue; text-decoration:underline">HERE</strong></a></p>
+								<p>Not a member yet? Register <a href="registration/register.php"><strong style="color:dodgerblue; text-decoration:underline">HERE</strong></a></p>
 							</header>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
