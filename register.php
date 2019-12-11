@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-
+<?php include 'countrieslist.php'?>
 <html lang="en">
 	<head>
 		<title>Register</title>
@@ -37,24 +37,35 @@
 					<div class="inner">
 						<!-- Elements -->
 							<header class="major">
-								<h1>Register</h1>
-								<p>Sed egestas ante et vulputate volutpat pede semper vitae luctus</p>
+								<h1>Sign up</h1>
+								<p>Create a new account here</p>
 							</header>
+
 							<div class="row gtr-200">
 								<div class="col-6 col-12-medium">
 									<!-- Form -->
 										<h3>Register</h3>
 										<form method="post" action="#">
-											<div class="row gtr-uniform">
+											<div class="row gtr-uniform ">
+
 												<div class="col-8 col-12-xsmall">
 													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Username" />
-												</div>
+                                                </div>
 												<div class="col-8 col-12-xsmall">
 													<input type="password" name="demo-password" id="demo-password" value="" placeholder="Password" />
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
 												</div>
+                                                <div class="col-8 col-12-xsmall">
+                                                    <h3>About you...</h3>
+                                                </div>
+                                                <div class="col-8 col-12-xsmall">
+                                                    <input type="text" name="demo-firstname" id="demo-firstname" value="" placeholder="First Name" />
+                                                </div>
+                                                <div class="col-8 col-12-xsmall">
+                                                    <input type="text" name="demo-lastname" id="demo-lastname" value="" placeholder="Last Name" />
+                                                </div>
 												<div class="col-8 col-12-xsmall">
 													<p>Date of Birth</p>
 													<input type="date" name="demo-dob" id="demo-dob" value="" placeholder="Date of Birth" />
@@ -63,42 +74,25 @@
 													<input type="text" name="demo-name" id="demo-address" value="" placeholder="Address" />
 												</div>
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="demo-name" id="demo-country" value="" placeholder="Country" />
-												</div>
+<!--													<input type="text" name="demo-name" id="demo-country" value="" placeholder="Country" />-->
+												        <select name="countries">
+                                                            <option value="" selected disabled hidden>-Select Country-</option>
+                                                            <?php
+                                                            foreach($countries as $key => $value) {
+                                                                ?>
+                                                                <option value="<?= $key ?>" title="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($value) ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                </div>
 												<div class="col-8 col-12-xsmall">
 													<input type="text" name="demo-name" id="demo-state" value="" placeholder="State" />
 												</div>
 												<!-- Break -->
 												<div class="col-12">
-													<select name="demo-category" id="demo-category">
-														<option value="">- Select Specialty -</option>
-														<option value="alpha">Option 1</option>
-													</select>
-												</div>
-												<!-- Break -->
-												<div class="col-12 col-12-small">
-													<p>Gender</p>
-												</div>
-												<div class="col-6 col-12-small">
-													<input type="radio" id="demo-radio-alpha" name="demo-radio">
-													<label for="demo-radio-alpha">Female</label>
-												</div>
-												<div class="col-6 col-12-small">
-													<input type="radio" id="demo-radio-beta" name="demo-radio">
-													<label for="demo-radio-beta">Male</label>
-												</div>
-												<div class="col-6 col-12-small">
-													<input type="radio" id="demo-radio-gamma" name="demo-radio">
-													<label for="demo-radio-gamma">Other</label>
-												</div>
-												<div class="col-6 col-12-small">
-													<input type="radio" id="demo-radio-not" name="demo-radio" checked>
-													<label for="demo-radio-gamma">Prefer Not to Say</label>
-												</div>
-												<!-- Break -->
-												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Submit Form" class="primary" /></li>
+														<li><input type="submit" value="Sign up" class="primary" /></li>
 														<li><input type="reset" value="Reset" /></li>
 													</ul>
 												</div>

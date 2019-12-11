@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<head>
-		<title>Login</title>
+		<title>Log in</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -57,7 +57,7 @@
 												<div class="col-12">
 													<ul class="actions">
 														<li><input type="submit" value="Login" class="primary" /></li>
-														<li><input type="reset" value="Reset" /></li>
+														<li><input type="reset" value="Cancel" /></li>
 													</ul>
 												</div>
 											</div>
