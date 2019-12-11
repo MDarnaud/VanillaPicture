@@ -1,7 +1,4 @@
-<?php
-//connect to database
-require_once "dbConn.php";
-?>
+
 
 <!DOCTYPE HTML>
 
