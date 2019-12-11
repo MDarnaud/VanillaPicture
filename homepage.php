@@ -1,6 +1,11 @@
+<?php
+//connect to database
+require_once "dbConn.php";
+?>
+
 <!DOCTYPE HTML>
 
-<html>
+<html lang="en">
 	<head>
 		<title>Vanilla Picture</title>
 		<meta charset="utf-8" />
@@ -15,18 +20,18 @@
 			<header id="header" class="alt">
 				<nav id="nav">
 					<ul>
-						<li class="current"><a href="homepage.html">Home</a></li>
+						<li class="current"><a href="homepage.php">Home</a></li>
 						<li>
 							<a href="" class="dropdown">Portfolio</a>
 							<ul>
-								<li><a href="C:\Users\MegMeg\Documents\Champlain\Semester_5\Final Project\Vanilla Project\Wireframes\dark\gallery.html">Gallery</a></li>
+								<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
 							</ul>
 						</li>
-						<li><a href="announcement.html">Announcement</a></li>
-						<li><a href="agenda.html">Agenda</a></li>
-						<li><a href="packages.html">Packages</a></li>
-						<li><a href="reservation.html">Request a Shoot</a></li>
-						<li><a href="login.html" class="icon fa-user-circle"> Login</a></li>
+						<li><a href="announcement.php">Announcement</a></li>
+						<li><a href="agenda.php">Agenda</a></li>
+						<li><a href="packages.php">Packages</a></li>
+						<li><a href="reservation.php">Request a Shoot</a></li>
+						<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
 					</ul>
 				</nav>
 			</header>

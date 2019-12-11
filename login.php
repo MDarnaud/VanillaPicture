@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 
-<html>
+<html lang="en">
 	<head>
-		<title>Announcement Form</title>
+		<title>Login</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -15,18 +15,18 @@
 		<header id="header" class="alt">
 			<nav id="nav">
 				<ul>
-					<li class="current"><a href="homepage.html">Home</a></li>
+					<li class="current"><a href="homepage.php">Home</a></li>
 					<li>
 						<a href="" class="dropdown">Portfolio</a>
 						<ul>
-							<li><a href="C:\Users\MegMeg\Documents\Champlain\Semester_5\Final Project\Vanilla Project\Wireframes\dark\gallery.html">Gallery</a></li>
+							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
 						</ul>
 					</li>
-					<li><a href="announcement.html">Announcement</a></li>
-					<li><a href="agenda.html">Agenda</a></li>
-					<li><a href="packages.html">Packages</a></li>
-					<li><a href="reservation.html">Request a Shoot</a></li>
-					<li><a href="login.html" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="announcement.php">Announcement</a></li>
+					<li><a href="agenda.php">Agenda</a></li>
+					<li><a href="packages.php">Packages</a></li>
+					<li><a href="reservation.php">Request a Shoot</a></li>
+					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -38,23 +38,25 @@
 
 						<!-- Elements -->
 							<header class="major">
-								<h1>CREATE ANNOUNCEMENT</h1>
+								<h1>LOGIN</h1>
+								<p>Not a member yet? Register <a href="register.php"><strong style="color:dodgerblue; text-decoration:underline">HERE</strong></a></p>
 							</header>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
+
 									<!-- Form -->
 										<form method="post" action="#">
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
-													<input type="text" name="announcementTitle" id="announcementTitle" value="" placeholder="Announcement Title" />
+													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Username" />
 												</div>
-												<div class="col-12">
-													<textarea name="demo-textarea" id="demo-textarea" placeholder="Announcement Details" rows="6"></textarea>
+												<div class="col-12 col-12-xsmall">
+													<input type="password" name="demo-password" id="demo-password" value="" placeholder="Password" />
 												</div>
 												<!-- Break -->
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Submit" class="primary" /></li>
+														<li><input type="submit" value="Login" class="primary" /></li>
 														<li><input type="reset" value="Reset" /></li>
 													</ul>
 												</div>
