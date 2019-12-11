@@ -39,10 +39,10 @@ blockquote, q {
 		content: none;
 	}
 
-table {
+/*table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
+}*/
 
 body {
 	-webkit-text-size-adjust: none;
@@ -67,9 +67,7 @@ input, select, textarea {
 
 /* Basic */
 
-	@-ms-viewport {
-		width: device-width;
-	}
+
 
 	body {
 		-ms-overflow-style: scrollbar;
@@ -2678,7 +2676,6 @@ input, select, textarea {
 		display: -ms-flex;
 		display: flex;
 		-moz-align-items: -moz-stretch;
-		-webkit-align-items: -webkit-stretch;
 		-ms-align-items: -ms-stretch;
 		align-items: stretch;
 		-moz-justify-content: center;
@@ -2798,7 +2795,7 @@ input, select, textarea {
 			}
 
 /* Table */
-
+/*
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
 		overflow-x: auto;
@@ -2883,7 +2880,7 @@ input, select, textarea {
 	table.alt tbody tr td {
 		border-color: rgba(144, 144, 144, 0.25);
 	}
-
+*/
 /* Wrapper */
 
 	.wrapper {
@@ -3040,7 +3037,6 @@ input, select, textarea {
 		display: -ms-flex;
 		display: flex;
 		-moz-align-items: -moz-flex-start;
-		-webkit-align-items: -webkit-flex-start;
 		-ms-align-items: -ms-flex-start;
 		align-items: flex-start;
 		background-color: #ffffff;
@@ -3340,7 +3336,6 @@ input, select, textarea {
 		display: -ms-flex;
 		display: flex;
 		-moz-align-items: -moz-stretch;
-		-webkit-align-items: -webkit-stretch;
 		-ms-align-items: -ms-stretch;
 		align-items: stretch;
 		-moz-justify-content: space-between;
@@ -4179,7 +4174,6 @@ input, select, textarea {
 
 					#footer .content .form form ul {
 						-moz-justify-content: -moz-flex-start;
-						-webkit-justify-content: -webkit-flex-start;
 						-ms-justify-content: -ms-flex-start;
 						justify-content: flex-start;
 						margin-bottom: 0;
