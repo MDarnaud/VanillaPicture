@@ -2,7 +2,6 @@
 session_start();
 
 // initializing variables
-$username = "";
 $email    = "";
 $errors = array();
 
@@ -47,7 +46,8 @@ if (isset($_POST['reg_user'])) {
 
     // Finally, register user if there are no errors in the form
     if (count($errors) == 0) {
-        $password = md5($password_1);//encrypt the password before saving in the database
+        $salt = $email;
+        $password = md5($salt.$password_1);//encrypt the password before saving in the database
 
         //Insert the user information in the table all_user in the database
         $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 

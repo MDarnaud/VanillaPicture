@@ -1,5 +1,5 @@
 <?php include 'countrieslist.php';
-        include 'server.php'; ?>
+        include 'serversignup.php'; ?>
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -28,7 +28,7 @@
 					<li><a href="../agenda.php">Agenda</a></li>
 					<li><a href="../packages.php">Packages</a></li>
 					<li><a href="../reservation.php">Request a Shoot</a></li>
-					<li><a href="../signin.php" class="icon fa-user-circle">Sign in</a></li>
+					<li><a href="../signin/signin.php" class="icon fa-user-circle">Sign in</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -41,7 +41,7 @@
 							<header class="major">
 								<h1>Sign up</h1>
 								<p>Create a new account here</p>
-                                <?php include "errors.php" ?>
+                                <?php include "errorssignup.php" ?>
 							</header>
                         <div style="margin:auto">
 							<div class="row gtr-200">
@@ -110,7 +110,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
-                                                        <li><button onclick="location.href='../signin.php?cancel=true'" type="reset" value="Cancel">Cancel</button></li>
+                                                        <li><button onclick="location.href='../signin/signin.php'" type="reset" value="Cancel">Cancel</button></li>
 													</ul>
 												</div>
 											</div>
@@ -118,7 +118,7 @@
 							</div>
 						</div>
                         <p>
-                            Already a member? <a href="../signin.php">Sign in</a>
+                            Already a member? <a href="../signin/signin.php">Sign in</a>
                         </p>
                     </div>
                 </div>
