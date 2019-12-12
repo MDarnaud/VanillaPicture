@@ -15,7 +15,7 @@ if(empty($_POST["isAvailability"])){
 
 
 //go to request if availability is checked
-$url = "../requestForm.php";
+$url = "requestForm.php";
 
 //file path
 $file = "../json/events.json";
@@ -25,9 +25,7 @@ $json = file_get_contents($file);
 //put file into associative array
 $eventsArray = json_decode($json,true);
 
-//var_dump($eventsArray);
-
-var_dump($isAvailability);
+//var_dump($isAvailability);
 
 //create array to hold new user information
 //array for user input
@@ -44,11 +42,6 @@ else if($eventEnd == null && $isAvailability == false){
 else{
     $newEventArray = array("title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd, "url"=>$url);
 }
-
-
-//add user to file
-//file_put_contents($file,json_encode($newEventArray,JSON_PRETTY_PRINT));
-//header("Location:register.php");
 
 array_push($eventsArray, $newEventArray);
 $jsonData = json_encode($eventsArray,JSON_PRETTY_PRINT);

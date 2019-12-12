@@ -34,11 +34,11 @@
     {
         "title": "Click for Google",
         "url": "http:\/\/google.com\/",
-        "start": "2019-08-28"
+        "start": "2019-12-28"
     },
     {
         "title": "testEvent - Location: Montreal",
         "start": "2019-12-12T10:58",
-        "url": "..\/requestForm.php"
+        "url": "requestForm.php"
     }
 ]

@@ -1,3 +1,7 @@
+<?php
+//start session
+session_start();
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -28,6 +32,35 @@
                         left: 'prev,next today',
                         center: 'title',
                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                    },
+                    eventClick: function(info) {
+                        info.jsEvent.preventDefault();
+                        window.alert(window.location);
+                        if (info.event.url) {
+
+                            var startDate=info.event.start;
+                            var queryString = "?startDate=" + startDate;
+                            window.alert(info.event.url + queryString);
+                            //window.open(info.event.url + queryString);
+                            /*
+                            //get url
+                            const url = new URL((info.event.url).window.location);
+                            //get query
+                            const query_string = url.search;
+                            //get parameters
+                            const search_params = new URLSearchParams(query_string);
+                            //convert date to string
+                            const startDate = info.event.start.toDateString();
+                            //set parameter
+                            search_params.append('start', startDate);
+                            // change the search property of the main url
+                            url.search = search_params.toString();
+                            // the new url string
+                            const new_url = url.toString();
+
+                            window.alert("hi");
+                            window.open(info.event.url);*/
+                        }
                     },
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
