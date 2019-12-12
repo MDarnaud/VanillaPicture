@@ -25,19 +25,15 @@ if (isset($_POST['reg_user'])) {
 
     // form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
-    if (empty($email)) { array_push($errors, "Email is required"); }
-    if (empty($password_1)) { array_push($errors, "Password is required"); }
-    if (empty($password_2)) { array_push($errors, "Confirm Password is required"); }
-    if (empty($firstname)) { array_push($errors, "First Name is required"); }
-    if (empty($lastname)) { array_push($errors, "Last Name is required"); }
-    if (empty($dob)) { array_push($errors, "Date of Birth is required"); }
-    if (empty($address)) { array_push($errors, "Address is required"); }
-    if (empty($country)) { array_push($errors, "Country is required"); }
-    if (empty($state)) { array_push($errors, "State is required"); }
-
-    if ($password_1 != $password_2) {
-        array_push($errors, "The two passwords do not match");
-    }
+    if (empty($email)) { array_push($errors, "Email "); }
+    if (empty($password_1)) { array_push($errors, "Password "); }
+    if (empty($password_2)) { array_push($errors, "Confirm Password "); }
+    if (empty($firstname)) { array_push($errors, "First Name "); }
+    if (empty($lastname)) { array_push($errors, "Last Name "); }
+    if (empty($dob)) { array_push($errors, "Date of Birth "); }
+    if (empty($address)) { array_push($errors, "Address "); }
+    if (empty($country)) { array_push($errors, "Country "); }
+    if (empty($state)) { array_push($errors, "State "); }
 
     // first check the database to make sure
     // a user does not already exist with the same username and/or email
@@ -55,14 +51,18 @@ if (isset($_POST['reg_user'])) {
     if (count($errors) == 0) {
         $password = md5($password_1);//encrypt the password before saving in the database
 
-        $queryuser = "INSERT INTO users (userId, userPassword, userType) 
-  			  VALUES('$email', '$password_1', null )";
+        //Insert the user information in the table all_user in the database
+        $queryuser = "INSERT INTO all_user (userId, userPassword, userType) 
+  			  VALUES('$email', '$password_1', 'customer' )";
         mysqli_query($db, $queryuser);
+        mysqli_query($db, $queryuser);
+
+        //Insert the customer information in the table customer in the database
         $querycustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerAddress, customerCountry, customerState) 
-  			  VALUES('$email', '$firstname', $lastname, $dob, $address, $country, $state )";
+  			  VALUES('$email', '$firstname', '$lastname', '$dob', '$address', '$country', '$state')";
         mysqli_query($db, $querycustomer);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
-//        header('location: index.php');
+        header('location: register.php');
     }
 }

@@ -1,6 +1,7 @@
+<?php include 'countrieslist.php';
+        include 'server.php'; ?>
+
 <!DOCTYPE HTML>
-<?php include 'countrieslist.php' ?>
-<?php include 'server.php'?>
 <html lang="en">
 	<head>
 		<title>Register</title>
@@ -40,43 +41,59 @@
 							<header class="major">
 								<h1>Sign up</h1>
 								<p>Create a new account here</p>
+                                <?php include "errors.php" ?>
 							</header>
                         <div style="margin:auto">
 							<div class="row gtr-200">
 									<!-- Form -->
 										<h3>Register</h3>
 										<form method="post" action="register.php">
-                                            <?php include "errors.php"?>
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="email" name="email" id="email" value="" placeholder="Email" />
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required/>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
-													<input type="password" name="password_1" id="password_1" value="" placeholder="Password" />
+													<input type="password" name="password_1" id="password_1" value="" placeholder="Password"
+                                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
+                                                           title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
+                                                           required/>
 												</div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password" />
+                                                    <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password"
+                                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
+                                                           title="Please enter the same Password as above"
+                                                           oninput="check(this)"
+                                                           required/>
+                                                    <script language='javascript' type='text/javascript'>
+                                                        function check(input) {
+                                                            if (input.value != document.getElementById('password_1').value) {
+                                                                input.setCustomValidity('Password Must be Matching.');
+                                                            } else {
+                                                                // input is valid -- reset the error message
+                                                                input.setCustomValidity('');
+                                                            }
+                                                        }
+                                                    </script>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
                                                     <h3>About you...</h3>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="firstname" id="firstname" value="" placeholder="First Name" />
+                                                    <input type="text" name="firstname" id="firstname" value="" placeholder="First Name"
+                                                           maxlength="20" required/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="lastname" id="lastname" value="" placeholder="Last Name" />
+                                                    <input type="text" name="lastname" id="lastname" value="" placeholder="Last Name"
+                                                           maxlength="20" required/>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
 													<p>Date of Birth</p>
-													<input type="date" name="dob" id="dob" value="" placeholder="Date of Birth" />
-												</div>
-												<div class="col-8 col-12-xsmall">
-													<input type="text" name="address" id="address" value="" placeholder="Address" />
+													<input type="date" name="dob" id="dob" value="" placeholder="Date of Birth" required/>
 												</div>
 												<div class="col-8 col-12-xsmall">
 <!--													<input type="text" name="demo-name" id="demo-country" value="" placeholder="Country" />-->
-												        <select name="countries" id="countries">
-                                                            <option value="" selected disabled hidden>-Select Country-</option>
+												        <select name="country" id="country">
+                                                            <option value="" selected hidden>-Select Country-</option>
                                                             <?php
                                                             foreach($countries as $key => $value) {
                                                                 ?>
@@ -87,8 +104,11 @@
                                                         </select>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="state" id="state" value="" placeholder="State" />
+													<input type="text" name="state" id="state" value="" placeholder="State" required/>
 												</div>
+                                                <div class="col-8 col-12-xsmall">
+                                                    <input type="text" name="address" id="address" value="" placeholder="Address" required/>
+                                                </div>
 												<!-- Break -->
 												<div class="col-12">
 													<ul class="actions">
@@ -104,7 +124,7 @@
                             Already a member? <a href="../login.php">Sign in</a>
                         </p>
                     </div>
-					</div>
+                </div>
 			</div>
 
 		<!-- Footer -->
