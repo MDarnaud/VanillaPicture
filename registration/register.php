@@ -28,7 +28,7 @@
 					<li><a href="../agenda.php">Agenda</a></li>
 					<li><a href="../packages.php">Packages</a></li>
 					<li><a href="../reservation.php">Request a Shoot</a></li>
-					<li><a href="../login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="../signin.php" class="icon fa-user-circle">Sign in</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -67,7 +67,7 @@
                                                     <script language='javascript' type='text/javascript'>
                                                         function check(input) {
                                                             if (input.value != document.getElementById('password_1').value) {
-                                                                input.setCustomValidity('Password Must be Matching.');
+                                                                input.setCustomValidity('Password Must Match.');
                                                             } else {
                                                                 // input is valid -- reset the error message
                                                                 input.setCustomValidity('');
@@ -79,11 +79,11 @@
                                                     <h3>About you...</h3>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="firstname" id="firstname" value="" placeholder="First Name"
+                                                    <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
                                                            maxlength="20" required/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="lastname" id="lastname" value="" placeholder="Last Name"
+                                                    <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name"
                                                            maxlength="20" required/>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
@@ -110,7 +110,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
-														<li><input type="reset" value="Reset" /></li>
+                                                        <li><button onclick="location.href='../signin.php?cancel=true'" type="reset" value="Cancel">Cancel</button></li>
 													</ul>
 												</div>
 											</div>
@@ -118,7 +118,7 @@
 							</div>
 						</div>
                         <p>
-                            Already a member? <a href="../login.php">Sign in</a>
+                            Already a member? <a href="../signin.php">Sign in</a>
                         </p>
                     </div>
                 </div>
