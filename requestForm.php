@@ -5,7 +5,6 @@ $title = "Enter Location";
 if (isset($_GET["startDate"])){
     $startDateString = $_GET["startDate"];
     $startDate = date('Y-m-d', strtotime($startDateString));
-
 }
 if(isset($_GET["title"])){
     $title = $_GET["title"];
@@ -61,7 +60,7 @@ if(isset($_GET["title"])){
 										<form method="post" action="#">
 											<div class="row gtr-uniform">
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="title" id="title" value="" placeholder="Title" value="<?php echo $title?>" />
+													<input type="text" name="title" id="title" value="<?php echo $title?>" />
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<strong>Date</strong>
