@@ -2883,9 +2883,9 @@ input, select, textarea {
 */
 /* Wrapper */
 
-	.wrapper {
+	/*.wrapper {
 		padding: 6rem 0 4rem 0 ;
-	}
+	}*/
 
 		.wrapper.special {
 			text-align: center;
@@ -2942,9 +2942,9 @@ input, select, textarea {
 
 		@media screen and (max-width: 1280px) {
 
-			.wrapper {
+/*			.wrapper {
 				padding: 5rem 0 3rem 0 ;
-			}
+			}*/
 
 				.wrapper.alt header {
 					padding-bottom: 3rem;
