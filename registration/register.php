@@ -47,7 +47,7 @@
 							<div class="row gtr-200">
 									<!-- Form -->
 										<h3>Register</h3>
-										<form method="post" action="../signin.php">
+										<form method="post" action="register.php">
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required/>

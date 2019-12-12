@@ -59,7 +59,7 @@ if (isset($_POST['reg_user'])) {
   			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city')";
         mysqli_query($db, $queryCustomer);
 
-        if ( mysqli_affected_rows()>= 1) {
+        if (mysqli_affected_rows($db) >= 1) {
             $_SESSION['userNewAccount'] = $email;
             header('location: ../signin.php');
         }
