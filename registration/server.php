@@ -51,7 +51,7 @@ if (isset($_POST['reg_user'])) {
 
         //Insert the user information in the table all_user in the database
         $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
-  			  VALUES('$email', '$password_1', 'customer' )";
+  			  VALUES('$email', '$password', 'customer' )";
         mysqli_query($db, $queryUser);
 
         //Insert the customer information in the table customer in the database
