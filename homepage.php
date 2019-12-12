@@ -28,7 +28,7 @@
 						<li><a href="agenda.php">Agenda</a></li>
 						<li><a href="packages.php">Packages</a></li>
 						<li><a href="requestForm.php">Request a Shoot</a></li>
-						<li><a href="signIn/signin.php" class="icon fa-user-circle"> Sign in</a></li>
+						<li><a href="signIn/signIn.php" class="icon fa-user-circle"> Sign in</a></li>
 					</ul>
 				</nav>
 			</header>

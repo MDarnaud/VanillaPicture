@@ -28,7 +28,7 @@
 					<li><a href="../agenda.php">Agenda</a></li>
 					<li><a href="../packages.php">Packages</a></li>
 					<li><a href="../reservation.php">Request a Shoot</a></li>
-					<li><a href="../signIn/signin.php" class="icon fa-user-circle">Sign in</a></li>
+					<li><a href="../signIn/signIn.php" class="icon fa-user-circle">Sign in</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -110,7 +110,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
-                                                        <li><button onclick="location.href='../signIn/signin.php'" type="reset" value="Cancel">Cancel</button></li>
+                                                        <li><button onclick="location.href='../signIn/signIn.php'" type="reset" value="Cancel">Cancel</button></li>
 													</ul>
 												</div>
 											</div>
@@ -118,7 +118,7 @@
 							</div>
 						</div>
                         <p>
-                            Already a member? <a href="../signIn/signin.php">Sign in</a>
+                            Already a member? <a href="../signIn/signIn.php">Sign in</a>
                         </p>
                     </div>
                 </div>
