@@ -83,8 +83,13 @@ include 'serversignin.php'; ?>
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="SignIn" class="primary" name="signIn_user">Sign In</button></li>
-                                                        <li><input type="reset" value="Cancel"/></li>
-													</ul>
+                                                        <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
+                                                        <script language='javascript' type='text/javascript'>
+                                                            function goBack() {
+                                                                window.history.back();
+                                                            }
+                                                        </script>
+                                                    </ul>
 												</div>
 											</div>
 										</form>
