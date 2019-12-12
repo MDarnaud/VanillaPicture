@@ -55,7 +55,7 @@ if (isset($_POST['signIn_user'])) {
 //
 //        if (mysqli_affected_rows($db) >= 1) {
 //            $_SESSION['userNewAccount'] = $email;
-//            header('location: ../signin.php');
+//            header('location: ../signIn.php');
 //        }
 //    }
 }

@@ -40,7 +40,7 @@ if(isset($_GET["title"])){
 					<li><a href="agenda.php">Agenda</a></li>
 					<li><a href="packages.php">Packages</a></li>
 					<li><a href="requestForm.php">Request a Shoot</a></li>
-					<li><a href="./signin/signin.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="signIn/signin.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>
 		</header>
