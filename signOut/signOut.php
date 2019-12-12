@@ -9,27 +9,7 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 	</head>
 	<body class="is-preload">
-
-		<!-- Header -->
-		<header id="header" class="alt">
-			<nav id="nav">
-				<ul>
-					<li class="current"><a href="../homepage.php">Home</a></li>
-					<li>
-						<a href="" class="dropdown">Portfolio</a>
-						<ul>
-							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
-						</ul>
-					</li>
-					<li><a href="../announcement.php">Announcement</a></li>
-					<li><a href="../agenda.php">Agenda</a></li>
-					<li><a href="../packages.php">Packages</a></li>
-					<li><a href="request.php">Request a Shoot</a></li>
-					<li><a href="signIn.php" class="icon fa-user-circle">Sign in</a></li>
-				</ul>
-			</nav>
-		</header>
-
+    <?php include '../navigation/navigation.php' ?>
 		<!-- Main -->
 			<div id="main">
 				<div class="wrapper">
@@ -38,7 +18,7 @@
 						<!-- Elements -->
 							<header class="major">
 								<h1>Sign Out</h1>
-                                <p>Are You Sure You Want to Exist?</p>
+                                <p>Are You Sure You Want to Exit?</p>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
                                     <div class="col-12">
