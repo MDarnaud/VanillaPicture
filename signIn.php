@@ -8,11 +8,11 @@ include 'serversignin.php'; ?>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 
-    <?php include '../navigation/navigation.php' ?>
+    <?php include './navigation/navigation.php' ?>
 
 		<!-- Main -->
 			<div id="main">
@@ -22,11 +22,11 @@ include 'serversignin.php'; ?>
 						<!-- Elements -->
 							<header class="major">
 								<h1>Sign In</h1>
-                                <p>Not a member yet? Register <a href="../registration/register.php"><strong style="color:cadetblue; text-decoration:underline">HERE</strong></a></p>
+                                <p>Not a member yet? Register <a href="registration/register.php"><strong style="color:cadetblue; text-decoration:underline">HERE</strong></a></p>
                                 <?php if(isset($_SESSION["userNewAccount"]) && !(isset($_GET["cancel"]))):?>
                                     <p>Sign in to your new account.</p>
                                 <?php  endif; ?>
-                                <?php include 'errorssignin.php'?>
+                                <?php include 'errorssignin.php' ?>
 								     </header>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
@@ -91,12 +91,12 @@ include 'serversignin.php'; ?>
 			</div>
 
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
 	</body>
 </html>

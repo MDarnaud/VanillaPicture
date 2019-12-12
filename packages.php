@@ -11,7 +11,7 @@
 	</head>
 	<body class="is-preload">
 
-    <?php include '../navigation/navigation.php' ?>
+    <?php include './navigation/navigation.php' ?>
 		<!-- One -->
 			<div id="main">
 				<div class="wrapper">

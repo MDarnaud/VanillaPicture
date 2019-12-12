@@ -13,7 +13,7 @@
 	</head>
 	<body class="is-preload">
 
-    <?php include '../navigation/navigation.php' ?>
+    <?php include './navigation/navigation.php' ?>
 
 		<!-- Banner -->
 			<div id="banner">

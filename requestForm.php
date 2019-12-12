@@ -24,7 +24,7 @@ if(isset($_GET["title"])){
 	</head>
 	<body class="is-preload">
 
-    <?php include '../navigation/navigation.php' ?>
+    <?php include './navigation/navigation.php' ?>
 
 
 		<!-- Main -->
