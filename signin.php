@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<head>
-		<title>Log in</title>
+		<title>Sign in</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -26,7 +26,7 @@
 					<li><a href="agenda.php">Agenda</a></li>
 					<li><a href="packages.php">Packages</a></li>
 					<li><a href="request.php">Request a Shoot</a></li>
-					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="signin.php" class="icon fa-user-circle">Sign in</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -38,26 +38,29 @@
 
 						<!-- Elements -->
 							<header class="major">
-								<h1>LOGIN</h1>
-								<p>Not a member yet? Register <a href="registration/register.php"><strong style="color:dodgerblue; text-decoration:underline">HERE</strong></a></p>
+								<h1>Sign In</h1>
+								<p>Not a member yet? Register <a href="registration/register.php"><strong style="color:cadetblue; text-decoration:underline">HERE</strong></a></p>
 							</header>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
 
 									<!-- Form -->
-										<form method="post" action="#">
+										<form method="post" action="../homepage.php">
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
-													<input type="text" name="demo-name" id="demo-name" value="" placeholder="Username" />
-												</div>
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required/>
+                                                </div>
 												<div class="col-12 col-12-xsmall">
-													<input type="password" name="demo-password" id="demo-password" value="" placeholder="Password" />
-												</div>
+                                                    <input type="password" name="password" id="password" value="" placeholder="Password"
+                                                           pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
+                                                           title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
+                                                           required/>
+                                                </div>
 												<!-- Break -->
 												<div class="col-12">
 													<ul class="actions">
-														<li><input type="submit" value="Login" class="primary" /></li>
-														<li><input type="reset" value="Cancel" /></li>
+                                                        <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
+                                                        <li><input type="reset" value="Cancel" /></li>
 													</ul>
 												</div>
 											</div>

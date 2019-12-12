@@ -61,8 +61,7 @@ if (isset($_POST['reg_user'])) {
         $querycustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerAddress, customerCountry, customerCity) 
   			  VALUES('$email', '$firstname', '$lastname', '$dob', '$address', '$country', '$city')";
         mysqli_query($db, $querycustomer);
-        $_SESSION['username'] = $username;
-        $_SESSION['success'] = "You are now logged in";
-        header('location: register.php');
+        $_SESSION['userNewAccount'] = $email;
+        header('location: signin.php');
     }
 }

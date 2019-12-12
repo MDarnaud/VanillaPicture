@@ -28,7 +28,7 @@
 					<li><a href="../agenda.php">Agenda</a></li>
 					<li><a href="../packages.php">Packages</a></li>
 					<li><a href="../reservation.php">Request a Shoot</a></li>
-					<li><a href="../login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="../signin.php" class="icon fa-user-circle">Sign in</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -47,7 +47,7 @@
 							<div class="row gtr-200">
 									<!-- Form -->
 										<h3>Register</h3>
-										<form method="post" action="register.php">
+										<form method="post" action="../signin.php">
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required/>
@@ -67,7 +67,7 @@
                                                     <script language='javascript' type='text/javascript'>
                                                         function check(input) {
                                                             if (input.value != document.getElementById('password_1').value) {
-                                                                input.setCustomValidity('Password Must be Matching.');
+                                                                input.setCustomValidity('Password Must Match.');
                                                             } else {
                                                                 // input is valid -- reset the error message
                                                                 input.setCustomValidity('');
@@ -110,7 +110,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
-														<li><input type="reset" value="Reset" /></li>
+                                                        <li><button onclick="location.href='../signin.php'" type="reset" value="Cancel">Cancel</button></li>
 													</ul>
 												</div>
 											</div>
@@ -118,7 +118,7 @@
 							</div>
 						</div>
                         <p>
-                            Already a member? <a href="../login.php">Sign in</a>
+                            Already a member? <a href="../signin.php">Sign in</a>
                         </p>
                     </div>
                 </div>
