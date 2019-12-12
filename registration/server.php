@@ -15,10 +15,9 @@ if (isset($_POST['reg_user'])) {
     $email = mysqli_real_escape_string($db, $_POST['email']);
     $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
     $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-    $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($db, $_POST['lastname']);
+    $firstName = mysqli_real_escape_string($db, $_POST['firstName']);
+    $lastName = mysqli_real_escape_string($db, $_POST['lastName']);
     $dob = mysqli_real_escape_string($db, $_POST['dob']);
-    $address = mysqli_real_escape_string($db, $_POST['address']);
     $country = mysqli_real_escape_string($db, $_POST['country']);
     $city = mysqli_real_escape_string($db, $_POST['city']);
 
@@ -28,10 +27,9 @@ if (isset($_POST['reg_user'])) {
     if (empty($email)) { array_push($errors, "Email "); }
     if (empty($password_1)) { array_push($errors, "Password "); }
     if (empty($password_2)) { array_push($errors, "Confirm Password "); }
-    if (empty($firstname)) { array_push($errors, "First Name "); }
-    if (empty($lastname)) { array_push($errors, "Last Name "); }
+    if (empty($firstName)) { array_push($errors, "First Name "); }
+    if (empty($lastName)) { array_push($errors, "Last Name "); }
     if (empty($dob)) { array_push($errors, "Date of Birth "); }
-    if (empty($address)) { array_push($errors, "Address "); }
     if (empty($country)) { array_push($errors, "Country "); }
     if (empty($city)) { array_push($errors, "City "); }
 
@@ -52,16 +50,18 @@ if (isset($_POST['reg_user'])) {
         $password = md5($password_1);//encrypt the password before saving in the database
 
         //Insert the user information in the table all_user in the database
-        $queryuser = "INSERT INTO all_user (userId, userPassword, userType) 
+        $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
   			  VALUES('$email', '$password_1', 'customer' )";
-        mysqli_query($db, $queryuser);
-        mysqli_query($db, $queryuser);
+        mysqli_query($db, $queryUser);
 
         //Insert the customer information in the table customer in the database
-        $querycustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerAddress, customerCountry, customerCity) 
-  			  VALUES('$email', '$firstname', '$lastname', '$dob', '$address', '$country', '$city')";
-        mysqli_query($db, $querycustomer);
-        $_SESSION['userNewAccount'] = $email;
-        header('location: signin.php');
+        $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity) 
+  			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city')";
+        mysqli_query($db, $queryCustomer);
+
+        if ( mysqli_affected_rows()>= 1) {
+            $_SESSION['userNewAccount'] = $email;
+            header('location: ../signin.php');
+        }
     }
 }

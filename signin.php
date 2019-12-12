@@ -1,5 +1,5 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
-
 <html lang="en">
 	<head>
 		<title>Sign in</title>
@@ -39,8 +39,11 @@
 						<!-- Elements -->
 							<header class="major">
 								<h1>Sign In</h1>
-								<p>Not a member yet? Register <a href="registration/register.php"><strong style="color:cadetblue; text-decoration:underline">HERE</strong></a></p>
-							</header>
+                                <p>Not a member yet? Register <a href="registration/register.php"><strong style="color:cadetblue; text-decoration:underline">HERE</strong></a></p>
+                                <?php if(isset($_SESSION["userNewAccount"]) && !(isset($_GET["cancel"]))):?>
+                                    <p>Sign in to your new account.</p>
+                                <?php  endif; ?>
+								     </header>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
 
@@ -48,7 +51,11 @@
 										<form method="post" action="../homepage.php">
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
+                                                    <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
+                                                        <input type="email" name="email" id="email" value="<?php echo $_SESSION['userNewAccount']; ?>" placeholder="Email" required/>
+                                                    <?php else:?>
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required/>
+                                                    <?php  endif; ?>
                                                 </div>
 												<div class="col-12 col-12-xsmall">
                                                     <input type="password" name="password" id="password" value="" placeholder="Password"
@@ -60,7 +67,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
-                                                        <li><input type="reset" value="Cancel" /></li>
+                                                        <li><input type="reset" value="Cancel"/></li>
 													</ul>
 												</div>
 											</div>

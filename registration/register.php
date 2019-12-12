@@ -79,11 +79,11 @@
                                                     <h3>About you...</h3>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="firstname" id="firstname" value="" placeholder="First Name"
+                                                    <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
                                                            maxlength="20" required/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="lastname" id="lastname" value="" placeholder="Last Name"
+                                                    <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name"
                                                            maxlength="20" required/>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
@@ -110,7 +110,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Signup" class="primary" name="reg_user">Sign up</button></li>
-                                                        <li><button onclick="location.href='../signin.php'" type="reset" value="Cancel">Cancel</button></li>
+                                                        <li><button onclick="location.href='../signin.php?cancel=true'" type="reset" value="Cancel">Cancel</button></li>
 													</ul>
 												</div>
 											</div>
