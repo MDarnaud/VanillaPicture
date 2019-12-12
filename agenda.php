@@ -21,8 +21,8 @@ session_start();
         <script src='packages/daygrid/main.js'></script>
         <script src='packages/timegrid/main.js'></script>
         <script src='packages/list/main.js'></script>
-        <script>
 
+        <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
 
@@ -35,13 +35,16 @@ session_start();
                     },
                     eventClick: function(info) {
                         info.jsEvent.preventDefault();
-                        window.alert(window.location);
+
                         if (info.event.url) {
 
                             var startDate=info.event.start;
-                            var queryString = "?startDate=" + startDate;
+                            var title = info.event.title;
+                            var startDateString = startDate.toDateString();
+                            var queryString = "?startDate=" + startDateString + "?title=" + title;
+
                             window.alert(info.event.url + queryString);
-                            //window.open(info.event.url + queryString);
+                            window.open(info.event.url + queryString);
                             /*
                             //get url
                             const url = new URL((info.event.url).window.location);
@@ -105,7 +108,7 @@ session_start();
 					<li>
 						<a href="" class="dropdown">Portfolio</a>
 						<ul>
-							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
+							<li><a href=".\dark\gallery.html">Gallery</a></li>
 						</ul>
 					</li>
 					<li><a href="announcement.php">Announcement</a></li>

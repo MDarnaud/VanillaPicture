@@ -1,3 +1,19 @@
+<?php
+//get date to fill form
+$startDate = date("Y-m-d");
+
+$test = "2019-12-12";
+var_dump($startDate);
+if (isset($_GET["startDate"])){
+    $startDateString = $_GET["startDate"];
+    //var_dump($startDateString);
+    $startDate = date('Y-m-d', strtotime($startDateString));
+    var_dump($startDate);
+}
+//$inputDate = date_format($startDate,"Y-m-d");
+
+?>
+
 <!DOCTYPE HTML>
 
 <html lang="en">
@@ -19,14 +35,14 @@
 					<li>
 						<a href="" class="dropdown">Portfolio</a>
 						<ul>
-							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
+							<li><a href=".\dark\gallery.html">Gallery</a></li>
 						</ul>
 					</li>
 					<li><a href="announcement.php">Announcement</a></li>
 					<li><a href="agenda.php">Agenda</a></li>
 					<li><a href="packages.php">Packages</a></li>
 					<li><a href="requestForm.php">Request a Shoot</a></li>
-					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="./signin/signin.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -51,7 +67,7 @@
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<strong>Date</strong>
-													<input type="date" name="demo-date" id="demo-password" value="" placeholder="Date" />
+													<input type="date" name="demo-date" id="demo-password" value="<?php echo $startDate?>" />
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<strong>Time</strong>

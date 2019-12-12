@@ -19,14 +19,14 @@
 					<li>
 						<a href="" class="dropdown">Portfolio</a>
 						<ul>
-							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
+							<li><a href=".\dark\gallery.html">Gallery</a></li>
 						</ul>
 					</li>
 					<li><a href="announcement.php">Announcement</a></li>
 					<li><a href="agenda.php">Agenda</a></li>
 					<li><a href="packages.php">Packages</a></li>
 					<li><a href="requestForm.php">Request a Shoot</a></li>
-					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="./signin/signin.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>
 		</header>
