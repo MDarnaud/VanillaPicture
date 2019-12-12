@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 
@@ -15,18 +15,18 @@
 		<header id="header" class="alt">
 			<nav id="nav">
 				<ul>
-					<li class="current"><a href="homepage.php">Home</a></li>
+					<li class="current"><a href="../homepage.php">Home</a></li>
 					<li>
 						<a href="" class="dropdown">Portfolio</a>
 						<ul>
 							<li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
 						</ul>
 					</li>
-					<li><a href="announcement.php">Announcement</a></li>
-					<li><a href="agenda.php">Agenda</a></li>
-					<li><a href="packages.php">Packages</a></li>
-					<li><a href="request.php">Request a Shoot</a></li>
-					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
+					<li><a href="../announcement.php">Announcement</a></li>
+					<li><a href="../agenda.php">Agenda</a></li>
+					<li><a href="../packages.php">Packages</a></li>
+					<li><a href="../requestForm.php">Request a Shoot</a></li>
+					<li><a href="../login.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -76,12 +76,12 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 
 	</body>
 </html>

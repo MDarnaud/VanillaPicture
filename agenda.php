@@ -8,7 +8,7 @@
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 
-        <link href='packages/core/main.css' rel='stylesheet' />
+        <link href='packages/core/agenda.css' rel='stylesheet' />
         <link href='packages/daygrid/main.css' rel='stylesheet' />
         <link href='packages/timegrid/main.css' rel='stylesheet' />
         <link href='packages/list/main.css' rel='stylesheet' />
@@ -42,8 +42,8 @@
                             error: function() {
                                 alert('there was an error while fetching events!');
                             },
-                            /*color: 'yellow',   // a non-ajax option
-                            textColor: 'black' // a non-ajax option*/
+                            backgroundColor: '#5f9ea0',
+                            borderColor: 'white' // a non-ajax option
                         }
                     ]
                 });
@@ -78,7 +78,7 @@
 					<li><a href="announcement.php">Announcement</a></li>
 					<li><a href="agenda.php">Agenda</a></li>
 					<li><a href="packages.php">Packages</a></li>
-					<li><a href="request.php">Request a Shoot</a></li>
+					<li><a href="requestForm.php">Request a Shoot</a></li>
 					<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
 				</ul>
 			</nav>

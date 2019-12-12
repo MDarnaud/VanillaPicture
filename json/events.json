@@ -1,0 +1,44 @@
+[
+    {
+        "title": "All Day Event",
+        "start": "2019-12-01"
+    },
+    {
+        "title": "Long Event",
+        "start": "2019-08-07",
+        "end": "2019-12-10"
+    },
+    {
+        "id": "999",
+        "title": "Repeating Event",
+        "start": "2019-12-09T16:00:00-05:00"
+    },
+    {
+        "id": "999",
+        "title": "Repeating Event",
+        "start": "2019-12-16T16:00:00-05:00"
+    },
+    {
+        "title": "Shoot Availability - Location: Montreal",
+        "start": "2019-12-11"
+    },
+    {
+        "title": "Meeting",
+        "start": "2019-12-12T10:30:00-05:00",
+        "end": "2019-12-12T12:30:00-05:00"
+    },
+    {
+        "title": "Meeting",
+        "start": "2019-12-12T14:30:00-05:00"
+    },
+    {
+        "title": "Click for Google",
+        "url": "http:\/\/google.com\/",
+        "start": "2019-08-28"
+    },
+    {
+        "title": "testEvent - Location: Montreal",
+        "start": "2019-12-12T10:58",
+        "url": "..\/requestForm.php"
+    }
+]
