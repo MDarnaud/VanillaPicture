@@ -27,7 +27,7 @@
 						<li><a href="announcement.php">Announcement</a></li>
 						<li><a href="agenda.php">Agenda</a></li>
 						<li><a href="packages.php">Packages</a></li>
-						<li><a href="reservation.php">Request a Shoot</a></li>
+						<li><a href="request.php">Request a Shoot</a></li>
 						<li><a href="login.php" class="icon fa-user-circle"> Login</a></li>
 					</ul>
 				</nav>
