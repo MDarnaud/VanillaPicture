@@ -62,7 +62,7 @@ if (isset($_POST['reg_user'])) {
 
         if (mysqli_affected_rows($db) >= 1) {
             $_SESSION['userNewAccount'] = $email;
-            header('location: ../signin/signin.php');
+            header('location: ../signIn/signIn.php');
         }
     }
 }
