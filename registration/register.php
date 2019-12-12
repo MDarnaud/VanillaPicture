@@ -1,5 +1,5 @@
 <?php include 'countrieslist.php';
-        include 'serversignup.php'; ?>
+        include 'serverSignUp.php'; ?>
 
 <!DOCTYPE HTML>
 <html lang="en">

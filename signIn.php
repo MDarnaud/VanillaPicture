@@ -1,5 +1,8 @@
 <?php
-include 'serversignin.php'; ?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include 'serverSignIn.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
