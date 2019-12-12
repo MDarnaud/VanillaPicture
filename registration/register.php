@@ -103,11 +103,8 @@
                                                             ?>
                                                         </select>
                                                 </div>
-												<div class="col-8 col-12-xsmall">
-													<input type="text" name="state" id="state" value="" placeholder="State" required/>
-												</div>
                                                 <div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="address" id="address" value="" placeholder="Address" required/>
+                                                    <input type="text" name="city" id="city" value="" placeholder="City" required/>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">

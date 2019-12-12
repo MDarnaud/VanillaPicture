@@ -20,7 +20,7 @@ if (isset($_POST['reg_user'])) {
     $dob = mysqli_real_escape_string($db, $_POST['dob']);
     $address = mysqli_real_escape_string($db, $_POST['address']);
     $country = mysqli_real_escape_string($db, $_POST['country']);
-    $state = mysqli_real_escape_string($db, $_POST['state']);
+    $city = mysqli_real_escape_string($db, $_POST['city']);
 
 
     // form validation: ensure that the form is correctly filled ...
@@ -33,7 +33,7 @@ if (isset($_POST['reg_user'])) {
     if (empty($dob)) { array_push($errors, "Date of Birth "); }
     if (empty($address)) { array_push($errors, "Address "); }
     if (empty($country)) { array_push($errors, "Country "); }
-    if (empty($state)) { array_push($errors, "State "); }
+    if (empty($city)) { array_push($errors, "City "); }
 
     // first check the database to make sure
     // a user does not already exist with the same username and/or email
@@ -58,8 +58,8 @@ if (isset($_POST['reg_user'])) {
         mysqli_query($db, $queryuser);
 
         //Insert the customer information in the table customer in the database
-        $querycustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerAddress, customerCountry, customerState) 
-  			  VALUES('$email', '$firstname', '$lastname', '$dob', '$address', '$country', '$state')";
+        $querycustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerAddress, customerCountry, customerCity) 
+  			  VALUES('$email', '$firstname', '$lastname', '$dob', '$address', '$country', '$city')";
         mysqli_query($db, $querycustomer);
         $_SESSION['username'] = $username;
         $_SESSION['success'] = "You are now logged in";
