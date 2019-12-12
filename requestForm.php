@@ -1,17 +1,15 @@
 <?php
 //get date to fill form
 $startDate = date("Y-m-d");
-
-$test = "2019-12-12";
-var_dump($startDate);
+$title = "Enter Location";
 if (isset($_GET["startDate"])){
     $startDateString = $_GET["startDate"];
-    //var_dump($startDateString);
     $startDate = date('Y-m-d', strtotime($startDateString));
-    var_dump($startDate);
-}
-//$inputDate = date_format($startDate,"Y-m-d");
 
+}
+if(isset($_GET["title"])){
+    $title = $_GET["title"];
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -63,7 +61,7 @@ if (isset($_GET["startDate"])){
 										<form method="post" action="#">
 											<div class="row gtr-uniform">
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="demo-location" id="demo-name" value="" placeholder="Location" />
+													<input type="text" name="title" id="title" value="" placeholder="Title" value="<?php echo $title?>" />
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<strong>Date</strong>
