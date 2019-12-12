@@ -46,6 +46,7 @@ if (isset($_POST['reg_user'])) {
 
     // Finally, register user if there are no errors in the form
     if (count($errors) == 0) {
+        //Hash password
         $salt = $email;
         $password = md5($salt.$password_1);//encrypt the password before saving in the database
 
@@ -61,7 +62,7 @@ if (isset($_POST['reg_user'])) {
 
         if (mysqli_affected_rows($db) >= 1) {
             $_SESSION['userNewAccount'] = $email;
-            header('location: ../signin.php');
+            header('location: ../signin/signin.php');
         }
     }
 }

@@ -26,7 +26,14 @@ if (isset($_POST['signIn_user'])) {
         }
     }
     else{
-            if (!($user['userPassword'] === $password_1)) {
+        //Hash password
+        $salt = $email;
+        $password = md5($salt.$password_1);
+            if ($user['userPassword'] === $password) {
+                $_SESSION['userSignIn'] = $email;
+                header('location: ../homepage.php');
+            }
+            else{
                 array_push($errors, "Password is invalid. ");
             }
     }
