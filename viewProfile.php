@@ -49,13 +49,10 @@ include './serverViewProfile.php'
 										<form method="post" action="./viewProfile.php">
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
-                                                    <h3>Account</h3>
+                                                    <h3>Profile</h3>
                                                 </div>
 												<div class="col-12 col-12-xsmall">
-                                                    <p><strong>Email :</strong>&nbsp; &nbsp;<?php echo $user['userId']; ?></p><br>
-                                                </div>
-                                                <div class="col-8 col-12-xsmall">
-                                                    <h3>Profile</h3>
+                                                    <p><strong>Email :</strong>&nbsp; &nbsp;<?php echo $user['userId']; ?></p>
                                                 </div>
 												<div class="col-12 col-12-xsmall">
                                                     <p><strong>Name :</strong>&nbsp; &nbsp;<?php echo $customer['customerFirstName'].' '.$customer['customerLastName']  ?></p>
@@ -89,14 +86,11 @@ include './serverViewProfile.php'
                                                     </p>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
-                                                    <p><strong>City :</strong>&nbsp; &nbsp; <input type="text" name="city" id="city" value=<?= $customer['customerCity'] ?> placeholder="City" required/></p>
+                                                    <p><strong>City :</strong>&nbsp; &nbsp; <input type="text" name="city" id="city" value=<?= $customer['customerCity'] ?> placeholder="City" required/><br></p>
                                                 </div>
-                                                <div class="col-12 col-12-xsmall">
-                                                    <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Change password</strong></a>
-                                                </div>
-												<!-- Break -->
-												<div class="col-12">
-													<ul class="actions">
+                                                <!-- Break -->
+                                                <div class="col-12">
+                                                    <ul class="actions">
                                                         <li><button type="submit" value="Update" class="primary" name="update_User">Update</button></li>
                                                         <li><button type="reset" value="Cancel" onclick="goHome()">Cancel</button></li>
                                                         <script language='javascript' type='text/javascript'>
@@ -105,9 +99,65 @@ include './serverViewProfile.php'
                                                             }
                                                         </script>
                                                     </ul>
-												</div>
-											</div>
-										</form>
+                                                </div>
+                                            </div>
+                                        </form>
+
+
+
+
+<hr>
+
+                                    <form method="post" action="./viewProfile.php">
+                                        <div class="row gtr-uniform">
+                                                <div class="col-8 col-12-xsmall">
+                                                    <h3><br><br>Change password</h3>
+                                                    <p><?php include('./registration/errorssignup.php');?></p>
+                                                </div>
+                                                <div class="col-12 col-12-xsmall">
+                                                    <p><strong>Current Password : </strong>&nbsp; &nbsp; <input type="password" name="password_current" id="password_current" value="" placeholder="Current Password"
+                                                                                                        />
+                                                </div>
+                                                <div class="col-12 col-12-xsmall">
+                                                    <p><strong>Password : </strong>&nbsp; &nbsp; <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
+                                                                                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
+                                                                                                                title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
+                                                                                                                />
+                                                </div>
+                                                <div class="col-12 col-12-xsmall">
+                                                    <p><strong>Confirm Password :</strong>&nbsp; &nbsp;
+                                                        <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password"
+                                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
+                                                               title="Please enter the same Password as above"
+                                                               oninput="check(this)"
+                                                               />
+                                                        <script language='javascript' type='text/javascript'>
+                                                            function check(input) {
+                                                                if (input.value != document.getElementById('password_1').value) {
+                                                                    input.setCustomValidity('Password Must Match.');
+                                                                } else {
+                                                                    // input is valid -- reset the error message
+                                                                    input.setCustomValidity('');
+                                                                }
+                                                            }
+                                                        </script>
+                                                    </div>
+                                                    </p>
+                                                </div>
+                                            <!-- Break -->
+                                            <div class="col-12">
+                                                <ul class="actions">
+                                                    <li><button type="submit" value="Change_PW" class="primary" name="change_PW_User">Change Password</button></li>
+                                                    <li><button type="reset" value="Cancel" onclick="goHome()">Cancel</button></li>
+                                                    <script language='javascript' type='text/javascript'>
+                                                        function goHome() {
+                                                            window.location.href='./homepage.php';
+                                                        }
+                                                    </script>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </form>
 								</div>
 							</div>
 						</div>

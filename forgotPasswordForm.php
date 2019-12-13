@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include 'sendEmail.php'; ?>
+include 'sendEmailForgotPW.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
