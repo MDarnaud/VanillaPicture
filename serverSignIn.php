@@ -2,6 +2,7 @@
 
 // initializing variables
 $email    = "";
+$password_1 = "";
 $errors = array();
 
 // connect to the database
