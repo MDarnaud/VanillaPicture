@@ -62,7 +62,9 @@ include 'serverSignIn.php'; ?>
                                                     </script>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
-                                                    <a><strong style="text-decoration:underline">Change password</strong></a>
+                                                    <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Forgot password?</strong></a>
+                                                    or
+                                                    <a href="changePasswordForm.php"><strong style="text-decoration:underline">Change password.</strong></a>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">

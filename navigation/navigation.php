@@ -16,7 +16,7 @@ echo '<header id="header" class="alt">
             <li><a href="./announcement.php">Announcement</a></li>
             <li><a href="./agenda.php">Agenda</a></li>
             <li><a href="./packages.php">Packages</a></li>
-            <li><a href="./requestForm.php">Request a Shoot</a></li>';
+            <li><a href="./finances.php">Finances</a></li>';
 
 //          Verify if user login
             if(!(isset($_SESSION['userSignIn']))) {
