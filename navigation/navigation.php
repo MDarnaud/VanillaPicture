@@ -23,7 +23,13 @@ echo '<header id="header" class="alt">
                 echo '<li><a href="./signIn.php" class="icon fa-user-circle"> Sign in</a></li>';
             }
             else{
-                echo '<li><a href="./signOut.php" class="icon fa-user-circle"> Sign Out</a></li>';
+                echo '<li><a href="./signOut.php" class="icon fa-user-circle"> Sign Out</a>';
+                if($_SESSION['userTypeSignIn'] !== 'administrator'):
+                    echo '<ul>
+                        <li><a href="./viewAccount.php">View Account</a></li>
+                    </ul>';
+                endif;
+                    echo '</li>';
             }
         echo '</ul>
     </nav>

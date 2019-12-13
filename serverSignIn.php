@@ -31,6 +31,7 @@ if (isset($_POST['signIn_user'])) {
         $password = md5($salt.$password_1);
             if ($user['userPassword'] === $password) {
                 $_SESSION['userSignIn'] = $email;
+                $_SESSION['userTypeSignIn'] = $user['userType'];
                 header('location: ./homepage.php');
             }
             else{

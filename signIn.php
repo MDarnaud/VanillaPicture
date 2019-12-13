@@ -40,7 +40,7 @@ include 'serverSignIn.php'; ?>
 								<div class="col-12 col-12-medium">
 
 									<!-- Form -->
-										<form method="post" action="signIn.php">
+										<form method="post" action="./signIn.php">
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
                                                     <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
@@ -68,8 +68,6 @@ include 'serverSignIn.php'; ?>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Forgot password?</strong></a>
-                                                    or
-                                                    <a href="changePasswordForm.php"><strong style="text-decoration:underline">Change password.</strong></a>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">
