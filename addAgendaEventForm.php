@@ -27,6 +27,10 @@
                     <form method="post" action="addAgendaEvent.php">
                         <div class="row gtr-uniform">
                             <div class="col-8 col-12-xsmall">
+                                <label for="eventTitle">Enter Event ID (ex: available12/13/19) </label>
+                                <input type="text" name="eventId" id="eventId" value="" placeholder="Event Id" required/>
+                            </div>
+                            <div class="col-8 col-12-xsmall">
                                 <label for="eventTitle">Enter Event Title (ex: Available)</label>
                                 <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Event Title" required/>
                             </div>

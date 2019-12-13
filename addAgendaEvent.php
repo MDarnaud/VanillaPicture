@@ -1,6 +1,7 @@
 <?php
 //get new user information
 $eventTitle = $_POST["eventTitle"];
+$eventId = $_POST["eventId"];
 //add location to title if it was precised
 if($_POST["eventLocation"] != null){
     $eventTitle .= " - Location: ".$_POST["eventLocation"];
@@ -18,29 +19,29 @@ if(empty($_POST["isAvailability"])){
 $url = "requestForm.php";
 
 //file path
-$file = "../json/events.json";
+$file = "json/events.json";
 
 //get file
 $json = file_get_contents($file);
 //put file into associative array
 $eventsArray = json_decode($json,true);
 
-//var_dump($isAvailability);
+var_dump($eventsArray);
 
 //create array to hold new user information
 //array for user input
 $newEventArray = array();
 if($eventEnd == null){
-    $newEventArray = array("title"=>$eventTitle,"start"=>$eventStart, "url"=>$url);
+    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart, "url"=>$url);
 }
 else if($isAvailability == false){
-    $newEventArray = array("title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd);
+    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd);
 }
 else if($eventEnd == null && $isAvailability == false){
-    $newEventArray = array("title"=>$eventTitle,"start"=>$eventStart);
+    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart);
 }
 else{
-    $newEventArray = array("title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd, "url"=>$url);
+    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd, "url"=>$url);
 }
 
 array_push($eventsArray, $newEventArray);
