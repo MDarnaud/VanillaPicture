@@ -1,7 +1,3 @@
-<?php
-//start session
-session_start();
-?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>

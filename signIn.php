@@ -1,5 +1,8 @@
 <?php
-include 'serversignin.php'; ?>
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+include 'serverSignIn.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -26,13 +29,18 @@ include 'serversignin.php'; ?>
                                 <?php if(isset($_SESSION["userNewAccount"]) && !(isset($_GET["cancel"]))):?>
                                     <p>Sign in to your new account.</p>
                                 <?php  endif; ?>
+                                <?php if(isset($_GET['sendEmail'])):?>
+                                    <p><?PHP echo $_GET['sendEmail'];?></p>
+                                <?php  elseif(isset($_GET['adminType'])):?>
+                                    <p><?PHP echo $_GET['adminType'];?></p>
+                                <?php  endif;?>
                                 <?php include 'errorssignin.php' ?>
 								     </header>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
 
 									<!-- Form -->
-										<form method="post" action="signIn.php">
+										<form method="post" action="./signIn.php">
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
                                                     <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
@@ -59,7 +67,7 @@ include 'serversignin.php'; ?>
                                                     </script>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
-                                                    <a><strong style="text-decoration:underline">Change password</strong></a>
+                                                    <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Forgot password?</strong></a>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">

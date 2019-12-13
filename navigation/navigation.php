@@ -1,6 +1,8 @@
 <!-- Header -->
 <?php
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 echo '<header id="header" class="alt">
     <nav id="nav">
         <ul>
@@ -14,9 +16,22 @@ echo '<header id="header" class="alt">
             <li><a href="./announcement.php">Announcement</a></li>
             <li><a href="./agenda.php">Agenda</a></li>
             <li><a href="./packages.php">Packages</a></li>
-            <li><a href="./requestForm.php">Request a Shoot</a></li>
-            <li><a href="./signIn.php" class="icon fa-user-circle">Sign in</a></li>
-        </ul>
+            <li><a href="./finances.php">Finances</a></li>';
+
+//          Verify if user login
+            if(!(isset($_SESSION['userSignIn']))) {
+                echo '<li><a href="./signIn.php" class="icon fa-user-circle"> Sign in</a></li>';
+            }
+            else{
+                echo '<li><a href="./signOut.php" class="icon fa-user-circle"> Sign Out</a>';
+                if($_SESSION['userTypeSignIn'] !== 'administrator'):
+                    echo '<ul>
+                        <li><a href="./viewProfile.php">View Profile</a></li>
+                    </ul>';
+                endif;
+                    echo '</li>';
+            }
+        echo '</ul>
     </nav>
 </header>';
 ?>

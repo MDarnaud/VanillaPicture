@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="is-preload">
-    <?php include '../navigation/navigation.php' ?>
+    <?php include './navigation/navigation.php' ?>
 		<!-- Main -->
 			<div id="main">
 				<div class="wrapper">
@@ -23,7 +23,7 @@
 								<div class="col-12 col-12-medium">
                                     <div class="col-12">
                                         <ul class="actions">
-                                            <li><button type="submit" value="SignIn" class="primary" name="signIn_user">Sign Out</button></li>
+                                            <li><button type="submit" value="SignIn" class="primary" name="signIn_user" onclick="location.href='serverSignOut.php'">Sign Out</button></li>
                                             <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
                                             <script language='javascript' type='text/javascript'>
                                                 function goBack() {
