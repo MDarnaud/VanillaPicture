@@ -29,6 +29,11 @@ include 'serverSignIn.php'; ?>
                                 <?php if(isset($_SESSION["userNewAccount"]) && !(isset($_GET["cancel"]))):?>
                                     <p>Sign in to your new account.</p>
                                 <?php  endif; ?>
+                                <?php if(isset($_GET['sendEmail'])):?>
+                                    <p><?PHP echo $_GET['sendEmail'];?></p>
+                                <?php  elseif(isset($_GET['adminType'])):?>
+                                    <p><?PHP echo $_GET['adminType'];?></p>
+                                <?php  endif;?>
                                 <?php include 'errorssignin.php' ?>
 								     </header>
 							<div class="row gtr-200">

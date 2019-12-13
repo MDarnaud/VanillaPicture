@@ -26,12 +26,13 @@ include 'sendEmail.php'; ?>
             <header class="major">
                 <h1>Find Your Password</h1>
                 <p> An email will be send with your password.</p>
+                <?php include 'errorssignin.php' ?>
             </header>
             <div class="row gtr-200">
                 <div class="col-12 col-12-medium">
 
                     <!-- Form -->
-                    <form method="post" action="sendEmail.php">
+                    <form method="post" action="forgotPasswordForm.php">
                         <div class="row gtr-uniform">
                             <div class="col-12 col-12-xsmall">
                                 <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
@@ -46,12 +47,7 @@ include 'sendEmail.php'; ?>
                         <div class="col-12">
                             <ul class="actions">
                                 <li><button type="submit" value="SignIn" class="primary" name="forgot_password">Submit</button></li>
-                                <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
-                                <script language='javascript' type='text/javascript'>
-                                    function goBack() {
-                                        window.history.back();
-                                    }
-                                </script>
+                                <li><button type="reset" value="Cancel" onclick="window.location.href='./signin.php'">Cancel</button></li>
                             </ul>
                         </div>
                 </div>
