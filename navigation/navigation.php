@@ -26,7 +26,7 @@ echo '<header id="header" class="alt">
                 echo '<li><a href="./signOut.php" class="icon fa-user-circle"> Sign Out</a>';
                 if($_SESSION['userTypeSignIn'] !== 'administrator'):
                     echo '<ul>
-                        <li><a href="./viewAccount.php">View Account</a></li>
+                        <li><a href="./viewProfile.php">View Profile</a></li>
                     </ul>';
                 endif;
                     echo '</li>';

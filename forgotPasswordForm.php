@@ -6,7 +6,7 @@ include 'sendEmail.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Sign in</title>
+    <title>Forgot Password</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
