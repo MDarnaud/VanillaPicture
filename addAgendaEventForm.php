@@ -1,4 +1,11 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE HTML>
+
 
 <html lang="en">
 <head>
