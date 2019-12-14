@@ -1,3 +1,6 @@
+<?php include 'serverSignOut.php';?>
+<?php
+//if (isset($_SESSION['userSignIn'])) {?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -21,9 +24,13 @@
                                 <p>Are You Sure You Want to Exit?</p>
 							<div class="row gtr-200">
 								<div class="col-12 col-12-medium">
+
+                                    <!-- Form -->
+                                    <form method="post" action="./signOut.php">
+                                        <div class="row gtr-uniform">
                                     <div class="col-12">
                                         <ul class="actions">
-                                            <li><button type="submit" value="SignIn" class="primary" name="signIn_user" onclick="location.href='serverSignOut.php'">Sign Out</button></li>
+                                            <li><button type="submit" value="SignOut" class="primary" name="signOut_user">Sign Out</button></li>
                                             <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
                                             <script language='javascript' type='text/javascript'>
                                                 function goBack() {
@@ -32,6 +39,8 @@
                                             </script>
                                         </ul>
                                     </div>
+                                        </div>
+                                    </form>
 								</div>
 							</div>
 						</div>
@@ -57,3 +66,7 @@
 
 	</body>
 </html>
+<?php //}else{
+//    header('location: ./homepage.php');
+//}
+//?>

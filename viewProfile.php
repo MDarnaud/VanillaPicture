@@ -107,7 +107,7 @@ include './serverViewProfile.php'
 
 
 <hr>
-
+<?php if($_SESSION['userTypeSignIn'] !== 'administrator'){?>
                                     <form method="post" action="./viewProfile.php">
                                         <div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
@@ -158,6 +158,9 @@ include './serverViewProfile.php'
                                             </div>
                                         </div>
                                     </form>
+    <?php }?>
+
+
 								</div>
 							</div>
 						</div>
