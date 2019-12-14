@@ -10,7 +10,7 @@ echo '<header id="header" class="alt">
             <li>
                 <a href="" class="dropdown">Portfolio</a>
                 <ul>
-                    <li><a href="C:\wamp64\www\finalProject\dark\gallery.html">Gallery</a></li>
+                    <li><a href="gallery.php">Gallery</a></li>
                 </ul>
             </li>';
             if(isset($_SESSION['userSignIn'])) {
@@ -29,7 +29,7 @@ echo '<header id="header" class="alt">
             }
             else{
                 if($_SESSION['userTypeSignIn'] === 'administrator'):
-                    echo '<li><a href="./finances.php">Finances</a></li>';
+                    echo '<li><a href="./reports.php">Reports</a></li>';
                 endif;
                 echo '<li><a href="./viewProfile.php" class="icon fa-user-circle"> Profile</a>';
                     echo '<ul>
