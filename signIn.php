@@ -44,7 +44,7 @@ include 'serverSignIn.php'; ?>
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
                                                     <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
-                                                        <input type="email" name="email" id="email" value="<?php echo $_SESSION['userNewAccount']; ?>" placeholder="Email" required/>
+                                                        <input type="email" name="email" id="email" value="" placeholder="Email" required/>
                                                     <?php else:?>
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required/>
                                                     <?php  endif; ?>
@@ -55,16 +55,6 @@ include 'serverSignIn.php'; ?>
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
                                                            oninput="check(this)"
                                                            required/>
-                                                    <script language='javascript' type='text/javascript'>
-                                                        function check(input) {
-                                                            <?php if (isset($_COOKIE['invalidPW'])) : ?>
-                                                                input.setCustomValidity('Invalid Password.');
-                                                            <?php else : ?>
-                                                                // input is valid -- reset the error message
-                                                                input.setCustomValidity('');
-                                                            <?php endif; ?>
-                                                        }
-                                                    </script>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Forgot password?</strong></a>

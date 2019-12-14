@@ -51,12 +51,15 @@ if (isset($_POST['forgot_password'])) {
             function randomPassword()
             {
                 $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-                $pass = array(); //remember to declare $pass as an array
                 $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
-                for ($i = 0; $i < 8; $i++) {
-                    $n = rand(0, $alphaLength);
-                    $pass[] = $alphabet[$n];
-                }
+                do {
+                    $pass = array(); //remember to declare $pass as an array
+                    for ($i = 0; $i < 8; $i++) {
+                        $n = rand(0, $alphaLength);
+                        $pass[] = $alphabet[$n];
+                    }
+                }while (1 !== preg_match('~[0-9]~', implode($pass))||1 !== preg_match('~[A-Z]~', implode($pass)));
+
                 return implode($pass); //turn the array into a string
             }
 
@@ -64,7 +67,7 @@ if (isset($_POST['forgot_password'])) {
             //Insert the new hashed password in the table all_user in the database
             //Hash password
             $salt = $email;
-            $newHashedPasswordDb = md5($salt . $newPassword);//encrypt the password before saving in the database
+            $newHashedPasswordDb = md5($salt.$newPassword);//encrypt the password before saving in the database
             //Save in database
             $queryPassword = "UPDATE all_user SET userPassword='$newHashedPasswordDb' WHERE userId='$email'";
             mysqli_query($db, $queryPassword);

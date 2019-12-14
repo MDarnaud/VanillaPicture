@@ -2,6 +2,7 @@
 // initializing variables
 $email    = "";
 $errors = array();
+$email = $_SESSION['userSignIn'];
 
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
@@ -11,7 +12,6 @@ if (isset($_POST['update_User'])) {
     // receive all input values from the form
     $country = mysqli_real_escape_string($db, $_POST['country']);
     $city = mysqli_real_escape_string($db, $_POST['city']);
-    $email = $_SESSION['userSignIn'];
 
     // form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
@@ -29,7 +29,7 @@ if (isset($_POST['update_User'])) {
 
 }
 
-if (isset($_POST['change_PW_user'])) {
+if (isset($_POST['change_PW_User'])) {
     // Retrieve new information in the form
     $password_current = mysqli_real_escape_string($db, $_POST['password_current']);
     $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
@@ -47,9 +47,30 @@ if (isset($_POST['change_PW_user'])) {
     if (count($errors) == 0) {
         $email = $_SESSION['userSignIn'];
         // Check the current password is the right one
-        $user_check_query = "SELECT * FROM customer WHERE userId='$email'";
-        $result = mysqli_query($db, $user_check_query);
-        $user = mysqli_fetch_assoc($result);
+        $user_check_query = "SELECT * FROM all_user WHERE userId='$email'";
+        $userResult = mysqli_query($db, $user_check_query);
+        $user = mysqli_fetch_assoc($userResult);
+
+        $salt = $email;
+        $password_current_hashed = md5($salt.$password_current);
+
+        if($password_current_hashed === $user['userPassword']){
+            //Update the customer information in the table customer in the database
+            //Hash password
+            $salt = $email;
+            $newHashedPassword = md5($salt.$password_1);//encrypt the password before saving in the database
+            $queryPW = "UPDATE all_user SET userPassword='$newHashedPassword' WHERE userId='$email'";
+            mysqli_query($db, $queryPW);
+            if (mysqli_affected_rows($db) >= 1) {
+                header('location: ./viewProfile.php');
+            }else{
+                header('location: ./viewProfile.php');
+            }
+        }
+        else{
+            array_push($errors, "Valid Current Password ");
+        }
+
 
         //Check both password match
         //Update password in database
