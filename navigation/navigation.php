@@ -15,13 +15,12 @@ echo '<header id="header" class="alt">
             </li>';
             if(isset($_SESSION['userSignIn'])) {
                 if ($_SESSION['userTypeSignIn'] === 'administrator') {
-                    echo '<li><a href="./announcement.php">Announcement</a></li>
-                    <li><a href="./agenda.php">Agenda</a></li>
-                    <li><a href="./packages.php">Packages</a></li>';
+                    echo '<li><a href="./announcement.php">Announcement</a></li>';
                 }
             }
 
-
+            echo '<li><a href="./agenda.php">Agenda</a></li>
+                    <li><a href="./packages.php">Packages</a></li>';
 
 
 //          Verify if user login
