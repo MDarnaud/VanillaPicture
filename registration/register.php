@@ -73,8 +73,7 @@
 													<input type="date" name="dob" id="dob" value="" placeholder="Date of Birth" required/>
 												</div>
 												<div class="col-8 col-12-xsmall">
-<!--													<input type="text" name="demo-name" id="demo-country" value="" placeholder="Country" />-->
-												        <select name="country" id="country">
+													<select name="country" id="country">
                                                             <option value="" selected hidden>-Select Country-</option>
                                                             <?php
                                                             foreach($countries as $key => $value) {
