@@ -1,3 +1,8 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -8,9 +13,6 @@
 		<meta name="keywords" content="" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 
-        <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
         <link href='packages/core/agenda.css' rel='stylesheet' />
         <link href='packages/daygrid/main.css' rel='stylesheet' />
@@ -80,27 +82,6 @@
                             borderColor: 'white' // a non-ajax option
                         }
                     ],
-                    /*eventRender: function(event, element) {
-                        element.append( "<span class='removebtn'>X</span>" );
-                       /* element.find(".removebtn").click(function() {
-                            $('#calendar').fullCalendar('removeEvents',event_id);
-                        });
-                    },*/
-
-                    /*eventRender: function(event, element, view) {
-                        element.append('<td class="w3-center"><button class="fc-delete-item ">Delete</button></td>');
-                        element.find(".w3-center").on("click", function() {
-                            var result = confirm("Delete Event");
-                            if (result) {
-                                console.log(event);
-                                localStorage.setItem("delete_id", event.id);
-                                $('#cal2').fullCalendar('removeEvents', event.id);
-                            }
-                        });
-                    }*/
-
-                    /*eventRender: function(eventObj, $el) {
-                        $el.popover({ title: "BookName", content: eventObj.title, trigger: 'hover', placement: 'top', container: 'body' }); },*/
 
                 });
 

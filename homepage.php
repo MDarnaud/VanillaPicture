@@ -1,4 +1,8 @@
-
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -105,9 +109,9 @@
 							</ul>
 						</div>
 					</div>
-					<div class="copyright">
-						&copy; Untitled. All rights reserved. Lorem ipsum dolor sit amet.
-					</div>
+                    <div class="copyright">
+                        &copy; Untitled. All rights reserved. Vanilla Picture.
+                    </div>
 				</div>
 			</div>
 

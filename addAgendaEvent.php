@@ -26,7 +26,6 @@ $json = file_get_contents($file);
 //put file into associative array
 $eventsArray = json_decode($json,true);
 
-var_dump($eventsArray);
 
 //create array to hold new user information
 //array for user input
@@ -47,5 +46,6 @@ else{
 array_push($eventsArray, $newEventArray);
 $jsonData = json_encode($eventsArray,JSON_PRETTY_PRINT);
 file_put_contents($file, $jsonData);
+header("Location: ./agenda.php");
 
 ?>

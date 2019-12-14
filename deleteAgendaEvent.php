@@ -35,6 +35,6 @@ var_dump($eventsArray);
 //,JSON_PRETTY_PRINT
 $jsonData = json_encode(array_values($eventsArray));
 file_put_contents("json/events.json", $jsonData);
-header("agenda.php")
+header("Location: ./agenda.php");
 ?>
 

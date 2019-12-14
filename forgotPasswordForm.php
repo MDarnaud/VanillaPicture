@@ -25,7 +25,7 @@ include 'sendEmailForgotPW.php'; ?>
             <!-- Elements -->
             <header class="major">
                 <h1>Find Your Password</h1>
-                <p> An email will be send with your password.</p>
+                <p> An email will be sent with your password.</p>
                 <?php include 'errorssignin.php' ?>
             </header>
             <div class="row gtr-200">
