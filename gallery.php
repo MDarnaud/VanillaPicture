@@ -1,7 +1,10 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}?>
+}
+// connect to the database
+$db = mysqli_connect('localhost','root','','photography');
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -35,8 +38,18 @@ if (session_status() == PHP_SESSION_NONE) {
             </header>
             <div class="row">
                 <div class="column">
-                    <img src="dark/images/fulls/01.jpg">
-                    <img src="dark/images/fulls/02.jpg">
+                    <img src="uploads/barney.jpg">
+                    <?php
+                    //Access path in db
+                    //Add caption and other thing in db
+
+                    // a user does not already exist with the same username and/or email
+                    $gallery_check_query = "SELECT * FROM gallery WHERE galleryId = '3'";
+                    $gallery_result = mysqli_query($db, $gallery_check_query);
+                    $gallery = mysqli_fetch_assoc($gallery_result);
+
+                    echo '<img src="'.$gallery['galleryImage'].'">';
+                    ?>
                     <img src="dark/images/fulls/03.jpg">
                     <img src="dark/images/fulls/04.jpg">
                     <img src="dark/images/fulls/05.jpg">
