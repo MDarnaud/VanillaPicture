@@ -110,14 +110,14 @@ if (isset($_POST['forgot_password'])) {
                     echo "Mailer Error: " . $mail->ErrorInfo;
                 } else {
                     $_SESSION['userNewAccount'] = $email;
-                    header('location: ./signin.php?sendEmail=Email successfully send');
+                    header('location: ./signin.php?sendEmail=Email successfully sent');
                 }
             } catch (\PHPMailer\PHPMailer\Exception $e) {
             }
 
         }
         else{
-            array_push($errors, "Administrator are not allowed to reset their password. ");
+            array_push($errors, "Administrators are not allowed to reset their password. ");
         }
     }
 }

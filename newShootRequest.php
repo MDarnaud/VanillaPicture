@@ -5,24 +5,28 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
+// connect to the database
+$db = mysqli_connect('localhost','root','','photography');
+
+if($db->connect_error)
+{
+    echo $db->connect_error;
+}
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
-
 //get user email (ID)
 $customerEmail = $_SESSION["userSignIn"];
 
-
 //GET FORM INFORMATION
 //title
-$shootTitle = $_POST["title"];
+$shootTitle = mysqli_real_escape_string($db, $_POST['title']);
 //date
-$shootDate = $_POST["date"];
+$shootDate = mysqli_real_escape_string($db,$_POST["date"]);
 //time
-$shootTime = $_POST["time"];
+$shootTime = mysqli_real_escape_string($db,$_POST["time"]);
 //artists
 $artists = null;
 if(!empty($_POST["checkboxMakeup"])){
@@ -35,25 +39,31 @@ if(!empty($_POST["checkboxStylist"])){
     $artists .= " stylist ";
 }
 //package chosen
-$shootPackage = $_POST["packageCategory"];
+$shootPackage = mysqli_real_escape_string($db,$_POST["packageCategory"]);
 //notes
-$customerNotes = $_POST["customerNotes"];
+$customerNotes = mysqli_real_escape_string($db,$_POST["customerNotes"]);
 
-//insert request to the database
-$queryShoot = "INSERT INTO shoot (shootTime, shootDate, shootLocation, customerId, shootArtistType, shootCustomerNotes, shootPackage) 
-  			  VALUES('$shootTime', '$shootDate', '$shootTitle', '$customerEmail', '$artists', '$customerNotes', '$shootPackage')";
-var_dump($queryShoot);
-mysqli_query($db, $queryShoot);
+
+//get customer ID and name with email
+$id_check_query = "SELECT * FROM customer WHERE userId='$customerEmail'";
+$resultId = mysqli_query($db, $id_check_query);
+$customer = mysqli_fetch_assoc($resultId);
+//ID
+$customerId = $customer['customerId'];
+//Name
+$name = $customer['customerFirstName'] . ' ' . $customer['customerLastName'];
+
+//insert into table shoot the new request
+$queryShoot = "INSERT INTO shoot (shootTime, shootDate, shootLocation, customerId, shootArtistType, shootCustomerNotes, shootPackage)
+VALUES ('$shootTime', '$shootDate', '$shootTitle', '$customerId', '$artists', '$customerNotes', '$shootPackage')";
+//$result = mysqli_query($db, $queryShoot) or die(mysqli_error($db));
+
+
 
 
 
 //SEND REQUEST EMAIL
-// Retrieve the name associated with the email address
-$name_check_query = "SELECT * FROM customer WHERE userId='$customerEmail'";
-$resultName = mysqli_query($db, $name_check_query);
-$nameValue = mysqli_fetch_assoc($resultName);
 
-$name = $nameValue['customerFirstName'] . ' ' . $nameValue['customerLastName'];
 $subject = "New Shoot Request";
 //Put right link
 $message = 'A customer has requested a shoot in one of your availabilities <br>
@@ -80,15 +90,16 @@ $mail->Username = "meganedarnaud@gmail.com"; //sender gmail
 $mail->Password = 'Chat1234!'; //password for the gmail
 try {
     //receiver, replace with email enter
-    $mail->AddAddress("meganedarnaud@hotmail.com");
-} catch (\PHPMailer\PHPMailer\Exception $e) {
+    $mail->AddAddress("meganedarnaud@gmail.com");
+} catch (Exception $e) {
+    echo $e."add address";
 }
 try {
     //sender
-    $mail->SetFrom("ariouellette2000@gmail.com");
-} catch (\PHPMailer\PHPMailer\Exception $e) {
+    $mail->SetFrom("meganedarnaud@gmail.com");
+} catch (Exception $e) {
+    echo $e."set from";
 }
-//        $mail->Subject = $subject . " from " . $name;
 $mail->Subject = $subject;
 $mail->Body = $message;
 
@@ -99,6 +110,6 @@ try {
         $_SESSION['userNewAccount'] = $email;
         header('location: ./agenda.php?sendEmail=Your request has been sent to Vanilla Picture!'); //CREATE TEXTBOX IN AGENDA
     }
-} catch (\PHPMailer\PHPMailer\Exception $e) {
-    echo $e;
+} catch (Exception $e) {
+    echo $e."add address";
 }
