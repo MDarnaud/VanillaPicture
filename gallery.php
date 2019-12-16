@@ -44,7 +44,9 @@ $db = mysqli_connect('localhost','root','','photography');
                     // x Max of character caption form
                     // x Add other things in db
                     // x Made them not null available in db
-                    // Display picture
+                    // x Display picture
+                    //  After form add image succesful or unsuccessful do something
+                    //  Filter picture by category
                     //  Admin can delete picture
                     //  people can zoom on pictures
 
