@@ -1,5 +1,5 @@
-<?php include 'categorieslist.php'
-?>
+<?php include 'categorieslist.php';
+        include 'uploadGalleryImage.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -22,16 +22,16 @@
 							<header class="major">
 								<h1>Add Image</h1>
 								<p>Please fill out the form to add an image.</p>
+                                <?php include 'errorsgallery.php'?>
 							</header>
                         <div style="margin:auto">
 							<div class="row gtr-200">
 									<!-- Form -->
-										<form method="post" action="uploadGalleryImage.php" enctype="multipart/form-data">
+										<form method="post" action="addImageForm.php" enctype="multipart/form-data">
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
-
                                                     <select name="category" id="category">
-                                                        <option value="" selected hidden>-Select Category-</option>
+                                                        <option value='' selected hidden>-Select Category-</option>
                                                         <?php
                                                         foreach($categories as $key => $value) {
                                                             ?>
@@ -47,17 +47,17 @@
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->
                                                     <p style="font-size:18px;">Select image to upload:
-                                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                                    <input type="file" name="fileToUpload" id="fileToUpload" required>
                                                     </p>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Submit" class="primary" name="submit_image">Submit</button></li>
-                                                        <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
+                                                        <li><button type="reset" value="Cancel" onclick="goGallery()">Cancel</button></li>
                                                         <script language='javascript' type='text/javascript'>
-                                                            function goBack() {
-                                                                window.history.back();
+                                                            function goGallery() {
+                                                               window.location.href ="./gallery.php";
                                                             }
                                                         </script></ul>
 												</div>
