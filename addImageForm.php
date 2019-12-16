@@ -42,7 +42,7 @@
                                                     </select>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="40" required/>
+                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" required/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->

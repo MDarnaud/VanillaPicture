@@ -37,19 +37,20 @@ $db = mysqli_connect('localhost','root','','photography');
                 </ul>
             </header>
             <div class="row">
+
+<!--                 The Modal -->
+                <div id="myModal" class="modal" style="z-index:100;">
+
+<!--                     The Close Button -->
+                    <span class="closeModal">&times;</span>
+
+<!--                     Modal Content (The Image) -->
+                    <img class="modal-content" id="img01">
+
+<!--                     Modal Caption (Image Text) -->
+                    <div id="caption"></div>
+                </div>
                     <?php
-                    // x Access path in db
-                    // x Do loop through all images
-                    // x Add caption and other thing in form
-                    // x Max of character caption form
-                    // x Add other things in db
-                    // x Made them not null available in db
-                    // x Display picture
-                    // x Add cancel button
-                    // x After form add image succesfull or unsuccessful do something
-                    // x Filter picture by category
-                    //  people can zoom on pictures
-                    //  Admin can delete picture
                     $categorySelected = '';
                     if(isset($_GET['categorySelect'])) {
                         $categorySelected = $_GET['categorySelect'];
@@ -67,6 +68,8 @@ $db = mysqli_connect('localhost','root','','photography');
                         // Loop through all images
                         while ($gallery = mysqli_fetch_assoc($gallery_result)) {
                             $images[] = $gallery['galleryImage'];
+                            $ids[] = $gallery['galleryId'];
+                            $captions[] = $gallery['galleryTitle'];
                         }
 
                         // Initialize column index
@@ -75,12 +78,12 @@ $db = mysqli_connect('localhost','root','','photography');
                         // Display images
                         echo '<div class="column 1">';
 
-                        foreach ($images as $image) {
+                        for($i=0; $i<count($images); $i++){
                             if ($columnIndex > 4) {
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 1) {
-                                echo '<img src="' . $image . '">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -88,12 +91,12 @@ $db = mysqli_connect('localhost','root','','photography');
 
                         $columnIndex = 1;
                         echo '<div class="column">';
-                        foreach ($images as $image) {
+                        for($i=0; $i<count($images); $i++){
                             if ($columnIndex > 4) {
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 2) {
-                                echo '<img src="' . $image . '">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -101,12 +104,12 @@ $db = mysqli_connect('localhost','root','','photography');
 
                         $columnIndex = 1;
                         echo '<div class="column">';
-                        foreach ($images as $image) {
+                        for($i=0; $i<count($images); $i++){
                             if ($columnIndex > 4) {
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 3) {
-                                echo '<img src="' . $image . '">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -114,12 +117,12 @@ $db = mysqli_connect('localhost','root','','photography');
 
                         $columnIndex = 1;
                         echo '<div class="column">';
-                        foreach ($images as $image) {
+                        for($i=0; $i<count($images); $i++){
                             if ($columnIndex > 4) {
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 4) {
-                                echo '<img src="' . $image . '">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -129,10 +132,41 @@ $db = mysqli_connect('localhost','root','','photography');
                         echo '<p>The selected category has no pictures.</p>';
                     }
                     ?>
+                <script language='javascript' type='text/javascript'>
+                    var modal = document.getElementById("myModal");
+
+                    // Get the image and insert it inside the modal - use its "alt" text as a caption
+                    var modalImg = document.getElementById("img01");
+                    var captionText = document.getElementById("caption");
+                    var imgs = document.getElementsByTagName("img");
+                    var imgId = [];
+                    for( var i=0; i <imgs.length; i++){
+                        var img = document.getElementById(imgs[i].id);
+                        img.onclick = function () {
+                            //nav bye bye
+                            // var node = document.getElementById('nav');
+                            // node.style.zIndex = '-2';
+                            modal.style.zIndex="20000";
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                        }
+                    }
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("closeModal")[0];
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+                </script>
             </div>
+        </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- Footer -->
