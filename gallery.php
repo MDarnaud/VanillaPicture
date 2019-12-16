@@ -31,9 +31,9 @@ $db = mysqli_connect('localhost','root','','photography');
                 <ul class="actions">
                     <li><button id="all" type="reset" value="All" >All</button></li>
                     <li><button id="travel" type="reset" value="Travel" onclick="travelSelect();">Travel</button></li>
-                    <li><button id="events" type="reset" value="Events" >Events</button></li>
-                    <li><button id="brands" type="reset" value="Brands" >Brands</button></li>
-                    <li><button id="individual" type="reset" value="Individual" >Individual</button></li>
+                    <li><button id="events" type="reset" value="Events" onclick="eventsSelect();">Events</button></li>
+                    <li><button id="brands" type="reset" value="Brands" onclick="brandsSelect();">Brands</button></li>
+                    <li><button id="individual" type="reset" value="Individual" onclick="individualSelect();">Individual</button></li>
                 </ul>
             </header>
             <div class="row">
@@ -54,16 +54,19 @@ $db = mysqli_connect('localhost','root','','photography');
                     $categorySelected = '';?>
                      <script language='javascript' type='text/javascript'>
                           function travelSelect(){
-                                <?php echo 'Travel';
-                              header('location: ./gallery.php')?>
+                              <?php $categorySelected = 'travel';?>
+                          }
+                          function eventsSelect(){
+                              <?php $categorySelected = 'events';?>
                           }
                       </script></ul>
                     <?php
+                    echo $categorySelected;
 //                    if(!($categorySelected === '')){
 //                        // Select query for specific gallery elements
 //                        $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected'";
 //                    }else {
-                        // Select query for all gallery elements
+                        // Select query for all gallery elementsec
                         $gallery_check_query = "SELECT * FROM gallery";
 //                        }
                     $gallery_result = mysqli_query($db, $gallery_check_query);
