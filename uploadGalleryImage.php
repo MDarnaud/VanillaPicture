@@ -18,6 +18,13 @@ if(isset($_POST["submit_image"])) {
         echo "File is not an image.";
         $uploadOk = 0;
     }
+
+    // Caption & Category
+    $category_form = mysqli_real_escape_string($db, $_POST['category']);
+    $caption_form = mysqli_real_escape_string($db, $_POST['caption']);
+
+    if (empty($category_form)) { array_push($errors, "Category "); }
+    if (empty($caption_form)) { array_push($errors, "Caption "); }
 }
 // Check if file already exists
 if (file_exists($target_file)) {
@@ -48,7 +55,7 @@ if( in_array($imageFileType,$extensions_arr) ) {
     $fileName = $_FILES["fileToUpload"]["name"];
     $name = "uploads/".$fileName;
     echo '<br>' . $name;
-    $queryImage = "INSERT INTO gallery (galleryImage) VALUES('$name')";
+    $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
     mysqli_query($db, $queryImage);
     if (mysqli_affected_rows($db) >= 1) {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {

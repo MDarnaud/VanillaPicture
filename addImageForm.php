@@ -28,22 +28,22 @@
 									<!-- Form -->
 										<form method="post" action="uploadGalleryImage.php" enctype="multipart/form-data">
 											<div class="row gtr-uniform">
-<!--                                                <div class="col-8 col-12-xsmall">-->
-<!---->
-<!--                                                    <select name="category" id="category">-->
-<!--                                                        <option value="" selected hidden>-Select Category-</option>-->
-<!--                                                        --><?php
-//                                                        foreach($categories as $key => $value) {
-//                                                            ?>
-<!--                                                            <option value="--><?//= $key ?><!--" title="--><?//= htmlspecialchars($value) ?><!--">--><?//= htmlspecialchars($value) ?><!--</option>-->
-<!--                                                            --><?php
-//                                                        }
-//                                                        ?>
-<!--                                                    </select>-->
-<!--                                                </div>-->
-<!--												<div class="col-8 col-12-xsmall">-->
-<!--                                                    <input type="text" name="title" id="title" value="" placeholder="Caption" required/>-->
-<!--                                                </div>-->
+                                                <div class="col-8 col-12-xsmall">
+
+                                                    <select name="category" id="category">
+                                                        <option value="" selected hidden>-Select Category-</option>
+                                                        <?php
+                                                        foreach($categories as $key => $value) {
+                                                            ?>
+                                                            <option value="<?= $key ?>" title="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($value) ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+												<div class="col-8 col-12-xsmall">
+                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="40" required/>
+                                                </div>
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->
                                                     <p style="font-size:18px;">Select image to upload:

@@ -37,50 +37,83 @@ $db = mysqli_connect('localhost','root','','photography');
                 </ul>
             </header>
             <div class="row">
-                <div class="column">
-                    <img src="uploads/barney.jpg">
                     <?php
-                    //Access path in db
-                    //Add caption and other thing in db
+                    // x Access path in db
+                    // x Do loop through all images
+                    // x Add caption and other thing in form
+                    // x Max of character caption form
+                    // x Add other things in db
+                    // x Made them not null available in db
+                    // Display picture
+                    //  Admin can delete picture
+                    //  people can zoom on pictures
 
-                    // a user does not already exist with the same username and/or email
-                    $gallery_check_query = "SELECT * FROM gallery WHERE galleryId = '3'";
+
+                    // Select query for all gallery elements
+                    $gallery_check_query = "SELECT * FROM gallery";
                     $gallery_result = mysqli_query($db, $gallery_check_query);
-                    $gallery = mysqli_fetch_assoc($gallery_result);
 
-                    echo '<img src="'.$gallery['galleryImage'].'">';
+                    // Loop through all images
+                    while($gallery = mysqli_fetch_assoc($gallery_result)){
+                        $images[] = $gallery['galleryImage'];
+                    }
+
+                     // Initialize column index
+                    $columnIndex = 1;
+                    // Display images
+
+                    echo '<div class="column">';
+                    foreach($images as $image) {
+                        if($columnIndex < 4){
+                            $columnIndex == 1;
+                        }
+                        if ($columnIndex == 1) {
+                            echo '<img src="'.$image.'">';
+                        }
+                        $columnIndex ++;
+                    }
+                    echo '</div>';
+
+                    $columnIndex = 1;
+                    echo '<div class="column">';
+                    foreach($images as $image) {
+                        if($columnIndex < 4){
+                            $columnIndex == 1;
+                        }
+                        if ($columnIndex == 2) {
+                            echo '<img src="'.$image.'">';
+                        }
+                        $columnIndex ++;
+                    }
+                    echo '</div>';
+
+                    $columnIndex = 1;
+                    echo '<div class="column">';
+                    foreach($images as $image) {
+                        if($columnIndex < 4){
+                            $columnIndex == 1;
+                        }
+                        if ($columnIndex == 3) {
+                            echo '<img src="'.$image.'">';
+                        }
+                        $columnIndex ++;
+                    }
+                    echo '</div>';
+
+                    $columnIndex = 1;
+                    echo '<div class="column">';
+                    foreach($images as $image) {
+                        if($columnIndex < 4){
+                            $columnIndex == 1;
+                        }
+                        if ($columnIndex == 4) {
+                            echo '<img src="'.$image.'">';
+                        }
+                        $columnIndex ++;
+                    }
+                    echo '</div>';
+
                     ?>
-                    <img src="dark/images/fulls/03.jpg">
-                    <img src="dark/images/fulls/04.jpg">
-                    <img src="dark/images/fulls/05.jpg">
-                    <img src="dark/images/fulls/06.jpg">
-                    <img src="dark/images/fulls/07.jpg">
-                </div>
-                <div class="column">
-                    <img src="dark/images/fulls/08.jpg">
-                    <img src="dark/images/fulls/09.jpg">
-                    <img src="dark/images/fulls/10.jpg">
-                    <img src="dark/images/fulls/11.jpg">
-                    <img src="dark/images/fulls/12.jpg">
-                    <img src="dark/images/fulls/01.jpg">
-                </div>
-                <div class="column">
-                    <img src="dark/images/fulls/02.jpg">
-                    <img src="dark/images/fulls/03.jpg">
-                    <img src="dark/images/fulls/04.jpg">
-                    <img src="dark/images/fulls/05.jpg">
-                    <img src="dark/images/fulls/06.jpg">
-                    <img src="dark/images/fulls/07.jpg">
-                    <img src="dark/images/fulls/08.jpg">
-                </div>
-                <div class="column">
-                    <img src="dark/images/fulls/09.jpg">
-                    <img src="dark/images/fulls/10.jpg">
-                    <img src="dark/images/fulls/11.jpg">
-                    <img src="dark/images/fulls/12.jpg">
-                    <img src="dark/images/fulls/01.jpg">
-                    <img src="dark/images/fulls/02.jpg">
-                </div>
             </div>
         </div>
     </div>
