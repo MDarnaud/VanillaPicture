@@ -29,11 +29,11 @@ $db = mysqli_connect('localhost','root','','photography');
             <header class="major">
                 <h1>Gallery</h1>
                 <ul class="actions">
-                    <li><button type="reset" value="Cancel" >All</button></li>
-                    <li><button type="reset" value="Travel" >Travel</button></li>
-                    <li><button type="reset" value="Events" >Events</button></li>
-                    <li><button type="reset" value="Brands" >Brands</button></li>
-                    <li><button type="reset" value="Individual" >Individual</button></li>
+                    <li><button id="all" type="reset" value="All" >All</button></li>
+                    <li><button id="travel" type="reset" value="Travel" onclick="travelSelect();">Travel</button></li>
+                    <li><button id="events" type="reset" value="Events" >Events</button></li>
+                    <li><button id="brands" type="reset" value="Brands" >Brands</button></li>
+                    <li><button id="individual" type="reset" value="Individual" >Individual</button></li>
                 </ul>
             </header>
             <div class="row">
@@ -45,14 +45,27 @@ $db = mysqli_connect('localhost','root','','photography');
                     // x Add other things in db
                     // x Made them not null available in db
                     // x Display picture
-                    //  After form add image succesful or unsuccessful do something
+                    // x Add cancel button
+                    // x After form add image succesfull or unsuccessful do something
                     //  Filter picture by category
-                    //  Admin can delete picture
                     //  people can zoom on pictures
+                    //  Admin can delete picture
 
-
-                    // Select query for all gallery elements
-                    $gallery_check_query = "SELECT * FROM gallery";
+                    $categorySelected = '';?>
+                     <script language='javascript' type='text/javascript'>
+                          function travelSelect(){
+                                <?php echo 'Travel';
+                              header('location: ./gallery.php')?>
+                          }
+                      </script></ul>
+                    <?php
+//                    if(!($categorySelected === '')){
+//                        // Select query for specific gallery elements
+//                        $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected'";
+//                    }else {
+                        // Select query for all gallery elements
+                        $gallery_check_query = "SELECT * FROM gallery";
+//                        }
                     $gallery_result = mysqli_query($db, $gallery_check_query);
 
                     // Loop through all images
@@ -62,12 +75,13 @@ $db = mysqli_connect('localhost','root','','photography');
 
                      // Initialize column index
                     $columnIndex = 1;
-                    // Display images
 
+                    // Display images
                     echo '<div class="column">';
+
                     foreach($images as $image) {
-                        if($columnIndex < 4){
-                            $columnIndex == 1;
+                        if($columnIndex > 4){
+                            $columnIndex = 1;
                         }
                         if ($columnIndex == 1) {
                             echo '<img src="'.$image.'">';
@@ -79,8 +93,8 @@ $db = mysqli_connect('localhost','root','','photography');
                     $columnIndex = 1;
                     echo '<div class="column">';
                     foreach($images as $image) {
-                        if($columnIndex < 4){
-                            $columnIndex == 1;
+                        if($columnIndex > 4){
+                            $columnIndex = 1;
                         }
                         if ($columnIndex == 2) {
                             echo '<img src="'.$image.'">';
@@ -92,8 +106,8 @@ $db = mysqli_connect('localhost','root','','photography');
                     $columnIndex = 1;
                     echo '<div class="column">';
                     foreach($images as $image) {
-                        if($columnIndex < 4){
-                            $columnIndex == 1;
+                        if($columnIndex > 4){
+                            $columnIndex = 1;
                         }
                         if ($columnIndex == 3) {
                             echo '<img src="'.$image.'">';
@@ -105,8 +119,8 @@ $db = mysqli_connect('localhost','root','','photography');
                     $columnIndex = 1;
                     echo '<div class="column">';
                     foreach($images as $image) {
-                        if($columnIndex < 4){
-                            $columnIndex == 1;
+                        if($columnIndex > 4){
+                            $columnIndex = 1;
                         }
                         if ($columnIndex == 4) {
                             echo '<img src="'.$image.'">';
