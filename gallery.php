@@ -49,6 +49,9 @@ $db = mysqli_connect('localhost','root','','photography');
 
 <!--                     Modal Caption (Image Text) -->
                     <div id="caption"></div>
+                    <div id="deleteButton">
+                        <button id="deleteImg" value="deleteImg">Delete</button>
+                    </div>
                 </div>
                     <?php
                     $categorySelected = '';
@@ -139,17 +142,19 @@ $db = mysqli_connect('localhost','root','','photography');
                     var modalImg = document.getElementById("img01");
                     var captionText = document.getElementById("caption");
                     var imgs = document.getElementsByTagName("img");
+                    var buttonDelete = document.getElementById("deleteImg");
                     var imgId = [];
                     for( var i=0; i <imgs.length; i++){
                         var img = document.getElementById(imgs[i].id);
                         img.onclick = function () {
-                            //nav bye bye
-                            // var node = document.getElementById('nav');
-                            // node.style.zIndex = '-2';
                             modal.style.zIndex="20000";
                             modal.style.display = "block";
                             modalImg.src = this.src;
                             captionText.innerHTML = this.alt;
+                            //get button
+                            buttonDelete.onclick = function() {
+                                window.location.href= './deleteGalleryImage.php'
+                            }
                         }
                     }
 
