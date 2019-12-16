@@ -2,12 +2,10 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-?>
 
-<?php
 //get date to fill form
 $startDate = date("Y-m-d");
-$title = "Enter Location";
+$title = "";
 if (isset($_GET["startDate"])){
     $startDateString = $_GET["startDate"];
     $startDate = date('Y-m-d', strtotime($startDateString));
@@ -47,7 +45,7 @@ if(isset($_GET["title"])){
 										<form method="post" action="newShootRequest.php">
 											<div class="row gtr-uniform">
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="title" id="title" value="<?php echo $title?>" />
+													<input type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Enter Location" />
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<strong>Date</strong>

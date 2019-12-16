@@ -2,6 +2,27 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+//agenda message
+$message = "";
+//user type
+$userType = $_SESSION['userTypeSignIn'];
+//var_dump($userType);
+
+//check user type/origin and display message accordingly
+if(isset($_GET["sendEmail"])){
+    $message = '<p style="color: darkslategrey">'.$_GET["sendEmail"].'</p>';
+}
+else {
+    if ($userType == null) {
+        $message = "(Please sign in/register to make a shoot request)";
+    } else if ($userType != null) {
+        if ($userType == "customer") {
+            $message = "(To make a shoot reservation, click on an event labeled 'available', you will be redirected to the request page.)";
+        } else if ($userType == "photographer") {
+            $message = "(To add an event, click on the 'add' dropdown of the agenda navigation, to remove an event, click on the event directly in the calendar)";
+        }
+    }
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -24,6 +45,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <script src='packages/timegrid/main.js'></script>
         <script src='packages/list/main.js'></script>
 
+
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var calendarEl = document.getElementById('calendar');
@@ -35,23 +57,40 @@ if (session_status() == PHP_SESSION_NONE) {
                         center: 'title',
                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                     },
-                    /*eventClick: function(info) {
-                        info.jsEvent.preventDefault();
-
-                        if (info.event.url) {
-                            var startDate=info.event.start;
-                            var title = info.event.title;
-                            var startDateString = startDate.toDateString();
-                            var queryString = "?startDate=" + startDateString + "&title=" + title;
-
-                            window.alert(info.event.url + queryString);
-                            window.open(info.event.url + queryString);
-                        }
-                    },*/
-
                     eventClick: function(info) {
                         info.jsEvent.preventDefault();
+                        var userType = "<?php echo $userType ?>";
 
+                        window.alert(userType);
+                        if(userType == "customer")
+                        {
+                            if (info.event.url) {
+                                var startDate = info.event.start;
+                                var title = info.event.title;
+                                var startDateString = startDate.toDateString();
+                                var queryString = "?startDate=" + startDateString + "&title=" + title;
+
+                                window.alert(info.event.url + queryString);
+                                window.open(info.event.url + queryString);
+                            }
+                        }
+                        else if(userType == "photographer"){
+                            var url = "deleteAgendaEvent.php";
+
+                            var id = (info.event.id).toString();
+                            var queryString = "?eventId=" + id;
+
+                            var conf = confirm("Do you want to delete this event?");
+                            if (conf == true){
+                                //var ev = calendar.getEventById(id);
+                                //ev.remove();
+                                window.open(url + queryString);
+                            }
+                        }
+                    },
+
+                 /*   eventClick: function(info) {
+                        info.jsEvent.preventDefault();
                         var url = "deleteAgendaEvent.php";
 
                         var id = (info.event.id).toString();
@@ -63,7 +102,8 @@ if (session_status() == PHP_SESSION_NONE) {
                             //ev.remove();
                             window.open(url + queryString);
                         }
-                    },
+
+                    },*/
 
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
@@ -89,6 +129,7 @@ if (session_status() == PHP_SESSION_NONE) {
             });
         </script>
 
+
         <style>
 
             #calendar {
@@ -109,7 +150,9 @@ if (session_status() == PHP_SESSION_NONE) {
 					<div class="inner">
 						<header class="major">
 							<h1>AGENDA</h1>
-							<p>See Sophie's availabilities and request a shoot accordingly</p>
+							<p>See Sophie's availabilities and request a shoot accordingly
+                                <h4><?php echo $message ?></h4></p>
+                            <br>
 						</header>
                         <div id='calendar'></div>
 					</div>
