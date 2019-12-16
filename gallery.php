@@ -143,7 +143,6 @@ $db = mysqli_connect('localhost','root','','photography');
                     var captionText = document.getElementById("caption");
                     var imgs = document.getElementsByTagName("img");
                     var buttonDelete = document.getElementById("deleteImg");
-                    var imgId = [];
                     for( var i=0; i <imgs.length; i++){
                         var img = document.getElementById(imgs[i].id);
                         img.onclick = function () {
@@ -151,9 +150,11 @@ $db = mysqli_connect('localhost','root','','photography');
                             modal.style.display = "block";
                             modalImg.src = this.src;
                             captionText.innerHTML = this.alt;
-                            //get button
+                            imgId = this.id;
+                             //get button
                             buttonDelete.onclick = function() {
-                                window.location.href= './deleteGalleryImage.php'
+                                // var link = '\'./deleteGalleryImage.php?idImageDelete='.concat(imgs[i].id,'\'');
+                                window.location.href= './deleteGalleryImage.php?idImageDelete='.concat(imgId);
                             }
                         }
                     }

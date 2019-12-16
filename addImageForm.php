@@ -54,7 +54,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Submit" class="primary" name="submit_image">Submit</button></li>
-                                                        <li><button type="reset" value="Cancel" onclick="goGallery()">Cancel</button></li>
+                                                        <li><button type="reset" value="Cancel" onclick="goGallery()">Back</button></li>
                                                         <script language='javascript' type='text/javascript'>
                                                             function goGallery() {
                                                                window.location.href ="./gallery.php";
