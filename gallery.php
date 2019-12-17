@@ -46,11 +46,13 @@ $db = mysqli_connect('localhost','root','','photography');
 
 <!--                     Modal Content (The Image) -->
                     <img class="modal-content" id="img01">
-
-<!--                     Modal Caption (Image Text) -->
                     <div id="caption"></div>
+                    <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
+<!--                     Modal Caption (Image Text) -->
                     <div id="deleteButton">
                         <button id="deleteImg" value="deleteImg">Delete</button>
+
+                    <?php endif;?>
                     </div>
                 </div>
                     <?php

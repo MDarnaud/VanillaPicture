@@ -1,3 +1,4 @@
+<?php include 'serverAnnouncement.php'?>
 <!DOCTYPE HTML>
 
 <html lang="en">
@@ -18,9 +19,40 @@
 				<div class="wrapper">
 					<div class="inner">
 						<header class="major">
-							<h1>ANNOUNCEMENT</h1>
-							<p>Elit massa nisl elementum lorem ipsum dolor sit consequat</p>
+							<h1>Announcement</h1>
+							<p>Please fill out the form to post an announcement on the home page.</p>
+                            <?php include "errorsannouncement.php" ?>
 						</header>
+                        <div style="margin:auto">
+                            <div class="row gtr-200">
+                                <!-- Form -->
+                                <form method="post" action="announcement.php">
+                                    <div class="row gtr-uniform">
+                                        <div class="col-8 col-12-xsmall">
+                                            <input type="text" name="title" id="title" value="" placeholder="Title" maxlength="50" required/>
+                                        </div>
+                                        <div class="col-8 col-12-xsmall">
+                                            <textarea name="detail" id="detail" value="" placeholder="Announcement Detail" maxlength="300" style="height:150px;weight:100px" required></textarea>
+                                        </div>
+                                        <div class="col-8 col-12-xsmall">
+                                            <p>Start date</p>
+                                            <input type="date" name="startDate" id="startDate" value="" placeholder="Start Date" required/>
+                                        </div>
+                                        <div class="col-8 col-12-xsmall">
+                                            <p>End date</p>
+                                            <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required/>
+                                        </div>
+                                        <!-- Break -->
+                                        <div class="col-12">
+                                            <ul class="actions">
+                                                <li><button type="submit" value="Submit" class="primary" name="submit_announcement">Submit</button></li>
+                                                </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
 
 					</div>
 				</div>

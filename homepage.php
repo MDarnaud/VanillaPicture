@@ -22,7 +22,7 @@ if (session_status() == PHP_SESSION_NONE) {
 				<div class="wrapper style1 special">
 					<div class="inner">
 						<h1 class="heading alt">VANILLA PICTURE</h1>
-						<p>Lorem feugiat consequat phasellus ultrices nulla quis nibh lorem ligula</p>
+						<p>Be different, Taste Vanilla</p>
 						<div class="image fit special">
 							<img src="images/pic01.jpg" alt="" />
 						</div>
