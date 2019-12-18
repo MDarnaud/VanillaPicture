@@ -8,10 +8,7 @@ echo '<header id="header" class="alt">
         <ul>
             <li class="current"><a href="./homepage.php">Home</a></li>
             <li>
-                <a href="" class="dropdown">Portfolio</a>
-                <ul>
-                    <li><a href="gallery.php">Gallery</a></li>
-                </ul>
+                    <li><a href="gallery.php">Gallery</a>
             </li>';
             if(isset($_SESSION['userSignIn'])) {
                 if ($_SESSION['userTypeSignIn'] === 'administrator') {

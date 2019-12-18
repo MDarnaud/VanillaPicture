@@ -1,6 +1,7 @@
 <?php
-session_start();
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // initializing variables
 $errors = array();
@@ -11,7 +12,7 @@ $postAnnouncement = array();
 $db = mysqli_connect('localhost','root','','photography');
 
 // REGISTER USER
-if (isset($_POST['submit_announcement'])) {
+if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) {
     // receive all input values from the form
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $detail = mysqli_real_escape_string($db, $_POST['detail']);
@@ -35,20 +36,21 @@ if (isset($_POST['submit_announcement'])) {
     }
 
     //verify if end date is after start date
-    if(!(strtotime($endDate)>strtotime($startDate))){
+    if (!(strtotime($endDate) > strtotime($startDate))) {
         array_push($errorsDate, " End Date is before the start date.");
     }
 
     //verify if end date is after start date
-    if(!(strtotime($endDate)>strtotime($startDate))){
+    if (!(strtotime($endDate) > strtotime($startDate))) {
         array_push($errorsDate, " End Date is before the start date.");
     }
-    //verify if end date is after now
-    if(!(strtotime($endDate)>strtotime('now'))){
+    //verify if end date is before now
+    if (!(strtotime($endDate) > strtotime('now'))) {
         array_push($errorsDate, " End Date is before today's date.");
     }
+}
 
-
+    if (isset($_POST['submit_announcement'])) {
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
     //Insert the announcement information in the table announcement in the database
@@ -58,6 +60,21 @@ if (isset($_POST['submit_announcement'])) {
 
         if (mysqli_affected_rows($db) >= 1) {
             array_push($postAnnouncement, " Announcement \" ".$title." \"is saved");
+        }
+    }
+}
+
+if(isset($_POST['update_announcement'])){
+    // Insert if no errors
+    if (count($errors) == 0 && count($errorsDate) == 0) {
+        $id = mysqli_real_escape_string($db, $_POST['id']);
+        //Insert the announcement information in the table announcement in the database
+        $queryAnnouncement = "UPDATE announcement SET announcementDetail='$detail', announcementTitle='$title', announcementStartDate='$startDate', announcementEndDate='$endDate' WHERE announcementId='$id'";
+        mysqli_query($db, $queryAnnouncement);
+
+        if (mysqli_affected_rows($db) >= 1) {
+
+            header("location: ./homepage.php");
         }
     }
 }

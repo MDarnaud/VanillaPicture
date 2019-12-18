@@ -33,6 +33,46 @@ $db = mysqli_connect('localhost','root','','photography');
                     <li><button id="Exception" type="reset" value="Exception" onclick="location.href= './reports.php?reportSelect=exception'"  >Exception</button></li>
                     </ul>
             </header>
+<!--        Set or retrieve the choosen type of report-->
+            <?php
+            $reportSelect = '';
+            if(isset($_GET['reportSelect'])) {
+                $reportSelect= $_GET['reportSelect'];
+            }else{
+                $reportSelect = 'summary';
+            }
+            ?>
+
+<!--        Summary Report-->
+            <?php
+            if($reportSelect === 'summary'){
+
+
+
+
+
+            }
+            ?>
+
+
+
+
+
+
+
+
+<!--        Detail Report-->
+            <?php
+            if($reportSelect === 'detail'){
+                echo 'detail';
+            }
+            ?>
+<!--        Exception Report-->
+            <?php
+            if($reportSelect === 'exception'){
+                echo 'exception';
+            }
+            ?>
 
 
 

@@ -2,6 +2,10 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// connect to the database
+$db = mysqli_connect('localhost','root','','photography');
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -23,13 +27,13 @@ if (session_status() == PHP_SESSION_NONE) {
 					<div class="inner">
 						<h1 class="heading alt">VANILLA PICTURE</h1>
 						<p>Be different, Taste Vanilla</p>
-						<div class="image fit special">
+						<div class="image fit special video">
 							<img src="images/pic01.jpg" alt="" />
 						</div>
 						<ul class="feature-icons">
-							<li><span class="icon fa-instagram"></span><span class="label">Magna aliquam</span></li>
-							<li><span class="icon fa-facebook"></span><span class="label">Etiam feugiat</span></li>
-							<li><span class="icon fa-envelope"></span><span class="label">Nisl adipiscing</span></li>
+                            <li><a href=https://www.instagram.com/vanilla_picture/?hl=fr-ca" class="a_socialMedia"><span class="icon fa-instagram"></span><span class="label">Instagram</span></a></li>
+                            <li><a href="http://facebook.com/VANILLAPICTURE/" class="a_socialMedia"><span class="icon fa-facebook"></span><span class="label">Facebook</span></a></li>
+                            <li><a href="#getInTouch" class="a_socialMedia"><span class="icon fa-envelope"></span><span class="label">Gmail</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -43,15 +47,52 @@ if (session_status() == PHP_SESSION_NONE) {
 							<h2>BIOGRAPHY</h2>
 						</header>
 						<div class="image fit special">
-							<img src="images/pic02.jpg" alt="" />
+							<img src="images/homepage_bibliography.jpg" alt="" />
 						</div>
 						<p class="special">Sed egestas, ante et vulputate volutpat pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum lorem ipsum dolor sit amet consequat hendrerit tortor semper lorem at felis.</p>
 						<ul class="actions">
-							<li><a href="#" class="button">Contact</a></li>
+							<li><a href="./gallery.php" class="button">My work</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
+
+    <!-- Two -->
+                            <!--                            Announcement -->
+                            <?php
+                            //Insert the announcement information in the table announcement in the database
+                            $queryAnnouncement = "SELECT * FROM announcement";
+                            $resultPost = mysqli_query($db, $queryAnnouncement);
+
+                            if ($resultPost) { // if user exists
+                                echo '<br><br>
+                                    <div id="one">
+                                        <div class="wrapper special">
+                                            <div class="inner">
+                                                <header class="major">
+                                                    <h2>ANNOUNCEMENT</h2>
+                                                </header>';
+                                foreach ($resultPost as $eachPost) {
+                                    //verify if end date is after now and start date is before now
+                                    if ((strtotime($eachPost['announcementEndDate']) > strtotime('now')) && strtotime($eachPost['announcementStartDate']) <= strtotime('now')) {
+                                        echo '<p class="announcementHome"> <strong>'.$eachPost['announcementTitle'].'</strong><br>'
+                                            .$eachPost['announcementDetail'].'  - <small><i>By Sophie Perras</i></small>';
+                                        //Only administrator can modify annoucement
+                                        if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'){
+                                            $idLink = 'modifyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
+                                            echo '<br><a href='.$idLink.'> Modify </a>';
+                                        }
+                                        echo '</p>';
+                                    }
+
+                                }
+                                echo '                    <hr>
+                                                    </div>
+                                               </div>
+                                            </div>
+                                        </div>';
+                            }
+                            ?>
 
 
 		
@@ -61,8 +102,8 @@ if (session_status() == PHP_SESSION_NONE) {
 				<div class="wrapper style2">
 					<div class="inner">
 						<header class="major">
-							<h2>Get in touch</h2>
-							<p>Sed egestas, ante et vulputate volutpat pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum lorem ipsum dolor sit amet consequat hendrerit tortor semper lorem at felis.</p>
+							<h2 id = "getInTouch">Get in touch</h2>
+							<p>Please fill out this form with your own information, to send an email to Sophie Perras.</p>
 						</header>
 						<div class="content">
 							<div class="form">
@@ -85,25 +126,24 @@ if (session_status() == PHP_SESSION_NONE) {
 							</div>
 							<ul class="icons">
 								<li>
-									<span class="icon fa-home"></span>
+									<span class="icon fa-id-badge"></span>
 									<div>
-										<strong>Address</strong>
-										1234 Somewhere Road #543<br />
-										Nashville, TN 00000
+										<strong>Personal Account</strong>
+                                        <a href="https://www.instagram.com/vanillashowx/?hl=fr-ca">@vanillashowx</a>
 									</div>
 								</li>
 								<li>
 									<span class="icon fa-envelope"></span>
 									<div>
 										<strong>Email</strong>
-										<a href="mailto:information@domain.ext">information@domain.ext</a>
+										<a href="mailto:information@domain.ext">Vanilla.picture@gmail.com</a>
 									</div>
 								</li>
 								<li>
 									<span class="icon fa-phone"></span>
 									<div>
 										<strong>Phone</strong>
-										(000) 000-0000 ext 0000
+										(450) 806-6346
 									</div>
 								</li>
 							</ul>
