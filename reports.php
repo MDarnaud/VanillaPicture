@@ -47,58 +47,114 @@ $db = mysqli_connect('localhost','root','','photography');
             <?php
             if($reportSelect === 'summary'){
 
-                echo 'Yearly for '. date("Y").'<br>';
-            // Yearly
-                // New customer
+                echo 'Yearly<br>';
                 $currentYear = date("Y");
-                $customer_summary_y_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE year(customerDate)='$currentYear'";
-                $customer_s_y_result = mysqli_query($db, $customer_summary_y_query);
-                $totalNewCustomerY = mysqli_fetch_assoc($customer_s_y_result);
-                $textCustomerY = 'New Customer: '.$totalNewCustomerY['totalCustomer'].'<br>';
+            // Yearly
+                $years = array();
+                for($i=0; $i<=5;$i++) {
+                    // New customer
+                    $customer_summary_y_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE year(customerDate)='$currentYear'";
+                    $customer_s_y_result = mysqli_query($db, $customer_summary_y_query);
+                    $totalNewCustomerY = mysqli_fetch_assoc($customer_s_y_result);
+                    $textCustomerY = $totalNewCustomerY['totalCustomer'];
 
-                // Announcement
-                $customer_summary_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE year(announcementStartDate)='$currentYear'";
-                $customer_result = mysqli_query($db, $customer_summary_query);
-                $totalNewAnnouncementY = mysqli_fetch_assoc($customer_result);
-                $textAnnouncemntY = 'Announcement: '.$totalNewAnnouncementY['totalAnnouncement'].'<br>';
+                    // Announcement
+                    $customer_summary_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE year(announcementStartDate)='$currentYear'";
+                    $customer_result = mysqli_query($db, $customer_summary_query);
+                    $totalNewAnnouncementY = mysqli_fetch_assoc($customer_result);
+                    $textAnnouncementY = $totalNewAnnouncementY['totalAnnouncement'];
 
-                // Booked Shoot
-                // MEGANE (count num of shootId where date booked = this year)
+                    // Booked Shoot
+                    // MEGANE (count num of shootId where date booked = this year)
+                    $textPBookedHoursY = ' %';
 
-                // % booked hours (available / booked)
-                // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
+                    // % booked hours (available / booked)
+                    // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
 
-                // $ spends per customer
-                // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
+                    // $ spends per customer
+                    // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
+                    $textSpentCustomerY = ' $/p.';
 
-                // number of giftcards
-                // MEGANE (count num of giftcards id where date bought = this year)
+                    // number of giftcards
+                    // MEGANE (count num of giftcards id where date bought = this year)
+                    $textNumGiftcardY = '';
 
-                // amount of gitcards
-                // MEGANE (count total balance of all giftcards where date bought = this year)
+                    // amount of gitcards
+                    // MEGANE (count total balance of all giftcards where date bought = this year)
+                    $textSpentGiftcardY = ' $';
 
+                    //Two dimensional array
+                    $newdata = array(
+                            "Number of New Customer" => $textCustomerY,
+                            "Number of Announcement" => $textAnnouncementY,
+                            "Amount Spent per Customer" => $textSpentCustomerY,
+                            "Number of Giftcards" => $textNumGiftcardY,
+                            "Amount of Giftcards" => $textSpentGiftcardY,
+                            "Percentage of Booked Hours" => $textPBookedHoursY
+                    );
+                    array_push($years,array($currentYear=>$newdata));
+                    $currentYear = $currentYear -1;
+                }
             ?>
-                <table class="">
-                    <tr>
-                        <th>
-                            New Customer
-                        </th>
-                        <td>
-                            <?php echo $textCustomerY?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Total Announcement
-                        </th>
-                        <td>
-                            <?php echo $textAnnouncemntY?>
-                        </td>
-                    </tr>
+                <div class="table-wrapper">
+                <table class="alt">
+                    <tbody>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+                                Number of New Customer
+                            </th>
+                            <th>
+                                Number of Announcement
+                            </th>
+                            <th>
+                                Amount Spent per Customer
+                            </th>
+                            <th>
+                                Number of Giftcards
+                            </th>
+                            <th>
+                                Amount of Giftcards
+                            </th>
+                            <th>
+                                Percentage of Booked Hours
+                            </th>
+                        </tr>
+
+                        <?php $currentYear = date("Y");?>
+                        <?php for($i=0;$i<=5;$i++){?>
+                        <tr>
+                            <th>
+                                <?php echo $currentYear;?>
+                            </th>
+                            <td>
+                                <?php echo $years[$i][$currentYear]['Number of New Customer']?>
+                            </td>
+                            <td>
+                                <?php echo $years[$i][$currentYear]['Number of Announcement']?>
+                            </td>
+                            <td>
+                                <?php echo $years[$i][$currentYear]['Amount Spent per Customer']?>
+                            </td>
+                            <td>
+                                <?php echo $years[$i][$currentYear]['Number of Giftcards']?>
+                            </td>
+                            <td>
+                                <?php echo $years[$i][$currentYear]['Amount of Giftcards']?>
+                            </td>
+                            <td>
+                                <?php echo $years[$i][$currentYear]['Percentage of Booked Hours']?>
+                            </td>
+                        </tr>
+                    <?php  $currentYear = $currentYear -1;
+                        }?>
+                    </tbody>
                 </table>
+                </div>
 
-                //do tables for year, month and week with the css
-
+                <hr>
             <?php
             //Monthly
                 echo '<br>Monthly for '. date("F").'<br>';
@@ -131,6 +187,7 @@ $db = mysqli_connect('localhost','root','','photography');
                 // MEGANE (count total balance of all giftcards where date bought = this month)
 
 
+                echo '<hr>';
             //Weekly
                 $day = date('w');
                 $week_start = date('d F Y', strtotime('-'.$day.' days'));
