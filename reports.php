@@ -47,9 +47,126 @@ $db = mysqli_connect('localhost','root','','photography');
             <?php
             if($reportSelect === 'summary'){
 
+                echo 'Yearly for '. date("Y").'<br>';
+            // Yearly
+                // New customer
+                $currentYear = date("Y");
+                $customer_summary_y_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE year(customerDate)='$currentYear'";
+                $customer_s_y_result = mysqli_query($db, $customer_summary_y_query);
+                $totalNewCustomerY = mysqli_fetch_assoc($customer_s_y_result);
+                $textCustomerY = 'New Customer: '.$totalNewCustomerY['totalCustomer'].'<br>';
+
+                // Announcement
+                $customer_summary_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE year(announcementStartDate)='$currentYear'";
+                $customer_result = mysqli_query($db, $customer_summary_query);
+                $totalNewAnnouncementY = mysqli_fetch_assoc($customer_result);
+                $textAnnouncemntY = 'Announcement: '.$totalNewAnnouncementY['totalAnnouncement'].'<br>';
+
+                // Booked Shoot
+                // MEGANE (count num of shootId where date booked = this year)
+
+                // % booked hours (available / booked)
+                // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
+
+                // $ spends per customer
+                // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
+
+                // number of giftcards
+                // MEGANE (count num of giftcards id where date bought = this year)
+
+                // amount of gitcards
+                // MEGANE (count total balance of all giftcards where date bought = this year)
+
+            ?>
+                <table class="">
+                    <tr>
+                        <th>
+                            New Customer
+                        </th>
+                        <td>
+                            <?php echo $textCustomerY?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Total Announcement
+                        </th>
+                        <td>
+                            <?php echo $textAnnouncemntY?>
+                        </td>
+                    </tr>
+                </table>
+
+                //do tables for year, month and week with the css
+
+            <?php
+            //Monthly
+                echo '<br>Monthly for '. date("F").'<br>';
+                // New customer
+                $currentMonth = date("m");
+                $customer_summary_month_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE month(customerDate)='$currentMonth'";
+                $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
+                $totalNewCustomerM = mysqli_fetch_assoc($customer_s_m_result);
+                echo 'New Customer: '.$totalNewCustomerM['totalCustomer'].'<br>';
+
+                // Announcement
+                $customer_summary_month_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE month(announcementStartDate)='$currentMonth'";
+                $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
+                $totalNewAnnouncementM = mysqli_fetch_assoc($customer_s_m_result);
+                echo 'Announcement: '.$totalNewAnnouncementM['totalAnnouncement'].'<br>';
+
+                // Booked Shoot
+                // MEGANE (count num of shootId where date booked = this month)
+
+                // % booked hours (available / booked)
+                // MEGANE (count number of available hour where date put = this month, count number of hours shoot booked where date booked = this month, calculate %)
+
+                // $ spends per customer
+                // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)
+
+                // number of giftcards
+                // MEGANE (count num of giftcards id where date bought = this month)
+
+                // amount of gitcards
+                // MEGANE (count total balance of all giftcards where date bought = this month)
 
 
+            //Weekly
+                $day = date('w');
+                $week_start = date('d F Y', strtotime('-'.$day.' days'));
+                $week_end = date('d F Y', strtotime('+'.(6-$day).' days'));
 
+                $week_start_day = date('Y-m-d', strtotime('-'.$day.' days'));
+                $week_end_day=date('Y-m-d', strtotime('+'.(6-$day).' days'));
+
+                echo '<br>Weekly for '. $week_start.' to '.$week_end.'<br>';
+                // New customer
+                $customer_summary_week_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE customerDate>='$week_start_day' AND customerDate<='$week_end_day'";
+                $customer_s_w_result = mysqli_query($db, $customer_summary_week_query);
+                $totalNewCustomerW = mysqli_fetch_assoc($customer_s_w_result);
+                echo 'New Customer: '.$totalNewCustomerW['totalCustomer'].'<br>';
+
+                // Announcement
+                $currentMonth = date("m");
+                $customer_summary_week_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE announcementStartDate>='$week_start_day' AND announcementStartDate<='$week_end_day'";
+                $customer_s_w_result = mysqli_query($db, $customer_summary_week_query);
+                $totalNewAnnouncementW = mysqli_fetch_assoc($customer_s_w_result);
+                echo 'Announcement: '.$totalNewAnnouncementW['totalAnnouncement'].'<br>';
+
+                // Booked Shoot
+                // MEGANE (count num of shootId where date booked = this week)
+
+                // % booked hours (available / booked)
+                // MEGANE (count number of available hour where date put = this week, count number of hours shoot booked where date booked = this month, calculate %)
+
+                // $ spends per customer
+                // MEGANE (count total balance where date bought = this week, count total customer, divide $ by customer)
+
+                // number of giftcards
+                // MEGANE (count num of giftcards id where date bought = this week)
+
+                // amount of gitcards
+                // MEGANE (count total balance of all giftcards where date bought = this week)
 
             }
             ?>
