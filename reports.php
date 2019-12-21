@@ -66,10 +66,11 @@ $db = mysqli_connect('localhost','root','','photography');
 
                     // Booked Shoot
                     // MEGANE (count num of shootId where date booked = this year)
-                    $textPBookedHoursY = ' %';
+                    $textNumBookedShootY ='';
 
                     // % booked hours (available / booked)
                     // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
+                    $textPBookedHoursY = ' %';
 
                     // $ spends per customer
                     // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
@@ -90,6 +91,7 @@ $db = mysqli_connect('localhost','root','','photography');
                             "Amount Spent per Customer" => $textSpentCustomerY,
                             "Number of Giftcards" => $textNumGiftcardY,
                             "Amount of Giftcards" => $textSpentGiftcardY,
+                            "Number of Shoot Booked" => $textNumBookedShootY,
                             "Percentage of Booked Hours" => $textPBookedHoursY
                     );
                     array_push($years,array($currentYear=>$newdata));
@@ -119,6 +121,9 @@ $db = mysqli_connect('localhost','root','','photography');
                                 Amount of Giftcards
                             </th>
                             <th>
+                                Number of Shoot Booked
+                            </th>
+                            <th>
                                 Percentage of Booked Hours
                             </th>
                         </tr>
@@ -145,6 +150,9 @@ $db = mysqli_connect('localhost','root','','photography');
                                 <?php echo $years[$i][$currentYear]['Amount of Giftcards']?>
                             </td>
                             <td>
+                                <?php echo $years[$i][$currentYear]['Number of Shoot Booked']?>
+                            </td>
+                            <td>
                                 <?php echo $years[$i][$currentYear]['Percentage of Booked Hours']?>
                             </td>
                         </tr>
@@ -157,58 +165,147 @@ $db = mysqli_connect('localhost','root','','photography');
                 <hr>
             <?php
             //Monthly
-                echo '<br>Monthly for '. date("F").'<br>';
+                echo '<br>Monthly';
                 // New customer
+                $currentYear = date("Y");
                 $currentMonth = date("m");
-                $customer_summary_month_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE month(customerDate)='$currentMonth'";
+                $months = array();
+                for($i=0; $i<=5;$i++) {
+
+                $customer_summary_month_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE month(customerDate)='$currentMonth' AND year(customerDate)='$currentYear'";
                 $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
                 $totalNewCustomerM = mysqli_fetch_assoc($customer_s_m_result);
-                echo 'New Customer: '.$totalNewCustomerM['totalCustomer'].'<br>';
+                $textCustomerM = $totalNewCustomerM['totalCustomer'];
 
                 // Announcement
-                $customer_summary_month_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE month(announcementStartDate)='$currentMonth'";
+                $customer_summary_month_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE month(announcementStartDate)='$currentMonth' AND year(announcementStartDate)='$currentYear'";
                 $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
                 $totalNewAnnouncementM = mysqli_fetch_assoc($customer_s_m_result);
-                echo 'Announcement: '.$totalNewAnnouncementM['totalAnnouncement'].'<br>';
+                $textAnnouncementM = $totalNewAnnouncementM['totalAnnouncement'];
 
                 // Booked Shoot
-                // MEGANE (count num of shootId where date booked = this month)
+                // MEGANE (count num of shootId where date booked = this month) and year!!!
+                    $textNumBookedShootM ='';
 
                 // % booked hours (available / booked)
-                // MEGANE (count number of available hour where date put = this month, count number of hours shoot booked where date booked = this month, calculate %)
-
+                // MEGANE (count number of available hour where date put = this month, count number of hours shoot booked where date booked = this month, calculate %)and year!!!
+                    $textPBookedHoursM = ' %';
                 // $ spends per customer
-                // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)
+                // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)and year!!!
+                    $textSpentCustomerM = ' $/p.';
 
                 // number of giftcards
-                // MEGANE (count num of giftcards id where date bought = this month)
+                // MEGANE (count num of giftcards id where date bought = this month)and year!!!
+                    $textNumGiftcardM = '';
 
                 // amount of gitcards
-                // MEGANE (count total balance of all giftcards where date bought = this month)
+                // MEGANE (count total balance of all giftcards where date bought = this month)and year!!!
+                    $textSpentGiftcardM = ' $';
 
+                   //Two dimensional array
+                    $newdata = array(
+                            "Number of New Customer" => $textCustomerM,
+                            "Number of Announcement" => $textAnnouncementM,
+                            "Amount Spent per Customer" => $textSpentCustomerM,
+                            "Number of Giftcards" => $textNumGiftcardM,
+                            "Amount of Giftcards" => $textSpentGiftcardM,
+                            "Number of Shoot Booked" => $textNumBookedShootM,
+                            "Percentage of Booked Hours" => $textPBookedHoursM
+                    );
+                    array_push($months,array($currentMonth=>$newdata));
+                    $currentMonth = $currentMonth -1;
+                }
+            ?>
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
 
-                echo '<hr>';
+                            </th>
+                            <th>
+                                Number of New Customer
+                            </th>
+                            <th>
+                                Number of Announcement
+                            </th>
+                            <th>
+                                Amount Spent per Customer
+                            </th>
+                            <th>
+                                Number of Giftcards
+                            </th>
+                            <th>
+                                Amount of Giftcards
+                            </th>
+                            <th>
+                                Number of Shoot Booked
+                            </th>
+                            <th>
+                                Percentage of Booked Hours
+                            </th>
+                        </tr>
+
+                        <?php $currentMonth = date("m");?>
+                        <?php $currentDate = date("Y-m-d")?>
+                        <?php for($i=0;$i<=5;$i++) { ?>
+                            <tr>
+                                <th>
+                                    <?php $dateObj   = DateTime::createFromFormat('!m', $currentMonth);
+                                    $monthName = $dateObj->format('F');
+                                    echo $monthName;
+                                    ?>
+                                </th>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Number of New Customer'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Number of Announcement'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Amount Spent per Customer'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Number of Giftcards'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Amount of Giftcards'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Number of Shoot Booked'] ?>
+                                </td>
+                                <td>
+                                    <?php echo $months[$i][$currentMonth]['Percentage of Booked Hours'] ?>
+                                </td>
+                            </tr>
+                            <?php $currentMonth = $currentMonth - 1;
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+<!--                Loop for a few weeks-->
+            <?php
             //Weekly
                 $day = date('w');
-                $week_start = date('d F Y', strtotime('-'.$day.' days'));
-                $week_end = date('d F Y', strtotime('+'.(6-$day).' days'));
+                $week_start = date('F d Y', strtotime('-'.$day.' days'));
+                $week_end = date('F d Y', strtotime('+'.(6-$day).' days'));
 
                 $week_start_day = date('Y-m-d', strtotime('-'.$day.' days'));
                 $week_end_day=date('Y-m-d', strtotime('+'.(6-$day).' days'));
 
-                echo '<br>Weekly for '. $week_start.' to '.$week_end.'<br>';
+                echo '<br>Weekly';
                 // New customer
                 $customer_summary_week_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE customerDate>='$week_start_day' AND customerDate<='$week_end_day'";
                 $customer_s_w_result = mysqli_query($db, $customer_summary_week_query);
                 $totalNewCustomerW = mysqli_fetch_assoc($customer_s_w_result);
-                echo 'New Customer: '.$totalNewCustomerW['totalCustomer'].'<br>';
+                $textCustomerW = $totalNewCustomerW['totalCustomer'];
 
                 // Announcement
                 $currentMonth = date("m");
                 $customer_summary_week_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE announcementStartDate>='$week_start_day' AND announcementStartDate<='$week_end_day'";
                 $customer_s_w_result = mysqli_query($db, $customer_summary_week_query);
                 $totalNewAnnouncementW = mysqli_fetch_assoc($customer_s_w_result);
-                echo 'Announcement: '.$totalNewAnnouncementW['totalAnnouncement'].'<br>';
+                $textAnnouncementW = $totalNewAnnouncementW['totalAnnouncement'];
 
                 // Booked Shoot
                 // MEGANE (count num of shootId where date booked = this week)
@@ -227,6 +324,65 @@ $db = mysqli_connect('localhost','root','','photography');
 
             }
             ?>
+
+            <div class="table-wrapper">
+                <table class="alt">
+                    <tbody>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            Number of New Customer
+                        </th>
+                        <th>
+                            Number of Announcement
+                        </th>
+                        <th>
+                            Amount Spent per Customer
+                        </th>
+                        <th>
+                            Number of Giftcards
+                        </th>
+                        <th>
+                            Amount of Giftcards
+                        </th>
+                        <th>
+                            Number of Shoot Booked
+                        </th>
+                        <th>
+                            Percentage of Booked Hours
+                        </th>
+                    </tr>
+                        <tr>
+                            <th>
+                                <?php echo $week_start.' to '.$week_end?>
+                            </th>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Number of New Customer'] ?>
+                            </td>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Number of Announcement'] ?>
+                            </td>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Amount Spent per Customer'] ?>
+                            </td>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Number of Giftcards'] ?>
+                            </td>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Amount of Giftcards'] ?>
+                            </td>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Number of Shoot Booked'] ?>
+                            </td>
+                            <td>
+                                <?php echo $months[$i][$currentMonth]['Percentage of Booked Hours'] ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
 
 
