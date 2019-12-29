@@ -435,53 +435,9 @@ $db = mysqli_connect('localhost','root','','photography');
             // Yearly
                 $currentYear = date("Y");
                 echo '<h3>Year '.$currentYear.'</h3>';
-
-                //New Customer
-            $years = array();
-                // New customer
-                $customer_detail_y_query = "SELECT * FROM customer WHERE year(customerDate)='$currentYear'";
-                $customer_d_y_result = mysqli_query($db, $customer_detail_y_query);
-                $NewCustomerY = mysqli_fetch_assoc($customer_d_y_result);
-//                while ($NewCustomerY) {
-                    $textCustomerUserIdY = $NewCustomerY['userId'];
-                    $textCustomerNameY = $NewCustomerY['customerFirstName'] . ' ' . $NewCustomerY['customerLastName'];
-                    $textCustomerDobY = $NewCustomerY['customerDob'];
-                    $textCustomerCountryY = $NewCustomerY['customerCountry'];
-                    $textCustomerCityY = $NewCustomerY['customerCity'];
-//                }
-                //Tu essaye de select plusieurs user et de les afficher
-
-//                // Announcement
-//                $customer_summary_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE year(announcementStartDate)='$currentYear'";
-//                $customer_result = mysqli_query($db, $customer_summary_query);
-//                $totalNewAnnouncementY = mysqli_fetch_assoc($customer_result);
-//                $textAnnouncementY = $totalNewAnnouncementY['totalAnnouncement'];
-
-                // Booked Shoot
-                // MEGANE (count num of shootId where date booked = this year)
-                $textNumBookedShootY ='';
-
-                // % booked hours (available / booked)
-                // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
-                $textPBookedHoursY = ' %';
-
-                // $ spends per customer
-                // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
-                $textSpentCustomerY = ' $/p.';
-
-                // number of giftcards
-                // MEGANE (count num of giftcards id where date bought = this year)
-                $textNumGiftcardY = '';
-
-                // amount of gitcards
-                // MEGANE (count total balance of all giftcards where date bought = this year)
-                $textSpentGiftcardY = ' $';
-
-                //Two dimensional array
-//                array_push($years,array($currentYear=>$newdata));
-//                $currentYear = $currentYear -1;
-
+                echo '<h5>Customer Registration</h5>';
             ?>
+
             <div class="table-wrapper">
                 <table class="alt">
                     <tbody>
@@ -502,14 +458,26 @@ $db = mysqli_connect('localhost','root','','photography');
                             City
                         </th>
                     </tr>
-
+<!---->
                     <?php $currentYear = date("Y");?>
+                    <?php
+                    // New customer
+                    $customer_detail_y_query = "SELECT * FROM customer WHERE year(customerDate)='$currentYear'";
+                    $customer_d_y_result = mysqli_query($db, $customer_detail_y_query);
+                    if(mysqli_num_rows($customer_d_y_result)>0){
+                    while ($row = mysqli_fetch_assoc($customer_d_y_result)) {
+                        $textCustomerUserIdY = $row['userId'];
+                        $textCustomerNameY = $row['customerFirstName'] . ' ' . $row['customerLastName'];
+                        $textCustomerDobY = $row['customerDob'];
+                        $textCustomerCountryY = $row['customerCountry'];
+                        $textCustomerCityY = $row['customerCity'];
+                    ?>
                         <tr>
                             <td>
-                                <?php echo $textCustomerUserIdY?>
+                               <?php echo $textCustomerUserIdY;?>
                             </td>
-                            <td>
-                                <?php echo $textCustomerNameY?>
+                           <td>
+                               <?php echo $textCustomerNameY?>
                             </td>
                             <td>
                                 <?php echo $textCustomerDobY?>
@@ -521,17 +489,86 @@ $db = mysqli_connect('localhost','root','','photography');
                                 <?php echo $textCustomerCityY?>
                             </td>
                         </tr>
+                    <?php }
+            }?>
                     </tbody>
                 </table>
             </div>
 
             <hr>
+
+               <?php echo '<h5>Announcement</h5>'; ?>
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Text
+                            </th>
+                            <th>
+                                Start Date
+                            </th>
+                            <th>
+                                End Date
+                            </th>
+                        </tr>
+                        <!---->
+                        <?php $currentYear = date("Y");?>
+                        <?php
+                        // New customer
+                        $announcement_detail_y_query = "SELECT * FROM announcement WHERE year(announcementStartDate)='$currentYear'";
+                        $announcement_d_y_result = mysqli_query($db, $announcement_detail_y_query);
+                        if(mysqli_num_rows($announcement_d_y_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($announcement_d_y_result)) {
+                                $textAnnouncementUserIdY = $row2['announcementTitle'];
+                                $textAnnouncementNameY = $row2['announcementDetail'];
+                                $textAnnouncementDobY = $row2['announcementStartDate'];
+                                $textAnnouncementCountryY = $row2['announcementEndDate'];
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $textAnnouncementUserIdY;?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementNameY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementDobY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementCountryY?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr>
+
+<!--                MEGANE-->
+<!--                Repeat the steps above for the shoot table and payment table(giftcard)-->
+<!--                -->
+
+
+
+
+
            <?php }
             ?>
 <!--        Exception Report-->
             <?php
             if($reportSelect === 'exception'){
-                echo 'exception';
+                ?>
+                //Year or month choice radiobutton
+                //Year or month dropdown
+                //Table choice
+                <?php
             }
             ?>
         </div>
