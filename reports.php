@@ -47,11 +47,11 @@ $db = mysqli_connect('localhost','root','','photography');
             <?php
             if($reportSelect === 'summary'){
 
-                echo 'Yearly<br>';
+                echo '<h3>Yearly</h3>';
                 $currentYear = date("Y");
             // Yearly
                 $years = array();
-                for($i=0; $i<=5;$i++) {
+                for($i=0; $i<5;$i++) {
                     // New customer
                     $customer_summary_y_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE year(customerDate)='$currentYear'";
                     $customer_s_y_result = mysqli_query($db, $customer_summary_y_query);
@@ -129,7 +129,7 @@ $db = mysqli_connect('localhost','root','','photography');
                         </tr>
 
                         <?php $currentYear = date("Y");?>
-                        <?php for($i=0;$i<=5;$i++){?>
+                        <?php for($i=0;$i<5;$i++){?>
                         <tr>
                             <th>
                                 <?php echo $currentYear;?>
@@ -165,12 +165,12 @@ $db = mysqli_connect('localhost','root','','photography');
                 <hr>
             <?php
             //Monthly
-                echo '<br>Monthly';
+                echo '<h3>Monthly</h3>';
                 // New customer
                 $currentYear = date("Y");
                 $currentMonth = date("m");
                 $months = array();
-                for($i=0; $i<=5;$i++) {
+                for($i=0; $i<5;$i++) {
 
                 $customer_summary_month_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE month(customerDate)='$currentMonth' AND year(customerDate)='$currentYear'";
                 $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
@@ -190,6 +190,7 @@ $db = mysqli_connect('localhost','root','','photography');
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this month, count number of hours shoot booked where date booked = this month, calculate %)and year!!!
                     $textPBookedHoursM = ' %';
+
                 // $ spends per customer
                 // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)and year!!!
                     $textSpentCustomerM = ' $/p.';
@@ -248,7 +249,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                         <?php $currentMonth = date("m");?>
                         <?php $currentDate = date("Y-m-d")?>
-                        <?php for($i=0;$i<=5;$i++) { ?>
+                        <?php for($i=0;$i<5;$i++) { ?>
                             <tr>
                                 <th>
                                     <?php $dateObj   = DateTime::createFromFormat('!m', $currentMonth);
@@ -287,13 +288,18 @@ $db = mysqli_connect('localhost','root','','photography');
             <?php
             //Weekly
                 $day = date('w');
-                $week_start = date('F d Y', strtotime('-'.$day.' days'));
-                $week_end = date('F d Y', strtotime('+'.(6-$day).' days'));
 
                 $week_start_day = date('Y-m-d', strtotime('-'.$day.' days'));
                 $week_end_day=date('Y-m-d', strtotime('+'.(6-$day).' days'));
 
-                echo '<br>Weekly';
+                $currentMonth = date("m");
+
+                $weeks = array();
+
+                echo '<h3>Weekly</h3>';
+
+                $months = array();
+                for($i=0; $i<5;$i++) {
                 // New customer
                 $customer_summary_week_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE customerDate>='$week_start_day' AND customerDate<='$week_end_day'";
                 $customer_s_w_result = mysqli_query($db, $customer_summary_week_query);
@@ -301,30 +307,52 @@ $db = mysqli_connect('localhost','root','','photography');
                 $textCustomerW = $totalNewCustomerW['totalCustomer'];
 
                 // Announcement
-                $currentMonth = date("m");
-                $customer_summary_week_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE announcementStartDate>='$week_start_day' AND announcementStartDate<='$week_end_day'";
-                $customer_s_w_result = mysqli_query($db, $customer_summary_week_query);
-                $totalNewAnnouncementW = mysqli_fetch_assoc($customer_s_w_result);
+                $announcement_summary_week_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE announcementStartDate>='$week_start_day' AND announcementStartDate<='$week_end_day'";
+                $announcement_s_w_result = mysqli_query($db, $announcement_summary_week_query);
+                $totalNewAnnouncementW = mysqli_fetch_assoc($announcement_s_w_result);
                 $textAnnouncementW = $totalNewAnnouncementW['totalAnnouncement'];
 
                 // Booked Shoot
                 // MEGANE (count num of shootId where date booked = this week)
+                    $textNumBookedShootW ='';
 
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this week, count number of hours shoot booked where date booked = this month, calculate %)
+                    $textPBookedHoursW = ' %';
 
                 // $ spends per customer
                 // MEGANE (count total balance where date bought = this week, count total customer, divide $ by customer)
+                    $textSpentCustomerW = ' $/p.';
 
                 // number of giftcards
                 // MEGANE (count num of giftcards id where date bought = this week)
+                    $textNumGiftcardW = '';
 
                 // amount of gitcards
                 // MEGANE (count total balance of all giftcards where date bought = this week)
+                    $textSpentGiftcardW = ' $';
 
-            }
+                    //Two dimensional array
+                    $newdata = array(
+                        "Number of New Customer" => $textCustomerW,
+                        "Number of Announcement" => $textAnnouncementW,
+                        "Amount Spent per Customer" => $textSpentCustomerW,
+                        "Number of Giftcards" => $textNumGiftcardW,
+                        "Amount of Giftcards" => $textSpentGiftcardW,
+                        "Number of Shoot Booked" => $textNumBookedShootW,
+                        "Percentage of Booked Hours" => $textPBookedHoursW
+                    );
+                    array_push($weeks,array($week_start_day=>$newdata));
+                    $week_start_day=date('Y-m-d', strtotime($week_start_day. ' + 7 days'));
+                    $week_end_day=date('Y-m-d', strtotime($week_end_day. ' + 7 days'));
+
+                }
             ?>
 
+            <?php
+                $week_start_day = date('Y-m-d', strtotime('-'.$day.' days'));
+                $week_end_day=date('Y-m-d', strtotime('+'.(6-$day).' days'));
+            ?>
             <div class="table-wrapper">
                 <table class="alt">
                     <tbody>
@@ -354,36 +382,45 @@ $db = mysqli_connect('localhost','root','','photography');
                             Percentage of Booked Hours
                         </th>
                     </tr>
+                    <?php for($i=0;$i<5;$i++) { ?>
                         <tr>
                             <th>
-                                <?php echo $week_start.' to '.$week_end?>
+                                <?php
+                                $week_start = date('F d Y', strtotime($week_start_day));
+                                $week_end = date('F d Y', strtotime($week_end_day));
+
+                                echo $week_start.' to '.$week_end?>
                             </th>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Number of New Customer'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Number of New Customer'] ?>
                             </td>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Number of Announcement'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Number of Announcement'] ?>
                             </td>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Amount Spent per Customer'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Amount Spent per Customer'] ?>
                             </td>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Number of Giftcards'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Number of Giftcards'] ?>
                             </td>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Amount of Giftcards'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Amount of Giftcards'] ?>
                             </td>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Number of Shoot Booked'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Number of Shoot Booked'] ?>
                             </td>
                             <td>
-                                <?php echo $months[$i][$currentMonth]['Percentage of Booked Hours'] ?>
+                                <?php echo $weeks[$i][$week_start_day]['Percentage of Booked Hours'] ?>
                             </td>
                         </tr>
+                    <?php
+                        $week_start_day=date('Y-m-d', strtotime($week_start_day. ' + 7 days'));
+                        $week_end_day=date('Y-m-d', strtotime($week_end_day. ' + 7 days'));
+                    } ?>
                     </tbody>
                 </table>
             </div>
-
+    <?php }?>
 
 
 
@@ -394,8 +431,102 @@ $db = mysqli_connect('localhost','root','','photography');
 <!--        Detail Report-->
             <?php
             if($reportSelect === 'detail'){
-                echo 'detail';
-            }
+
+            // Yearly
+                $currentYear = date("Y");
+                echo '<h3>Year '.$currentYear.'</h3>';
+
+                //New Customer
+            $years = array();
+                // New customer
+                $customer_detail_y_query = "SELECT * FROM customer WHERE year(customerDate)='$currentYear'";
+                $customer_d_y_result = mysqli_query($db, $customer_detail_y_query);
+                $NewCustomerY = mysqli_fetch_assoc($customer_d_y_result);
+//                while ($NewCustomerY) {
+                    $textCustomerUserIdY = $NewCustomerY['userId'];
+                    $textCustomerNameY = $NewCustomerY['customerFirstName'] . ' ' . $NewCustomerY['customerLastName'];
+                    $textCustomerDobY = $NewCustomerY['customerDob'];
+                    $textCustomerCountryY = $NewCustomerY['customerCountry'];
+                    $textCustomerCityY = $NewCustomerY['customerCity'];
+//                }
+                //Tu essaye de select plusieurs user et de les afficher
+
+//                // Announcement
+//                $customer_summary_query = "SELECT count(announcementId) as totalAnnouncement FROM announcement WHERE year(announcementStartDate)='$currentYear'";
+//                $customer_result = mysqli_query($db, $customer_summary_query);
+//                $totalNewAnnouncementY = mysqli_fetch_assoc($customer_result);
+//                $textAnnouncementY = $totalNewAnnouncementY['totalAnnouncement'];
+
+                // Booked Shoot
+                // MEGANE (count num of shootId where date booked = this year)
+                $textNumBookedShootY ='';
+
+                // % booked hours (available / booked)
+                // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
+                $textPBookedHoursY = ' %';
+
+                // $ spends per customer
+                // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
+                $textSpentCustomerY = ' $/p.';
+
+                // number of giftcards
+                // MEGANE (count num of giftcards id where date bought = this year)
+                $textNumGiftcardY = '';
+
+                // amount of gitcards
+                // MEGANE (count total balance of all giftcards where date bought = this year)
+                $textSpentGiftcardY = ' $';
+
+                //Two dimensional array
+//                array_push($years,array($currentYear=>$newdata));
+//                $currentYear = $currentYear -1;
+
+            ?>
+            <div class="table-wrapper">
+                <table class="alt">
+                    <tbody>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Date of Birth
+                        </th>
+                        <th>
+                            Country
+                        </th>
+                        <th>
+                            City
+                        </th>
+                    </tr>
+
+                    <?php $currentYear = date("Y");?>
+                        <tr>
+                            <td>
+                                <?php echo $textCustomerUserIdY?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerNameY?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerDobY?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerCountryY?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerCityY?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+           <?php }
             ?>
 <!--        Exception Report-->
             <?php
@@ -403,10 +534,6 @@ $db = mysqli_connect('localhost','root','','photography');
                 echo 'exception';
             }
             ?>
-
-
-
-
         </div>
     </div>
 </div>
