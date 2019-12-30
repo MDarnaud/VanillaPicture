@@ -565,9 +565,16 @@ $db = mysqli_connect('localhost','root','','photography');
             <?php
             if($reportSelect === 'exception'){
                 ?>
-                //Year or month choice radiobutton
-                //Year or month dropdown
-                //Table choice
+                <form action="" method ="">
+<!--                Year or month choice radiobutton-->
+                    <input type="radio" name="time" value="Year" style="height: 15px; width: 15px; margin-right:0px; opacity: 1; background-color:black;"/> Year
+                    <br>
+                    <input type="radio" name="time" value="Month" style="height: 15px; width: 15px; margin-right:0px; opacity: 1; background-color:black;"/> Month
+<!--                Year or month dropdown-->
+                    <br>
+                    <input type="submit" value="Submit">
+<!--                Table choice-->
+                </form>
                 <?php
             }
             ?>
