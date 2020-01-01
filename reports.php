@@ -558,23 +558,90 @@ $db = mysqli_connect('localhost','root','','photography');
 
 
 
-
-           <?php }
+            <?php }
             ?>
 <!--        Exception Report-->
             <?php
             if($reportSelect === 'exception'){
                 ?>
-                <form action="" method ="">
 <!--                Year or month choice radiobutton-->
-                    <input type="radio" name="time" value="Year" style="height: 15px; width: 15px; margin-right:0px; opacity: 1; background-color:black;"/> Year
+<!--                     style="-->
+<!--                    height: 15px;-->
+<!--                    width: 15px;-->
+<!--                    margin-right:0px;-->
+<!--                    opacity: 1;-->
+<!--                    background-color:lightgrey;-->
+<!--                    border-radius: 50px;"-->
+                <div id="main">
+                    <div class="wrapper">
+                        <div class="inner">
+                            <div class="wrapper special">
+                                <form method="post" action="serverExceptionReport.php" class="announcementHome" style="text-align:center">
+
+                                    <div class="formDivision">
+                                    <h3> Choose your report preferences</h3>
+
+                                    <strong> Period: </strong>&nbsp; &nbsp;
+                                    <input type="radio" name="period" id="year" value="year">
+                                    <label for="year"> Year </label>
+
+                                    <input type="radio" name="period" id="month" value="month">
+                                    <label for="month"> Month </label>
+
+<!--                                    RadioButton clicked show the right dropdown-->
+                                    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $("input[type='radio']").click(function(){
+                                                $('.dropdownPeriod').remove();
+                                                var radioValue = $("input[name='period']:checked").val();
+                                                if(radioValue == 'year'){
+                                                $('.formDivision').append('<div class="dropdownPeriod"><strong> Year: </strong>&nbsp; &nbsp;</div>');
+                                                $('.formDivision').append('<div class="dropdownPeriod"><?php $years = range(2000, strftime("%Y", time())); ?>\n'+
+                                                        '<select>\n'+
+                                                        '<option>Select Year</option>\n'+
+                                                        '<?php foreach($years as $year) : ?>\n'+
+                                                        '<option value="<?php echo $year; ?>">\n'+
+                                                        '    <?php echo $year; ?>\n'+
+                                                        '</option><?php endforeach; ?>\n'+
+                                                        '</select></div>');
+
+
+                                                }
+                                                if(radioValue == 'month'){
+                                                    $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;<input type="month"></div>');
+                                                }
+                                                 $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
+                                                 $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer">\n'+
+'     <label for="customer"> Customer Registration</label>\n'+
+'                <input type="checkbox" name="announcement" id="announcement" value="announcement">\n'+
+'     <label for="announcement"> Announcements </label>\n'+
+'                <input type="checkbox" name="shoots" id="shoots" value="shoots">\n'+
+'     <label for="shoots"> Shoots </label>\n'+
+'                <input type="checkbox" name="payment" id="payment" value="payment">\n'+
+'     <label for="payment"> Payments </label></div>');
+
+
+                                            });
+                                        });
+                                    </script>
+
+                                </div>
+                                <br>
+                                <input type="submit" value="Submit">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <br>
+                        <!--Year or month dropdown-->
                     <br>
-                    <input type="radio" name="time" value="Month" style="height: 15px; width: 15px; margin-right:0px; opacity: 1; background-color:black;"/> Month
-<!--                Year or month dropdown-->
-                    <br>
-                    <input type="submit" value="Submit">
+
 <!--                Table choice-->
-                </form>
+
                 <?php
             }
             ?>

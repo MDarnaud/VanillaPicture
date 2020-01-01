@@ -2139,6 +2139,7 @@ input, select, textarea {
 	}
 
 	input[type="text"],
+	input[type="month"],
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
@@ -2162,6 +2163,7 @@ input, select, textarea {
 	}
 
 		input[type="text"]:invalid,
+		input[type="month"]:invalid,
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		input[type="tel"]:invalid,
@@ -2176,6 +2178,7 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
+	input[type="month"]:invalid,
 	input[type="search"],
 	input[type="url"] {
 		height: 3.25rem;
@@ -2287,6 +2290,7 @@ input, select, textarea {
 	}
 
 	input[type="text"],
+	input[type="month"],
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
@@ -2298,6 +2302,7 @@ input, select, textarea {
 	}
 
 		input[type="text"]:focus,
+		input[type="month"]:focus,
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
