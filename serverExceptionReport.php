@@ -1,21 +1,36 @@
 <?php
 
-/* Get the form data and display form
- *
+/* Get the form data
+ * Display error message when field empty
+ * Display the write table
+ * Display the right informations
+ * Megane message to do it
  */
 
+$errors = "";
+
+// connect to the database
+$db = mysqli_connect('localhost','root','','photography');
+
+
+//incude server instead of action
+if(isset($_POST['submit'])) {
 // receive all input values from the form
-$period = mysqli_real_escape_string($db, $_POST['period']);
-$year = mysqli_real_escape_string($db, $_POST['password_1']);
-$month = mysqli_real_escape_string($db, $_POST['password_1']);
-$elements = mysqli_real_escape_string($db, $_POST['password_1']);
-
-// first check the database to make sure
-// a user does exist with the same email
-$user_check_query = "SELECT * FROM all_user WHERE userId='$email'";
-$resultUser = mysqli_query($db, $user_check_query);
-$user = mysqli_fetch_assoc($resultUser);
+    $period = mysqli_real_escape_string($db, $_POST['period']);
+    $year = mysqli_real_escape_string($db, $_POST['dropdownYear']);
+    $month = mysqli_real_escape_string($db, $_POST['dropdownMonth']);
+    $customer = mysqli_real_escape_string($db, $_POST['customer']);
+    $announcement = mysqli_real_escape_string($db, $_POST['announcement']);
+    $shoot = mysqli_real_escape_string($db, $_POST['shoot']);
+    $payment = mysqli_real_escape_string($db, $_POST['payment']);
 
 
-header('location: ./reports.php?reportSelect=exception');
-?>
+    if (empty($period)) {
+        $errors = "Select a Year or Month. ";
+    }
+    elseif($year === '' && $month === '') {
+        $errors = "Select a precise period. ";
+    }
+
+    header('location: ./reports.php?reportSelect=exception&errors='.$errors);
+}?>

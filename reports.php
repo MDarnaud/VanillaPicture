@@ -2,6 +2,8 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+include "serverExceptionReport.php";
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 ?>
@@ -575,8 +577,13 @@ $db = mysqli_connect('localhost','root','','photography');
                 <div id="main">
                     <div class="wrapper">
                         <div class="inner">
+                            <?php if(isset($_GET['errors'])){
+                                echo $_GET['errors'];
+                            }
+
+                            ?>
                             <div class="wrapper special">
-                                <form method="post" action="serverExceptionReport.php" class="announcementHome" style="text-align:center">
+                                <form method="post" action="reports.php" class="announcementHome" style="text-align:center">
 
                                     <div class="formDivision">
                                     <h3> Choose your report preferences</h3>
@@ -598,8 +605,8 @@ $db = mysqli_connect('localhost','root','','photography');
                                                 if(radioValue == 'year'){
                                                 $('.formDivision').append('<div class="dropdownPeriod"><strong> Year: </strong>&nbsp; &nbsp;</div>');
                                                 $('.formDivision').append('<div class="dropdownPeriod"><?php $years = range(2000, strftime("%Y", time())); ?>\n'+
-                                                        '<select>\n'+
-                                                        '<option>Select Year</option>\n'+
+                                                        '<select name="dropdownYear" id="dropdownYear">\n'+
+                                                        '<option value="">Select Year</option>\n'+
                                                         '<?php foreach($years as $year) : ?>\n'+
                                                         '<option value="<?php echo $year; ?>">\n'+
                                                         '    <?php echo $year; ?>\n'+
@@ -609,7 +616,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                                 }
                                                 if(radioValue == 'month'){
-                                                    $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;<input type="month"></div>');
+                                                    $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;<input type="month" name="dropdownMonth" id="dropdownMonth"></div>');
                                                 }
                                                  $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
                                                  $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer">\n'+
@@ -628,7 +635,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                 </div>
                                 <br>
-                                <input type="submit" value="Submit">
+                                <input type="submit" name="submit" id="submit" value="Submit">
                                 </form>
                             </div>
                         </div>
