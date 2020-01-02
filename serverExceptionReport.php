@@ -1,8 +1,7 @@
 <?php
 
-/* Get the form data
- * Display error message when field empty
- * Display the write table
+/*
+ * Display the write table according to elements selected
  * Display the right informations
  * Megane message to do it
  */
@@ -32,5 +31,6 @@ if(isset($_POST['submit'])) {
         $errors = "Select a precise period. ";
     }
 
-    header('location: ./reports.php?reportSelect=exception&errors='.$errors);
+    header('location: ./reports.php?reportSelect=exception&errors='.$errors.'&customer='.$customer.'&announcement='.$announcement
+        .'&shoot='.$shoot.'&payment='.$payment.'&period='.$period.'&year='.$year.'&month='.$month);
 }?>

@@ -173,6 +173,7 @@ $db = mysqli_connect('localhost','root','','photography');
                 $currentMonth = date("m");
                 $months = array();
                 for($i=0; $i<5;$i++) {
+                $currentMonth = date("m", strtotime("-".$i."months", $currentMonth));
 
                 $customer_summary_month_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE month(customerDate)='$currentMonth' AND year(customerDate)='$currentYear'";
                 $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
@@ -216,7 +217,7 @@ $db = mysqli_connect('localhost','root','','photography');
                             "Percentage of Booked Hours" => $textPBookedHoursM
                     );
                     array_push($months,array($currentMonth=>$newdata));
-                    $currentMonth = $currentMonth -1;
+
                 }
             ?>
                 <div class="table-wrapper">
@@ -254,7 +255,9 @@ $db = mysqli_connect('localhost','root','','photography');
                         <?php for($i=0;$i<5;$i++) { ?>
                             <tr>
                                 <th>
-                                    <?php $dateObj   = DateTime::createFromFormat('!m', $currentMonth);
+                                    <?php
+                                    $currentMonth = date("m", strtotime("-".$i."months", $currentMonth));
+                                    $dateObj = DateTime::createFromFormat('!m', $currentMonth);
                                     $monthName = $dateObj->format('F');
                                     echo $monthName;
                                     ?>
@@ -281,7 +284,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                     <?php echo $months[$i][$currentMonth]['Percentage of Booked Hours'] ?>
                                 </td>
                             </tr>
-                            <?php $currentMonth = $currentMonth - 1;
+                            <?php
                         }?>
                         </tbody>
                     </table>
@@ -344,9 +347,9 @@ $db = mysqli_connect('localhost','root','','photography');
                         "Number of Shoot Booked" => $textNumBookedShootW,
                         "Percentage of Booked Hours" => $textPBookedHoursW
                     );
-                    array_push($weeks,array($week_start_day=>$newdata));
-                    $week_start_day=date('Y-m-d', strtotime($week_start_day. ' + 7 days'));
-                    $week_end_day=date('Y-m-d', strtotime($week_end_day. ' + 7 days'));
+                    array_push($weeks, array($week_start_day=>$newdata));
+                    $week_start_day=date('Y-m-d', strtotime($week_start_day. ' - 7 days'));
+                    $week_end_day=date('Y-m-d', strtotime($week_end_day. ' - 7 days'));
 
                 }
             ?>
@@ -416,8 +419,8 @@ $db = mysqli_connect('localhost','root','','photography');
                             </td>
                         </tr>
                     <?php
-                        $week_start_day=date('Y-m-d', strtotime($week_start_day. ' + 7 days'));
-                        $week_end_day=date('Y-m-d', strtotime($week_end_day. ' + 7 days'));
+                        $week_start_day=date('Y-m-d', strtotime($week_start_day. ' - 7 days'));
+                        $week_end_day=date('Y-m-d', strtotime($week_end_day. ' - 7 days'));
                     } ?>
                     </tbody>
                 </table>
@@ -623,8 +626,8 @@ $db = mysqli_connect('localhost','root','','photography');
 '     <label for="customer"> Customer Registration</label>\n'+
 '                <input type="checkbox" name="announcement" id="announcement" value="announcement">\n'+
 '     <label for="announcement"> Announcements </label>\n'+
-'                <input type="checkbox" name="shoots" id="shoots" value="shoots">\n'+
-'     <label for="shoots"> Shoots </label>\n'+
+'                <input type="checkbox" name="shoot" id="shoot" value="shoot">\n'+
+'     <label for="shoot"> Shoots </label>\n'+
 '                <input type="checkbox" name="payment" id="payment" value="payment">\n'+
 '     <label for="payment"> Payments </label></div>');
 
@@ -639,6 +642,177 @@ $db = mysqli_connect('localhost','root','','photography');
                                 </form>
                             </div>
                         </div>
+                            <?php
+                            //Year Selection
+                            if($_GET['errors'] === '') {
+                                if ($_GET['period'] === 'year') {
+                                    //Checkbox elements selection
+                                    //Save the choosen year
+                                    $selectedYear = $_GET['year'];
+                                    // Year Title
+                                        echo '<h3>Year '.$selectedYear.'</h3>';
+                                        echo '<h5>Customer Registration</h5>';
+
+                                    //Customer Registration
+                                    if($_GET['customer'] === 'customer'){?>
+                                                <div class="table-wrapper">
+                                                    <table class="alt">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                Id
+                                                            </th>
+                                                            <th>
+                                                                Name
+                                                            </th>
+                                                            <th>
+                                                                Date of Birth
+                                                            </th>
+                                                            <th>
+                                                                Country
+                                                            </th>
+                                                            <th>
+                                                                City
+                                                            </th>
+                                                        </tr>
+                                                        <?php
+                                                        // New customer
+                                                        $customer_exception_y_query = "SELECT * FROM customer WHERE year(customerDate)='$selectedYear'";
+                                                        $customer_e_y_result = mysqli_query($db, $customer_exception_y_query);
+                                                        if(mysqli_num_rows($customer_e_y_result)>0){
+                                                        while ($row = mysqli_fetch_assoc($customer_e_y_result)) {
+                                                            $textCustomerUserIdY = $row['userId'];
+                                                            $textCustomerNameY = $row['customerFirstName'] . ' ' . $row['customerLastName'];
+                                                            $textCustomerDobY = $row['customerDob'];
+                                                            $textCustomerCountryY = $row['customerCountry'];
+                                                            $textCustomerCityY = $row['customerCity'];
+                                                        ?>
+                                                            <tr>
+                                                                <td>
+                                                                   <?php echo $textCustomerUserIdY;?>
+                                                                </td>
+                                                               <td>
+                                                                   <?php echo $textCustomerNameY?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textCustomerDobY?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textCustomerCountryY?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textCustomerCityY?>
+                                                                </td>
+                                                            </tr>
+                                                        <?php }
+                                                }?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <hr>
+                        <?php
+                                    }
+                                    //Announcement
+                                    if($_GET['announcement'] === 'announcement'){?>
+
+               <?php echo '<h5>Announcement</h5>'; ?>
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Text
+                            </th>
+                            <th>
+                                Start Date
+                            </th>
+                            <th>
+                                End Date
+                            </th>
+                        </tr>
+                        <!---->
+                        <?php $currentYear = date("Y");?>
+                        <?php
+                        // New customer
+                        $announcement_exception_y_query = "SELECT * FROM announcement WHERE year(announcementStartDate)='$selectedYear'";
+                        $announcement_e_y_result = mysqli_query($db, $announcement_exception_y_query);
+                        if(mysqli_num_rows($announcement_e_y_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($announcement_e_y_result)) {
+                                $textAnnouncementUserIdY = $row2['announcementTitle'];
+                                $textAnnouncementNameY = $row2['announcementDetail'];
+                                $textAnnouncementDobY = $row2['announcementStartDate'];
+                                $textAnnouncementCountryY = $row2['announcementEndDate'];
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $textAnnouncementUserIdY;?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementNameY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementDobY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementCountryY?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr>
+                        <?php
+                                    }
+                                    //Shoots
+                                    if($_GET['shoot'] === 'shoot'){
+                                        /*
+                                         * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current year for selected year
+                                         */
+                                    }
+                                    //Payments
+                                    if($_GET['payment'] === 'payment'){
+                                         /*
+                                         * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current year for selected year
+                                         */
+                                    }
+                                }
+
+                                //Month
+                                elseif ($_GET['period'] === 'month') {
+                                    $selectedMonthNotFormat = $_GET['month']; //January 2020 -> 2020-01
+                                    $selectedMonth = date('m', strtotime($selectedMonthNotFormat));
+                                    $selectedYearWithMonth = date('Y', strtotime($selectedMonthNotFormat));
+                                    //Customer
+                                    if($_GET['customer'] === 'customer'){
+
+                                    }
+                                    //Announcement
+                                    if($_GET['announcement'] === 'announcement'){
+
+                                    }
+                                    //Shoots
+                                    if($_GET['shoot'] === 'shoot'){
+                                        /*
+                                         * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
+                                         */
+                                    }
+                                    //Payments
+                                    if($_GET['payment'] === 'payment'){
+                                         /*
+                                         * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current month for selected month
+                                         */
+                                    }
+                                }
+                            }
+                            ?>
                     </div>
                 </div>
 
