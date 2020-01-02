@@ -502,7 +502,8 @@ $db = mysqli_connect('localhost','root','','photography');
 
             <hr>
 
-               <?php echo '<h5>Announcement</h5>'; ?>
+               <?php
+                echo '<h5>Announcement</h5>'; ?>
 
                 <div class="table-wrapper">
                     <table class="alt">
@@ -557,11 +558,137 @@ $db = mysqli_connect('localhost','root','','photography');
                 <hr>
 
 <!--                MEGANE-->
-<!--                Repeat the steps above for the shoot table and payment table(giftcard)-->
+<!--                Repeat the steps above for the shoot table and payment table(giftcard) for the year-->
 <!--                -->
 
+<!--                Monthly-->
+
+               <?php // Monthly
+                $currentMonth = date("F");
+                echo '<h3>Month of '.$currentMonth.'</h3>';
+                echo '<h5>Customer Registration</h5>'; ?>
 
 
+            <div class="table-wrapper">
+                <table class="alt">
+                    <tbody>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Date of Birth
+                        </th>
+                        <th>
+                            Country
+                        </th>
+                        <th>
+                            City
+                        </th>
+                    </tr>
+<!---->
+                    <?php $currentMonth = date("m");
+                    $currentYear = date("Y");
+
+                    ?>
+                    <?php
+                    // New customer
+                    $customer_detail_m_query = "SELECT * FROM customer WHERE month(customerDate)='$currentMonth' AND year(customerDate)='$currentYear'";
+                    $customer_d_m_result = mysqli_query($db, $customer_detail_m_query);
+                    if(mysqli_num_rows($customer_d_m_result)>0){
+                    while ($row = mysqli_fetch_assoc($customer_d_m_result)) {
+                        $textCustomerUserIdM = $row['userId'];
+                        $textCustomerNameM = $row['customerFirstName'] . ' ' . $row['customerLastName'];
+                        $textCustomerDobM = $row['customerDob'];
+                        $textCustomerCountryM = $row['customerCountry'];
+                        $textCustomerCityM = $row['customerCity'];
+                    ?>
+                        <tr>
+                            <td>
+                               <?php echo $textCustomerUserIdM;?>
+                            </td>
+                           <td>
+                               <?php echo $textCustomerNameM?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerDobM?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerCountryM?>
+                            </td>
+                            <td>
+                                <?php echo $textCustomerCityM?>
+                            </td>
+                        </tr>
+                    <?php }
+            }?>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+
+                <?php echo '<h5>Announcement</h5>'; ?>
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Text
+                            </th>
+                            <th>
+                                Start Date
+                            </th>
+                            <th>
+                                End Date
+                            </th>
+                        </tr>
+                        <!---->
+                        <?php
+                        $currentMonth = date("m");
+                        $currentYear = date("Y");?>
+                        <?php
+                        // New customer
+                        $announcement_detail_m_query = "SELECT * FROM announcement WHERE month(announcementStartDate)='$currentMonth' AND year(announcementStartDate)='$currentYear'";
+                        $announcement_d_m_result = mysqli_query($db, $announcement_detail_m_query);
+                        if(mysqli_num_rows($announcement_d_m_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($announcement_d_m_result)) {
+                                $textAnnouncementUserIdM = $row2['announcementTitle'];
+                                $textAnnouncementNameM = $row2['announcementDetail'];
+                                $textAnnouncementDobM = $row2['announcementStartDate'];
+                                $textAnnouncementCountryM = $row2['announcementEndDate'];
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $textAnnouncementUserIdM;?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementNameM?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementDobM?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textAnnouncementCountryM?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr>
+<!--                MEGANE-->
+<!--                Repeat the steps above for the shoot table and payment table(giftcard) for the month-->
+<!--                -->
 
             <?php }
             ?>
@@ -570,13 +697,6 @@ $db = mysqli_connect('localhost','root','','photography');
             if($reportSelect === 'exception'){
                 ?>
 <!--                Year or month choice radiobutton-->
-<!--                     style="-->
-<!--                    height: 15px;-->
-<!--                    width: 15px;-->
-<!--                    margin-right:0px;-->
-<!--                    opacity: 1;-->
-<!--                    background-color:lightgrey;-->
-<!--                    border-radius: 50px;"-->
                 <div id="main">
                     <div class="wrapper">
                         <div class="inner">
@@ -644,6 +764,7 @@ $db = mysqli_connect('localhost','root','','photography');
                         </div>
                             <?php
                             //Year Selection
+                            if(isset($_GET['errors'])){
                             if($_GET['errors'] === '') {
                                 if ($_GET['period'] === 'year') {
                                     //Checkbox elements selection
@@ -788,15 +909,135 @@ $db = mysqli_connect('localhost','root','','photography');
                                 //Month
                                 elseif ($_GET['period'] === 'month') {
                                     $selectedMonthNotFormat = $_GET['month']; //January 2020 -> 2020-01
+                                    $selectedMonthName = date('F', strtotime($selectedMonthNotFormat));
                                     $selectedMonth = date('m', strtotime($selectedMonthNotFormat));
                                     $selectedYearWithMonth = date('Y', strtotime($selectedMonthNotFormat));
+                                    echo '<h3>Month of '.$selectedMonthName.' '.$selectedYearWithMonth.'</h3>';
                                     //Customer
                                     if($_GET['customer'] === 'customer'){
+                                        echo '<h5>Customer Registration</h5>'; ?>
+                                                <div class="table-wrapper">
+                                                    <table class="alt">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th>
+                                                                Id
+                                                            </th>
+                                                            <th>
+                                                                Name
+                                                            </th>
+                                                            <th>
+                                                                Date of Birth
+                                                            </th>
+                                                            <th>
+                                                                Country
+                                                            </th>
+                                                            <th>
+                                                                City
+                                                            </th>
+                                                        </tr>
+                                    <!---->
+                                                        <?php $currentMonth = date("m");
+                                                        $currentYear = date("Y");
 
+                                                        ?>
+                                                        <?php
+                                                        // New customer
+                                                        $customer_exception_m_query = "SELECT * FROM customer WHERE month(customerDate)='$selectedMonth' AND year(customerDate)='$selectedYearWithMonth'";
+                                                        $customer_e_m_result = mysqli_query($db, $customer_exception_m_query);
+                                                        if(mysqli_num_rows($customer_e_m_result)>0){
+                                                        while ($row = mysqli_fetch_assoc($customer_e_m_result)) {
+                                                            $textCustomerUserIdM = $row['userId'];
+                                                            $textCustomerNameM = $row['customerFirstName'] . ' ' . $row['customerLastName'];
+                                                            $textCustomerDobM = $row['customerDob'];
+                                                            $textCustomerCountryM = $row['customerCountry'];
+                                                            $textCustomerCityM = $row['customerCity'];
+                                                        ?>
+                                                            <tr>
+                                                                <td>
+                                                                   <?php echo $textCustomerUserIdM;?>
+                                                                </td>
+                                                               <td>
+                                                                   <?php echo $textCustomerNameM?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textCustomerDobM?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textCustomerCountryM?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textCustomerCityM?>
+                                                                </td>
+                                                            </tr>
+                                                        <?php }
+                                                }?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <hr>
+                        <?php
                                     }
                                     //Announcement
                                     if($_GET['announcement'] === 'announcement'){
+// we here
+                                     echo '<h5>Announcement</h5>'; ?>
 
+                                            <div class="table-wrapper">
+                                                <table class="alt">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>
+                                                            Title
+                                                        </th>
+                                                        <th>
+                                                            Text
+                                                        </th>
+                                                        <th>
+                                                            Start Date
+                                                        </th>
+                                                        <th>
+                                                            End Date
+                                                        </th>
+                                                    </tr>
+                                                    <!---->
+                                                    <?php
+                                                    $currentMonth = date("m");
+                                                    $currentYear = date("Y");?>
+                                                    <?php
+                                                    // New customer
+                                                    $announcement_exception_m_query = "SELECT * FROM announcement WHERE month(announcementStartDate)='$selectedMonth' AND year(announcementStartDate)='$selectedYearWithMonth'";
+                                                    $announcement_e_m_result = mysqli_query($db, $announcement_exception_m_query);
+                                                    if(mysqli_num_rows($announcement_e_m_result)>0){
+                                                        while ($row2 = mysqli_fetch_assoc($announcement_e_m_result)) {
+                                                            $textAnnouncementUserIdM = $row2['announcementTitle'];
+                                                            $textAnnouncementNameM = $row2['announcementDetail'];
+                                                            $textAnnouncementDobM = $row2['announcementStartDate'];
+                                                            $textAnnouncementCountryM = $row2['announcementEndDate'];
+                                                            ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <?php echo $textAnnouncementUserIdM;?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textAnnouncementNameM?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textAnnouncementDobM?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $textAnnouncementCountryM?>
+                                                                </td>
+                                                            </tr>
+                                                        <?php }
+                                                    }?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <hr>
+                        <?php
                                     }
                                     //Shoots
                                     if($_GET['shoot'] === 'shoot'){
@@ -811,6 +1052,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                          */
                                     }
                                 }
+                            }
                             }
                             ?>
                     </div>
