@@ -756,6 +756,22 @@ $db = mysqli_connect('localhost','root','','photography');
                                         });
                                     </script>
 
+
+
+
+
+
+<!--                                    We here (Depending of the selected table put possible filters)-->
+<!--                                    Customer (Over 18 years old, country type
+-->
+
+
+
+
+
+
+
+
                                 </div>
                                 <br>
                                 <input type="submit" name="submit" id="submit" value="Submit">
@@ -981,7 +997,6 @@ $db = mysqli_connect('localhost','root','','photography');
                                     }
                                     //Announcement
                                     if($_GET['announcement'] === 'announcement'){
-// we here
                                      echo '<h5>Announcement</h5>'; ?>
 
                                             <div class="table-wrapper">
