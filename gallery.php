@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $db = mysqli_connect('localhost','root','','photography');
 ?>
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Gallery</title>
     <meta charset="utf-8" />
@@ -29,114 +29,152 @@ $db = mysqli_connect('localhost','root','','photography');
             <header class="major">
                 <h1>Gallery</h1>
                 <ul class="actions">
-                    <li><button id="all" type="reset" value="All" >All</button></li>
-                    <li><button id="travel" type="reset" value="Travel" onclick="travelSelect();">Travel</button></li>
-                    <li><button id="events" type="reset" value="Events" onclick="eventsSelect();">Events</button></li>
-                    <li><button id="brands" type="reset" value="Brands" onclick="brandsSelect();">Brands</button></li>
-                    <li><button id="individual" type="reset" value="Individual" onclick="individualSelect();">Individual</button></li>
+                    <li><button id="all" type="reset" value="All" onclick="location.href= './gallery.php?categorySelect=all'" >All</button></li>
+                    <li><button id="travel" type="reset" value="Travel" onclick="location.href= './gallery.php?categorySelect=travel'"  >Travel</button></li>
+                    <li><button id="events" type="reset" value="Events" onclick="location.href= './gallery.php?categorySelect=events'" >Events</button></li>
+                    <li><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button></li>
+                    <li><button id="individual" type="reset" value="Individual" onclick="location.href= './gallery.php?categorySelect=individuals'" >Individual</button></li>
                 </ul>
             </header>
             <div class="row">
-                    <?php
-                    // x Access path in db
-                    // x Do loop through all images
-                    // x Add caption and other thing in form
-                    // x Max of character caption form
-                    // x Add other things in db
-                    // x Made them not null available in db
-                    // x Display picture
-                    // x Add cancel button
-                    // x After form add image succesfull or unsuccessful do something
-                    //  Filter picture by category
-                    //  people can zoom on pictures
-                    //  Admin can delete picture
 
-                    $categorySelected = '';?>
-                     <script language='javascript' type='text/javascript'>
-                          function travelSelect(){
-                              <?php $categorySelected = 'travel';?>
-                          }
-                          function eventsSelect(){
-                              <?php $categorySelected = 'events';?>
-                          }
-                      </script></ul>
+<!--                 The Modal -->
+                <div id="myModal" class="modal" style="z-index:100;">
+
+<!--                     The Close Button -->
+                    <span class="closeModal">&times;</span>
+
+<!--                     Modal Content (The Image) -->
+                    <img class="modal-content" id="img01">
+                    <div id="caption"></div>
+                    <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
+<!--                     Modal Caption (Image Text) -->
+                    <div id="deleteButton">
+                        <button id="deleteImg" value="deleteImg">Delete</button>
+
+                    <?php endif;?>
+                    </div>
+                </div>
                     <?php
-                    echo $categorySelected;
-//                    if(!($categorySelected === '')){
-//                        // Select query for specific gallery elements
-//                        $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected'";
-//                    }else {
-                        // Select query for all gallery elementsec
+                    $categorySelected = '';
+                    if(isset($_GET['categorySelect'])) {
+                        $categorySelected = $_GET['categorySelect'];
+                    }
+                    if(!($categorySelected === ''||$categorySelected === 'all')){
+                        // Select query for specific gallery elements
+                        $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected'";
+                    }else {
+//                         Select query for all gallery elements
                         $gallery_check_query = "SELECT * FROM gallery";
-//                        }
+                        }
                     $gallery_result = mysqli_query($db, $gallery_check_query);
 
-                    // Loop through all images
-                    while($gallery = mysqli_fetch_assoc($gallery_result)){
-                        $images[] = $gallery['galleryImage'];
+                    if (mysqli_affected_rows($db) >= 1) {
+                        // Loop through all images
+                        while ($gallery = mysqli_fetch_assoc($gallery_result)) {
+                            $images[] = $gallery['galleryImage'];
+                            $ids[] = $gallery['galleryId'];
+                            $captions[] = $gallery['galleryTitle'];
+                        }
+
+                        // Initialize column index
+                        $columnIndex = 1;
+
+                        // Display images
+                        echo '<div class="column 1">';
+
+                        for($i=0; $i<count($images); $i++){
+                            if ($columnIndex > 4) {
+                                $columnIndex = 1;
+                            }
+                            if ($columnIndex == 1) {
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                            }
+                            $columnIndex++;
+                        }
+                        echo '</div>';
+
+                        $columnIndex = 1;
+                        echo '<div class="column">';
+                        for($i=0; $i<count($images); $i++){
+                            if ($columnIndex > 4) {
+                                $columnIndex = 1;
+                            }
+                            if ($columnIndex == 2) {
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                            }
+                            $columnIndex++;
+                        }
+                        echo '</div>';
+
+                        $columnIndex = 1;
+                        echo '<div class="column">';
+                        for($i=0; $i<count($images); $i++){
+                            if ($columnIndex > 4) {
+                                $columnIndex = 1;
+                            }
+                            if ($columnIndex == 3) {
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                            }
+                            $columnIndex++;
+                        }
+                        echo '</div>';
+
+                        $columnIndex = 1;
+                        echo '<div class="column">';
+                        for($i=0; $i<count($images); $i++){
+                            if ($columnIndex > 4) {
+                                $columnIndex = 1;
+                            }
+                            if ($columnIndex == 4) {
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                            }
+                            $columnIndex++;
+                        }
+                        echo '</div>';
                     }
-
-                     // Initialize column index
-                    $columnIndex = 1;
-
-                    // Display images
-                    echo '<div class="column">';
-
-                    foreach($images as $image) {
-                        if($columnIndex > 4){
-                            $columnIndex = 1;
-                        }
-                        if ($columnIndex == 1) {
-                            echo '<img src="'.$image.'">';
-                        }
-                        $columnIndex ++;
+                    else{
+                        echo '<p>The selected category has no pictures.</p>';
                     }
-                    echo '</div>';
-
-                    $columnIndex = 1;
-                    echo '<div class="column">';
-                    foreach($images as $image) {
-                        if($columnIndex > 4){
-                            $columnIndex = 1;
-                        }
-                        if ($columnIndex == 2) {
-                            echo '<img src="'.$image.'">';
-                        }
-                        $columnIndex ++;
-                    }
-                    echo '</div>';
-
-                    $columnIndex = 1;
-                    echo '<div class="column">';
-                    foreach($images as $image) {
-                        if($columnIndex > 4){
-                            $columnIndex = 1;
-                        }
-                        if ($columnIndex == 3) {
-                            echo '<img src="'.$image.'">';
-                        }
-                        $columnIndex ++;
-                    }
-                    echo '</div>';
-
-                    $columnIndex = 1;
-                    echo '<div class="column">';
-                    foreach($images as $image) {
-                        if($columnIndex > 4){
-                            $columnIndex = 1;
-                        }
-                        if ($columnIndex == 4) {
-                            echo '<img src="'.$image.'">';
-                        }
-                        $columnIndex ++;
-                    }
-                    echo '</div>';
-
                     ?>
+                <script language='javascript' type='text/javascript'>
+                    var modal = document.getElementById("myModal");
+
+                    // Get the image and insert it inside the modal - use its "alt" text as a caption
+                    var modalImg = document.getElementById("img01");
+                    var captionText = document.getElementById("caption");
+                    var imgs = document.getElementsByTagName("img");
+                    var buttonDelete = document.getElementById("deleteImg");
+                    for( var i=0; i <imgs.length; i++){
+                        var img = document.getElementById(imgs[i].id);
+                        img.onclick = function () {
+                            modal.style.zIndex="20000";
+                            modal.style.display = "block";
+                            modalImg.src = this.src;
+                            captionText.innerHTML = this.alt;
+                            imgId = this.id;
+                             //get button
+                            buttonDelete.onclick = function() {
+                                // var link = '\'./deleteGalleryImage.php?idImageDelete='.concat(imgs[i].id,'\'');
+                                window.location.href= './deleteGalleryImage.php?idImageDelete='.concat(imgId);
+                            }
+                        }
+                    }
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("closeModal")[0];
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+                </script>
             </div>
+        </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- Footer -->

@@ -55,9 +55,10 @@ if (isset($_POST['reg_user'])) {
   			  VALUES('$email', '$password', 'customer' )";
         mysqli_query($db, $queryUser);
 
+        $currentDate = date("Y-m-d");
         //Insert the customer information in the table customer in the database
-        $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity) 
-  			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city')";
+        $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity, customerDate) 
+  			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city','$currentDate')";
         mysqli_query($db, $queryCustomer);
 
         if (mysqli_affected_rows($db) >= 1) {

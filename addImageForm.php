@@ -42,7 +42,7 @@
                                                     </select>
                                                 </div>
 												<div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="40" required/>
+                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" required/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->
@@ -54,7 +54,7 @@
 												<div class="col-12">
 													<ul class="actions">
                                                         <li><button type="submit" value="Submit" class="primary" name="submit_image">Submit</button></li>
-                                                        <li><button type="reset" value="Cancel" onclick="goGallery()">Cancel</button></li>
+                                                        <li><button type="reset" value="Cancel" onclick="goGallery()">Back</button></li>
                                                         <script language='javascript' type='text/javascript'>
                                                             function goGallery() {
                                                                window.location.href ="./gallery.php";
