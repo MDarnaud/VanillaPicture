@@ -35,7 +35,7 @@ $db = mysqli_connect('localhost','root','','photography');
                     <li><button id="Exception" type="reset" value="Exception" onclick="location.href= './reports.php?reportSelect=exception'"  >Exception</button></li>
                     </ul>
             </header>
-<!--        Set or retrieve the choosen type of report-->
+<!--        Set or retrieve the chosen type of report-->
             <?php
             $reportSelect = '';
             if(isset($_GET['reportSelect'])) {
@@ -68,23 +68,36 @@ $db = mysqli_connect('localhost','root','','photography');
 
                     // Booked Shoot
                     // MEGANE (count num of shootId where date booked = this year)
-                    $textNumBookedShootY ='';
+                    $textNumBookedShootY ="SELECT count(shootId) as totalShoots FROM shoot WHERE year(shootDate)='$currentYear'";
+                    $bookedShoot_result = mysqli_query($db, $textNumBookedShootY);
+                    $totalBookedShootY = mysqli_fetch_assoc($bookedShoot_result);
+                    $textShootY = $totalBookedShootY['totalShoots'];
+
 
                     // % booked hours (available / booked)
                     // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
-                    $textPBookedHoursY = ' %';
+                    $textPBookedHoursY = "";
 
                     // $ spends per customer
                     // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
-                    $textSpentCustomerY = ' $/p.';
+                    $textSpentCustomerY = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $averagePayments_result = mysqli_query($db, $textSpentCustomerY);
+                    $averagePaymentsY = mysqli_fetch_assoc($averagePayments_result);
+                    $textAveragePaymentY = $averagePaymentsY['averagePayments'];
 
                     // number of giftcards
                     // MEGANE (count num of giftcards id where date bought = this year)
-                    $textNumGiftcardY = '';
+                    $textNumGiftcardY = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $giftCards_result = mysqli_query($db, $textNumGiftcardY);
+                    $totalGiftCardsY = mysqli_fetch_assoc($giftCards_result);
+                    $textGiftCardsY = $totalGiftCardsY['totalGiftCards'];
 
                     // amount of gitcards
                     // MEGANE (count total balance of all giftcards where date bought = this year)
-                    $textSpentGiftcardY = ' $';
+                    $textSpentGiftcardY = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayments_result = mysqli_query($db, $textSpentGiftcardY);
+                    $totalPaymentsY = mysqli_fetch_assoc($totalPayments_result);
+                    $textTotalPaymentY = $totalPaymentsY['totalPayments'];
 
                     //Two dimensional array
                     $newdata = array(
@@ -188,7 +201,10 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // Booked Shoot
                 // MEGANE (count num of shootId where date booked = this month) and year!!!
-                    $textNumBookedShootM ='';
+                    $textNumBookedShootM ="SELECT count(shootId) as totalShoots FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'"; //change shootDate to requestDate
+                    $bookedShoot_result = mysqli_query($db, $textNumBookedShootM);
+                    $totalBookedShootM = mysqli_fetch_assoc($bookedShoot_result);
+                    $textShootM = $totalBookedShootM['totalShoots'];
 
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this month, count number of hours shoot booked where date booked = this month, calculate %)and year!!!
@@ -196,15 +212,24 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // $ spends per customer
                 // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)and year!!!
-                    $textSpentCustomerM = ' $/p.';
+                    $textSpentCustomerM = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
+                    $averagePayments_result = mysqli_query($db, $textSpentCustomerM);
+                    $averagePaymentsM = mysqli_fetch_assoc($averagePayments_result);
+                    $textAveragePaymentM = $averagePaymentsM['averagePayments'];
 
                 // number of giftcards
                 // MEGANE (count num of giftcards id where date bought = this month)and year!!!
-                    $textNumGiftcardM = '';
+                    $textNumGiftcardM = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
+                    $giftCards_result = mysqli_query($db, $textNumGiftcardM);
+                    $totalGiftCardsM = mysqli_fetch_assoc($giftCards_result);
+                    $textGiftCardsM = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
                 // MEGANE (count total balance of all giftcards where date bought = this month)and year!!!
-                    $textSpentGiftcardM = ' $';
+                    $textSpentGiftcardM = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayments_result = mysqli_query($db, $textSpentGiftcardM);
+                    $totalPaymentsM = mysqli_fetch_assoc($totalPayments_result);
+                    $textTotalPaymentM = $totalPaymentsM['totalPayments'];
 
                    //Two dimensional array
                     $newdata = array(
@@ -319,7 +344,10 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // Booked Shoot
                 // MEGANE (count num of shootId where date booked = this week)
-                    $textNumBookedShootW ='';
+                    $textNumBookedShootW ="SELECT count(shootId) as totalShoots FROM shoot WHERE shootDate>='$week_start_day' AND shootDate<='$week_end_day'"; //change shootDate to requestDate
+                    $bookedShoot_result = mysqli_query($db, $textNumBookedShootW);
+                    $totalBookedShootW = mysqli_fetch_assoc($bookedShoot_result);
+                    $textShootW = $totalBookedShootW['totalShoots'];
 
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this week, count number of hours shoot booked where date booked = this month, calculate %)
@@ -327,11 +355,17 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // $ spends per customer
                 // MEGANE (count total balance where date bought = this week, count total customer, divide $ by customer)
-                    $textSpentCustomerW = ' $/p.';
+                    $textSpentCustomerW = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
+                    $averagePayments_result = mysqli_query($db, $textSpentCustomerW);
+                    $averagePaymentsW = mysqli_fetch_assoc($averagePayments_result);
+                    $textAveragePaymentW = $averagePaymentsW['averagePayments'];
 
                 // number of giftcards
                 // MEGANE (count num of giftcards id where date bought = this week)
-                    $textNumGiftcardW = '';
+                    $textNumGiftcardW = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
+                    $giftCards_result = mysqli_query($db, $textNumGiftcardW);
+                    $totalGiftCardsW = mysqli_fetch_assoc($giftCards_result);
+                    $textGiftCardsW = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
                 // MEGANE (count total balance of all giftcards where date bought = this week)

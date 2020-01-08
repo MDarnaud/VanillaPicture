@@ -108,7 +108,7 @@ try {
         echo "Mailer Error: " . $mail->ErrorInfo;
     } else {
         $_SESSION['userNewAccount'] = $email;
-        header('location: ./agenda.php?sendEmail=Your request has been sent to Vanilla Picture!'); //CREATE TEXTBOX IN AGENDA
+        header('location: ./agenda.php?sendEmail=Your request has been sent to Vanilla Picture!');
     }
 } catch (Exception $e) {
     echo $e."add address";

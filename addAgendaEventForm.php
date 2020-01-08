@@ -2,6 +2,24 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+//generate a random number that will be the event id
+function randomId()
+{
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    do {
+        $ids = array(); //remember to declare $pass as an array
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $ids[] = $alphabet[$n];
+        }
+    }while (1 !== preg_match('~[0-9]~', implode($ids))||1 !== preg_match('~[A-Z]~', implode($ids)));
+
+    return implode($ids); //turn the array into a string
+}
+
+$id = randomId();
 ?>
 
 <!DOCTYPE HTML>
@@ -34,11 +52,10 @@ if (session_status() == PHP_SESSION_NONE) {
                     <form method="post" action="addAgendaEvent.php">
                         <div class="row gtr-uniform">
                             <div class="col-8 col-12-xsmall">
-                                <label for="eventTitle">Enter Event ID (ex: available12/13/19) </label>
-                                <input type="text" name="eventId" id="eventId" value="" placeholder="Event Id" required/>
+                                <input type="hidden" name="eventId" id="eventId" value="<?php echo $id?>" placeholder="Event Id"/>
                             </div>
                             <div class="col-8 col-12-xsmall">
-                                <label for="eventTitle">Enter Event Title (ex: Available)</label>
+                                <label for="eventTitle">Enter Event Title (ex: write "Available", for customers to be able to request a shoot on this date)</label>
                                 <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Event Title" required/>
                             </div>
                             <div class="col-8 col-12-xsmall">
@@ -54,7 +71,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 <input type="datetime-local" name="eventEnd" id="eventEnd" value="" />
                             </div>
                             <div class="col-6 col-12-small">
-                                <label>Check if this event is a photoshoot availability</label>
+                                <label>Check the box if this event is a shoot availability (for customers to book)</label>
                                 <input type="checkbox" id="isAvailability" name="isAvailability" >
                                 <label for="isAvailability">Photoshoot Availability</label>
                             </div>

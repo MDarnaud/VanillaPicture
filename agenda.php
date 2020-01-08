@@ -6,7 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
 $message = "";
 //user type
 $userType = $_SESSION['userTypeSignIn'];
-//var_dump($userType);
 
 //check user type/origin and display message accordingly
 if(isset($_GET["sendEmail"])){
@@ -17,7 +16,7 @@ else {
         $message = "(Please sign in/register to make a shoot request)";
     } else if ($userType != null) {
         if ($userType == "customer") {
-            $message = "(To make a shoot reservation, click on an event labeled 'available', you will be redirected to the request page.)";
+            $message = "(To make a shoot reservation, click on an event labeled 'available'.)";
         } else if ($userType == "photographer") {
             $message = "(To add an event, click on the 'add' dropdown of the agenda navigation, to remove an event, click on the event directly in the calendar)";
         }
@@ -61,7 +60,6 @@ else {
                         info.jsEvent.preventDefault();
                         var userType = "<?php echo $userType ?>";
 
-                        window.alert(userType);
                         if(userType == "customer")
                         {
                             if (info.event.url) {
@@ -70,11 +68,10 @@ else {
                                 var startDateString = startDate.toDateString();
                                 var queryString = "?startDate=" + startDateString + "&title=" + title;
 
-                                window.alert(info.event.url + queryString);
                                 window.open(info.event.url + queryString);
                             }
                         }
-                        else if(userType == "photographer"){
+                        else if(userType == "administrator"){
                             var url = "deleteAgendaEvent.php";
 
                             var id = (info.event.id).toString();
@@ -82,28 +79,10 @@ else {
 
                             var conf = confirm("Do you want to delete this event?");
                             if (conf == true){
-                                //var ev = calendar.getEventById(id);
-                                //ev.remove();
                                 window.open(url + queryString);
                             }
                         }
                     },
-
-                 /*   eventClick: function(info) {
-                        info.jsEvent.preventDefault();
-                        var url = "deleteAgendaEvent.php";
-
-                        var id = (info.event.id).toString();
-                        var queryString = "?eventId=" + id;
-
-                        var conf = confirm("Do you want to delete this event?");
-                        if (conf == true){
-                            //var ev = calendar.getEventById(id);
-                            //ev.remove();
-                            window.open(url + queryString);
-                        }
-
-                    },*/
 
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
