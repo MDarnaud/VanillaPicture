@@ -762,7 +762,9 @@ $db = mysqli_connect('localhost','root','','photography');
 
 
 <!--                                    We here (Depending of the selected table put possible filters)-->
-<!--                                    Customer (Over 18 years old, country type
+<!--                                    Customer (Over 18 years old, country type)
+                                        Shoot(Location, shoot packages)
+                                        Payment (Over certain amount)
 -->
 
 
