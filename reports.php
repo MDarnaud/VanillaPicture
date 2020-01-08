@@ -742,19 +742,46 @@ $db = mysqli_connect('localhost','root','','photography');
                                                     $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;<input type="month" name="dropdownMonth" id="dropdownMonth"></div>');
                                                 }
                                                  $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
-                                                 $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer">\n'+
+                                                 $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer" class="elementsTable">\n'+
 '     <label for="customer"> Customer Registration</label>\n'+
-'                <input type="checkbox" name="announcement" id="announcement" value="announcement">\n'+
+'                <input type="checkbox" name="annoucement" id="announcement" value="announcement" class="elementsTable">\n'+
 '     <label for="announcement"> Announcements </label>\n'+
-'                <input type="checkbox" name="shoot" id="shoot" value="shoot">\n'+
+'                <input type="checkbox" name="shoot" id="shoot" value="shoot" class="elementsTable">\n'+
 '     <label for="shoot"> Shoots </label>\n'+
-'                <input type="checkbox" name="payment" id="payment" value="payment">\n'+
+'                <input type="checkbox" name="payment" id="payment" value="payment" class="elementsTable">\n'+
 '     <label for="payment"> Payments </label></div>');
 
+                                                 var checkboxValue;
+                                                $(":checkbox").change(function(){
+                                                    $('.filters').remove();
+                                                    checkboxValue = [];
+                                                    $(':checkbox:checked').each(function(i){
+                                                        checkboxValue[i] = $(this).val();
+                                                    });
 
+                                                    $('.formDivision').append('<div class="filters">');
+
+                                                    $(checkboxValue).each(function(i){
+                                                    if(checkboxValue[i] == 'customer'){
+                                                        $('.filters').append('customer');
+                                                        }
+                                                    if(checkboxValue[i] == 'announcement'){
+                                                        $('.filters').append('announcement');
+                                                        }
+                                                    if(checkboxValue[i] == 'shoot'){
+                                                        $('.filters').append('shoot');
+                                                        }
+                                                    if(checkboxValue[i] == 'payment'){
+                                                        $('.filters').append('payment');
+                                                        }
+                                                    });
+                                                        $('.formDivision').append('</div>');
+
+                                                });
                                             });
                                         });
                                     </script>
+
 
 
 
