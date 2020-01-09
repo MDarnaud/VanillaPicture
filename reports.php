@@ -777,7 +777,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                         // Shoot(Location)
                                                         $('.filters').append('Location <input type="text" name="locationShoot" id="amountPay" value="" placeholder="ex: Toronto">\n');
                                                         //Shoot(Packages -123)
-                                                        $('.filters').append('Packages Choice <select><option value="" selected hidden>--Select Package--</option><option value="package1">Package 1</option><option value="package2">Package 2</option><option value="package3">Package 3</option></select>\n'+'</p>');
+                                                        $('.filters').append('Packages Choice <select name="packages" id="packages"><option value="" selected hidden>--Select Package--</option><option value="1">Package 1</option><option value="2">Package 2</option><option value="3">Package 3</option></select>\n'+'</p>');
 
                                                         }
                                                     if(checkboxValue[i] == 'payment'){
@@ -959,6 +959,22 @@ $db = mysqli_connect('localhost','root','','photography');
                                     }
                                     //Shoots
                                     if($_GET['shoot'] === 'shoot'){
+                                        if($_GET['location'] != ''){
+                                            $location = $_GET['location'];
+                                            if($_GET['packages'] !=''){
+                                                $packages = $_GET['packages'];
+                                                $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                            }
+                                            else{
+                                                $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location'";
+                                            }
+                                        }else{if($_GET['packages'] !=''){
+                                                $packages = $_GET['packages'];
+                                                $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootPackage = '$packages'";
+                                            }
+                                            $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
+                                        }
+
                                         /*
                                          * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current year for selected year
                                          */
@@ -1008,7 +1024,17 @@ $db = mysqli_connect('localhost','root','','photography');
                                                         ?>
                                                         <?php
                                                         // New customer
+                                                        //Age filter
+                                                        $dateAdult = date('Y-m-d', strtotime('18 years ago'));
+                                                        if ($_GET['age'] === 'over') {
+                                                            $customer_exception_m_query = "SELECT * FROM customer WHERE month(customerDate)='$selectedMonth' AND year(customerDate)='$selectedYearWithMonth' AND $dateAdult > customerDob";
+                                                        }elseif($_GET['age'] === 'under'){
+                                                            $customer_exception_m_query = "SELECT * FROM customer WHERE month(customerDate)='$selectedMonth' AND year(customerDate)='$selectedYearWithMonth' AND $dateAdult <= customerDob";
+                                                            }
+                                                        else
+                                                        {
                                                         $customer_exception_m_query = "SELECT * FROM customer WHERE month(customerDate)='$selectedMonth' AND year(customerDate)='$selectedYearWithMonth'";
+                                                        }
                                                         $customer_e_m_result = mysqli_query($db, $customer_exception_m_query);
                                                         if(mysqli_num_rows($customer_e_m_result)>0){
                                                         while ($row = mysqli_fetch_assoc($customer_e_m_result)) {
@@ -1105,6 +1131,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                     }
                                     //Shoots
                                     if($_GET['shoot'] === 'shoot'){
+                                        if($_GET['location'] != ''){
+                                            $location = $_GET['location'];
+                                            $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location'";
+                                        }else{
+                                            $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'";
+                                        }
                                         /*
                                          * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
                                          */

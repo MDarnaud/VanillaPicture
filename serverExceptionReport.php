@@ -29,9 +29,15 @@ if(isset($_POST['submit'])) {
         $underAge = mysqli_real_escape_string($db, $_POST['under']);
         $age = '';
 
-        //Location
-        $locationShoot = mysqli_real_escape_string($db, $_POST['locationShoot']);
-        $location = '';
+        //Shoot
+            //Location
+            $locationShoot = mysqli_real_escape_string($db, $_POST['locationShoot']);
+            $location = '';
+            //Package
+            $packageShoot = mysqli_real_escape_string($db, $_POST['packages']);
+            $packages = '';
+
+
 
     if (empty($period)) {
         $errors = "Select a Year or Month. ";
@@ -52,9 +58,13 @@ if(isset($_POST['submit'])) {
         if($locationShoot != ''){
             $location = $locationShoot;
         }
+
+        if($packageShoot != ''){
+            $packages = $packageShoot;
+        }
     }
 
     header('location: ./reports.php?reportSelect=exception&errors='.$errors.'&customer='.$customer.'&announcement='.$announcement
         .'&shoot='.$shoot.'&payment='.$payment.'&period='.$period.'&year='.$year.'&month='.$month.'&age='.$age
-    .'&location='.$location);
+    .'&location='.$location.'&packages='.$packages);
 }?>
