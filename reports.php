@@ -1133,9 +1133,19 @@ $db = mysqli_connect('localhost','root','','photography');
                                     if($_GET['shoot'] === 'shoot'){
                                         if($_GET['location'] != ''){
                                             $location = $_GET['location'];
+                                            if($_GET['packages'] !=''){
+                                                $packages = $_GET['packages'];
+                                                $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                            }else{
                                             $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location'";
+                                            }
                                         }else{
+                                            if($_GET['packages'] !=''){
+                                                $packages = $_GET['packages'];
+                                                $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootPackage = '$packages'";
+                                            }else{
                                             $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'";
+                                            }
                                         }
                                         /*
                                          * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
