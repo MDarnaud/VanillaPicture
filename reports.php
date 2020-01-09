@@ -759,22 +759,32 @@ $db = mysqli_connect('localhost','root','','photography');
                                                         checkboxValue[i] = $(this).val();
                                                     });
 
-                                                    $('.formDivision').append('<div class="filters">');
+                                                    $('.formDivision').append('<div class="filters"><br><strong>Filters: </strong>');
 
                                                     $(checkboxValue).each(function(i){
                                                     if(checkboxValue[i] == 'customer'){
-                                                        $('.filters').append('customer');
+                                                        // Customer (Over 18 years old)
+                                                        $('.filters').append('<p><h5>Customer Registration</h5><input type="checkbox" name="over" id="over" value="over" class="elementsTable">\n'+
+    '<label for="over"> Over 18 years old</label>\n'+'<input type="checkbox" name="under" id="under" value="under" class="elementsTable">\n'+
+'    <label for="under"> Under 18 years old</label>\n'+'</p>');
                                                         }
                                                     if(checkboxValue[i] == 'announcement'){
-                                                        $('.filters').append('announcement');
+                                                        $('.filters').append('<p><h5>Announcements</h5>');
+                                                        $('.filters').append('No filters for this subject </p>');
                                                         }
                                                     if(checkboxValue[i] == 'shoot'){
-                                                        $('.filters').append('shoot');
+                                                        $('.filters').append('<p><h5>Shoots</h5>');
+                                                        // Shoot(Location)
+                                                        $('.filters').append('Location <input type="text" name="locationShoot" id="amountPay" value="" placeholder="ex: Toronto">\n');
+                                                        //Shoot(Packages -123)
+                                                        $('.filters').append('Packages Choice <select><option value="" selected hidden>--Select Package--</option><option value="package1">Package 1</option><option value="package2">Package 2</option><option value="package3">Package 3</option></select>\n'+'</p>');
+
                                                         }
                                                     if(checkboxValue[i] == 'payment'){
-                                                        $('.filters').append('payment');
+                                                        // Payment (Over certain amount)
+                                                        $('.filters').append('<p><h5>Payments</h5>Payment amount between <select><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n'+'</p>');
                                                         }
-                                                    });
+                                                    })
                                                         $('.formDivision').append('</div>');
 
                                                 });
@@ -843,7 +853,17 @@ $db = mysqli_connect('localhost','root','','photography');
                                                         </tr>
                                                         <?php
                                                         // New customer
+                                                        //Age filter
+                                                        $dateAdult = date('Y-m-d', strtotime('18 years ago'));
+                                                        if ($_GET['age'] === 'over') {
+                                                            $customer_exception_y_query = "SELECT * FROM customer WHERE year(customerDate)='$selectedYear' AND $dateAdult > customerDob";
+                                                        }elseif($_GET['age'] === 'under'){
+                                                            $customer_exception_y_query = "SELECT * FROM customer WHERE year(customerDate)='$selectedYear' AND $dateAdult <= customerDob";
+                                                            }
+                                                        else
+                                                        {
                                                         $customer_exception_y_query = "SELECT * FROM customer WHERE year(customerDate)='$selectedYear'";
+                                                        }
                                                         $customer_e_y_result = mysqli_query($db, $customer_exception_y_query);
                                                         if(mysqli_num_rows($customer_e_y_result)>0){
                                                         while ($row = mysqli_fetch_assoc($customer_e_y_result)) {
