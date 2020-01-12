@@ -67,7 +67,7 @@ if(isset($_POST['submit'])) {
         }
 
         if($paymentShoot !=''){
-            $paymentDropDown = $packageShoot;
+            $paymentDropDown = $paymentShoot;
         }
     }
 
