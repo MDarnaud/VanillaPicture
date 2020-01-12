@@ -782,7 +782,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                         }
                                                     if(checkboxValue[i] == 'payment'){
                                                         // Payment (Over certain amount)
-                                                        $('.filters').append('<p><h5>Payments</h5>Payment amount between <select><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n'+'</p>');
+                                                        $('.filters').append('<p><h5>Payments</h5>Payment amount between <select name="paymentAmount"><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n'+'</p>');
                                                         }
                                                     })
                                                         $('.formDivision').append('</div>');
@@ -799,8 +799,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
 
 <!--                                    We here (Depending of the selected table put possible filters)-->
-<!--                                    Customer (Over 18 years old, country type)
-                                        Shoot(Location, shoot packages)
+<!--                                    Missing payment to do
                                         Payment (Over certain amount)
 -->
 
@@ -963,7 +962,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                             $location = $_GET['location'];
                                             if($_GET['packages'] !=''){
                                                 $packages = $_GET['packages'];
-                                                $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                                if($_GET['paymentDropdown'] != ''){
+                                                    //Add report
+                                                     $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                                }else{
+                                                    $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                                }
                                             }
                                             else{
                                                 $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location'";

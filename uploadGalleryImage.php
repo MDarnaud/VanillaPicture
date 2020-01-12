@@ -11,7 +11,11 @@ if(isset($_POST["submit_image"])) {
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+    if(isset($_FILES['fileToUpload'])) {
+        $file_temp = $_FILES['fileToUpload']['tmp_name'];
+        $info = getimagesize($file_temp);
 
+        //If error here for tmp_name not found change size upload in php info()
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
         $uploadOk = 1;
@@ -38,7 +42,7 @@ if(isset($_POST["submit_image"])) {
             $uploadOk = 0;
         }
 // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000000) {
+        if ($_FILES["fileToUpload"]["size"] > 5000000000000000) {
             array_push($errors, " Sorry, your file is too large.");
             $uploadOk = 0;
         }
@@ -76,6 +80,9 @@ if(isset($_POST["submit_image"])) {
                 array_push($errors, " Sorry, not the right type of file.");
             }
         }
+    }
+} else {
+    array_push($errors, " File not sent to server succesfully!");
     }
 // header("location: addImageForm.php");
 }

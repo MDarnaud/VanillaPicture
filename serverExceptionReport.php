@@ -36,6 +36,9 @@ if(isset($_POST['submit'])) {
             //Package
             $packageShoot = mysqli_real_escape_string($db, $_POST['packages']);
             $packages = '';
+            //Payment
+            $paymentShoot = mysqli_real_escape_string($db, $_POST['paymentAmount']);
+            $paymentDropDown = '';
 
 
 
@@ -62,9 +65,13 @@ if(isset($_POST['submit'])) {
         if($packageShoot != ''){
             $packages = $packageShoot;
         }
+
+        if($paymentShoot !=''){
+            $paymentDropDown = $packageShoot;
+        }
     }
 
     header('location: ./reports.php?reportSelect=exception&errors='.$errors.'&customer='.$customer.'&announcement='.$announcement
         .'&shoot='.$shoot.'&payment='.$payment.'&period='.$period.'&year='.$year.'&month='.$month.'&age='.$age
-    .'&location='.$location.'&packages='.$packages);
+    .'&location='.$location.'&packages='.$packages.'&paymentDropDown='.$paymentDropDown);
 }?>

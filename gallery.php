@@ -33,7 +33,7 @@ $db = mysqli_connect('localhost','root','','photography');
                     <li><button id="travel" type="reset" value="Travel" onclick="location.href= './gallery.php?categorySelect=travel'"  >Travel</button></li>
                     <li><button id="events" type="reset" value="Events" onclick="location.href= './gallery.php?categorySelect=events'" >Events</button></li>
                     <li><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button></li>
-                    <li><button id="individual" type="reset" value="Individual" onclick="location.href= './gallery.php?categorySelect=individuals'" >Individual</button></li>
+                    <li><button id="individual" type="reset" value="Individual" onclick="location.href= './gallery.php?categorySelect=individual'" >Individual</button></li>
                 </ul>
             </header>
             <div class="row">
