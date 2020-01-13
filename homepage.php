@@ -72,6 +72,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                 <header class="major">
                                                     <h2>ANNOUNCEMENT</h2>
                                                 </header>';
+                                $noElements = false;
                                 foreach ($resultPost as $eachPost) {
                                     //verify if end date is after now and start date is before now
                                     if ((strtotime($eachPost['announcementEndDate']) > strtotime('now')) && strtotime($eachPost['announcementStartDate']) <= strtotime('now')) {
@@ -83,8 +84,11 @@ $db = mysqli_connect('localhost','root','','photography');
                                             echo '<br><a href='.$idLink.'> Modify </a>';
                                         }
                                         echo '</p>';
+                                        $noElements = true;
                                     }
-
+                                }
+                            if($noElements === false){
+                                    echo '<p> No announcements posted for now. Please come back later.</p>';
                                 }
                                 echo '                    <hr>
                                                     </div>

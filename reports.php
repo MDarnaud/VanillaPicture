@@ -764,6 +764,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                     $(checkboxValue).each(function (i) {
                                                         if (checkboxValue[i] == 'customer') {
                                                             // Customer (Over 18 years old)
+                                                            //Put radio button
                                                             $('.filters').append('<p><h5>Customer Registration</h5><input type="checkbox" name="over" id="over" value="over" class="elementsTable">\n' +
                                                                 '<label for="over"> Over 18 years old</label>\n' + '<input type="checkbox" name="under" id="under" value="under" class="elementsTable">\n' +
                                                                 '    <label for="under"> Under 18 years old</label>\n' + '</p>');
