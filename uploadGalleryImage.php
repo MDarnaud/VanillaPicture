@@ -82,10 +82,12 @@ if(isset($_POST["submit_image"])) {
 
 
                 if (count($errors) == 0) {
-                    if ($brandType === 'Other') {
-                        $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, galleryBrand) VALUES('$caption_form','$category_form','$name','$newBrand_form')";
+
+                    if ($category_form !== 'Brands') {
+                        $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
+                    }else {
+                            $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, galleryBrand) VALUES('$caption_form','$category_form','$name','$newBrand_form')";
                     }
-                    $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
                     mysqli_query($db, $queryImage);
                 }
                 if (mysqli_affected_rows($db) >= 1) {

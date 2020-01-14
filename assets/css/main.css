@@ -4504,8 +4504,8 @@ input, select, textarea {
 
 /*		Dropdown gallery brands */
 
-/*.dropContents{display: none;}*/
-/*.dropdownBrands:hover .dropContents{display:block;}*/
+.dropContents{display: none;}
+.dropdownBrands:hover .dropContents{display:block;}
 /*dropdownBrands ul:hover{display:block;}*/
 li button {
 	list-style-type: none;
