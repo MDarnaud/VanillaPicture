@@ -28,7 +28,7 @@ $db = mysqli_connect('localhost','root','','photography');
 						<h1 class="heading alt">VANILLA PICTURE</h1>
 						<p>Be different, Taste Vanilla</p>
 						<div class="image fit special video">
-							<img src="images/pic01.jpg" alt="" />
+							<img src="images/homepage_frontcover.jpg" alt="" />
 						</div>
 						<ul class="feature-icons">
                             <li><a href=https://www.instagram.com/vanilla_picture/?hl=fr-ca" class="a_socialMedia"><span class="icon fa-instagram"></span><span class="label">Instagram</span></a></li>
@@ -46,8 +46,8 @@ $db = mysqli_connect('localhost','root','','photography');
 						<header class="major">
 							<h2>BIOGRAPHY</h2>
 						</header>
-						<div class="image fit special">
-							<img src="images/homepage_bibliography.jpg" alt="" />
+						<div class="image fit special biblio">
+							<img src="images/homepage_biblio.jpg" alt="" />
 						</div>
 						<p class="special">Sed egestas, ante et vulputate volutpat pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum lorem ipsum dolor sit amet consequat hendrerit tortor semper lorem at felis.</p>
 						<ul class="actions">
@@ -72,6 +72,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                 <header class="major">
                                                     <h2>ANNOUNCEMENT</h2>
                                                 </header>';
+                                $noElements = false;
                                 foreach ($resultPost as $eachPost) {
                                     //verify if end date is after now and start date is before now
                                     if ((strtotime($eachPost['announcementEndDate']) > strtotime('now')) && strtotime($eachPost['announcementStartDate']) <= strtotime('now')) {
@@ -83,8 +84,11 @@ $db = mysqli_connect('localhost','root','','photography');
                                             echo '<br><a href='.$idLink.'> Modify </a>';
                                         }
                                         echo '</p>';
+                                        $noElements = true;
                                     }
-
+                                }
+                            if($noElements === false){
+                                    echo '<p> No announcements posted for now. Please come back later.</p>';
                                 }
                                 echo '                    <hr>
                                                     </div>

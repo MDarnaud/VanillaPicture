@@ -2145,6 +2145,7 @@ input, select, textarea {
 	input[type="tel"],
 	input[type="search"],
 	input[type="url"],
+	input[type="number"],
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -2169,6 +2170,7 @@ input, select, textarea {
 		input[type="tel"]:invalid,
 		input[type="search"]:invalid,
 		input[type="url"]:invalid,
+		input[type="number"],
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
@@ -2180,6 +2182,7 @@ input, select, textarea {
 	input[type="tel"],
 	input[type="month"]:invalid,
 	input[type="search"],
+	input[type="number"],
 	input[type="url"] {
 		height: 3.25rem;
 	}
@@ -2295,6 +2298,7 @@ input, select, textarea {
 	input[type="email"],
 	input[type="tel"],
 	input[type="search"],
+	input[type="number"],
 	input[type="url"],
 	select,
 	textarea {
@@ -2307,6 +2311,7 @@ input, select, textarea {
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
 		input[type="search"]:focus,
+		input[type="number"]:focus,
 		input[type="url"]:focus,
 		select:focus,
 		textarea:focus {
@@ -2432,10 +2437,18 @@ input, select, textarea {
 			max-width: 75%;
 		}
 
-			@media screen and (max-width: 1280px) {
+			@media screen and (max-width: 1280px){
 
 				.image.special {
 					max-width: 100%;
+				}
+
+			}
+			@media screen and (max-width: 1280px) and (min-width: 981px){
+
+
+				.image.special.biblio {
+					max-width: 50%;
 				}
 
 			}
@@ -2447,10 +2460,15 @@ input, select, textarea {
 				}
 
 					.image.special img {
-						height: 18rem;
+						height: 25rem;
 						object-fit: cover;
 						object-position: center center;
 					}
+				.image.special.biblio img {
+					height: 35rem;
+					object-fit: cover;
+					object-position: center center;
+				}
 
 			}
 
@@ -2464,7 +2482,7 @@ input, select, textarea {
 						height: 35rem;
 					}
 					.image.special.video img {
-						height: 20rem;
+						height: 25rem;
 					}
 
 			}
