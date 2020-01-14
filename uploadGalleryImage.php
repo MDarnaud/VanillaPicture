@@ -6,6 +6,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit_image"])) {
+
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -31,9 +32,23 @@ if(isset($_POST["submit_image"])) {
     if (empty($category_form)) {
         array_push($errors, " Category is required.");
     }
-    if (empty($caption_form)) {
-        array_push($errors, " Caption is required");
-    }
+
+        //Verify if brands
+        if ($category_form === 'Brands') {
+            $brandType = mysqli_real_escape_string($db, $_POST['brandsName']);
+            if (empty($brandType)) {
+                array_push($errors, " Please, select a Brand.");
+            } else {
+                $newBrand_form = $brandType;
+                if ($brandType === 'Other') {
+                    if (empty($_POST['newBrand'])) {
+                        array_push($errors, " Please enter the new Brand Name.");
+                    } else {
+                        $newBrand_form = mysqli_real_escape_string($db, $_POST['newBrand']);
+                    }
+                }
+            }
+        }
 
     if (count($errors) == 0) {
 // Check if file already exists
@@ -64,9 +79,15 @@ if(isset($_POST["submit_image"])) {
             if (in_array($imageFileType, $extensions_arr)) {
                 $fileName = $_FILES["fileToUpload"]["name"];
                 $name = "uploads/" . $fileName;
-//            echo '<br>' . $name;
-                $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
-                mysqli_query($db, $queryImage);
+
+
+                if (count($errors) == 0) {
+                    if ($brandType === 'Other') {
+                        $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, galleryBrand) VALUES('$caption_form','$category_form','$name','$newBrand_form')";
+                    }
+                    $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
+                    mysqli_query($db, $queryImage);
+                }
                 if (mysqli_affected_rows($db) >= 1) {
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                         array_push($errors, "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.");

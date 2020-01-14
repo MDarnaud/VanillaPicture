@@ -4500,3 +4500,13 @@ input, select, textarea {
 		#banner .a_socialMedia:hover{
 			color: #ccc;
 		}
+
+
+/*		Dropdown gallery brands */
+
+/*.dropContents{display: none;}*/
+/*.dropdownBrands:hover .dropContents{display:block;}*/
+/*dropdownBrands ul:hover{display:block;}*/
+li button {
+	list-style-type: none;
+}

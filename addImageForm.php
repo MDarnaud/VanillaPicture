@@ -29,7 +29,7 @@
 									<!-- Form -->
 										<form method="post" action="addImageForm.php" enctype="multipart/form-data">
 											<div class="row gtr-uniform">
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-xsmall" id="dropdownCategory">
                                                     <select name="category" id="category">
                                                         <option value='' selected hidden>-Select Category-</option>
                                                         <?php
@@ -41,8 +41,51 @@
                                                         ?>
                                                     </select>
                                                 </div>
+
+                                                <?php
+                                                    // connect to the database
+                                                    $db = mysqli_connect('localhost','root','','photography');
+
+                                                $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery";
+                                                $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
+                                                while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
+                                                    if($gallery_brand['galleryBrand'] != null)
+                                                    $brandsChoices[] = $gallery_brand['galleryBrand'];
+                                                }
+                                                ?>
+
+                                                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $("#category").change(function () {
+                                                                var value = $(this).val();
+                                                                $('.dropdownBrandsDiv').remove();
+                                                                 if(value == 'Brands') {
+                                                                     $('#dropdownCategory').append('<div class="dropdownBrandsDiv"><br>' +
+                                                                         '<select name="brandsName" id="brandsName">' +
+                                                                         '<option value=\'\' selected hidden>-Select a Brand-</option>' +
+                                                                         '<?php foreach($brandsChoices as $choiceBrand) : ?>\n' +
+                                                                         '<option value="<?php echo $choiceBrand; ?>">\n' +
+                                                                         '<?php echo $choiceBrand; ?>\n' +
+                                                                         '</option><?php endforeach; ?>\n' +
+                                                                         '<option value="Other"> Other </option>' +
+                                                                         '</select>' +
+                                                                         '</div>');
+
+                                                                     $("#brandsName").change(function () {
+                                                                         $('.newBrand').remove();
+                                                                         var value2 = $(this).val();
+                                                                         if (value2 == 'Other') {
+                                                                             $('.dropdownBrandsDiv').append('<div class ="newBrand"><br><input type="text" name="newBrand" id="newBrand" placeholder="Brand Name" maxlength="100" required/></div>');
+                                                                         }
+                                                                     });
+                                                                 }
+                                                         });
+                                                    });
+                                                </script>
+
 												<div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" required/>
+                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100"/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->

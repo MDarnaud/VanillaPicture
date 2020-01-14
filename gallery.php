@@ -32,7 +32,37 @@ $db = mysqli_connect('localhost','root','','photography');
                     <li><button id="all" type="reset" value="All" onclick="location.href= './gallery.php?categorySelect=all'" >All</button></li>
                     <li><button id="travel" type="reset" value="Travel" onclick="location.href= './gallery.php?categorySelect=travel'"  >Travel</button></li>
                     <li><button id="events" type="reset" value="Events" onclick="location.href= './gallery.php?categorySelect=events'" >Events</button></li>
-                    <li><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button></li>
+                        <?php
+                    //Look for any brands name
+                        $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery";
+                        $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
+                        while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
+                            if($gallery_brand['galleryBrand'] != null)
+                                $brandsChoices[] = $gallery_brand['galleryBrand'];
+                        }
+                    ?>
+<!--                    <li class="dropdownBrands"><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>-->
+<!--                        <ul class="dropdownContentBrands">-->
+<!--                        --><?php //foreach($brandsChoices as $choiceBrand) : ?>
+<!--                            <li><button class="stacked">--><?php //echo $choiceBrand; ?><!--</button></li>-->
+<!--                        --><?php //endforeach; ?>
+<!--                    </ul>-->
+<!---->
+<!--                    </li>-->
+                    <div class="dropdownBrands">
+                    <li>
+                        <button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>
+
+                        <div class="dropContents">
+                        <ul class="dropotron level-0 right" style=" user-select:none; position:absolute; z-index:100000; opacity:1;">
+                            <?php foreach($brandsChoices as $choiceBrand) : ?>
+                                <li style="cursor:pointer"><button style="box-shadow:none;white-space: nowrap;"><small style="color:white;"><?php echo $choiceBrand; ?></small></button></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        </div>
+                    </li>
+                    </div>
+
                     <li><button id="individual" type="reset" value="Individual" onclick="location.href= './gallery.php?categorySelect=individual'" >Individual</button></li>
                 </ul>
             </header>

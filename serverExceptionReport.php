@@ -25,8 +25,7 @@ if(isset($_POST['submit'])) {
 
     //Filters
         //Customer
-        $overAge = mysqli_real_escape_string($db, $_POST['over']);
-        $underAge = mysqli_real_escape_string($db, $_POST['under']);
+        $periodAge = mysqli_real_escape_string($db, $_POST['age']);
         $age = '';
 
         //Shoot
@@ -51,10 +50,10 @@ if(isset($_POST['submit'])) {
 
 
     if($errors === ''){
-        if($overAge === 'over'){
+        if($periodAge === 'over'){
             $age = 'over';
         }
-        elseif ($underAge === 'under'){
+        elseif ($periodAge === 'under'){
             $age = 'under';
         }
 
