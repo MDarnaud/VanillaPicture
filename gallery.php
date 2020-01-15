@@ -41,22 +41,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                 $brandsChoices[] = $gallery_brand['galleryBrand'];
                         }
                     ?>
-<!--                    <li class="dropdownBrands"><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>-->
-<!--                        <ul class="dropdownContentBrands">-->
-<!--                        --><?php //foreach($brandsChoices as $choiceBrand) : ?>
-<!--                            <li><button class="stacked">--><?php //echo $choiceBrand; ?><!--</button></li>-->
-<!--                        --><?php //endforeach; ?>
-<!--                    </ul>-->
-<!---->
-<!--                    </li>-->
-
-<!--                    You are here, add margin-->
                     <li class="dropdownBrands">
                         <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>
                         <div class="dropContents">
                         <ul class="dropotron level-0 right" style=" user-select:none; position:absolute; z-index:100000; opacity:1;margin-top: 0px;">
                             <?php foreach($brandsChoices as $choiceBrand) : ?>
-                                <li style="cursor:pointer;padding-left:0px;"><button onclick="location.href= './gallery.php?categorySelect=brands&brandsName=<?php echo $choiceBrand;?>'" style="box-shadow:none;white-space: nowrap; "><small style="color:white;"><?php echo $choiceBrand; ?></small></button></li>
+                                <li style="cursor:pointer;padding-left:0px;"><button class="navdrop" onclick="location.href= './gallery.php?categorySelect=brands&brandsName=<?php echo $choiceBrand;?>'" style="box-shadow:none;white-space: nowrap; "><small style="color:white;"><?php echo $choiceBrand; ?></small></button></li>
                             <?php endforeach; ?>
                         </ul>
                         </div>

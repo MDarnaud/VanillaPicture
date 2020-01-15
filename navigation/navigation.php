@@ -25,9 +25,9 @@ echo '<header id="header" class="alt">
                 if ($_SESSION['userTypeSignIn'] === 'administrator') :
                     echo '<li><a>Administration</a>
                             <ul>
-                                <li><a href="./posting.php" style="color:white; opacity:1;">Announcement</a></li>
-                                 <li><a href="" style="color:white;opacity:1;">Review</a></li>
-                                <li><a href="./reports.php" style="color:white;">Reports</a></li>
+                                <li><a class="navdrop" href="./posting.php" style="color:white;">Announcement</a></li>
+                                 <li><a class="navdrop" href="" style="color:white;">Review</a></li>
+                                <li><a class="navdrop" href="./reports.php" style="color:white;">Reports</a></li>
                             </ul>
                           </li>';
                 endif;
@@ -35,7 +35,7 @@ echo '<header id="header" class="alt">
 
                 echo '<li><a href="./viewProfile.php" class="icon fa-user-circle"> Profile</a>';
                     echo '<ul>
-                        <li><a href="./signOut.php"> Sign Out</a></li>
+                        <li><a class="navdrop" href="./signOut.php" style="color:white;"> Sign Out</a></li>
                     </ul>';
                     echo '</li>';
             }

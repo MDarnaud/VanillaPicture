@@ -2828,7 +2828,7 @@ input, select, textarea {
 	}
 
 	table {
-		margin: 0 0 2rem 0;
+		margin: 0 0 0 0;
 		width: 100%;
 	}
 
@@ -2859,6 +2859,7 @@ input, select, textarea {
 
 		table.alt {
 			border-collapse: separate;
+			margin: 0 0 2rem 0;
 		}
 
 			table.alt tbody tr td {
@@ -3554,7 +3555,7 @@ input, select, textarea {
 					}
 
 		.dropotron {
-			background-color: rgba(0, 0, 0, 0.45);
+			background-color: rgba(0, 0, 0, 0.75);
 			border-radius: 0.5rem;
 			list-style-type: none;
 			margin: -0.5rem 0 0 1px;
@@ -4520,4 +4521,9 @@ li button {
 .fa-pencil:disabled {
 	pointer-events: none;
 	opacity: 0.25;
+}
+
+/* Hover over the nav dropdown*/
+.navdrop:hover{
+	background-color: rgba(129, 127, 125, 0.64);
 }

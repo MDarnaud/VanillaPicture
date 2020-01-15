@@ -27,14 +27,18 @@ $db = mysqli_connect('localhost','root','','photography');
     <div class="wrapper">
         <div class="inner">
             <!-- Elements -->
-            <header class="major">
+            <header class="major" >
                 <h1>Reports</h1>
-                <ul class="actions">
-                    <li><button id="Summary" type="reset" value="Summary" onclick="location.href= './reports.php?reportSelect=summary'" >Summary</button></li>
-                    <li><button id="Detail" type="reset" value="Detail" onclick="location.href= './reports.php?reportSelect=detail'" >Detail</button></li>
-                    <li><button id="Exception" type="reset" value="Exception" onclick="location.href= './reports.php?reportSelect=exception'"  >Exception</button></li>
-                    </ul>
+
             </header>
+<div style=" display: block;margin-left: auto;margin-right: auto;width: 50%;">
+            <ul class="actions">
+                <li><button id="Summary" type="reset" value="Summary" onclick="location.href= './reports.php?reportSelect=summary'" >Summary</button></li>
+                <li><button id="Detail" type="reset" value="Detail" onclick="location.href= './reports.php?reportSelect=detail'" >Detail</button></li>
+                <li><button id="Exception" type="reset" value="Exception" onclick="location.href= './reports.php?reportSelect=exception'"  >Exception</button></li>
+            </ul>
+</div>
+
 <!--        Set or retrieve the chosen type of report-->
             <?php
             $reportSelect = '';
@@ -326,6 +330,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 $weeks = array();
 
+                echo '<hr>';
                 echo '<h3>Weekly</h3>';
 
                 $months = array();
