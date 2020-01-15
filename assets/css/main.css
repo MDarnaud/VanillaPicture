@@ -4503,10 +4503,21 @@ input, select, textarea {
 
 
 /*		Dropdown gallery brands */
-
 .dropContents{display: none;}
 .dropdownBrands:hover .dropContents{display:block;}
-/*dropdownBrands ul:hover{display:block;}*/
 li button {
 	list-style-type: none;
+}
+
+/*		Pencil icon modification caption in gallery */
+.fa-pencil{
+	font-size:19px;
+	color:white;
+}
+.fa-pencil:hover{
+	color: rgba(129, 127, 125, 0.84);
+}
+.fa-pencil:disabled {
+	pointer-events: none;
+	opacity: 0.25;
 }

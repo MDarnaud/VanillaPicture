@@ -188,16 +188,22 @@ $db = mysqli_connect('localhost','root','','photography');
                             modal.style.zIndex="20000";
                             modal.style.display = "block";
                             modalImg.src = this.src;
-                            captionText.innerHTML = this.alt;
+                            captionText.innerHTML = this.alt
+                                <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
+                                +'&nbsp;'+'<a href="./modifyImageForm.php?modificationId='+this.id+'" class="pencil"><i class="fa fa-pencil"></i></a>'
+                            <?php endif; ?> ;
                             imgId = this.id;
                              //get button
                             buttonDelete.onclick = function() {
-                                <?php if(isset($_GET["brandsName"])){?>
-                                window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=<?php echo $_GET["brandsName"];?>&idImageDelete='.concat(imgId);
+                                <?php if(!isset($_GET["categorySelect"])){?>
+                                    window.location.href= './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
                                 <?php }else{?>
-                                window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=&idImageDelete='.concat(imgId);
-
-                            <?php } ?>
+                                <?php if(isset($_GET["brandsName"])){?>
+                                    window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=<?php echo $_GET["brandsName"];?>&idImageDelete='.concat(imgId);
+                                <?php }else{?>
+                                    window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=&idImageDelete='.concat(imgId);
+                                <?php } ?>
+                                <?php } ?>
                             }
                         }
                     }
