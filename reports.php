@@ -1286,22 +1286,21 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                 //Payments
                                 if ($_GET['payment'] === 'payment') {
-                                    if ($_GET['paymentDropDown'] != '') {
-                                        $paymentDd = $_GET['paymentDropDown'];
-                                        if ($paymentDd != '') {
-                                            if ($paymentDd === '050') {
+                                    if(isset($_GET['paymentAmount'])){
+                                            $paymentAmount = $_GET['paymentAmount'];
+                                            if ($paymentAmount === '050') {
 
                                                 $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 0 AND paymentTotal => 50";
 
-                                            } elseif ($paymentDd === '51100') {
+                                            } elseif ($paymentAmount === '51100') {
 
                                                 $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 51 AND paymentTotal => 100";
 
-                                            } elseif ($paymentDd === '101200') {
+                                            } elseif ($paymentAmount === '101200') {
 
                                                 $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 101 AND paymentTotal => 200";
 
-                                            } elseif ($paymentDd === '201') {
+                                            } elseif ($paymentAmount === '201') {
 
                                                 $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 201";
 
@@ -1361,7 +1360,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                         <?php
 
-                                    }
+
                                 }
                             }
                             //Month
@@ -1586,32 +1585,29 @@ $db = mysqli_connect('localhost','root','','photography');
                                     <?php
                                 }
                                 //Payments
+                                echo '<h5> Payments </h5>';
                                     if ($_GET['payment'] === 'payment') {
-                                        if ($_GET['paymentDropDown'] != '') {
-                                            $paymentDd = $_GET['paymentDropDown'];
-                                            if ($paymentDd != '') {
-                                                if ($paymentDd === '050') {
+                                            if(isset($_GET['paymentAmount'])){
+                                                $paymentAmount = $_GET['paymentAmount'];
+                                                if ($paymentAmount === '050') {
 
                                                     $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 0 AND paymentTotal => 50";
 
-                                                } elseif ($paymentDd === '51100') {
+                                                } elseif ($paymentAmount === '51100') {
 
                                                     $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 51 AND paymentTotal => 100";
 
-                                                } elseif ($paymentDd === '101200') {
+                                                } elseif ($paymentAmount === '101200') {
 
                                                     $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 101 AND paymentTotal => 200";
 
-                                                } elseif ($paymentDd === '201') {
+                                                } elseif ($paymentAmount === '201') {
 
                                                     $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 201";
 
                                                 }
-                                            }
-                                        }
-                                        else {
+                                        }else {
                                                 $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
-                                                echo "hi";
                                             }
 
                                             /*
@@ -1619,6 +1615,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                             */
 
                                             ?>
+
                                             <div class="table-wrapper">
                                                 <table class="alt">
                                                     <tbody>
@@ -1637,7 +1634,6 @@ $db = mysqli_connect('localhost','root','','photography');
                                                     <?php $currentYear = date("Y");?>
                                                     <?php
                                                     $payment_e_m_result = mysqli_query($db, $payment_exception_m_query);
-                                                    var_dump($payment_e_m_result);
                                                     if(mysqli_num_rows($payment_e_m_result)>0){
                                                         while ($row2 = mysqli_fetch_assoc($payment_e_m_result)) {
                                                             $textPaymentCustomerY = $row2['customerId'];
