@@ -68,42 +68,42 @@ $db = mysqli_connect('localhost','root','','photography');
 
                     // Booked Shoot
                     // MEGANE (count num of shootId where date booked = this year)
-                    $textNumBookedShootY ="SELECT count(shootId) as totalShoots FROM shoot WHERE year(shootDate)='$currentYear'";
-                    $bookedShoot_result = mysqli_query($db, $textNumBookedShootY);
+                    $bookedShoot_summary_y_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE year(shootDate)='$currentYear'";
+                    $bookedShoot_result = mysqli_query($db, $bookedShoot_summary_y_query);
                     $totalBookedShootY = mysqli_fetch_assoc($bookedShoot_result);
-                    $textShootY = $totalBookedShootY['totalShoots'];
+                    $textNumBookedShootY = $totalBookedShootY['totalShoots'];
 
 
                     // % booked hours (available / booked)
                     // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
-                    $textPBookedHoursY = "";
+                    $textPBookedHoursY = '%';
 
                     // $ spends per customer
                     // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
-                    $textSpentCustomerY = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE year(paymentDate)='$currentYear'";
-                    $averagePayments_result = mysqli_query($db, $textSpentCustomerY);
+                    $averageSpent_summary_y_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $averagePayments_result = mysqli_query($db, $averageSpent_summary_y_query);
                     $averagePaymentsY = mysqli_fetch_assoc($averagePayments_result);
-                    $textAveragePaymentY = $averagePaymentsY['averagePayments'];
+                    $textAveragePaymentY = '$'.$averagePaymentsY['averagePayments'];
 
                     // number of giftcards
                     // MEGANE (count num of giftcards id where date bought = this year)
-                    $textNumGiftcardY = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE year(paymentDate)='$currentYear'";
-                    $giftCards_result = mysqli_query($db, $textNumGiftcardY);
+                    $giftCard_summary_y_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $giftCards_result = mysqli_query($db, $giftCard_summary_y_query);
                     $totalGiftCardsY = mysqli_fetch_assoc($giftCards_result);
-                    $textGiftCardsY = $totalGiftCardsY['totalGiftCards'];
+                    $textNumGiftcardY = $totalGiftCardsY['totalGiftCards'];
 
                     // amount of gitcards
                     // MEGANE (count total balance of all giftcards where date bought = this year)
-                    $textSpentGiftcardY = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
-                    $totalPayments_result = mysqli_query($db, $textSpentGiftcardY);
+                    $totalPayment_summar_y_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayments_result = mysqli_query($db, $totalPayment_summar_y_query);
                     $totalPaymentsY = mysqli_fetch_assoc($totalPayments_result);
-                    $textTotalPaymentY = $totalPaymentsY['totalPayments'];
+                    $textSpentGiftcardY = '$'.$totalPaymentsY['totalPaymentsAmount'];
 
                     //Two dimensional array
                     $newdata = array(
                             "Number of New Customer" => $textCustomerY,
                             "Number of Announcement" => $textAnnouncementY,
-                            "Amount Spent per Customer" => $textSpentCustomerY,
+                            "Amount Spent per Customer" => $textAveragePaymentY,
                             "Number of Giftcards" => $textNumGiftcardY,
                             "Amount of Giftcards" => $textSpentGiftcardY,
                             "Number of Shoot Booked" => $textNumBookedShootY,
@@ -201,10 +201,10 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // Booked Shoot
                 // MEGANE (count num of shootId where date booked = this month) and year!!!
-                    $textNumBookedShootM ="SELECT count(shootId) as totalShoots FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'"; //change shootDate to requestDate
-                    $bookedShoot_result = mysqli_query($db, $textNumBookedShootM);
+                    $BookedShoot_summary_M_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'"; //change shootDate to requestDate
+                    $bookedShoot_result = mysqli_query($db, $bookedShoot_summary_y_query);
                     $totalBookedShootM = mysqli_fetch_assoc($bookedShoot_result);
-                    $textShootM = $totalBookedShootM['totalShoots'];
+                    $textNumBookedShootM = $totalBookedShootM['totalShoots'];
 
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this month, count number of hours shoot booked where date booked = this month, calculate %)and year!!!
@@ -212,24 +212,24 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // $ spends per customer
                 // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)and year!!!
-                    $textSpentCustomerM = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
-                    $averagePayments_result = mysqli_query($db, $textSpentCustomerM);
+                    $averageSpent_summary_M_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
+                    $averagePayments_result = mysqli_query($db, $averageSpent_summary_M_query);
                     $averagePaymentsM = mysqli_fetch_assoc($averagePayments_result);
-                    $textAveragePaymentM = $averagePaymentsM['averagePayments'];
+                    $textSpentCustomerM = '$'.$averagePaymentsM['averagePayments'];
 
                 // number of giftcards
                 // MEGANE (count num of giftcards id where date bought = this month)and year!!!
-                    $textNumGiftcardM = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
-                    $giftCards_result = mysqli_query($db, $textNumGiftcardM);
+                    $numGiftcard_summary_M_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
+                    $giftCards_result = mysqli_query($db, $numGiftcard_summary_M_query);
                     $totalGiftCardsM = mysqli_fetch_assoc($giftCards_result);
-                    $textGiftCardsM = $totalGiftCardsM['totalGiftCards'];
+                    $textNumGiftcardM = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
                 // MEGANE (count total balance of all giftcards where date bought = this month)and year!!!
-                    $textSpentGiftcardM = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
-                    $totalPayments_result = mysqli_query($db, $textSpentGiftcardM);
+                    $totalPayment_summary_m_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayments_result = mysqli_query($db, $totalPayment_summary_m_query);
                     $totalPaymentsM = mysqli_fetch_assoc($totalPayments_result);
-                    $textTotalPaymentM = $totalPaymentsM['totalPayments'];
+                    $textSpentGiftcardM = '$'.$totalPaymentsM['totalPaymentsAmount'];
 
                    //Two dimensional array
                     $newdata = array(
@@ -344,10 +344,10 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // Booked Shoot
                 // MEGANE (count num of shootId where date booked = this week)
-                    $textNumBookedShootW ="SELECT count(shootId) as totalShoots FROM shoot WHERE shootDate>='$week_start_day' AND shootDate<='$week_end_day'"; //change shootDate to requestDate
-                    $bookedShoot_result = mysqli_query($db, $textNumBookedShootW);
+                    $numShoot_summary_w_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE shootDate>='$week_start_day' AND shootDate<='$week_end_day'"; //change shootDate to requestDate
+                    $bookedShoot_result = mysqli_query($db, $numShoot_summary_w_query);
                     $totalBookedShootW = mysqli_fetch_assoc($bookedShoot_result);
-                    $textShootW = $totalBookedShootW['totalShoots'];
+                    $textNumBookedShootW = $totalBookedShootW['totalShoots'];
 
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this week, count number of hours shoot booked where date booked = this month, calculate %)
@@ -355,21 +355,25 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 // $ spends per customer
                 // MEGANE (count total balance where date bought = this week, count total customer, divide $ by customer)
-                    $textSpentCustomerW = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
-                    $averagePayments_result = mysqli_query($db, $textSpentCustomerW);
+                    $averageSpent_summary_w_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
+                    $averagePayments_result = mysqli_query($db, $averageSpent_summary_w_query);
                     $averagePaymentsW = mysqli_fetch_assoc($averagePayments_result);
-                    $textAveragePaymentW = $averagePaymentsW['averagePayments'];
+                    $textSpentCustomerW = '$'.$averagePaymentsW['averagePayments'];
 
                 // number of giftcards
                 // MEGANE (count num of giftcards id where date bought = this week)
-                    $textNumGiftcardW = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
-                    $giftCards_result = mysqli_query($db, $textNumGiftcardW);
+                    $numGiftcard_summary_w_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
+                    $giftCards_result = mysqli_query($db, $numGiftcard_summary_w_query);
                     $totalGiftCardsW = mysqli_fetch_assoc($giftCards_result);
-                    $textGiftCardsW = $totalGiftCardsM['totalGiftCards'];
+                    $textNumGiftcardW = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
                 // MEGANE (count total balance of all giftcards where date bought = this week)
-                    $textSpentGiftcardW = ' $';
+                    $totalPayment_summary_w_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayments_result = mysqli_query($db, $totalPayment_summary_w_query);
+                    $totalPaymentsW = mysqli_fetch_assoc($totalPayments_result);
+                    $textSpentGiftcardW = ' $'.$totalPaymentsM['totalPaymentsAmount'];
+
 
                     //Two dimensional array
                     $newdata = array(
@@ -460,10 +464,6 @@ $db = mysqli_connect('localhost','root','','photography');
                 </table>
             </div>
     <?php }?>
-
-
-
-
 
 
 
@@ -591,11 +591,115 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 <hr>
 
-<!--                MEGANE-->
-<!--                Repeat the steps above for the shoot table and payment table(giftcard) for the year-->
-<!--                -->
 
-<!--                Monthly-->
+
+<?php echo '<h5>Shoot</h5>'; ?>
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Time
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            <th>
+                                Artists
+                            </th>
+                            <th>
+                                Package
+                            </th>
+                        </tr>
+
+            <?php $currentYear = date("Y");?>
+            <?php
+            $shoot_detail_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$currentYear'";
+            $shoot_d_y_result = mysqli_query($db, $shoot_detail_y_query);
+            if(mysqli_num_rows($shoot_d_y_result)>0){
+                while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
+                    $textShootTimeY = $row2['shootTime'];
+                    $textShootDateY = $row2['shootDate'];
+                    $textShootLocationY = $row2['shootLocation'];
+                    $textShootArtistY = $row2['shootArtistType'];
+                    $textShootPackageY = $row2['shootPackage'];
+                    ?>
+                    <tr>
+                        <td>
+                            <?php echo $textShootTimeY;?>
+                        </td>
+                        <td>
+                            <?php echo $textShootDateY?>
+                        </td>
+                        <td>
+                            <?php echo $textShootLocationY?>
+                        </td>
+                        <td>
+                            <?php echo $textShootArtistY?>
+                        </td>
+                        <td>
+                            <?php echo $textShootPackageY?>
+                        </td>
+                    </tr>
+                <?php }
+            }?>
+            </tbody>
+            </table>
+        </div>
+                <hr>
+
+                <?php echo '<h5>Gift Cards</h5>'; ?> <!--PAYMENTS-->
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Customer ID
+                            </th>
+                            <th>
+                                Payment Date
+                            </th>
+                            <th>
+                                Amount Paid
+                            </th>
+                        </tr>
+
+                        <?php $currentYear = date("Y");?>
+                        <?php
+                        $payment_detail_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$currentYear'";
+                        $payment_d_y_result = mysqli_query($db, $shoot_detail_y_query);
+                        if(mysqli_num_rows($shoot_d_y_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
+                                $textPaymentCustomerY = $row2['customerId'];
+                                $textPaymentDateY = $row2['paymentDate'];
+                                $textPaymentTotalY = $row2['paymentTotal'];
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $textPaymentCustomerY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textPaymentDateY?>
+                                    </td>
+                                    <td>
+                                        <?php echo '$'.$textPaymentTotalY?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <hr>
+
+<!--               Monthly-->
 
                <?php // Monthly
                 $currentMonth = date("F");
@@ -720,12 +824,120 @@ $db = mysqli_connect('localhost','root','','photography');
                 </div>
 
                 <hr>
-<!--                MEGANE-->
-<!--                Repeat the steps above for the shoot table and payment table(giftcard) for the month-->
-<!--                -->
+
+                <?php echo '<h5>Shoot</h5>'; ?>
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Time
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            <th>
+                                Artists
+                            </th>
+                            <th>
+                                Package
+                            </th>
+                        </tr>
+
+                        <?php $currentYear = date("Y");?>
+                        <?php
+                        $shoot_detail_y_query = "SELECT * FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'";
+                        $shoot_d_y_result = mysqli_query($db, $shoot_detail_y_query);
+                        if(mysqli_num_rows($shoot_d_y_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
+                                $textShootTimeY = $row2['shootTime'];
+                                $textShootDateY = $row2['shootDate'];
+                                $textShootLocationY = $row2['shootLocation'];
+                                $textShootArtistY = $row2['shootArtistType'];
+                                $textShootPackageY = $row2['shootPackage'];
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $textShootTimeY;?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textShootDateY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textShootLocationY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textShootArtistY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textShootPackageY?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+
+                <?php echo '<h5>Gift Cards</h5>'; ?> <!--PAYMENTS-->
+
+                <div class="table-wrapper">
+                    <table class="alt">
+                        <tbody>
+                        <tr>
+                            <th>
+                                Customer ID
+                            </th>
+                            <th>
+                                Payment Date
+                            </th>
+                            <th>
+                                Amount Paid
+                            </th>
+                        </tr>
+
+                        <?php $currentYear = date("Y");?>
+                        <?php
+                        $payment_detail_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
+                        $payment_d_y_result = mysqli_query($db, $payment_detail_y_query);
+                        if(mysqli_num_rows($payment_d_y_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($payment_d_y_result)) {
+                                $textPaymentCustomerY = $row2['customerId'];
+                                $textPaymentDateY = $row2['paymentDate'];
+                                $textPaymentTotalY = $row2['paymentTotal'];
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?php echo $textPaymentCustomerY?>
+                                    </td>
+                                    <td>
+                                        <?php echo $textPaymentDateY?>
+                                    </td>
+                                    <td>
+                                        <?php echo '$'.$textPaymentTotalY?>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <hr>
+
 
             <?php }
             ?>
+
+
+
+
 <!--        Exception Report-->
             <?php
             if($reportSelect === 'exception'){
@@ -948,7 +1160,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                             <!---->
                                             <?php $currentYear = date("Y"); ?>
                                             <?php
-                                            // New customer
+                                            //announcement
                                             $announcement_exception_y_query = "SELECT * FROM announcement WHERE year(announcementStartDate)='$selectedYear'";
                                             $announcement_e_y_result = mysqli_query($db, $announcement_exception_y_query);
                                             if (mysqli_num_rows($announcement_e_y_result) > 0) {
@@ -1004,11 +1216,69 @@ $db = mysqli_connect('localhost','root','','photography');
                                         $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
                                     }
                                     echo '<h5>Shoots</h5>';
-
                                     /*
                                      * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current year for selected year
                                      */
+                                    ?>
+                                    <div class="table-wrapper">
+                                        <table class="alt">
+                                            <tbody>
+                                            <tr>
+                                                <th>
+                                                    Time
+                                                </th>
+                                                <th>
+                                                    Date
+                                                </th>
+                                                <th>
+                                                    Location
+                                                </th>
+                                                <th>
+                                                    Artists
+                                                </th>
+                                                <th>
+                                                    Package
+                                                </th>
+                                            </tr>
+
+                                            <?php $currentYear = date("Y"); ?>
+                                            <?php
+                                            $shoot_e_y_result = mysqli_query($db, $shoot_exception_y_query);
+                                            if (mysqli_num_rows($shoot_e_y_result) > 0) {
+                                                while ($row2 = mysqli_fetch_assoc($shoot_e_y_result)) {
+                                                    $textShootTimeY = $row2['shootTime'];
+                                                    $textShootDateY = $row2['shootDate'];
+                                                    $textShootLocationY = $row2['shootLocation'];
+                                                    $textShootArtistY = $row2['shootArtistType'];
+                                                    $textShootPackageY = $row2['shootPackage'];
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $textShootTimeY; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootDateY ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootLocationY ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootArtistY ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootPackageY ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
+                                            } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <hr>
+
+                                    <?php
                                 }
+
                                 //Payments
                                 if ($_GET['payment'] === 'payment') {
                                     if ($_GET['paymentDropDown'] != '') {
@@ -1032,12 +1302,60 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                             }
                                         } else {
-                                            $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear'";
+                                            $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear'";
                                         }
                                         echo '<h5>Payments</h5>';
                                         /*
                                         * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current year for selected year
                                         */
+                                        ?>
+
+                                        <div class="table-wrapper">
+                                            <table class="alt">
+                                                <tbody>
+                                                <tr>
+                                                    <th>
+                                                        Customer ID
+                                                    </th>
+                                                    <th>
+                                                        Payment Date
+                                                    </th>
+                                                    <th>
+                                                        Amount Paid
+                                                    </th>
+                                                </tr>
+
+                                                <?php $currentYear = date("Y");?>
+                                                <?php
+                                                $payment_e_y_result = mysqli_query($db, $payment_exception_y_query);
+                                                if(mysqli_num_rows($payment_e_y_result)>0){
+                                                    while ($row2 = mysqli_fetch_assoc($payment_e_y_result)) {
+                                                        $textPaymentCustomerY = $row2['customerId'];
+                                                        $textPaymentDateY = $row2['paymentDate'];
+                                                        $textPaymentTotalY = $row2['paymentTotal'];
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <?php echo $textPaymentCustomerY?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $textPaymentDateY?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $textPaymentTotalY?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php }
+                                                }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                        <hr>
+
+                                        <?php
+
                                     }
                                 }
                             } //Month
@@ -1200,9 +1518,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                         $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'";
                                     }
                                 }
+
                                 /*
                                  * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
-                                 */
+                                 */?>
+                                
+                    <?php
                                 //Payments
                                 if ($_GET['payment'] === 'payment') {
                                     if ($_GET['payment'] === 'payment') {
@@ -1239,6 +1560,7 @@ $db = mysqli_connect('localhost','root','','photography');
                             }
                         }
                     }
+
 
                             ?>
                     </div>

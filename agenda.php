@@ -5,7 +5,11 @@ if (session_status() == PHP_SESSION_NONE) {
 //agenda message
 $message = "";
 //user type
-$userType = $_SESSION['userTypeSignIn'];
+$userType = null;
+if(isset($_SESSION['userSignIn'])){
+    $userType = $_SESSION['userTypeSignIn'];
+}
+
 
 //check user type/origin and display message accordingly
 if(isset($_GET["sendEmail"])){
