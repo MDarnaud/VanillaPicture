@@ -31,14 +31,12 @@
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall" id="dropdownCategory">
                                                     <select name="category" id="category">
-                                                        <option value='' selected hidden>-Select Category-</option>
                                                         <?php
                                                         foreach($categories as $key => $value) {
                                                             ?>
-                                                            <option value="<?= $key ?>" title="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($value) ?></option>
-                                                            <?php
-                                                        }
-                                                        ?>
+                                                                <option value="" selected hidden>-Select Category-</option>
+                                                                <option value="<?= $key ?>" title="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($value) ?></option>
+                                                            <?php }?>
                                                     </select>
                                                 </div>
 

@@ -7,6 +7,33 @@ $db = mysqli_connect('localhost','root','','photography');
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit_image"])) {
 
+    // Caption & Category
+    $category_form = mysqli_real_escape_string($db, $_POST['category']);
+    $caption_form = mysqli_real_escape_string($db, $_POST['caption']);
+
+    if (empty($category_form)) {
+        array_push($errors, " Category is required.");
+    }
+
+
+    //Verify if brands
+    if ($category_form === 'Brands') {
+        $brandType = mysqli_real_escape_string($db, $_POST['brandsName']);
+        if (empty($brandType)) {
+            array_push($errors, " Please, select a Brand.");
+        } else {
+            $newBrand_form = $brandType;
+            if ($brandType === 'Other') {
+                if (empty($_POST['newBrand'])) {
+                    array_push($errors, " Please enter the new Brand Name.");
+                } else {
+                    $newBrand_form = mysqli_real_escape_string($db, $_POST['newBrand']);
+                }
+            }
+        }
+    }
+
+    //Images
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -24,31 +51,6 @@ if(isset($_POST["submit_image"])) {
         array_push($errors, " File is not an image.");
         $uploadOk = 0;
     }
-
-    // Caption & Category
-    $category_form = mysqli_real_escape_string($db, $_POST['category']);
-    $caption_form = mysqli_real_escape_string($db, $_POST['caption']);
-
-    if (empty($category_form)) {
-        array_push($errors, " Category is required.");
-    }
-
-        //Verify if brands
-        if ($category_form === 'Brands') {
-            $brandType = mysqli_real_escape_string($db, $_POST['brandsName']);
-            if (empty($brandType)) {
-                array_push($errors, " Please, select a Brand.");
-            } else {
-                $newBrand_form = $brandType;
-                if ($brandType === 'Other') {
-                    if (empty($_POST['newBrand'])) {
-                        array_push($errors, " Please enter the new Brand Name.");
-                    } else {
-                        $newBrand_form = mysqli_real_escape_string($db, $_POST['newBrand']);
-                    }
-                }
-            }
-        }
 
     if (count($errors) == 0) {
 // Check if file already exists
