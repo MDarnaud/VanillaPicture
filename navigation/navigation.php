@@ -10,14 +10,11 @@ echo '<header id="header" class="alt">
             <li>
                     <li><a href="gallery.php">Gallery</a>
             </li>';
-            if(isset($_SESSION['userSignIn'])) {
-                if ($_SESSION['userTypeSignIn'] === 'administrator') {
-                    echo '<li><a href="./posting.php">Announcement</a></li>';
-                }
-            }
 
-            echo '<li><a href="./agenda.php">Agenda</a></li>
-                    <li><a href="./packages.php">Packages</a></li>';
+            echo '<li><a href="./packages.php">Packages</a></li>
+                    <li><a href="./agenda.php">Agenda</a></li>
+                    ';
+
 
 
 //          Verify if user login
@@ -25,9 +22,17 @@ echo '<header id="header" class="alt">
                 echo '<li><a href="./signIn.php" class="icon fa-user-circle"> Sign in</a></li>';
             }
             else{
-                if($_SESSION['userTypeSignIn'] === 'administrator'):
-                    echo '<li><a href="./reports.php">Reports</a></li>';
+                if ($_SESSION['userTypeSignIn'] === 'administrator') :
+                    echo '<li><a>Administration</a>
+                            <ul>
+                                <li><a href="./posting.php" style="color:white; opacity:1;">Announcement</a></li>
+                                 <li><a href="" style="color:white;opacity:1;">Review</a></li>
+                                <li><a href="./reports.php" style="color:white;">Reports</a></li>
+                            </ul>
+                          </li>';
                 endif;
+
+
                 echo '<li><a href="./viewProfile.php" class="icon fa-user-circle"> Profile</a>';
                     echo '<ul>
                         <li><a href="./signOut.php"> Sign Out</a></li>
