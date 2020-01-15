@@ -26,7 +26,7 @@
                         <div style="margin:auto">
                             <div class="row gtr-200">
                                 <!-- Form -->
-                                <form method="post" action="announcement.php">
+                                <form method="post" action="posting.php">
                                     <div class="row gtr-uniform">
                                         <div class="col-8 col-12-xsmall">
                                             <input type="text" name="title" id="title" value="" placeholder="Title" maxlength="50" required/>

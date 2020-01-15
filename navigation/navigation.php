@@ -12,7 +12,7 @@ echo '<header id="header" class="alt">
             </li>';
             if(isset($_SESSION['userSignIn'])) {
                 if ($_SESSION['userTypeSignIn'] === 'administrator') {
-                    echo '<li><a href="./announcement.php">Announcement</a></li>';
+                    echo '<li><a href="./posting.php">Announcement</a></li>';
                 }
             }
 

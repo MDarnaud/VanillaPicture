@@ -32,7 +32,36 @@ $db = mysqli_connect('localhost','root','','photography');
                     <li><button id="all" type="reset" value="All" onclick="location.href= './gallery.php?categorySelect=all'" >All</button></li>
                     <li><button id="travel" type="reset" value="Travel" onclick="location.href= './gallery.php?categorySelect=travel'"  >Travel</button></li>
                     <li><button id="events" type="reset" value="Events" onclick="location.href= './gallery.php?categorySelect=events'" >Events</button></li>
-                    <li><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button></li>
+                        <?php
+                    //Look for any brands name
+                        $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery";
+                        $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
+                        while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
+                            if($gallery_brand['galleryBrand'] != null)
+                                $brandsChoices[] = $gallery_brand['galleryBrand'];
+                        }
+                    ?>
+<!--                    <li class="dropdownBrands"><button id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>-->
+<!--                        <ul class="dropdownContentBrands">-->
+<!--                        --><?php //foreach($brandsChoices as $choiceBrand) : ?>
+<!--                            <li><button class="stacked">--><?php //echo $choiceBrand; ?><!--</button></li>-->
+<!--                        --><?php //endforeach; ?>
+<!--                    </ul>-->
+<!---->
+<!--                    </li>-->
+
+<!--                    You are here, add margin-->
+                    <li class="dropdownBrands">
+                        <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>
+                        <div class="dropContents">
+                        <ul class="dropotron level-0 right" style=" user-select:none; position:absolute; z-index:100000; opacity:1;margin-top: 0px;">
+                            <?php foreach($brandsChoices as $choiceBrand) : ?>
+                                <li style="cursor:pointer;padding-left:0px;"><button onclick="location.href= './gallery.php?categorySelect=brands&brandsName=<?php echo $choiceBrand;?>'" style="box-shadow:none;white-space: nowrap; "><small style="color:white;"><?php echo $choiceBrand; ?></small></button></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        </div>
+                    </li>
+
                     <li><button id="individual" type="reset" value="Individual" onclick="location.href= './gallery.php?categorySelect=individual'" >Individual</button></li>
                 </ul>
             </header>
@@ -60,9 +89,16 @@ $db = mysqli_connect('localhost','root','','photography');
                     if(isset($_GET['categorySelect'])) {
                         $categorySelected = $_GET['categorySelect'];
                     }
+
                     if(!($categorySelected === ''||$categorySelected === 'all')){
                         // Select query for specific gallery elements
                         $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected'";
+                        if(isset($_GET['brandsName'])) {
+                            $brandsNameSelected = $_GET['brandsName'];
+                            if ($brandsNameSelected !== '') {
+                                $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected' AND galleryBrand='$brandsNameSelected'";
+                            }
+                        }
                     }else {
 //                         Select query for all gallery elements
                         $gallery_check_query = "SELECT * FROM gallery";
@@ -75,6 +111,7 @@ $db = mysqli_connect('localhost','root','','photography');
                             $images[] = $gallery['galleryImage'];
                             $ids[] = $gallery['galleryId'];
                             $captions[] = $gallery['galleryTitle'];
+                            $brandsName[] = $gallery['galleryBrand'];
                         }
 
                         // Initialize column index
@@ -151,12 +188,22 @@ $db = mysqli_connect('localhost','root','','photography');
                             modal.style.zIndex="20000";
                             modal.style.display = "block";
                             modalImg.src = this.src;
-                            captionText.innerHTML = this.alt;
+                            captionText.innerHTML = this.alt
+                                <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
+                                +'&nbsp;'+'<a href="./modifyImageForm.php?modificationId='+this.id+'" class="pencil"><i class="fa fa-pencil"></i></a>'
+                            <?php endif; ?> ;
                             imgId = this.id;
                              //get button
                             buttonDelete.onclick = function() {
-                                // var link = '\'./deleteGalleryImage.php?idImageDelete='.concat(imgs[i].id,'\'');
-                                window.location.href= './deleteGalleryImage.php?idImageDelete='.concat(imgId);
+                                <?php if(!isset($_GET["categorySelect"])){?>
+                                    window.location.href= './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
+                                <?php }else{?>
+                                <?php if(isset($_GET["brandsName"])){?>
+                                    window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=<?php echo $_GET["brandsName"];?>&idImageDelete='.concat(imgId);
+                                <?php }else{?>
+                                    window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=&idImageDelete='.concat(imgId);
+                                <?php } ?>
+                                <?php } ?>
                             }
                         }
                     }

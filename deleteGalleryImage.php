@@ -20,6 +20,6 @@ $file_pointer = $path['galleryImage'];
         $queryGallery = "DELETE FROM gallery WHERE galleryId = '$imgId'";
         mysqli_query($db, $queryGallery);
 
-        header('location: ./gallery.php');
+        header('location: ./gallery.php?categorySelect='.$_GET["categorySelect"].'&brandsName='.$_GET["brandsName"]);
     }
 ?>
