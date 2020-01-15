@@ -1607,7 +1607,8 @@ $db = mysqli_connect('localhost','root','','photography');
                                                     $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 201";
 
                                                 }
-                                            } else {
+                                            }
+                                        }else {
                                                 $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
                                                 echo "hi";
                                             }
@@ -1659,7 +1660,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                 </table>
                                             </div>
                                             <?php
-                                        }
+
                                     }
                             }
                         }
