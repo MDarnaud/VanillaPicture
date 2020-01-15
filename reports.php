@@ -31,7 +31,7 @@ $db = mysqli_connect('localhost','root','','photography');
                 <h1>Reports</h1>
 
             </header>
-<div style=" display: block;margin-left: auto;margin-right: auto;width: 50%;">
+<div style=" display: block;margin-left: auto;margin-right: auto; width: 50%;">
             <ul class="actions">
                 <li><button id="Summary" type="reset" value="Summary" onclick="location.href= './reports.php?reportSelect=summary'" >Summary</button></li>
                 <li><button id="Detail" type="reset" value="Detail" onclick="location.href= './reports.php?reportSelect=detail'" >Detail</button></li>

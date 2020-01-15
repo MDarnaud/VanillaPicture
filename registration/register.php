@@ -87,6 +87,29 @@
                                                 <div class="col-8 col-12-xsmall">
                                                     <input type="text" name="city" id="city" value="" placeholder="City" required/>
                                                 </div>
+                                                <div id="radioRegistration" class="col-8 col-12-xsmall">
+                                                     Registration Type: &nbsp; &nbsp;
+                                                    <input type="radio" name="registrationType" id="customer" value="customer">
+                                                    <label for="customer"> Customer </label>
+
+                                                    <input type="radio" name="registrationType" id="model" value="model">
+                                                    <label for="model"> Model </label>
+                                                </div>
+
+                                                <!--                                    RadioButton clicked show the right dropdown-->
+                                                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $("input[type='radio']").click(function () {
+                                                            $('.genderChoice').remove();
+                                                            var radioValue = $("input[name='registrationType']:checked").val();
+                                                            if (radioValue === 'model') {
+                                                                alert('yo');
+                                                                $('#radioRegistration').append('<div class="genderChoice">Gender</div>');
+                                                            }
+                                                        }
+                                                     });
+                                                </script>
 												<!-- Break -->
 												<div class="col-12">
 													<ul class="actions">
