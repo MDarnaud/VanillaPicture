@@ -69,7 +69,6 @@
                                                                          '<option value="Other"> Other </option>' +
                                                                          '</select>' +
                                                                          '</div>');
-
                                                                      $("#brandsName").change(function () {
                                                                          $('.newBrand').remove();
                                                                          var value2 = $(this).val();
