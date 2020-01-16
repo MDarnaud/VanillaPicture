@@ -27,18 +27,14 @@ $db = mysqli_connect('localhost','root','','photography');
     <div class="wrapper">
         <div class="inner">
             <!-- Elements -->
-            <header class="major" >
+            <header class="major">
                 <h1>Reports</h1>
-
+                <ul class="actions">
+                    <li><button id="Summary" type="reset" value="Summary" onclick="location.href= './reports.php?reportSelect=summary'" >Summary</button></li>
+                    <li><button id="Detail" type="reset" value="Detail" onclick="location.href= './reports.php?reportSelect=detail'" >Detail</button></li>
+                    <li><button id="Exception" type="reset" value="Exception" onclick="location.href= './reports.php?reportSelect=exception'"  >Exception</button></li>
+                    </ul>
             </header>
-<div style=" display: block;margin-left: auto;margin-right: auto; width: 50%;">
-            <ul class="actions">
-                <li><button id="Summary" type="reset" value="Summary" onclick="location.href= './reports.php?reportSelect=summary'" >Summary</button></li>
-                <li><button id="Detail" type="reset" value="Detail" onclick="location.href= './reports.php?reportSelect=detail'" >Detail</button></li>
-                <li><button id="Exception" type="reset" value="Exception" onclick="location.href= './reports.php?reportSelect=exception'"  >Exception</button></li>
-            </ul>
-</div>
-
 <!--        Set or retrieve the chosen type of report-->
             <?php
             $reportSelect = '';
@@ -330,7 +326,6 @@ $db = mysqli_connect('localhost','root','','photography');
 
                 $weeks = array();
 
-                echo '<hr>';
                 echo '<h3>Weekly</h3>';
 
                 $months = array();
@@ -1034,7 +1029,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                         }
                                                         if (checkboxValue[i] == 'payment') {
                                                             // Payment (Over certain amount)
-                                                            $('.filters').append('<p><h5>Payments</h5>Payment amount between <select name="paymentAmount" id="paymentAmount"><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n' + '</p>');
+                                                            $('.filters').append('<p><h5>Payments</h5>Payment amount between <select name="paymentAmount"><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n' + '</p>');
                                                         }
                                                     })
                                                     $('.formDivision').append('</div>');
@@ -1204,9 +1199,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                         $location = $_GET['location'];
                                         if ($_GET['packages'] != '') {
                                             $packages = $_GET['packages'];
+                                            if ($_GET['paymentDropdown'] != '') {
                                                 //Add report
                                                 $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
-
+                                            } else {
+                                                $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                            }
                                         } else {
                                             $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location'";
                                         }
@@ -1214,9 +1212,8 @@ $db = mysqli_connect('localhost','root','','photography');
                                         if ($_GET['packages'] != '') {
                                             $packages = $_GET['packages'];
                                             $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootPackage = '$packages'";
-                                        }else {
-                                            $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
                                         }
+                                        $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
                                     }
                                     echo '<h5>Shoots</h5>';
                                     /*
@@ -1284,21 +1281,22 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                 //Payments
                                 if ($_GET['payment'] === 'payment') {
-                                    if(isset($_GET['paymentAmount'])){
-                                            $paymentAmount = $_GET['paymentAmount'];
-                                            if ($paymentAmount === '050') {
+                                    if ($_GET['paymentDropDown'] != '') {
+                                        $paymentDd = $_GET['paymentDropDown'];
+                                        if ($paymentDd != '') {
+                                            if ($paymentDd === '050') {
 
-                                                $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 0 AND paymentTotal => 50";
+                                                $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 0 AND paymentTotal => 50";
 
-                                            } elseif ($paymentAmount === '51100') {
+                                            } elseif ($paymentDd === '51100') {
 
                                                 $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 51 AND paymentTotal => 100";
 
-                                            } elseif ($paymentAmount === '101200') {
+                                            } elseif ($paymentDd === '101200') {
 
                                                 $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 101 AND paymentTotal => 200";
 
-                                            } elseif ($paymentAmount === '201') {
+                                            } elseif ($paymentDd === '201') {
 
                                                 $shoot_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal =< 201";
 
@@ -1306,12 +1304,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                         } else {
                                             $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear'";
                                         }
-
+                                        echo '<h5>Payments</h5>';
                                         /*
                                         * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current year for selected year
                                         */
                                         ?>
-                                    <h5>Payments</h5>
+
                                         <div class="table-wrapper">
                                             <table class="alt">
                                                 <tbody>
@@ -1358,10 +1356,9 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                         <?php
 
-
+                                    }
                                 }
-                            }
-                            //Month
+                            } //Month
                             elseif ($_GET['period'] === 'month') {
                                 $selectedMonthNotFormat = $_GET['month']; //January 2020 -> 2020-01
                                 $selectedMonthName = date('F', strtotime($selectedMonthNotFormat));
@@ -1504,166 +1501,70 @@ $db = mysqli_connect('localhost','root','','photography');
                                 //Shoots
                                 if ($_GET['shoot'] === 'shoot') {
                                     echo "<h5> Shoots </h5>";
-
-                                    if ($_GET['location'] != '') {
-                                        $location = $_GET['location'];
-                                        if ($_GET['packages'] != '') {
-                                            $packages = $_GET['packages'];
-                                            $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location' AND shootPackage = '$packages'";
-                                        } else {
-                                            $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location'";
-                                        }
-                                    } else {
-                                        if ($_GET['packages'] != '') {
-                                            $packages = $_GET['packages'];
-                                            $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootPackage = '$packages'";
-                                        } else {
-                                            $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'";
-                                        }
-                                    }
-
-                                    /*
-                                     * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
-                                     */ ?>
-                                    <div class="table-wrapper">
-                                        <table class="alt">
-                                            <tbody>
-                                            <tr>
-                                                <th>
-                                                    Time
-                                                </th>
-                                                <th>
-                                                    Date
-                                                </th>
-                                                <th>
-                                                    Location
-                                                </th>
-                                                <th>
-                                                    Artists
-                                                </th>
-                                                <th>
-                                                    Package
-                                                </th>
-                                            </tr>
-
-                                            <?php $currentYear = date("Y"); ?>
-                                            <?php
-                                            $shoot_e_m_result = mysqli_query($db, $shoot_exception_m_query);
-                                            if (mysqli_num_rows($shoot_e_m_result) > 0) {
-                                                while ($row2 = mysqli_fetch_assoc($shoot_e_m_result)) {
-                                                    $textShootTimeY = $row2['shootTime'];
-                                                    $textShootDateY = $row2['shootDate'];
-                                                    $textShootLocationY = $row2['shootLocation'];
-                                                    $textShootArtistY = $row2['shootArtistType'];
-                                                    $textShootPackageY = $row2['shootPackage'];
-                                                    ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php echo $textShootTimeY; ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textShootDateY ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textShootLocationY ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textShootArtistY ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textShootPackageY ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php }
-                                            } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <hr>
-                                    <?php
                                 }
+                                if ($_GET['location'] != '') {
+                                    $location = $_GET['location'];
+                                    if ($_GET['packages'] != '') {
+                                        $packages = $_GET['packages'];
+                                        $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location' AND shootPackage = '$packages'";
+                                    } else {
+                                        $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location'";
+                                    }
+                                } else {
+                                    if ($_GET['packages'] != '') {
+                                        $packages = $_GET['packages'];
+                                        $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootPackage = '$packages'";
+                                    } else {
+                                        $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'";
+                                    }
+                                }
+
+                                /*
+                                 * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
+                                 */?>
+                                
+                    <?php
                                 //Payments
+                                if ($_GET['payment'] === 'payment') {
                                     if ($_GET['payment'] === 'payment') {
-                                        var_dump($_GET['paymentDropDown']);
-                                            if(isset($_GET['paymentDropDown'])){
-                                                $paymentAmount = $_GET['paymentDropDown'];
-                                                if ($paymentAmount === '050') {
-                                                    
-                                                    $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 0.0 AND paymentTotal => 50.0";
+                                        if ($_GET['paymentDropDown'] != '') {
+                                            $paymentDd = $_GET['paymentDropDown'];
+                                            if ($paymentDd != '') {
+                                                if ($paymentDd === '050') {
 
-                                                } elseif ($paymentAmount === '51100') {
+                                                    $shoot_exception_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 0 AND paymentTotal => 50";
 
-                                                    $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 51 AND paymentTotal => 100";
+                                                } elseif ($paymentDd === '51100') {
 
-                                                } elseif ($paymentAmount === '101200') {
+                                                    $shoot_exception_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 51 AND paymentTotal => 100";
 
-                                                    $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 101 AND paymentTotal => 200";
+                                                } elseif ($paymentDd === '101200') {
 
-                                                } elseif ($paymentAmount === '201') {
+                                                    $shoot_exception_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 101 AND paymentTotal => 200";
 
-                                                    $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 201";
+                                                } elseif ($paymentDd === '201') {
+
+                                                    $shoot_exception_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal =< 201";
 
                                                 }
-                                        }else {
-                                                $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
+                                            } else {
+                                                $shoot_exception_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
                                             }
-
+                                            echo "<h5> Payments </h5>";
                                             /*
                                             * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current month for selected month
                                             */
-
-                                            ?>
-                                        <h5> Payments </h5>
-                                            <div class="table-wrapper">
-                                                <table class="alt">
-                                                    <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            Customer ID
-                                                        </th>
-                                                        <th>
-                                                            Payment Date
-                                                        </th>
-                                                        <th>
-                                                            Amount Paid
-                                                        </th>
-                                                    </tr>
-
-                                                    <?php $currentYear = date("Y");?>
-                                                    <?php
-                                                    $payment_e_m_result = mysqli_query($db, $payment_exception_m_query);
-                                                    var_dump($payment_e_m_result);
-                                                    if(mysqli_num_rows($payment_e_m_result)>0){
-                                                        while ($row2 = mysqli_fetch_assoc($payment_e_m_result)) {
-                                                            $textPaymentCustomerY = $row2['customerId'];
-                                                            $textPaymentDateY = $row2['paymentDate'];
-                                                            $textPaymentTotalY = $row2['paymentTotal'];
-                                                            ?>
-                                                            <tr>
-                                                                <td>
-                                                                    <?php echo $textPaymentCustomerY?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $textPaymentDateY?>
-                                                                </td>
-                                                                <td>
-                                                                    <?php echo $textPaymentTotalY?>
-                                                                </td>
-                                                            </tr>
-                                                        <?php }
-                                                    }?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <?php
-
+                                        }
                                     }
+                                }
                             }
                         }
                     }
 
-                            ?>
 
+                            ?>
+                    </div>
+                </div>
 
 
                 <br>
