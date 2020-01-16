@@ -76,9 +76,9 @@ $db = mysqli_connect('localhost','root','','photography');
 <!--                     Modal Caption (Image Text) -->
                     <div id="deleteButton">
                         <button id="deleteImg" value="deleteImg">Delete</button>
-
-                    <?php endif;?>
                     </div>
+                    <?php endif;?>
+
                 </div>
                     <?php
                     $categorySelected = '';
