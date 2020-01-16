@@ -89,7 +89,7 @@
                                                 </div>
                                                 <div id="radioRegistration" class="col-8 col-12-xsmall">
                                                      Registration Type: &nbsp; &nbsp;
-                                                    <input type="radio" name="registrationType" id="customer" value="customer">
+                                                    <input type="radio" name="registrationType" id="customer" value="customer" checked>
                                                     <label for="customer"> Customer </label>
 
                                                     <input type="radio" name="registrationType" id="model" value="model">
@@ -104,10 +104,18 @@
                                                             $('.genderChoice').remove();
                                                             var radioValue = $("input[name='registrationType']:checked").val();
                                                             if (radioValue === 'model') {
-                                                                alert('yo');
-                                                                $('#radioRegistration').append('<div class="genderChoice">Gender</div>');
+                                                                $('#radioRegistration').append('<div class="genderChoice">' +
+                                                                    ' Gender: &nbsp; &nbsp;\n' +
+                                                                    '                                    <input type="radio" name="gender" id="female" value="female" checked>\n' +
+                                                                    '                                    <label for="female"> Female </label>\n' +
+                                                                    '\n' +
+                                                                    '                                    <input type="radio" name="gender" id="male" value="male">\n' +
+                                                                    '                                    <label for="male"> Male </label>\n'+
+                                                                '\n' +
+                                                                '                                    <input type="radio" name="gender" id="other" value="other">\n' +
+                                                                '                                    <label for="other"> Other </label>\n'+ '</div>');
                                                             }
-                                                        }
+                                                        });
                                                      });
                                                 </script>
 												<!-- Break -->

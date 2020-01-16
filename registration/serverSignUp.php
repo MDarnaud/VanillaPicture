@@ -19,6 +19,20 @@ if (isset($_POST['reg_user'])) {
     $dob = mysqli_real_escape_string($db, $_POST['dob']);
     $country = mysqli_real_escape_string($db, $_POST['country']);
     $city = mysqli_real_escape_string($db, $_POST['city']);
+    $type = mysqli_real_escape_string($db, $_POST['registrationType']);
+    if($type === 'model') {
+        $gender = mysqli_real_escape_string($db, $_POST['gender']);
+        if($gender === 'female'){
+            $genderChar = 'F';
+        }
+        elseif ($gender === 'male'){
+            $genderChar = 'M';
+        }
+        elseif ($gender === 'other'){
+            $genderChar = 'O';
+        }
+    }
+    $currentDate = date("Y-m-d");
 
 
     // form validation: ensure that the form is correctly filled ...
@@ -31,6 +45,12 @@ if (isset($_POST['reg_user'])) {
     if (empty($dob)) { array_push($errors, "Date of Birth "); }
     if (empty($country)) { array_push($errors, "Country "); }
     if (empty($city)) { array_push($errors, "City "); }
+    if (empty($type)) { array_push($errors, "Registration Type "); }
+    if($type === 'model') {
+        if (empty($gender)) {
+            array_push($errors, "Gender ");
+        }
+    }
 
     // first check the database to make sure
     // a user does not already exist with the same username and/or email
@@ -50,16 +70,28 @@ if (isset($_POST['reg_user'])) {
         $salt = $email;
         $password = md5($salt.$password_1);//encrypt the password before saving in the database
 
-        //Insert the user information in the table all_user in the database
-        $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
-  			  VALUES('$email', '$password', 'customer' )";
-        mysqli_query($db, $queryUser);
+        if($type === 'customer'){
+            //Insert the user information in the table all_user in the database
+            $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
+                  VALUES('$email', '$password', 'customer' )";
+            mysqli_query($db, $queryUser);
 
-        $currentDate = date("Y-m-d");
-        //Insert the customer information in the table customer in the database
-        $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity, customerDate) 
+            //Insert the customer information in the table customer in the database
+            $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity, customerDate) 
   			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city','$currentDate')";
-        mysqli_query($db, $queryCustomer);
+            mysqli_query($db, $queryCustomer);
+
+        }elseif($type === 'model'){
+            //Insert the user information in the table all_user in the database
+            $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
+                  VALUES('$email', '$password', 'model' )";
+            mysqli_query($db, $queryUser);
+
+            //Insert the model information in the table model in the database
+            $queryCustomer = "INSERT INTO model (userId, modelFirstName, modelLastName, modelGender, modelDob, modelCountry, modelCity, modelDate) 
+  			  VALUES('$email', '$firstName', '$lastName', '$genderChar','$dob', '$country', '$city','$currentDate')";
+            mysqli_query($db, $queryCustomer);
+        }
 
         if (mysqli_affected_rows($db) >= 1) {
             $_SESSION['userNewAccount'] = $email;
