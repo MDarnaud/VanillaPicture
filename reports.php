@@ -1199,20 +1199,18 @@ $db = mysqli_connect('localhost','root','','photography');
                                         $location = $_GET['location'];
                                         if ($_GET['packages'] != '') {
                                             $packages = $_GET['packages'];
-                                            if ($_GET['paymentDropdown'] != '') {
-                                                //Add report
+
                                                 $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
-                                            } else {
-                                                $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
-                                            }
+
                                         } else {
                                             $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location'";
                                         }
-                                    } else {
-                                        if ($_GET['packages'] != '') {
+                                    } else if ($_GET['packages'] != '') {
                                             $packages = $_GET['packages'];
                                             $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootPackage = '$packages'";
-                                        }
+
+                                    }
+                                    else {
                                         $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
                                     }
                                     echo '<h5>Shoots</h5>';
