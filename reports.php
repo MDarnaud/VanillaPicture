@@ -672,9 +672,9 @@ $db = mysqli_connect('localhost','root','','photography');
                         <?php $currentYear = date("Y");?>
                         <?php
                         $payment_detail_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$currentYear'";
-                        $payment_d_y_result = mysqli_query($db, $shoot_detail_y_query);
-                        if(mysqli_num_rows($shoot_d_y_result)>0){
-                            while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
+                        $payment_d_y_result = mysqli_query($db, $payment_detail_y_query);
+                        if(mysqli_num_rows($payment_d_y_result)>0){
+                            while ($row2 = mysqli_fetch_assoc($payment_d_y_result)) {
                                 $textPaymentCustomerY = $row2['customerId'];
                                 $textPaymentDateY = $row2['paymentDate'];
                                 $textPaymentTotalY = $row2['paymentTotal'];

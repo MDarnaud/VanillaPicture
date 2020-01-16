@@ -104,7 +104,7 @@ $db = mysqli_connect('localhost','root','','photography');
                             $brandsName[] = $gallery['galleryBrand'];
                         }
 
-                        // Initialize column index
+                        // Initialize column indexx
                         $columnIndex = 1;
 
                         // Display images
