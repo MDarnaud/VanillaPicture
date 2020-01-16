@@ -8,7 +8,7 @@ echo '<header id="header" class="alt">
         <ul>
             <li class="current"><a href="./homepage.php">Home</a></li>
             <li>
-                    <li><a href="gallery.php">Gallery</a>
+                    <a href="gallery.php">Gallery</a>
             </li>';
 
             echo '<li><a href="./packages.php">Packages</a></li>

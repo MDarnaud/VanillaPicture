@@ -47,7 +47,7 @@ $db = mysqli_connect('localhost','root','','photography');
                         <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>
                         <div class="dropContents">
                         <ul class="dropotron level-0 right" style=" user-select:none; position:absolute; z-index:100000; opacity:1;margin-top: 0px;">
-                            <?php if(mysqli_num_rows($gallery_result_brand_name) > 0) { ?>
+                            <?php if(!mysqli_num_rows($gallery_result_brand_name) > 0) { ?>
                             <?php foreach($brandsChoices as $choiceBrand) : ?>
                                 <li style="cursor:pointer;padding-left:0px;"><button class="navdrop" onclick="location.href= './gallery.php?categorySelect=brands&brandsName=<?php echo $choiceBrand;?>'" style="box-shadow:none;white-space: nowrap; "><small style="color:white;"><?php echo $choiceBrand; ?></small></button></li>
                             <?php endforeach; ?>
@@ -76,9 +76,9 @@ $db = mysqli_connect('localhost','root','','photography');
 <!--                     Modal Caption (Image Text) -->
                     <div id="deleteButton">
                         <button id="deleteImg" value="deleteImg">Delete</button>
-
-                    <?php endif;?>
                     </div>
+                    <?php endif;?>
+
                 </div>
                     <?php
                     $categorySelected = '';
