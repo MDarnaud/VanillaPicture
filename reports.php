@@ -1571,7 +1571,7 @@ $db = mysqli_connect('localhost','root','','photography');
                         <!--Year or month dropdown-->
                     <br>
 
-<!--                Table choice-->
+<!--                Table choices-->
 
                 <?php
             }
