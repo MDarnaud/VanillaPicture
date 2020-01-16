@@ -81,7 +81,15 @@ $db = mysqli_connect('localhost','root','','photography');
                                         //Only administrator can modify annoucement
                                         if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'){
                                             $idLink = 'modifyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
-                                            echo '<br><a href='.$idLink.'> Modify </a>';
+                                            echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
+                                        }
+                                        else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){
+                                            $idLink = 'applyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
+                                            echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Apply </a>';
+                                        }
+                                        else{
+                                            $idLink = 'applyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
+                                            echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;">***If you wish to apply please <a class="linkHomeAnnouncement" href="./SignIn.php">sign up</a> as a "Model"</i>';
                                         }
                                         echo '</p>';
                                         $noElements = true;

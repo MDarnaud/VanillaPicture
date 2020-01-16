@@ -4527,3 +4527,9 @@ li button {
 .navdrop:hover{
 	background-color: rgba(129, 127, 125, 0.64);
 }
+
+/*Announcement Link Color*/
+.linkHomeAnnouncement{
+	color: cadetblue;
+	text-decoration: underline;
+}
