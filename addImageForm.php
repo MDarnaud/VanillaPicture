@@ -44,12 +44,15 @@
                                                     // connect to the database
                                                     $db = mysqli_connect('localhost','root','','photography');
 
-                                                $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery";
+                                                $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery WHERE galleryBrand IS NOT NULL";
                                                 $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
-                                                while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
-                                                    if($gallery_brand['galleryBrand'] != null)
-                                                    $brandsChoices[] = $gallery_brand['galleryBrand'];
+                                                if (mysqli_num_rows($gallery_result_brand_name) > 0) {
+                                                    while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
+//                                                        if ($gallery_brand['galleryBrand'] != null)
+                                                            $brandsChoices[] = $gallery_brand['galleryBrand'];
+                                                    }
                                                 }
+
                                                 ?>
 
                                                 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -62,10 +65,10 @@
                                                                      $('#dropdownCategory').append('<div class="dropdownBrandsDiv"><br>' +
                                                                          '<select name="brandsName" id="brandsName">' +
                                                                          '<option value=\'\' selected hidden>-Select a Brand-</option>' +
-                                                                         '<?php foreach($brandsChoices as $choiceBrand) : ?>\n' +
+                                                                         '<?php if (mysqli_num_rows($gallery_result_brand_name) > 0) {foreach($brandsChoices as $choiceBrand) : ?>\n' +
                                                                          '<option value="<?php echo $choiceBrand; ?>">\n' +
                                                                          '<?php echo $choiceBrand; ?>\n' +
-                                                                         '</option><?php endforeach; ?>\n' +
+                                                                         '</option><?php endforeach;} ?>\n' +
                                                                          '<option value="Other"> Other </option>' +
                                                                          '</select>' +
                                                                          '</div>');
