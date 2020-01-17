@@ -35,6 +35,9 @@ if (isset($_POST['sendMessage'])) {
         if (empty($message)) {
             array_push($errors, "Message ");
         }
+        if($errors != 0){
+            header('location: ./homepage.php?sendEmailHome=Please fill all fields.#getInTouch');
+        }
 
         $subject = "Vanilla Website - FAQ";
         //Put right link
