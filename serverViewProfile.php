@@ -62,7 +62,7 @@ if (isset($_POST['change_PW_User'])) {
             $queryPW = "UPDATE all_user SET userPassword='$newHashedPassword' WHERE userId='$email'";
             mysqli_query($db, $queryPW);
             if (mysqli_affected_rows($db) >= 1) {
-                header('location: ./viewProfile.php');
+                header('location: ./viewProfile.php?changePasswordMessage=Password successfully changed.#changePasswordTitle');
             }else{
                 header('location: ./viewProfile.php');
             }
@@ -70,11 +70,6 @@ if (isset($_POST['change_PW_User'])) {
         else{
             array_push($errors, "Valid Current Password ");
         }
-
-
-        //Check both password match
-        //Update password in database
-
     }
 
 
