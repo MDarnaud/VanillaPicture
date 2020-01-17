@@ -53,16 +53,38 @@ include 'sendEmailApplicationModel.php';
                                             $('.yesExperienceTextbox').remove();
                                             if(value == 'yes') {
                                                 $('#firstParagraphApply').append('<div class="yesExperienceTextbox"><br>' +
-                                                    'How many years of experience do you have?<br>' +
-                                                    '<input type="number" name="yearsExperience" id="yearsExperience" max="100" min="1">'+
+                                                    'How many year(s) of experience do you have?<br>' +
+                                                    '<input type="number" name="yearsExperience" id="yearsExperience" max="100" min="1" required oninvalid="setCustomValidity(\'A number of year(s) is required\')">'+
                                                     '</div>');
                                             }
                                         });
                                     });
                                 </script>
+<!--                                <script language='javascript' type='text/javascript'>-->
+<!--                                    function getRadioValue(theRadioGroup)-->
+<!--                                    {-->
+<!--                                        var elements = document.getElementsByName(theRadioGroup);-->
+<!--                                        for (var i = 0, l = elements.length; i < l; i++)-->
+<!--                                        {-->
+<!--                                            if (elements[i].checked)-->
+<!--                                            {-->
+<!--                                                return elements[i].value;-->
+<!--                                            }-->
+<!--                                        }-->
+<!--                                    }-->
+<!--                                    function check(input) {-->
+<!--                                        if (getRadioValue("experience") === 'yes') {-->
+<!--                                            if (input.value === "") {-->
+<!--                                                input.setCustomValidity('wrong.');-->
+<!--                                            }-->
+<!--                                        } else {-->
+<!--                                            input.setCustomValidity('right.');-->
+<!--                                        }-->
+<!--                                    }-->
+<!--                                </script>-->
                                 <div class="col-8 col-12-xsmall field"">
                                     Tell me a little about you...<br><small style="font-size:12px;"><i>(Why should I pick you, what characterizes you physically or you can give an example of a previous shoot.)</i></small><br>
-                                        <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+                                        <textarea name="message" id="message" rows="6" placeholder="Message" required oninvalid="setCustomValidity('A message is required')"></textarea>
                                 <input type="hidden" name="titleAnnouncement" id="titleAnnouncement" value="<?php echo $_GET['announcementTitle'];?>">
                                 </div>
                                 <!-- Break -->

@@ -105,7 +105,7 @@ if (isset($_POST['submit_application'])) {
                     echo "Mailer Error: " . $mail->ErrorInfo;
                 } else {
                     $_SESSION['userNewAccount'] = $email;
-                    header('location: ./homepage.php');
+//                    header('location: ./homepage.php');
 //                    header('location: ./homepage.php?sendEmail=Email successfully sent');
                 }
             } catch (\PHPMailer\PHPMailer\Exception $e) {
