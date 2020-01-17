@@ -1048,7 +1048,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                 </div>
                                 <br>
-                                <input type="submit" name="submit" id="submit" value="Submit">
+                                <input type="submit" class="primary" name="submit" id="submit" value="Submit">
                             </form>
                         </div>
                     </div>
