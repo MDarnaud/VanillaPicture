@@ -106,7 +106,9 @@ if (isset($_POST['submit_application'])) {
                 } else {
                     $_SESSION['userNewAccount'] = $email;
 //                    header('location: ./homepage.php');
-//                    header('location: ./homepage.php?sendEmail=Email successfully sent');
+                    header('location: ./homepage.php?sendEmailApplication=Email successfully send#announcementSection');
+
+
                 }
             } catch (\PHPMailer\PHPMailer\Exception $e) {
             }

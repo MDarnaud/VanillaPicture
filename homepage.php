@@ -70,8 +70,11 @@ $db = mysqli_connect('localhost','root','','photography');
                                         <div class="wrapper special">
                                             <div class="inner">
                                                 <header class="major">
-                                                    <h2>ANNOUNCEMENT</h2>
+                                                    <h2 id="announcementSection">ANNOUNCEMENT</h2>
                                                 </header>';
+                                if (isset($_GET['sendEmailApplication'])) {
+                                    echo $_GET['sendEmailApplication'];
+                                }
                                 $noElements = false;
                                 foreach ($resultPost as $eachPost) {
                                     //verify if end date is after now and start date is before now
@@ -105,7 +108,6 @@ $db = mysqli_connect('localhost','root','','photography');
                                         </div>';
                             }
                             ?>
-
 
 		
 
