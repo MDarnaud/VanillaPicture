@@ -37,7 +37,7 @@ if (isset($_POST['forgot_password'])) {
             array_push($errors, "Email does not exist. ");
         }
     } else {
-        if($user['userType']=='customer') {
+        if($user['userType'] !== 'administrator') {
             //send a new string password by mail
             //hash the string and save it as the password in the database
             //user enters new string password and can change their password

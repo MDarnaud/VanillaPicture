@@ -125,23 +125,27 @@ $db = mysqli_connect('localhost','root','','photography');
 						<header class="major">
 							<h2 id = "getInTouch">Get in touch</h2>
 							<p>Please fill out this form with your own information, to send an email to Sophie Perras.</p>
-						</header>
+						    <?php if(isset($_GET['sendEmailHome'])){
+						        echo $_GET['sendEmailHome'];
+                            }?>
+                        </header>
 						<div class="content">
 							<div class="form">
-								<form method="post" action="#">
+								<form method="post" action="./sendEmailHomePage.php">
 									<div class="fields">
 										<div class="field half">
 											<input name="name" id="name" placeholder="Name" type="text" />
 										</div>
 										<div class="field half">
-											<input name="email" id="email" placeholder="Email" type="email" />
+											<input name="email" id="email" placeholder="Email" type="email"
+                                                <?php if(isset($_SESSION['userSignIn'])){echo 'value="'.$_SESSION['userSignIn'].'"';}?>/>
 										</div>
 										<div class="field">
 											<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
 										</div>
 									</div>
 									<ul class="actions special">
-										<li><input type="button" class="button" value="Send Message" /></li>
+										<li><input type="submit" name="sendMessage" class="button" value="sendMessage" /></li>
 									</ul>
 								</form>
 							</div>

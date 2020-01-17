@@ -6,6 +6,7 @@ if (isset($_SESSION['userSignIn'])) {
     if (isset($_POST['signOut_user'])) {
     unset($_SESSION['userSendEmail']);
     unset($_SESSION['userSignIn']);
+    unset($_SESSION['userTypeSignIn']);
     header('location: ./homepage.php');
 }
 }else{
