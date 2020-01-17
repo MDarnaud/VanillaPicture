@@ -67,13 +67,13 @@ if (isset($_POST['submit_application'])) {
             $name = $nameValue['modelFirstName'] . ' ' . $nameValue['modelLastName'];
             $subject = "Vanilla Website - Model " . $name;
             //Put right link
-            $message = 'My name is <strong>' . $name . ',</strong><br>' . 'I applied on Vanilla Picture website for the announcement <b>"' . $titleAnnouncement . '"</b>. Here are the answers to my application: <br>'
+            $message = '<strong>' . $name . '</strong> has applied to the announcement <b>"' . $titleAnnouncement . '" on Vanilla Picture website. <br> </b>. Here are the answers to his/her application: <br>'
                 . '<ul>
                 <li>Do you have experience? <strong>' . $experience . '</strong></li>
                 <li>Years of experience: <b>' . $years . '</b></li>
                 <li>Message : <b>'.$message.'</b></li>
               </ul><br>'. '<br>' .
-                ' If you desire more informations or my CV, contact me with <b>'.$email.'</b><br>Thank you, <br>' . $name;
+                ' If you wish to contact this potentiel model, do so via <b>'.$email.'</b>';
 
 
             $mail = new PHPMailer(true);

@@ -59,6 +59,10 @@ $modifPost = mysqli_fetch_assoc($modif_result);
                                 <p>End date</p>
                                 <input type="date" name="endDate" id="endDate" value="<?php echo $modifPost['announcementEndDate']?>" placeholder="End Date" required/>
                             </div>
+                            <div class="col-8 col-12-xsmall">
+                                    <br><input type="checkbox" name="modelPost" id="modelPost" value="modelPost" class="elementsTable" <?php if($modifPost['announcement'] === '1'){ echo 'required';}?>>
+                                    <label for="modelPost"> Yes, this announcement is a model search.</label>
+                            </div>
                             <!-- Break -->
                             <div class="col-12">
                                 <ul class="actions">

@@ -26,7 +26,7 @@
                         <div style="margin:auto">
                             <div class="row gtr-200">
                                 <!-- Form -->
-                                <form method="post" action="posting.php">
+                                <form method="post" action="announcement.php">
                                     <div class="row gtr-uniform">
                                         <div class="col-8 col-12-xsmall">
                                             <input type="text" name="title" id="title" value="" placeholder="Title" maxlength="50" required/>
@@ -41,6 +41,10 @@
                                         <div class="col-8 col-12-xsmall">
                                             <p>End date</p>
                                             <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required/>
+                                        </div>
+                                        <div class="col-8 col-12-xsmall">
+                                            <br><input type="checkbox" name="modelPost" id="modelPost" value="modelPost" class="elementsTable">
+                                            <label for="modelPost"> Yes, this announcement is a model search.</label>
                                         </div>
                                         <!-- Break -->
                                         <div class="col-12">
