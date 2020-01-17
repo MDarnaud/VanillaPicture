@@ -84,12 +84,12 @@ $db = mysqli_connect('localhost','root','','photography');
                                             echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                                         }
                                         else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){
-                                            $idLink = 'applyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
+                                            $idLink = 'applyAnnouncementForm.php?announcementId='.$eachPost['announcementId'].'&announcementTitle='.$eachPost['announcementTitle'];
                                             echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Apply </a>';
                                         }
                                         else{
                                             $idLink = 'applyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
-                                            echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;">***If you wish to apply please <a class="linkHomeAnnouncement" href="./SignIn.php">sign up</a> as a "Model"</i>';
+                                            echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;">***If you wish to apply please <a class="linkHomeAnnouncement" href="../registration/register.php">sign up</a> as a "Model"</i>';
                                         }
                                         echo '</p>';
                                         $noElements = true;

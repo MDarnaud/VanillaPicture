@@ -29,7 +29,7 @@
 												<div class="col-12 col-12-xsmall">
 													<input type="text" name="announcementTitle" id="announcementTitle" value="" placeholder="Announcement Title" />
 												</div>
-												<div class="col-12">
+												<div class="col-12 field">
 													<textarea name="demo-textarea" id="demo-textarea" placeholder="Announcement Details" rows="6"></textarea>
 												</div>
 												<!-- Break -->
