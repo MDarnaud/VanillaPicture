@@ -1525,64 +1525,65 @@ $db = mysqli_connect('localhost','root','','photography');
                                      * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
                                      */ ?>
                                     <div class="table-wrapper">
-                                    <table class="alt">
-                                    <tbody>
-                                    <tr>
-                                        <th>
-                                            Time
-                                        </th>
-                                        <th>
-                                            Date
-                                        </th>
-                                        <th>
-                                            Location
-                                        </th>
-                                        <th>
-                                            Artists
-                                        </th>
-                                        <th>
-                                            Package
-                                        </th>
-                                    </tr>
+                                        <table class="alt">
+                                            <tbody>
+                                            <tr>
+                                                <th>
+                                                    Time
+                                                </th>
+                                                <th>
+                                                    Date
+                                                </th>
+                                                <th>
+                                                    Location
+                                                </th>
+                                                <th>
+                                                    Artists
+                                                </th>
+                                                <th>
+                                                    Package
+                                                </th>
+                                            </tr>
+
+                                            <?php
+
+                                            $currentYear = date("Y");
+
+                                            $shoot_e_m_result = mysqli_query($db, $shoot_exception_m_query);
+                                            if (mysqli_num_rows($shoot_e_m_result) > 0) {
+                                                while ($row2 = mysqli_fetch_assoc($shoot_e_m_result)) {
+                                                    $textShootTimeY = $row2['shootTime'];
+                                                    $textShootDateY = $row2['shootDate'];
+                                                    $textShootLocationY = $row2['shootLocation'];
+                                                    $textShootArtistY = $row2['shootArtistType'];
+                                                    $textShootPackageY = $row2['shootPackage'];
+                                                    ?>
+                                                    <tr>
+                                                        <td>
+                                                            <?php echo $textShootTimeY; ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootDateY ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootLocationY ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootArtistY ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo $textShootPackageY ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php }
+                                            } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <hr>
 
                                     <?php
                                 }
-                                        $currentYear = date("Y");
-
-                                        $shoot_e_m_result = mysqli_query($db, $shoot_exception_m_query);
-                                        if (mysqli_num_rows($shoot_e_m_result) > 0) {
-                                            while ($row2 = mysqli_fetch_assoc($shoot_e_m_result)) {
-                                                $textShootTimeY = $row2['shootTime'];
-                                                $textShootDateY = $row2['shootDate'];
-                                                $textShootLocationY = $row2['shootLocation'];
-                                                $textShootArtistY = $row2['shootArtistType'];
-                                                $textShootPackageY = $row2['shootPackage'];
-                                                ?>
-                                                <tr>
-                                                    <td>
-                                                        <?php echo $textShootTimeY; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $textShootDateY ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $textShootLocationY ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $textShootArtistY ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php echo $textShootPackageY ?>
-                                                    </td>
-                                                </tr>
-                                            <?php }
-                                        } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <hr>
-                                
-                    <?php
                                 //Payments
                                 if ($_GET['payment'] === 'payment') {
                                     if ($_GET['payment'] === 'payment') {
