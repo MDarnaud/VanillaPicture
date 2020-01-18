@@ -46,19 +46,36 @@ $modifPost = mysqli_fetch_assoc($modif_result);
                         <div class="row gtr-uniform">
                             <div class="col-8 col-12-xsmall">
                                 <input type="hidden" name="id" id="id" value="<?php echo $modifPost['announcementId']?>"/>
-                                <input type="text" name="title" id="title" value="<?php echo $modifPost['announcementTitle']?>" placeholder="Title" maxlength="50" required/>
+                                <input type="text" name="title" id="title" value="<?php echo $modifPost['announcementTitle']?>" placeholder="Title" maxlength="50" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')/>
                             </div>
                             <div class="col-8 col-12-xsmall">
-                                <textarea name="detail" id="detail" placeholder="Announcement Detail" maxlength="300" style="height:150px;weight:100px" required><?php echo $modifPost['announcementDetail']?></textarea>
+                                <textarea name="detail" id="detail" placeholder="Announcement Detail" maxlength="300" style="height:150px;weight:100px" required oninvalid="setCustomValidity('Details is invalid')" oninput="setCustomValidity('')></textarea>
                             </div>
                             <div class="col-8 col-12-xsmall">
                                 <p>Start date</p>
-                                <input type="date" name="startDate" id="startDate" value="<?php echo $modifPost['announcementStartDate']?>" placeholder="Start Date" required/>
+                                <input type="date" name="startDate" id="startDate" value="" placeholder="Start Date" required/>
                             </div>
                             <div class="col-8 col-12-xsmall">
                                 <p>End date</p>
-                                <input type="date" name="endDate" id="endDate" value="<?php echo $modifPost['announcementEndDate']?>" placeholder="End Date" required/>
+                                <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required oninput="check(this)"/>
                             </div>
+                            <script language='javascript' type='text/javascript'>
+                                function check(input) {
+                                    if (!(input.value > document.getElementById('startDate').value)) {
+                                        input.setCustomValidity('End Date is before the start date.');
+                                    } else {
+                                        // input is valid -- reset the error message
+                                        input.setCustomValidity('');
+                                    }
+
+                                    if (!(input.value > new Date())) {
+                                        input.setCustomValidity('End Date is before today\'s date.');
+                                    } else {
+                                        // input is valid -- reset the error message
+                                        input.setCustomValidity('');
+                                    }
+                                }
+                            </script>
                             <div class="col-8 col-12-xsmall">
                                     <br><input type="checkbox" name="modelPost" id="modelPost" value="modelPost" class="elementsTable" <?php if($modifPost['announcementModel'] === '1'){ echo 'checked';}?>>
                                     <label for="modelPost"> Yes, this announcement is a model search.</label>

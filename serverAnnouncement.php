@@ -57,43 +57,15 @@ if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) 
 if (isset($_POST['submit_announcement'])) {
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
-    //Insert the announcement information in the table announcement in the database
+        //Insert the announcement information in the table announcement in the database
         $queryAnnouncement = "INSERT INTO announcement (announcementTitle, announcementDetail, announcementStartDate, announcementEndDate, announcementModel) 
   			  VALUES('$title', '$detail', '$startDate', '$endDate', '$modelSearch')";
         mysqli_query($db, $queryAnnouncement);
 
         if (mysqli_affected_rows($db) >= 1) {
-//            if(isset($_COOKIE['title'])){
-//                unset($_COOKIE["title"]);
-//                setcookie("title", '', time() - 3600);
-//            }
-//            if(isset($_COOKIE['details'])){
-//                unset($_COOKIE["details"]);
-//                setcookie("details", '', time() - 3600);
-//            }
-//            if(isset($_COOKIE['startDate'])){
-//                unset($_COOKIE["startDate"]);
-//                setcookie("startDate", '', time() - 3600);
-//            }
-//            if(isset($_COOKIE['endDate'])){
-//                unset($_COOKIE["endDate"]);
-//                setcookie("endDate", '', time() - 3600);
-//            }
-//            if(isset($_COOKIE['modelSearch'])){
-//                unset($_COOKIE["modelSearch"]);
-//                setcookie("modelSearch", '', time() - 3600);
-//            }
-            array_push($postAnnouncement, " Announcement \" ".$title." \"is saved");
+            array_push($postAnnouncement, " Announcement \" " . $title . " \"is saved");
         }
-    }else{
-//        //Cookies
-//        setcookie("title", $title, time()+(12000));
-//        setcookie("details", $detail, time()+(12000));
-//        setcookie("startDate", $startDate, time()+(12000));
-//        setcookie("endDate", $endDate, time()+(12000));
-//        setcookie("modelSearch", $modelSearch, time()+(12000));
-//        header("location: ./announcement.php");
- }
+    }
 }
 
 if(isset($_POST['update_announcement'])){
@@ -106,10 +78,7 @@ if(isset($_POST['update_announcement'])){
         mysqli_query($db, $queryAnnouncement);
 
         if (mysqli_affected_rows($db) >= 1) {
-            header("location: ./homepage.php");
+            header("location: ./homepage.php#announcementSection");
         }
     }
-    else{
-            header("location: ./announcement.php?titleError=".$title."&detailsError=".$detail."&startDateError=".$startDate."&endDateError=".$endDate."&modelSearchError=".$modelSearch."");
-        }
 }

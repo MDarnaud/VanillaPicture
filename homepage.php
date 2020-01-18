@@ -134,21 +134,23 @@ $db = mysqli_connect('localhost','root','','photography');
 								<form method="post" action="./sendEmailHomePage.php">
 									<div class="fields">
 										<div class="field half">
+                                            <h5 class="TitleForm">Name:</h5>
 											<input name="name" id="name" placeholder="Name" type="text" required oninvalid="setCustomValidity('Name is invalid')" oninput="setCustomValidity('')"/>
 										</div>
 										<div class="field half">
+                                            <h5 class="TitleForm">Email:</h5>
 											<input name="email" id="email" placeholder="Email" type="email"
                                                 <?php if(isset($_SESSION['userSignIn'])){echo 'value="'.$_SESSION['userSignIn'].'"';}?>
                                                    required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
 										</div>
 										<div class="field">
+                                            <h5 class="TitleForm">Message:</h5>
 											<textarea name="message" id="message" rows="6" placeholder="Message"
-                                                required oninvalid="setCustomValidity('Message is invalid')" oninput="setCustomValidity('')">
-                                            </textarea>
+                                                required oninvalid="setCustomValidity('Message is invalid')" oninput="setCustomValidity('')"></textarea>
 										</div>
 									</div>
 									<ul class="actions special">
-										<li><input type="submit" name="sendMessage" class="button" value="sendMessage" /></li>
+										<li><input type="submit" class="primary" name="sendMessage" class="button" value="sendMessage" /></li>
 									</ul>
 								</form>
 							</div>
