@@ -29,22 +29,41 @@
                                 <form method="post" action="announcement.php">
                                     <div class="row gtr-uniform">
                                         <div class="col-8 col-12-xsmall">
-                                            <input type="text" name="title" id="title" value="" placeholder="Title" maxlength="50" required/>
+                                            <h5 class="TitleForm">Title:</h5>
+                                            <input type="text" name="title" id="title" value="" placeholder="Title" maxlength="50" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
                                         </div>
                                         <div class="col-8 col-12-xsmall">
-                                            <textarea name="detail" id="detail" value="" placeholder="Announcement Detail" maxlength="300" style="height:150px;weight:100px" required></textarea>
+                                            <h5 class="TitleForm">Details:</h5>
+                                            <textarea name="detail" id="detail" value="" placeholder="Announcement Details" maxlength="300" style="height:150px;weight:100px" required oninvalid="setCustomValidity('Details is invalid')" oninput="setCustomValidity('')"></textarea>
                                         </div>
                                         <div class="col-8 col-12-xsmall">
-                                            <p>Start date</p>
-                                            <input type="date" name="startDate" id="startDate" value="" placeholder="Start Date" required/>
+                                            <h5 class="TitleForm">Start date:</h5>
+                                            <input type="date" name="startDate" id="startDate" value="" placeholder="Start Date" required "/>
                                         </div>
                                         <div class="col-8 col-12-xsmall">
-                                            <p>End date</p>
-                                            <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required/>
+                                            <h5 class="TitleForm">End date:</h5>
+                                            <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required oninput="check(this)"/>
+                                            <script language='javascript' type='text/javascript'>
+                                                function check(input) {
+                                                    if (!(input.value > document.getElementById('startDate').value)) {
+                                                        input.setCustomValidity('End Date is before the start date.');
+                                                    } else {
+                                                        // input is valid -- reset the error message
+                                                        input.setCustomValidity('');
+                                                    }
+
+                                                    if (!(input.value > new Date())) {
+                                                        input.setCustomValidity('End Date is before today\'s date.');
+                                                    } else {
+                                                        // input is valid -- reset the error message
+                                                        input.setCustomValidity('');
+                                                    }
+                                                }
+                                            </script>
                                         </div>
                                         <div class="col-8 col-12-xsmall">
                                             <br><input type="checkbox" name="modelPost" id="modelPost" value="modelPost" class="elementsTable">
-                                            <label for="modelPost"> Yes, this announcement is a model search.</label>
+                                            <label for="modelPost"> <h5 class="TitleForm">Yes, this announcement is a model search.</h5></label>
                                         </div>
                                         <!-- Break -->
                                         <div class="col-12">
