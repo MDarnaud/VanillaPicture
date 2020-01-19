@@ -64,7 +64,7 @@ include 'sendEmailApplicationModel.php';
 
                                 <div class="col-8 col-12-xsmall field"">
                                     Tell me a little about you...<br><small style="font-size:12px;"><i>(Why should I pick you, what characterizes you physically or you can give an example of a previous shoot.)</i></small><br>
-                                        <textarea name="message" id="message" rows="12" placeholder="Message" required oninvalid="setCustomValidity('A message is required')" oninput="setCustomValidity('')"></textarea>
+                                        <textarea name="message" id="message" title="Please fill out this field."rows="12" placeholder="Message" required oninvalid="setCustomValidity('A message is required')" oninput="setCustomValidity('')"></textarea>
                                 <input type="hidden" name="titleAnnouncement" id="titleAnnouncement" value="<?php echo $_GET['announcementTitle'];?>">
                                 </div>
                                 <!-- Break -->
