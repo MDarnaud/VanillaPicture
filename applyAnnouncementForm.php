@@ -39,7 +39,7 @@ include 'sendEmailApplicationModel.php';
                         <form method="post" action="<?php echo $linkAnnouncement;?>">
                             <div class="row gtr-uniform">
                                 <div class="col-8 col-12-xsmall" id="firstParagraphApply">
-                                    Do you have past experience as a model?<br>
+                                    <h5 class="TitleForm">Do you have past experience as a model?</h5>
                                         <input type="radio" name="experience" id="yes" value="yes">
                                         <label for="yes"> Yes </label>
                                         <input type="radio" name="experience" id="no" value="no" checked>
@@ -54,7 +54,7 @@ include 'sendEmailApplicationModel.php';
                                             $('.yesExperienceTextbox').remove();
                                             if(value == 'yes') {
                                                 $('#firstParagraphApply').append('<div class="yesExperienceTextbox"><br>' +
-                                                    'How many year(s) of experience do you have?<br>' +
+                                                    '<h5 class="TitleForm">How many year(s) of experience do you have?</h5>' +
                                                     '<input type="number" name="yearsExperience" id="yearsExperience" max="100" min="1" required oninvalid="setCustomValidity(\'A number of year(s) is required\')" oninput="setCustomValidity(\'\')">'+
                                                     '</div>');
                                             }
@@ -63,7 +63,7 @@ include 'sendEmailApplicationModel.php';
                                 </script>
 
                                 <div class="col-8 col-12-xsmall field"">
-                                    Tell me a little about you...<br><small style="font-size:12px;"><i>(Why should I pick you, what characterizes you physically or you can give an example of a previous shoot.)</i></small><br>
+                                <h5 class="TitleForm">Tell me a little about you...</h5><small style="font-size:12px;"><i>(Why should I pick you, what characterizes you physically or you can give an example of a previous shoot.)</i></small><br>
                                         <textarea name="message" id="message" title="Please fill out this field."rows="12" placeholder="Message" required oninvalid="setCustomValidity('A message is required')" oninput="setCustomValidity('')"></textarea>
                                 <input type="hidden" name="titleAnnouncement" id="titleAnnouncement" value="<?php echo $_GET['announcementTitle'];?>">
                                 </div>
