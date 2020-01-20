@@ -15,7 +15,7 @@ $path = mysqli_fetch_assoc($result);
 $path_announcement_query = "DELETE FROM announcement WHERE announcementId = '$annId'";
 mysqli_query($db, $path_announcement_query);
 
-//header('location: ./homepage.php?DeleteMessage=The announcement "'.$path['announcementTitle'].'"has been deleted#announcementSection');
+header('location: ./homepage.php?DeleteMessage=The announcement "'.$path['announcementTitle'].'"has been deleted#announcementSection');
 ?>
 
 

@@ -27,7 +27,7 @@ echo '<header id="header" class="alt">
                             <ul>
                                 <li><a class="navdrop" href="./announcement.php" style="color:white;">Announcement</a></li>
                                  <li><a class="navdrop" href="" style="color:white;">Review</a></li>
-                                <li><a class="navdrop" href="./reports.php" style="color:white;">Reports</a></li>
+                                <li><a class="navdrop" href="./reportsSummary.php" style="color:white;">Reports</a></li>
                             </ul>
                           </li>';
                 endif;

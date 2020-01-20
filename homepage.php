@@ -75,6 +75,9 @@ if ($resultPost) { // if user exists
     if (isset($_GET['sendEmailApplication'])) {
         echo $_GET['sendEmailApplication'];
     }
+    if(isset($_GET['DeleteMessage'])){
+        echo $_GET['DeleteMessage'];
+    }
     $noElements = false;
     foreach ($resultPost as $eachPost) {
         //verify if end date is after now and start date is before now
