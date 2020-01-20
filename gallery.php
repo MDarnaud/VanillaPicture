@@ -75,7 +75,7 @@ $db = mysqli_connect('localhost','root','','photography');
                     <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
 <!--                     Modal Caption (Image Text) -->
                     <div id="deleteButton">
-                        <button id="deleteImg" value="deleteImg">Delete</button>
+                        <button style="border:1px solid white; color:white;" class="reset" value="deleteImg">Delete</button>
                     </div>
                     <?php endif;?>
 

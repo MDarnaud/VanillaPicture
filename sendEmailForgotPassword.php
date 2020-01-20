@@ -37,15 +37,22 @@ if (isset($_POST['forgot_password'])) {
             array_push($errors, "Email does not exist. ");
         }
     } else {
-        if($user['userType']=='customer') {
+        if($user['userType'] !== 'administrator') {
             //send a new string password by mail
             //hash the string and save it as the password in the database
             //user enters new string password and can change their password
 
             // Retrieve the name associated with the email address
-            $name_check_query = "SELECT * FROM customer WHERE userId='$email'";
-            $resultName = mysqli_query($db, $name_check_query);
-            $nameValue = mysqli_fetch_assoc($resultName);
+            $name_check_query_customer = "SELECT * FROM customer WHERE userId='$email'";
+            $resultNameCustomer = mysqli_query($db, $name_check_query_customer);
+            if(mysqli_num_rows($resultNameCustomer)>0){
+                $nameValueCustomer = mysqli_fetch_assoc($resultNameCustomer);
+            }else{
+                $name_check_query_model = "SELECT * FROM model WHERE userId='$email'";
+                $resultNameModel = mysqli_query($db, $name_check_query_model);
+                $nameValueModel = mysqli_fetch_assoc($resultNameModel);
+            }
+
 
             // Generate a new password
             function randomPassword()
@@ -72,8 +79,11 @@ if (isset($_POST['forgot_password'])) {
             $queryPassword = "UPDATE all_user SET userPassword='$newHashedPasswordDb' WHERE userId='$email'";
             mysqli_query($db, $queryPassword);
 
-
-            $name = $nameValue['customerFirstName'] . ' ' . $nameValue['customerLastName'];
+            if(mysqli_num_rows($resultNameCustomer)>0) {
+                $name = $nameValueCustomer['customerFirstName'] . ' ' . $nameValueCustomer['customerLastName'];
+            }else{
+                $name = $nameValueModel['modelFirstName'] . ' ' . $nameValueModel['modelLastName'];
+            }
             $subject = "Forgot your password for Vanilla Picture";
             //Put right link
             $message = '<strong>Dear ' . $name . ',</strong><br>' . 'You recently requested a new password for Vanilla Picture website. Your new password is <strong>' . $newPassword . '</strong>.<br>' .
@@ -121,4 +131,5 @@ if (isset($_POST['forgot_password'])) {
         }
     }
 }
+
 

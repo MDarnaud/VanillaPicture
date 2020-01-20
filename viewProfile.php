@@ -40,11 +40,20 @@ include './serverViewProfile.php'
                                     $resultUser = mysqli_query($db, $user_check_query);
                                     $user = mysqli_fetch_assoc($resultUser);
 
-                                    $customer_check_query = "SELECT * FROM customer WHERE userId='$email'";
-                                    $resultCustomer = mysqli_query($db, $customer_check_query);
-                                    $customer = mysqli_fetch_assoc($resultCustomer);
+                                    if($user['userType'] === 'customer') {
+                                        $customer_check_query = "SELECT * FROM customer WHERE userId='$email'";
+                                        $resultCustomer = mysqli_query($db, $customer_check_query);
+                                        $customer = mysqli_fetch_assoc($resultCustomer);
+                                    }
+                                    elseif($user['userType'] === 'model'){
+                                        $model_check_query = "SELECT * FROM model WHERE userId='$email'";
+                                        $resultModel = mysqli_query($db, $model_check_query);
+                                        $model = mysqli_fetch_assoc($resultModel);
+                                    }
+
                                     ?>
 
+                                    <?php if($user['userType'] === 'model' || $user['userType'] === 'customer'){?>
 									<!-- Form -->
 										<form method="post" action="./viewProfile.php">
 											<div class="row gtr-uniform">
@@ -55,23 +64,37 @@ include './serverViewProfile.php'
                                                     <p><strong>Email :</strong>&nbsp; &nbsp;<?php echo $user['userId']; ?></p>
                                                 </div>
 												<div class="col-12 col-12-xsmall">
-                                                    <p><strong>Name :</strong>&nbsp; &nbsp;<?php echo $customer['customerFirstName'].' '.$customer['customerLastName']  ?></p>
+                                                    <p><strong>Name :</strong>&nbsp; &nbsp;<?php if($user['userType'] === 'customer'){echo $customer['customerFirstName'].' '.$customer['customerLastName'];}
+                                                    elseif($user['userType'] === 'model'){echo $model['modelFirstName'].' '.$model['modelLastName'];}?></p>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
-                                                    <p><strong>Date of Birth :</strong>&nbsp; &nbsp;<?php echo $customer['customerDob']  ?></p>
+                                                    <p><strong>Date of Birth :</strong>&nbsp; &nbsp;<?php if($user['userType'] === 'customer'){echo $customer['customerDob']; }
+                                                    elseif($user['userType'] === 'model'){echo $model['modelDob']; }?></p>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <p><strong>Country :</strong>&nbsp; &nbsp;
-                                                        <select name="country" id="country">
+                                                        <select name="country" id="country" title="Country">
+                                                            <option value="" selected hidden>-Select Country-</option>
                                                             <?php
                                                                 foreach($countries as $key => $value) {
-                                                                    if ($customer['customerCountry'] == $key):
-                                                                        ?>
-                                                                        <option value="<?= $key ?>"
-                                                                                title="<?= htmlspecialchars($value) ?>"
-                                                                                selected><?= htmlspecialchars($value) ?></option>
-                                                                    <?php
-                                                                    endif;
+                                                                    if($user['userType'] === 'customer') {
+                                                                        if ($customer['customerCountry'] == $key) {
+                                                                            ?>
+                                                                            <option value="<?= $key ?>"
+                                                                                    title="<?= htmlspecialchars($value) ?>"
+                                                                                    selected><?= htmlspecialchars($value) ?></option>
+                                                                            <?php
+                                                                        }
+                                                                    }
+                                                                    elseif($user['userType'] === 'model') {
+                                                                        if ($model['modelCountry'] == $key) {
+                                                                            ?>
+                                                                            <option value="<?= $key ?>"
+                                                                                    title="<?= htmlspecialchars($value) ?>"
+                                                                                    selected><?= htmlspecialchars($value) ?></option>
+                                                                            <?php
+                                                                        }
+                                                                    }
                                                                 }
                                                             ?>
 
@@ -86,7 +109,8 @@ include './serverViewProfile.php'
                                                     </p>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
-                                                    <p><strong>City :</strong>&nbsp; &nbsp; <input type="text" name="city" id="city" value=<?= $customer['customerCity'] ?> placeholder="City" required/><br></p>
+                                                    <p><strong>City :</strong>&nbsp; &nbsp; <input type="text" name="city" id="city" value=<?php if($user['userType'] === 'customer'){ echo $customer['customerCity'];}
+                                                        elseif($user['userType'] === 'model'){ echo $model['modelCity'];}?> title="City" placeholder="City" required/><br></p>
                                                 </div>
                                                 <!-- Break -->
                                                 <div class="col-12">
@@ -103,6 +127,17 @@ include './serverViewProfile.php'
                                             </div>
                                         </form>
 
+                                    <?php }else{ ?>
+                                    <div class="row gtr-uniform">
+                                        <div class="col-8 col-12-xsmall">
+                                            <h3>Profile</h3>
+                                            <div class="col-12 col-12-xsmall">
+                                                <p><strong>Email :</strong>&nbsp; &nbsp;<?php echo $user['userId']; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                            <?php }?>
+
 
 
 
@@ -110,18 +145,19 @@ include './serverViewProfile.php'
                                     <form method="post" action="./viewProfile.php">
                                         <div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall">
-                                                    <h3><br><br>Change password</h3>
+                                                    <h3 id="changePasswordTitle"><br><br>Change password</h3>
                                                     <p><?php include('./registration/errorssignup.php');?></p>
+                                                    <p><?php if(isset($_GET['changePasswordMessage'])){echo $_GET['changePasswordMessage'];}?></p>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <p><strong>Current Password : </strong>&nbsp; &nbsp; <input type="password" name="password_current" id="password_current" value="" placeholder="Current Password"
-                                                                                                        />
+                                                    title="Current Password""/>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <p><strong>Password : </strong>&nbsp; &nbsp; <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                                                                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                                                                                 title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
-                                                                                                                />
+                                                                                                        required oninvalid="setCustomValidity('New password is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <p><strong>Confirm Password :</strong>&nbsp; &nbsp;
@@ -147,12 +183,6 @@ include './serverViewProfile.php'
                                             <div class="col-12">
                                                 <ul class="actions">
                                                     <li><button type="submit" value="Change_PW" class="primary" name="change_PW_User">Change Password</button></li>
-                                                    <li><button type="reset" value="Cancel" onclick="goHome()">Cancel</button></li>
-                                                    <script language='javascript' type='text/javascript'>
-                                                        function goHome() {
-                                                            window.location.href='./homepage.php';
-                                                        }
-                                                    </script>
                                                 </ul>
                                             </div>
                                         </div>

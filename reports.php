@@ -974,7 +974,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                                 if (radioValue == 'year') {
                                                     $('.formDivision').append('<div class="dropdownPeriod"><strong> Year: </strong>&nbsp; &nbsp;</div>');
                                                     $('.formDivision').append('<div class="dropdownPeriod"><?php $years = range(2000, strftime("%Y", time())); ?>\n' +
-                                                        '<select name="dropdownYear" id="dropdownYear">\n' +
+                                                        '<select name="dropdownYear" id="dropdownYear" required oninvalid="setCustomValidity(\'Year is required\')" oninput="setCustomValidity(\'\')">\n' +
                                                         '<option value="">Select Year</option>\n' +
                                                         '<?php foreach($years as $year) : ?>\n' +
                                                         '<option value="<?php echo $year; ?>">\n' +
@@ -1048,7 +1048,7 @@ $db = mysqli_connect('localhost','root','','photography');
 
                                 </div>
                                 <br>
-                                <input type="submit" name="submit" id="submit" value="Submit">
+                                <input type="submit" class="primary" name="submit" id="submit" value="Submit">
                             </form>
                         </div>
                     </div>

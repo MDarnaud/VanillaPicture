@@ -18,6 +18,15 @@ if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) 
     $detail = mysqli_real_escape_string($db, $_POST['detail']);
     $startDate = mysqli_real_escape_string($db, $_POST['startDate']);
     $endDate = mysqli_real_escape_string($db, $_POST['endDate']);
+    if(isset( $_POST['modelPost'])){
+        $modelSearch = mysqli_real_escape_string($db, $_POST['modelPost']);
+        if($modelSearch === 'modelPost'){
+            $modelSearch = 1;
+        }
+    }else{
+        $modelSearch = 0;
+    }
+
 
 
     // form validation: ensure that the form is correctly filled ...
@@ -39,27 +48,22 @@ if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) 
     if (!(strtotime($endDate) > strtotime($startDate))) {
         array_push($errorsDate, " End Date is before the start date.");
     }
-
-    //verify if end date is after start date
-    if (!(strtotime($endDate) > strtotime($startDate))) {
-        array_push($errorsDate, " End Date is before the start date.");
-    }
     //verify if end date is before now
     if (!(strtotime($endDate) > strtotime('now'))) {
         array_push($errorsDate, " End Date is before today's date.");
     }
 }
 
-    if (isset($_POST['submit_announcement'])) {
+if (isset($_POST['submit_announcement'])) {
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
-    //Insert the announcement information in the table announcement in the database
-        $queryAnnouncement = "INSERT INTO announcement (announcementTitle, announcementDetail, announcementStartDate, announcementEndDate) 
-  			  VALUES('$title', '$detail', '$startDate', '$endDate')";
+        //Insert the announcement information in the table announcement in the database
+        $queryAnnouncement = "INSERT INTO announcement (announcementTitle, announcementDetail, announcementStartDate, announcementEndDate, announcementModel) 
+  			  VALUES('$title', '$detail', '$startDate', '$endDate', '$modelSearch')";
         mysqli_query($db, $queryAnnouncement);
 
         if (mysqli_affected_rows($db) >= 1) {
-            array_push($postAnnouncement, " Announcement \" ".$title." \"is saved");
+            array_push($postAnnouncement, " Announcement \" " . $title . " \"is saved");
         }
     }
 }
@@ -67,14 +71,14 @@ if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) 
 if(isset($_POST['update_announcement'])){
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
+        echo 'yo';
         $id = mysqli_real_escape_string($db, $_POST['id']);
         //Insert the announcement information in the table announcement in the database
-        $queryAnnouncement = "UPDATE announcement SET announcementDetail='$detail', announcementTitle='$title', announcementStartDate='$startDate', announcementEndDate='$endDate' WHERE announcementId='$id'";
+        $queryAnnouncement = "UPDATE announcement SET announcementDetail='$detail', announcementTitle='$title', announcementStartDate='$startDate', announcementEndDate='$endDate', announcementModel='$modelSearch' WHERE announcementId='$id'";
         mysqli_query($db, $queryAnnouncement);
 
         if (mysqli_affected_rows($db) >= 1) {
-
-            header("location: ./homepage.php");
+            header("location: ./homepage.php#announcementSection");
         }
     }
 }

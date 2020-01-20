@@ -30,7 +30,8 @@
 										<form method="post" action="addImageForm.php" enctype="multipart/form-data">
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-xsmall" id="dropdownCategory">
-                                                    <select name="category" id="category">
+                                                    <h5 class="TitleForm">Category: </h5>
+                                                    <select name="category" id="category" title="Category" required oninvalid="setCustomValidity('Category is invalid')" oninput="setCustomValidity('')">
                                                         <?php
                                                         foreach($categories as $key => $value) {
                                                             ?>
@@ -85,13 +86,14 @@
                                                 </script>
 
 												<div class="col-8 col-12-xsmall">
-                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100"/>
+                                                    <h5 class="TitleForm">Caption: </h5>
+                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" title="Please fill out this field." required oninvalid="setCustomValidity('Caption is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->
-                                                    <p style="font-size:18px;">Select image to upload:
+                                                    <h5 class="TitleForm">Select image to upload:</h5>
                                                     <input type="file" name="fileToUpload" id="fileToUpload" required>
-                                                    </p>
+
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">

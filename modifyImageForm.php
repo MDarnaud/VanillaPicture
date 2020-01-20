@@ -64,7 +64,7 @@ if(isset($_GET['modificationId'])){
 
 
                                                             <div class="col-8 col-12-xsmall" style="padding-top:0px;">
-                                                                <b>Caption:</b>
+                                                                <h5 class="TitleForm">Caption:</h5>
                                                                 <input type="text" name="caption" id="caption" value="<?php echo $caption;?>" placeholder="Caption" maxlength="100"/>
                                                             </div>
                                                             <!-- Break -->

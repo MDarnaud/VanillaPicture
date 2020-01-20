@@ -2012,7 +2012,8 @@ input, select, textarea {
 	.button {
 		background-color: transparent;
 		box-shadow: inset 0 0 0 1px #000000;
-		color: #000000 !important;
+		/*I modify the color, there was a !important at the end*/
+		color: #000000 ;
 	}
 
 		input[type="submit"]:hover,
@@ -4531,4 +4532,15 @@ li button {
 /* Hover over the nav dropdown*/
 .navdrop:hover{
 	background-color: rgba(129, 127, 125, 0.64);
+}
+
+/*Announcement Link Color*/
+.linkHomeAnnouncement{
+	color: cadetblue;
+	text-decoration: underline;
+}
+
+/* All forms, remove margin bottom for title */
+.TitleForm{
+	margin: 0px 0px 0px 0px;
 }

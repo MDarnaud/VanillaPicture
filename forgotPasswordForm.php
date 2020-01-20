@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-include 'sendEmailForgotPW.php'; ?>
+include 'sendEmailForgotPassword.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -25,7 +25,7 @@ include 'sendEmailForgotPW.php'; ?>
             <!-- Elements -->
             <header class="major">
                 <h1>Find Your Password</h1>
-                <p> An email will be sent with your password.</p>
+                <p> An email will be sent with a new password.</p>
                 <?php include 'errorssignin.php' ?>
             </header>
             <div class="row gtr-200">
@@ -35,10 +35,11 @@ include 'sendEmailForgotPW.php'; ?>
                     <form method="post" action="forgotPasswordForm.php">
                         <div class="row gtr-uniform">
                             <div class="col-12 col-12-xsmall">
+                                <h5 class="TitleForm">Email:</h5>
                                 <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
-                                    <input type="email" name="email" id="email" value="<?php echo $_SESSION['userNewAccount']; ?>" placeholder="Email" required/>
+                                    <input type="email" name="email" id="email" value="<?php echo $_SESSION['userNewAccount']; ?>" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                                 <?php else:?>
-                                    <input type="email" name="email" id="email" value="" placeholder="Email" required/>
+                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                                 <?php  endif; ?>
                             </div>
                         </div>

@@ -43,13 +43,16 @@ include 'serverSignIn.php'; ?>
 										<form method="post" action="./signIn.php">
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
+                                                    <h5 class="TitleForm">Email :</h5>
                                                     <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
-                                                        <input type="email" name="email" id="email" value="" placeholder="Email" required/>
+                                                        <input type="email" name="email" id="email" value="" placeholder="Email"
+                                                               title="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                                                     <?php else:?>
-                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required/>
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')"/>
                                                     <?php  endif; ?>
                                                 </div>
 												<div class="col-12 col-12-xsmall">
+                                                    <h5 class="TitleForm">Password :</h5>
                                                     <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
