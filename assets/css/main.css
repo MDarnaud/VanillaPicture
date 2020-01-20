@@ -2412,7 +2412,7 @@ input, select, textarea {
 
 		.image.left {
 			float: left;
-			margin: 0 2rem 2rem 0;
+			margin: 0 3rem 2rem 0;
 			top: 0.25rem;
 		}
 
@@ -2574,6 +2574,11 @@ input, select, textarea {
 	}
 
 /* Actions */
+	ul.customActions {
+		display: flex;
+		justify-content: center;
+		list-style: none;
+	}
 
 	ul.actions {
 		display: -moz-flex;
