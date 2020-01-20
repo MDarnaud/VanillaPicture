@@ -7,21 +7,13 @@ $annId = $_GET['announcementId'];
 $db = mysqli_connect('localhost','root','','photography');
 
 //Find path of file
-$path_get_query = "SELECT * FROM gallery WHERE galleryId='$imgId'";
-$result = mysqli_query($db, $path_get_query);
+$path_announcement_query = "SELECT * FROM announcement WHERE announcementId='$annId'";
+$result = mysqli_query($db, $path_announcement_query);
 $path = mysqli_fetch_assoc($result);
 
-$file_pointer = $path['galleryImage'];
-// Use unlink() function to delete a file
-if (!unlink($file_pointer)) {
-    echo ("$file_pointer cannot be deleted due to an error");
-}
-else {
+// Delete image in the database
+$path_announcement_query = "DELETE FROM announcement WHERE announcementId = '$annId'";
+mysqli_query($db, $path_announcement_query);
 
-//  Delete image in the database
-    $queryGallery = "DELETE FROM gallery WHERE galleryId = '$imgId'";
-    mysqli_query($db, $queryGallery);
-
-    header('location: ./gallery.php?categorySelect='.$_GET["categorySelect"].'&brandsName='.$_GET["brandsName"]);
-}
+header('location: ./homepage.php?DeleteMessage=The announcement "'.$path['announcementTitle'].'"has been deleted#announcementSection');
 ?>
