@@ -133,8 +133,15 @@ else {
 					<div class="inner">
 						<header class="major">
 							<h1>AGENDA</h1>
-							<p>See Sophie's availabilities and request a shoot accordingly
+                            <p>See Sophie's availabilities and request a shoot accordingly</p>
                                 <h4><?php echo $message ?></h4></p>
+                            <?php
+                            if ($userType == "administrator"){
+                            ?>
+                            <ul class="customActions">
+                                <li><button id="addEvent" value="addEvent" onclick="location.href='./addAgendaEventForm.php'">Add Event</button></li>
+                            </ul>
+                            <?php }?>
                             <br>
 						</header>
                         <div id='calendar'></div>

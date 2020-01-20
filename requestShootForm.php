@@ -37,7 +37,7 @@ if(isset($_GET["title"])){
 						<!-- Elements -->
 							<header class="major">
 								<h1>Request a Shoot</h1>
-								<p>Sed egestas ante et vulputate volutpat pede semper vitae luctus</p>
+								<p>Fill the form to request a shoot on the date selected</p>
 							</header>
 							<div class="row gtr-200">
 								<div class="col-6 col-12-medium">
