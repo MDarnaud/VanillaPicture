@@ -72,14 +72,18 @@ $db = mysqli_connect('localhost','root','','photography');
 <!--                     Modal Content (The Image) -->
                     <img class="modal-content" id="img01">
                     <div id="caption"></div>
-                    <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
-<!--                     Modal Caption (Image Text) -->
-                    <div id="deleteButton">
-                        <button style="border:1px solid white; color:white;" class="reset" value="deleteImg">Delete</button>
+                        <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'){?>
+                            <!--                     Modal Caption (Image Text) -->
+                            <div id="deleteButton">
+                                <button style="width:30%;border:1px solid white; color:white;background-color: transparent;" id="deleteImg" class="reset" value="deleteImg">Delete</button>
+                            </div>
+                        <?php }else{?>
+                            <div id="buttons">
+                                <button style="width:30%;border:1px solid white; color:white;background-color: transparent;" id="previousImg" class="reset" value="previousImg">Previous</button>
+                                <button style="width:30%;border:1px solid white; color:white;background-color: transparent;" id="nextImg" class="reset" value="nextImg">Next</button>
+                            </div>
+                        <?php } ?>
                     </div>
-                    <?php endif;?>
-
-                </div>
                     <?php
                     $categorySelected = '';
                     if(isset($_GET['categorySelect'])) {
@@ -177,9 +181,12 @@ $db = mysqli_connect('localhost','root','','photography');
                     var modalImg = document.getElementById("img01");
                     var captionText = document.getElementById("caption");
                     var imgs = document.getElementsByTagName("img");
-                    var buttonDelete = document.getElementById("deleteImg");
+                    var deleteButton = document.getElementById("deleteImg");
+                    var nextButton = document.getElementById('nextImg');
+                    var previousButton = document.getElementById('previousImg');
                     for( var i=0; i <imgs.length; i++){
                         var img = document.getElementById(imgs[i].id);
+                        var curImageId = "";
                         img.onclick = function () {
                             modal.style.zIndex="20000";
                             modal.style.display = "block";
@@ -188,21 +195,71 @@ $db = mysqli_connect('localhost','root','','photography');
                                 <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
                                 +'&nbsp;'+'<a href="./modifyImageForm.php?modificationId='+this.id+'" class="pencil"><i class="fa fa-pencil"></i></a>'
                             <?php endif; ?> ;
-                            imgId = this.id;
-                             //get button
-                            buttonDelete.onclick = function() {
+                            curImageId = this.id;
+                            <?php $buttonchoice = false; ?>
+
+                            previousButton.onclick = function(){
+                                alert('kjhv');
+                                // window.location.href= './homepage.php';
+                                <?php $buttonchoice = true; ?>
+                            };
+
+                            nextButton.onclick= function(){
+
+                                // alert(curImageId);
+                                var jsnewArray= new Array();
+                                var jsnewArrayCap= new Array();
+                                <?php foreach($ids as $key => $val){ ?>
+                                jsnewArray.push('<?php echo $val; ?>');
+                                <?php } ?>
+                                <?php foreach($captions as $key => $val){ ?>
+                                jsnewArrayCap.push('<?php echo $val; ?>');
+                                <?php } ?>
+                                var boolArray = false;
+                                var nextVariable = "";
+                                var nextCaption = "";
+                                //
+                                for(var i = 0;i < jsnewArray.length;i++){
+                                    if(boolArray === true){
+                                        nextVariable = jsnewArray[i];
+                                        nextCaption = jsnewArrayCap[i];
+                                         boolArray = false;
+                                    }
+                                    if(jsnewArray[i] === curImageId){
+                                         boolArray = true;
+                                    }
+                                }
+                                //Do it for src and brand
+                                //When two times next, it change to the next image to save new image as currnet
+                                // Ensure at the end goes back at the front
+                                // Previous
+
+
+                                // modalImg.src = this.src;
+                                captionText.innerHTML = nextCaption;
+
+                                curImageId = nextVariable;
+                            };
+
+
+                            <?php if(isset($_GET['userType']) && $_GET['userType'] === 'administrator'){?>
+                            //get button
+                            deleteButton.onclick = function(){
                                 <?php if(!isset($_GET["categorySelect"])){?>
-                                    window.location.href= './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
+                                window.location.href= './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
                                 <?php }else{?>
                                 <?php if(isset($_GET["brandsName"])){?>
-                                    window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=<?php echo $_GET["brandsName"];?>&idImageDelete='.concat(imgId);
+                                window.location.href= './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=<?php //////echo $_GET["brandsName"];?>//////&idImageDelete='.concat(imgId);
                                 <?php }else{?>
-                                    window.location.href= './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=&idImageDelete='.concat(imgId);
+                                window.location.href= './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=&idImageDelete='.concat(imgId);
                                 <?php } ?>
                                 <?php } ?>
-                            }
+                            };
+                            <?php }?>
                         }
                     }
+
+
 
                     // Get the <span> element that closes the modal
                     var span = document.getElementsByClassName("closeModal")[0];
