@@ -24,7 +24,9 @@ $db = mysqli_connect('localhost','root','','photography');
 <div id="main">
     <div class="wrapper">
         <div class="inner">
+            <?php if(isset($_SESSION['userType'])&&$_SESSION['userType'] === 'administrator'){?>
             <a href="addImageForm.php"><span>&#43</span> Add Image</a>
+            <?php } ?>
             <!-- Elements -->
             <header class="major">
                 <h1>Gallery</h1>
@@ -47,7 +49,7 @@ $db = mysqli_connect('localhost','root','','photography');
                         <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands" onclick="location.href= './gallery.php?categorySelect=brands'" >Brands</button>
                         <div class="dropContents">
                         <ul class="dropotron level-0 right" style=" user-select:none; position:absolute; z-index:100000; opacity:1;margin-top: 0px;">
-                            <?php if(!mysqli_num_rows($gallery_result_brand_name) > 0) { ?>
+                            <?php if(mysqli_num_rows($gallery_result_brand_name) > 0) { ?>
                             <?php foreach($brandsChoices as $choiceBrand) : ?>
                                 <li style="cursor:pointer;padding-left:0px;"><button class="navdrop" onclick="location.href= './gallery.php?categorySelect=brands&brandsName=<?php echo $choiceBrand;?>'" style="box-shadow:none;white-space: nowrap; "><small style="color:white;"><?php echo $choiceBrand; ?></small></button></li>
                             <?php endforeach; ?>
@@ -125,7 +127,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 1) {
-                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'" value="'.$brandsName[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -138,7 +140,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 2) {
-                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'" value="'.$brandsName[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -151,7 +153,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 3) {
-                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'" value="'.$brandsName[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -164,7 +166,7 @@ $db = mysqli_connect('localhost','root','','photography');
                                 $columnIndex = 1;
                             }
                             if ($columnIndex == 4) {
-                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'">';
+                                echo '<img class="imgGallery" id="'.$ids[$i].'"src="' . $images[$i] . '" alt="'.$captions[$i].'" value="'.$brandsName[$i].'">';
                             }
                             $columnIndex++;
                         }
@@ -191,58 +193,73 @@ $db = mysqli_connect('localhost','root','','photography');
                             modal.style.zIndex="20000";
                             modal.style.display = "block";
                             modalImg.src = this.src;
-                            captionText.innerHTML = this.alt
+                            var altText = this.alt;
+                            var brandName = this.getAttribute("value");
+                            captionText.innerHTML = altText
                                 <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
                                 +'&nbsp;'+'<a href="./modifyImageForm.php?modificationId='+this.id+'" class="pencil"><i class="fa fa-pencil"></i></a>'
-                            <?php endif; ?> ;
+                            <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>"))) ;
                             curImageId = this.id;
-                            <?php $buttonchoice = false; ?>
 
                             previousButton.onclick = function(){
                                 alert('kjhv');
-                                // window.location.href= './homepage.php';
-                                <?php $buttonchoice = true; ?>
                             };
 
                             nextButton.onclick= function(){
 
                                 // alert(curImageId);
-                                var jsnewArray= new Array();
-                                var jsnewArrayCap= new Array();
+                                var jsnewArrayId= new Array();
+                                var jsnewArrayCaption= new Array();
+                                var jsnewArraySource= new Array();
+                                var jsnewArrayBrand= new Array();
                                 <?php foreach($ids as $key => $val){ ?>
-                                jsnewArray.push('<?php echo $val; ?>');
+                                jsnewArrayId.push('<?php echo $val; ?>');
                                 <?php } ?>
                                 <?php foreach($captions as $key => $val){ ?>
-                                jsnewArrayCap.push('<?php echo $val; ?>');
+                                jsnewArrayCaption.push('<?php echo $val; ?>');
+                                <?php } ?>
+                                <?php foreach($images as $key => $val){ ?>
+                                jsnewArraySource.push('<?php echo $val; ?>');
+                                <?php } ?>
+                                <?php foreach($brandsName as $key => $val){ ?>
+                                jsnewArrayBrand.push('<?php echo $val; ?>');
                                 <?php } ?>
                                 var boolArray = false;
-                                var nextVariable = "";
+                                var nextId = "";
                                 var nextCaption = "";
+                                var nextSource = "";
+                                var nextBrand = "";
                                 //
-                                for(var i = 0;i < jsnewArray.length;i++){
+                                for(var i = 0;i < jsnewArrayId.length;i++){
                                     if(boolArray === true){
-                                        nextVariable = jsnewArray[i];
-                                        nextCaption = jsnewArrayCap[i];
+                                        nextId = jsnewArrayId[i];
+                                        nextCaption = jsnewArrayCaption[i];
+                                        nextSource = jsnewArraySource[i];
+                                        nextBrand = jsnewArrayBrand[i];
                                          boolArray = false;
                                     }
-                                    if(jsnewArray[i] === curImageId){
+                                    if(jsnewArrayId[i] === curImageId){
                                          boolArray = true;
                                     }
                                 }
-                                //Do it for src and brand
-                                //When two times next, it change to the next image to save new image as currnet
+                                //Do it for src and brand x
+                                //When two times next, it change to the next image to save new image as current x
                                 // Ensure at the end goes back at the front
                                 // Previous
 
-
-                                // modalImg.src = this.src;
-                                captionText.innerHTML = nextCaption;
-
-                                curImageId = nextVariable;
+                                modalImg.src = nextSource;
+                                var altText = nextCaption;
+                                var brandName = nextBrand;
+                                captionText.innerHTML = altText
+                                    <?php if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator'):?>
+                                    +'&nbsp;'+'<a href="./modifyImageForm.php?modificationId='+this.id+'" class="pencil"><i class="fa fa-pencil"></i></a>'
+                                    <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>"))) ;
+                                curImageId = this.id;
+                                curImageId = nextId;
                             };
 
 
-                            <?php if(isset($_GET['userType']) && $_GET['userType'] === 'administrator'){?>
+                            <?php if(isset($_SESSION['userType']) && $_SESSION['userType'] === 'administrator'){?>
                             //get button
                             deleteButton.onclick = function(){
                                 <?php if(!isset($_GET["categorySelect"])){?>
