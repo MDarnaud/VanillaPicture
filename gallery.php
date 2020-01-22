@@ -218,7 +218,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     var modalImg = document.getElementById("img01");
                     var captionText = document.getElementById("caption");
                     var imgs = document.getElementsByTagName("img");
-                    var buttons = document.getElementById("buttons");
                     var deleteButton = document.getElementById("deleteImg");
                     var nextButton = document.getElementById('nextImg');
                     var previousButton = document.getElementById('previousImg');
@@ -357,18 +356,18 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
 
 
                             <?php if(isset($_SESSION['userType']) && $_SESSION['userType'] === 'administrator'){?>
-                            //get button
-                            deleteButton.onclick = function () {
-                                <?php if(!isset($_GET["categorySelect"])){?>
-                                window.location.href = './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
-                                <?php }else{?>
-                                <?php if(isset($_GET["brandsName"])){?>
-                                window.location.href = './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=<?php //////echo $_GET["brandsName"];?>//////&idImageDelete='.concat(imgId);
-                                <?php }else{?>
-                                window.location.href = './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=&idImageDelete='.concat(imgId);
-                                <?php } ?>
-                                <?php } ?>
-                            };
+
+                                deleteButton.onclick = function () {
+                                    <?php if(!isset($_GET["categorySelect"])){?>
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
+                                    <?php }else{?>
+                                    <?php if(isset($_GET["brandsName"])){?>
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=<?php //////echo $_GET["brandsName"];?>//////&idImageDelete='.concat(imgId);
+                                    <?php }else{?>
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=&idImageDelete='.concat(imgId);
+                                    <?php } ?>
+                                    <?php } ?>
+                                };
                             <?php }?>
                         }
                     }
