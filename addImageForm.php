@@ -45,6 +45,7 @@
                                                     // connect to the database
                                                     $db = mysqli_connect('localhost','root','','photography');
 
+                                                    //Brands
                                                 $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
                                                 $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
                                                 if (mysqli_num_rows($gallery_result_brand_name) > 0) {
@@ -53,6 +54,14 @@
                                                     }
                                                 }
 
+                                                //Events
+                                                $gallery_event_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Events'";
+                                                $gallery_result_event_name = mysqli_query($db, $gallery_event_name_query);
+                                                if (mysqli_num_rows($gallery_result_event_name) > 0) {
+                                                    while ($gallery_event = mysqli_fetch_assoc($gallery_result_event_name)) {
+                                                        $eventsChoices[] = $gallery_event['gallerySubCategory'];
+                                                    }
+                                                }
                                                 ?>
 
                                                 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -60,9 +69,9 @@
                                                     $(document).ready(function () {
                                                         $("#category").change(function () {
                                                                 var value = $(this).val();
-                                                                $('.dropdownBrandsDiv').remove();
+                                                                $('.dropdownSubDiv').remove();
                                                                  if(value == 'Brands') {
-                                                                     $('#dropdownCategory').append('<div class="dropdownBrandsDiv"><br>' +
+                                                                     $('#dropdownCategory').append('<div class="dropdownSubDiv"><br>' +
                                                                          '<select name="brandsName" id="brandsName">' +
                                                                          '<option value=\'\' selected hidden>-Select a Brand-</option>' +
                                                                          '<?php if (mysqli_num_rows($gallery_result_brand_name) > 0) {foreach($brandsChoices as $choiceBrand) : ?>\n' +
@@ -76,7 +85,26 @@
                                                                          $('.newBrand').remove();
                                                                          var value2 = $(this).val();
                                                                          if (value2 == 'Other') {
-                                                                             $('.dropdownBrandsDiv').append('<div class ="newBrand"><br><input type="text" name="newBrand" id="newBrand" placeholder="Brand Name" maxlength="100" required/></div>');
+                                                                             $('.dropdownSubDiv').append('<div class ="newBrand"><br><input type="text" name="newBrand" id="newBrand" placeholder="Brand Name" maxlength="100" required/></div>');
+                                                                         }
+                                                                     });
+                                                                 }
+                                                                 if(value == 'Events'){
+                                                                     $('#dropdownCategory').append('<div class="dropdownSubDiv"><br>' +
+                                                                         '<select name="eventsName" id="eventsName">' +
+                                                                         '<option value=\'\' selected hidden>-Select an Event-</option>' +
+                                                                         '<?php if (mysqli_num_rows($gallery_result_event_name) > 0) {foreach($eventsChoices as $choiceEvent) : ?>\n' +
+                                                                         '<option value="<?php echo $choiceEvent; ?>">\n' +
+                                                                         '<?php echo $choiceEvent; ?>\n' +
+                                                                         '</option><?php endforeach;} ?>\n' +
+                                                                         '<option value="Other"> Other </option>' +
+                                                                         '</select>' +
+                                                                         '</div>');
+                                                                     $("#eventsName").change(function () {
+                                                                         $('.newEvent').remove();
+                                                                         var value2 = $(this).val();
+                                                                         if (value2 == 'Other') {
+                                                                             $('.dropdownSubDiv').append('<div class ="newEvent"><br><input type="text" name="newEvent" id="newEvent" placeholder="Event Name" maxlength="100" required/></div>');
                                                                          }
                                                                      });
                                                                  }

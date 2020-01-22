@@ -33,6 +33,23 @@ if(isset($_POST["submit_image"])) {
         }
     }
 
+    //Verify if events
+    if ($category_form === 'Events') {
+        $eventType = mysqli_real_escape_string($db, $_POST['eventsName']);
+        if (empty($eventType)) {
+            array_push($errors, " Please, select an Event.");
+        } else {
+            $newEvent_form = $eventType;
+            if ($eventType === 'Other') {
+                if (empty($_POST['newEvent'])) {
+                    array_push($errors, " Please enter the new Event Name.");
+                } else {
+                    $newEvent_form = mysqli_real_escape_string($db, $_POST['newEvent']);
+                }
+            }
+        }
+    }
+
     //Images
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -85,10 +102,14 @@ if(isset($_POST["submit_image"])) {
 
                 if (count($errors) == 0) {
 
-                    if ($category_form !== 'Brands') {
+                    if ($category_form === 'Brands') {
+                        $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, gallerySubCategory) VALUES('$caption_form','$category_form','$name','$newBrand_form')";
+                    }
+                    elseif($category_form === 'Events'){
+                        $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, gallerySubCategory) VALUES('$caption_form','$category_form','$name','$newEvent_form')";
+                    }
+                    else {
                         $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
-                    }else {
-                            $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, galleryBrand) VALUES('$caption_form','$category_form','$name','$newBrand_form')";
                     }
                     mysqli_query($db, $queryImage);
                 }

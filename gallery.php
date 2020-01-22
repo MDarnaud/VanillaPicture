@@ -41,10 +41,44 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 onclick="location.href= './gallery.php?categorySelect=travel'">Travel
                         </button>
                     </li>
-                    <li>
-                        <button id="events" type="reset" value="Events"
+                    <?php
+                    //Look for any events name
+                    $gallery_event_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Events'";
+                    $gallery_result_event_name = mysqli_query($db, $gallery_event_name_query);
+                    if (mysqli_num_rows($gallery_result_event_name) > 0) {
+                        while ($gallery_event = mysqli_fetch_assoc($gallery_result_event_name)) {
+                            if ($gallery_event['gallerySubCategory'] != null)
+                                $eventsChoices[] = $gallery_event['gallerySubCategory'];
+                        }
+                    }
+                    ?>
+                    <li class="dropdownHovering">
+                        <button style="margin-bottom:7px;" id="events" type="reset" value="Events"
                                 onclick="location.href= './gallery.php?categorySelect=events'">Events
                         </button>
+                        <div class="dropContents">
+                            <ul class="dropotron level-0 right"
+                                style=" user-select:none; position:absolute; z-index:100000; opacity:1;margin-top: 0px;">
+                                <?php if (mysqli_num_rows($gallery_result_event_name) > 0) { ?>
+                                    <?php foreach ($eventsChoices as $choiceEvent) : ?>
+                                        <li style="cursor:pointer;padding-left:0px;">
+                                            <button class="navdrop"
+                                                    onclick="location.href= './gallery.php?categorySelect=events&eventsName=<?php echo $choiceEvent; ?>'"
+                                                    style="box-shadow:none;white-space: nowrap; "><small
+                                                        style="color:white;"><?php echo $choiceEvent; ?></small>
+                                            </button>
+                                        </li>
+                                    <?php endforeach; ?>
+                                <?php } else { ?>
+                                    <li style="cursor:pointer;padding-left:0px;">
+                                        <button class="navdrop"
+                                                onclick="location.href= './gallery.php?categorySelect=events&'"
+                                                style="box-shadow:none;white-space: nowrap; "><small
+                                                    style="color:white;">All</small></button>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
                     </li>
                     <?php
                     //Look for any brands name
@@ -57,7 +91,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         }
                     }
                     ?>
-                    <li class="dropdownBrands">
+                    <li class="dropdownHovering">
                         <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands"
                                 onclick="location.href= './gallery.php?categorySelect=brands'">Brands
                         </button>

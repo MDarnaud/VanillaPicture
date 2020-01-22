@@ -4511,7 +4511,7 @@ input, select, textarea {
 
 /*		Dropdown gallery brands */
 .dropContents{display: none;}
-.dropdownBrands:hover .dropContents{display:block;}
+.dropdownHovering:hover .dropContents{display:block;}
 li button {
 	list-style-type: none;
 }
