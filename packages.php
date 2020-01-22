@@ -32,11 +32,11 @@
                                 <img src="images/pic05.jpg" alt="" />
                             </div>
                             <div class="content">
-                                <h3>Ipsum nullam</h3>
+                                <h3>$50</h3>
                                 <p>Sed egestas, ante et vulputate volutpat pede semper est luctus metus eu augue. Morbi purus amet libero.</p>
-                                <ul class="actions">
+                                <!--<ul class="actions">
                                     <li><a href="#" class="button small">Buy</a></li>
-                                </ul>
+                                </ul>-->
                             </div>
                         </div>
                         <div class="profile">
@@ -44,11 +44,8 @@
                                 <img src="images/pic06.jpg" alt="" />
                             </div>
                             <div class="content">
-                                <h3>Metus gravida</h3>
+                                <h3>$100</h3>
                                 <p>Sed egestas, ante et vulputate volutpat pede semper est luctus metus eu augue. Morbi purus amet libero.</p>
-                                <ul class="actions">
-                                    <li><a href="#" class="button small">Buy</a></li>
-                                </ul>
                             </div>
                         </div>
                         <div class="profile">
@@ -56,14 +53,14 @@
                                 <img src="images/pic07.jpg" alt="" />
                             </div>
                             <div class="content">
-                                <h3>Faucibus lorem</h3>
+                                <h3>$200</h3>
                                 <p>Sed egestas, ante et vulputate volutpat pede semper est luctus metus eu augue. Morbi purus amet libero.</p>
-                                <ul class="actions">
-                                    <li><a href="#" class="button small">Buy</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
+                    <ul class="customActions">
+                        <li><a href=".\checkout.php" class="button">Buy a gift card</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -114,7 +111,7 @@
                 </div>
             </div>
                     <ul class="customActions">
-                        <li><a href="C:\Users\MegMeg\Documents\Champlain\Semester_5\Final Project\Vanilla Project\Wireframes\dark\gallery.html" class="button">See Photography Shoots</a></li>
+                        <li><a href=".\gallery.php" class="button">See Photography Shoots</a></li>
                     </ul>
     </div>
     </div>
