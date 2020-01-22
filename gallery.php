@@ -48,12 +48,12 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     </li>
                     <?php
                     //Look for any brands name
-                    $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery";
+                    $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
                     $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
                     if (mysqli_num_rows($gallery_result_brand_name) > 0) {
                         while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
-                            if ($gallery_brand['galleryBrand'] != null)
-                                $brandsChoices[] = $gallery_brand['galleryBrand'];
+                            if ($gallery_brand['gallerySubCategory'] != null)
+                                $brandsChoices[] = $gallery_brand['gallerySubCategory'];
                         }
                     }
                     ?>
@@ -149,7 +149,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         $images[] = $gallery['galleryImage'];
                         $ids[] = $gallery['galleryId'];
                         $captions[] = $gallery['galleryTitle'];
-                        $brandsName[] = $gallery['galleryBrand'];
+                        $brandsName[] = $gallery['gallerySubCategory'];
                     }
 
                     // Initialize column indexx

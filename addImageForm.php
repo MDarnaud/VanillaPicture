@@ -45,12 +45,11 @@
                                                     // connect to the database
                                                     $db = mysqli_connect('localhost','root','','photography');
 
-                                                $gallery_brand_name_query = "SELECT DISTINCT galleryBrand FROM gallery WHERE galleryBrand IS NOT NULL";
+                                                $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
                                                 $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
                                                 if (mysqli_num_rows($gallery_result_brand_name) > 0) {
                                                     while ($gallery_brand = mysqli_fetch_assoc($gallery_result_brand_name)) {
-//                                                        if ($gallery_brand['galleryBrand'] != null)
-                                                            $brandsChoices[] = $gallery_brand['galleryBrand'];
+                                                            $brandsChoices[] = $gallery_brand['gallerySubCategory'];
                                                     }
                                                 }
 
