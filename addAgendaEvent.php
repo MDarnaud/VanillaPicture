@@ -16,7 +16,7 @@ if(empty($_POST["isAvailability"])){
 
 
 //go to request if availability is checked
-$url = "requestForm.php";
+$url = "requestShootForm.php";
 
 //file path
 $file = "json/events.json";
