@@ -13,16 +13,13 @@
 
     <?php include './navigation/navigation.php' ?>
 
-    <header class="major">
-        <h1>SHOP</h1>
-    </header>
 
     <!-- Gift Cards -->
     <div id="three" style="padding-bottom: 5%;">
         <div class="wrapper alt special">
             <header class="major">
                 <h2>GIFT CARDS</h2>
-                <p>Sed egestas, ante et vulputate volutpat pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum lorem ipsum dolor sit amet consequat hendrerit tortor semper lorem at felis.</p>
+                <p style="font-size:x-large">See the different gift cards available for purchase</p>
             </header>
             <div class="wrapper style3">
                 <div class="inner">
@@ -33,7 +30,7 @@
                             </div>
                             <div class="content">
                                 <h3>$50</h3>
-                                <p>Sed egestas, ante et vulputate volutpat pede semper est luctus metus eu augue. Morbi purus amet libero.</p>
+                                <p>This $50 gift card can partially cover a shoot. Perfect to offer as a gift!</p>
                                 <!--<ul class="actions">
                                     <li><a href="#" class="button small">Buy</a></li>
                                 </ul>-->
@@ -45,7 +42,7 @@
                             </div>
                             <div class="content">
                                 <h3>$100</h3>
-                                <p>Sed egestas, ante et vulputate volutpat pede semper est luctus metus eu augue. Morbi purus amet libero.</p>
+                                <p>This $100 gift card can partially cover a shoot. Contact me for more information on prices!</p>
                             </div>
                         </div>
                         <div class="profile">
@@ -54,7 +51,7 @@
                             </div>
                             <div class="content">
                                 <h3>$200</h3>
-                                <p>Sed egestas, ante et vulputate volutpat pede semper est luctus metus eu augue. Morbi purus amet libero.</p>
+                                <p>This $200 gift card could cover the price of an entire shoot depending on your needs. Contact me if you wish to know the exact amount you need!</p>
                             </div>
                         </div>
                     </div>
@@ -74,39 +71,42 @@
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
                     <h2>PACKAGES</h2>
-                    <h3>Package 1</h3>
+                    <p style="font-size:x-large">Your vision, our magic.</p>
+                    <p>We wish to make your ideas reality. If you want to stand out, our bold and unique visual will help you.</p>
+                    <h3>Package 1 - Portrait</h3>
                         <p>
-                            <span class="image left"><img src="images/pic04.jpg" style="height: 200px; width: 200px;" alt="" /></span>
-                            Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget.
-                            tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu
-                            felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-                            praesent tincidunt felis sagittis eget.
+                            <h4>Portrait Experience</h4>
+                            <span class="image left"><img src="images/package_portrait.jpg" alt="" /></span>
+                            Do you want beautiful portraits? Wether it is for social media, or to display in your house,
+                            Vanilla Picture offers you the possibility to have high quality pictures that you will cherish forever.
+                            Wether it is for you, your family, or your friends, we adapt to all situations! Contact us to learn more
+                            about this service.
                         </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
-                    <h3>Package 2</h3>
+                    <h3>Package 2 - Enterprise</h3>
                         <p>
-                            <span class="image right"><img src="images/pic03.jpg" style="height: 200px; width: 200px;" alt="" /></span>
-                            Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget.
-                            tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu
-                            felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-                            praesent tincidunt felis sagittis eget. tempus euismod tempus. Vestibulum ante ipsum
+                            <h4>Let's create your brand image</h4>
+                            <span class="image right"><img src="images/package_enterprise.jpg" alt="" /></span>
+                            Are you a company looking for the best way to propel your product and / or service? Vanilla Picture and its team offer you the
+                            possibility to re-imagine your social media platforms. We will work together on new ideas in order to make your content unique
+                            and grow your following on social media.
                         </p>
                 </div>
             </div>
             <div class="row"  style="padding-bottom: 2%;">
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
-                    <h3>Package 3</h3>
+                    <h3>Package 3 - Travel</h3>
                     <p>
-                        <span class="image left"><img src="images/pic04.jpg" style="height: 200px; width: 200px;" alt="" /></span>
-                        Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget.
-                        tempus euismod. Magna et cursus lorem faucibus vestibulum. Blandit adipiscing eu
-                        felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque
-                        praesent tincidunt felis sagittis eget.
+                        <h4>Make your ideas travel</h4>
+                        <span class="image left"><img src="images/package_travel.jpg" alt="" /></span>
+                    Do you want to reach a VAST clientele in a simple and efficient way? This service offers you the chance
+                    to make you product travel (company or individual) with a complete web marketing team.
+                    The goal is to create your brand image and then make it grow.
                     </p>
                 </div>
             </div>
