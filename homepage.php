@@ -195,9 +195,7 @@ if ($resultPost) { // if user exists
                 </ul>
             </div>
         </div>
-        <div class="copyright">
-            &copy; Untitled. All rights reserved. Vanilla Picture.
-        </div>
+        <?php include './footer/footer.php' ?>
     </div>
 </div>
 
