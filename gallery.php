@@ -113,11 +113,11 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </div>
                     <?php } else { ?>
                         <div id="buttons">
-                            <button style="width:30%;border:1px solid white; color:white;background-color: transparent;"
-                                    id="previousImg" class="reset" value="previousImg">Previous
+                            <button style="width:20%;border-style:none; color:white;background-color: transparent;font-size:30px;"
+                                    id="previousImg" class="reset" value="previousImg">&#8592;
                             </button>
-                            <button style="width:30%;border:1px solid white; color:white;background-color: transparent;"
-                                    id="nextImg" class="reset" value="nextImg">Next
+                            <button style="width:20%;border-style:none; color:white;background-color: transparent;font-size:30px;"
+                                    id="nextImg" class="reset" value="nextImg">&#8594;
                             </button>
                         </div>
                     <?php } ?>
@@ -255,121 +255,121 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
                             curImageId = this.id;
 
-                            if (this.id === jsnewArrayId[jsnewArrayId.length - 1]) {
-                                // alert(nextId)
-                                nextButton.style.visibility = "hidden";
-                            } else {
-                                nextButton.style.visibility = "visible";
-                            }
 
-                            if (this.id === jsnewArrayId[0]) {
-                                previousButton.style.visibility = "hidden";
-                            } else {
-                                previousButton.style.visibility = "visible";
-                            }
-
-                            previousButton.onclick = function () {
-                                var boolArray2 = false;
-                                var previousId = "";
-                                var previousCaption = "";
-                                var previousSource = "";
-                                var previousBrand = "";
-
-                                for (var i = jsnewArrayId.length; i >= 0; i--) {
-                                    if (boolArray2 === true) {
-                                        previousId = jsnewArrayId[i];
-                                        previousCaption = jsnewArrayCaption[i];
-                                        previousSource = jsnewArraySource[i];
-                                        previousBrand = jsnewArrayBrand[i];
-                                        boolArray2 = false;
-                                    }
-                                    if (jsnewArrayId[i] === curImageId) {
-                                        boolArray2 = true;
-                                    }
-                                }
-
-                                if (previousId === jsnewArrayId[jsnewArrayId.length - 1]) {
+                            if (nextButton || previousButton) {
+                                if (this.id === jsnewArrayId[jsnewArrayId.length - 1]) {
                                     // alert(nextId)
                                     nextButton.style.visibility = "hidden";
                                 } else {
                                     nextButton.style.visibility = "visible";
                                 }
 
-                                if (previousId === jsnewArrayId[0]) {
+                                if (this.id === jsnewArrayId[0]) {
                                     previousButton.style.visibility = "hidden";
                                 } else {
                                     previousButton.style.visibility = "visible";
                                 }
 
+                                previousButton.onclick = function () {
+                                    var boolArray2 = false;
+                                    var previousId = "";
+                                    var previousCaption = "";
+                                    var previousSource = "";
+                                    var previousBrand = "";
 
-                                modalImg.src = previousSource;
-                                var altText = previousCaption;
-                                var brandName = previousBrand;
-                                captionText.innerHTML = altText
-                                    <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
-                                    + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + previousId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
-                                    <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
-                                curImageId = previousId;
-                            };
-
-                            nextButton.onclick = function () {
-                                var boolArray = false;
-                                var nextId = "";
-                                var nextCaption = "";
-                                var nextSource = "";
-                                var nextBrand = "";
-
-                                for (var i = 0; i < jsnewArrayId.length; i++) {
-                                    if (boolArray === true) {
-                                        nextId = jsnewArrayId[i];
-                                        nextCaption = jsnewArrayCaption[i];
-                                        nextSource = jsnewArraySource[i];
-                                        nextBrand = jsnewArrayBrand[i];
-                                        boolArray = false;
+                                    for (var i = jsnewArrayId.length; i >= 0; i--) {
+                                        if (boolArray2 === true) {
+                                            previousId = jsnewArrayId[i];
+                                            previousCaption = jsnewArrayCaption[i];
+                                            previousSource = jsnewArraySource[i];
+                                            previousBrand = jsnewArrayBrand[i];
+                                            boolArray2 = false;
+                                        }
+                                        if (jsnewArrayId[i] === curImageId) {
+                                            boolArray2 = true;
+                                        }
                                     }
-                                    if (jsnewArrayId[i] === curImageId) {
-                                        boolArray = true;
+
+                                    if (previousId === jsnewArrayId[jsnewArrayId.length - 1]) {
+                                        // alert(nextId)
+                                        nextButton.style.visibility = "hidden";
+                                    } else {
+                                        nextButton.style.visibility = "visible";
                                     }
-                                }
 
-                                if (nextId === jsnewArrayId[jsnewArrayId.length - 1]) {
-                                    // alert(nextId)
-                                    nextButton.style.visibility = "hidden";
-                                } else {
-                                    nextButton.style.visibility = "visible";
-                                }
-
-                                if (nextId === jsnewArrayId[0]) {
-                                    previousButton.style.visibility = "hidden";
-                                } else {
-                                    previousButton.style.visibility = "visible";
-                                }
-                                modalImg.src = nextSource;
-                                var altText = nextCaption;
-                                var brandName = nextBrand;
-                                captionText.innerHTML = altText
-                                    <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
-                                    + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + nextId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
-                                    <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
-                                curImageId = nextId;
-                            };
+                                    if (previousId === jsnewArrayId[0]) {
+                                        previousButton.style.visibility = "hidden";
+                                    } else {
+                                        previousButton.style.visibility = "visible";
+                                    }
 
 
-                            <?php if(isset($_SESSION['userType']) && $_SESSION['userType'] === 'administrator'){?>
+                                    modalImg.src = previousSource;
+                                    var altText = previousCaption;
+                                    var brandName = previousBrand;
+                                    captionText.innerHTML = altText
+                                        <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
+                                        + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + previousId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
+                                        <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
+                                    curImageId = previousId;
+                                };
 
+                                nextButton.onclick = function () {
+                                    var boolArray = false;
+                                    var nextId = "";
+                                    var nextCaption = "";
+                                    var nextSource = "";
+                                    var nextBrand = "";
+
+                                    for (var i = 0; i < jsnewArrayId.length; i++) {
+                                        if (boolArray === true) {
+                                            nextId = jsnewArrayId[i];
+                                            nextCaption = jsnewArrayCaption[i];
+                                            nextSource = jsnewArraySource[i];
+                                            nextBrand = jsnewArrayBrand[i];
+                                            boolArray = false;
+                                        }
+                                        if (jsnewArrayId[i] === curImageId) {
+                                            boolArray = true;
+                                        }
+                                    }
+
+                                    if (nextId === jsnewArrayId[jsnewArrayId.length - 1]) {
+                                        // alert(nextId)
+                                        nextButton.style.visibility = "hidden";
+                                    } else {
+                                        nextButton.style.visibility = "visible";
+                                    }
+
+                                    if (nextId === jsnewArrayId[0]) {
+                                        previousButton.style.visibility = "hidden";
+                                    } else {
+                                        previousButton.style.visibility = "visible";
+                                    }
+                                    modalImg.src = nextSource;
+                                    var altText = nextCaption;
+                                    var brandName = nextBrand;
+                                    captionText.innerHTML = altText
+                                        <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
+                                        + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + nextId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
+                                        <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
+                                    curImageId = nextId;
+                                };
+                            } else {
                                 deleteButton.onclick = function () {
+
                                     <?php if(!isset($_GET["categorySelect"])){?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(imgId);
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(curImageId);
                                     <?php }else{?>
                                     <?php if(isset($_GET["brandsName"])){?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=<?php //////echo $_GET["brandsName"];?>//////&idImageDelete='.concat(imgId);
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=<?php echo $_GET["brandsName"];?>&idImageDelete='.concat(curImageId);
                                     <?php }else{?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php //////echo $_GET["categorySelect"];?>//////&brandsName=&idImageDelete='.concat(imgId);
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=&idImageDelete='.concat(curImageId);
                                     <?php } ?>
                                     <?php } ?>
                                 };
-                            <?php }?>
-                        }
+                            }
+                        };
                     }
 
 
@@ -379,7 +379,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     // When the user clicks on <span> (x), close the modal
                     span.onclick = function () {
                         modal.style.display = "none";
-                    }
+                    };
                 </script>
             </div>
         </div>
