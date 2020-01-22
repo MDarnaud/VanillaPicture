@@ -24,7 +24,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
 <div id="main">
     <div class="wrapper">
         <div class="inner">
-            <?php if (isset($_SESSION['userType']) && $_SESSION['userType'] === 'administrator') { ?>
+            <?php if (isset($_SESSION['userTypeSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator') { ?>
                 <a href="addImageForm.php"><span>&#43</span> Add Image</a>
             <?php } ?>
             <!-- Elements -->
@@ -87,8 +87,8 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     </li>
 
                     <li>
-                        <button id="individual" type="reset" value="Individual"
-                                onclick="location.href= './gallery.php?categorySelect=individual'">Individual
+                        <button id="portrait" type="reset" value="Portrait"
+                                onclick="location.href= './gallery.php?categorySelect=portrait'">Portrait
                         </button>
                     </li>
                 </ul>
