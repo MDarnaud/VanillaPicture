@@ -49,7 +49,17 @@ $db = mysqli_connect('localhost','root','','photography');
             <div class="image fit special biblio">
                 <img src="images/homepage_biblio.jpg" alt="" />
             </div>
-            <p class="special">Sed egestas, ante et vulputate volutpat pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum lorem ipsum dolor sit amet consequat hendrerit tortor semper lorem at felis.</p>
+            <p class="special">
+                Sophie, better known under the name of Vanilla Picture,
+                is enjoying tremendous success. A pianist and artist at heart,
+                Sophie showcases all her talent through photography,
+                a passion that has inhabited her since a very young age.
+                Sophie had the chance to photograph several models, actors and influencers.
+                Since 2017, his career has taken off with photo shoots from around
+                the world. Companies such as National Bank, Little Burgundy,
+                the <i>Journal de Montréal</i>, <i>TVA nouvelle</i> have used Vanilla Picture's
+                creations.
+            </p>
             <ul class="actions">
                 <li><a href="./gallery.php" class="button">My work</a></li>
             </ul>
