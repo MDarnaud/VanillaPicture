@@ -218,6 +218,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         $ids[] = $gallery['galleryId'];
                         $captions[] = $gallery['galleryTitle'];
                         $subCategories[] = $gallery['gallerySubCategory'];
+                        $categories[] = $gallery['galleryCategory'];
                     }
 
                     // Initialize column indexx
@@ -231,7 +232,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 1) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '" name="' . $categories[$i] .'">';
                         }
                         $columnIndex++;
                     }
@@ -244,7 +245,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 2) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '" name="' . $categories[$i] .'">';
                         }
                         $columnIndex++;
                     }
@@ -257,7 +258,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 3) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '" name="' . $categories[$i] . '">';
                         }
                         $columnIndex++;
                     }
@@ -270,7 +271,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 4) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '" name="' . $categories[$i] .'">';
                         }
                         $columnIndex++;
                     }
@@ -317,10 +318,17 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             modalImg.src = this.src;
                             var altText = this.alt;
                             var subCategory = this.getAttribute("value");
+                            var category = this.getAttribute("name");
+
                             captionText.innerHTML = altText
                                 <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
-                                + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + this.id + '" class="pencil"><i class="fa fa-pencil"></i></a>'
+                                + '&nbsp;' +
+                                '<a href="./modifyImageForm.php?modificationId=' + this.id +
+                                '&categorySelect=' + category +
+                                '&subCategorySelect=' + subCategory +
+                                '"' + 'class="pencil"><i class="fa fa-pencil"></i></a>'
                                 <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
+                            // captionText.innerHTML = category;
                             curImageId = this.id;
 
 
@@ -377,7 +385,11 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     var subCategory = previousSubCategory;
                                     captionText.innerHTML = altText
                                         <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
-                                        + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + previousId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
+                                        + '&nbsp;' +
+                                        '<a href="./modifyImageForm.php?modificationId=' + previousId +
+                                        '&categorySelect=' + category +
+                                        '&subCategorySelect=' + subCategory +
+                                        '"' + 'class="pencil"><i class="fa fa-pencil"></i></a>'
                                         <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
                                     curImageId = previousId;
                                 };
@@ -419,7 +431,11 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     var subCategory = nextSubCategory;
                                     captionText.innerHTML = altText
                                         <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
-                                        + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + nextId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
+                                        + '&nbsp;' +
+                                        '<a href="./modifyImageForm.php?modificationId=' + nextId +
+                                        '&categorySelect=' + category +
+                                        '&subCategorySelect=' + subCategory +
+                                        '"' + 'class="pencil"><i class="fa fa-pencil"></i></a>'
                                         <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
                                     curImageId = nextId;
                                 };
