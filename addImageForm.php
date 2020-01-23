@@ -142,7 +142,7 @@
 
 												<div class="col-8 col-12-xsmall">
                                                     <h5 class="TitleForm">Caption: </h5>
-                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" title="Please fill out this field." required oninvalid="setCustomValidity('Caption is invalid')" oninput="setCustomValidity('')"/>
+                                                    <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" title="Please fill out this field." />
                                                 </div>
                                                 <div class="col-8 col-12-xsmall">
 <!--                                                    Upload image here-->

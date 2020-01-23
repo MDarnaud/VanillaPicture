@@ -17,7 +17,7 @@ if(isset($_GET['modificationId'])){
                 $image = $gallery['galleryImage'];
                 $category = $gallery['galleryCategory'];
                 $caption = $gallery['galleryTitle'];
-                $brandsName = $gallery['galleryBrand'];
+                $subCategory = $gallery['gallerySubCategory'];
             }
         }?>
 
@@ -58,8 +58,9 @@ if(isset($_GET['modificationId'])){
 <!--                                                            Hidden field to go back from the modification page-->
                                                             <input type="hidden" name="imgId" id="imgId" value="<?php echo $imgId;?>">
                                                             <input type="hidden" name="imgCategory" id="imgCategory" value="<?php echo $category;?>">
-                                                            <?php if($category === 'Brands'){?>
-                                                                    <input type="hidden" name="imgBrandName" id="imgBrandName" value="<?php echo $brandsName;?>">
+                                                            <?php if($category === 'Brands'||$category === 'Events'||$category === 'Portraits'){?>
+                                                                    <input type="hidden" name="imgSubCategory"
+                                                                    id="imgSubCategory" value="<?php echo $subCategory;?>">
                                                             <?php } ?>
 
 
