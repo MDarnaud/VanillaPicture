@@ -63,7 +63,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     <?php foreach ($eventsChoices as $choiceEvent) : ?>
                                         <li style="cursor:pointer;padding-left:0px;">
                                             <button class="navdrop"
-                                                    onclick="location.href= './gallery.php?categorySelect=events&eventsName=<?php echo $choiceEvent; ?>'"
+                                                    onclick="location.href= './gallery.php?categorySelect=events&subCategorySelect=<?php echo $choiceEvent; ?>'"
                                                     style="box-shadow:none;white-space: nowrap; "><small
                                                         style="color:white;"><?php echo $choiceEvent; ?></small>
                                             </button>
@@ -102,7 +102,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     <?php foreach ($brandsChoices as $choiceBrand) : ?>
                                         <li style="cursor:pointer;padding-left:0px;">
                                             <button class="navdrop"
-                                                    onclick="location.href= './gallery.php?categorySelect=brands&brandsName=<?php echo $choiceBrand; ?>'"
+                                                    onclick="location.href= './gallery.php?categorySelect=brands&subCategorySelect=<?php echo $choiceBrand; ?>'"
                                                     style="box-shadow:none;white-space: nowrap; "><small
                                                         style="color:white;"><?php echo $choiceBrand; ?></small>
                                             </button>
@@ -120,10 +120,44 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </div>
                     </li>
 
-                    <li>
-                        <button id="portrait" type="reset" value="Portrait"
-                                onclick="location.href= './gallery.php?categorySelect=portrait'">Portrait
+                    <?php
+                    //Look for any portraits name
+                    $gallery_portrait_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Portraits'";
+                    $gallery_result_portrait_name = mysqli_query($db, $gallery_portrait_name_query);
+                    if (mysqli_num_rows($gallery_result_portrait_name) > 0) {
+                        while ($gallery_portrait = mysqli_fetch_assoc($gallery_result_portrait_name)) {
+                            if ($gallery_portrait['gallerySubCategory'] != null)
+                                $portraitsChoices[] = $gallery_portrait['gallerySubCategory'];
+                        }
+                    }
+                    ?>
+                    <li class="dropdownHovering">
+                        <button style="margin-bottom:7px;" id="portraits" type="reset" value="Portraits"
+                                onclick="location.href= './gallery.php?categorySelect=portraits'">Portraits
                         </button>
+                        <div class="dropContents">
+                            <ul class="dropotron level-0 right"
+                                style=" user-select:none; position:absolute; z-index:100000; opacity:1;margin-top: 0px;">
+                                <?php if (mysqli_num_rows($gallery_result_portrait_name) > 0) { ?>
+                                    <?php foreach ($portraitsChoices as $choicePortrait) : ?>
+                                        <li style="cursor:pointer;padding-left:0px;">
+                                            <button class="navdrop"
+                                                    onclick="location.href= './gallery.php?categorySelect=portraits&subCategorySelect=<?php echo $choicePortrait; ?>'"
+                                                    style="box-shadow:none;white-space: nowrap; "><small
+                                                        style="color:white;"><?php echo $choicePortrait; ?></small>
+                                            </button>
+                                        </li>
+                                    <?php endforeach; ?>
+                                <?php } else { ?>
+                                    <li style="cursor:pointer;padding-left:0px;">
+                                        <button class="navdrop"
+                                                onclick="location.href= './gallery.php?categorySelect=portraits&'"
+                                                style="box-shadow:none;white-space: nowrap; "><small
+                                                    style="color:white;">All</small></button>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </header>
@@ -165,10 +199,10 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                 if (!($categorySelected === '' || $categorySelected === 'all')) {
                     // Select query for specific gallery elements
                     $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected'";
-                    if (isset($_GET['brandsName'])) {
-                        $brandsNameSelected = $_GET['brandsName'];
+                    if (isset($_GET['subCategorySelect'])) {
+                        $brandsNameSelected = $_GET['subCategorySelect'];
                         if ($brandsNameSelected !== '') {
-                            $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected' AND galleryBrand='$brandsNameSelected'";
+                            $gallery_check_query = "SELECT * FROM gallery WHERE galleryCategory='$categorySelected' AND gallerySubCategory='$brandsNameSelected'";
                         }
                     }
                 } else {
@@ -183,7 +217,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         $images[] = $gallery['galleryImage'];
                         $ids[] = $gallery['galleryId'];
                         $captions[] = $gallery['galleryTitle'];
-                        $brandsName[] = $gallery['gallerySubCategory'];
+                        $subCategories[] = $gallery['gallerySubCategory'];
                     }
 
                     // Initialize column indexx
@@ -197,7 +231,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 1) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $brandsName[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
                         }
                         $columnIndex++;
                     }
@@ -210,7 +244,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 2) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $brandsName[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
                         }
                         $columnIndex++;
                     }
@@ -223,7 +257,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 3) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $brandsName[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
                         }
                         $columnIndex++;
                     }
@@ -236,7 +270,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             $columnIndex = 1;
                         }
                         if ($columnIndex == 4) {
-                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $brandsName[$i] . '">';
+                            echo '<img class="imgGallery" id="' . $ids[$i] . '"src="' . $images[$i] . '" alt="' . $captions[$i] . '" value="' . $subCategories[$i] . '">';
                         }
                         $columnIndex++;
                     }
@@ -263,7 +297,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             var jsnewArrayId = new Array();
                             var jsnewArrayCaption = new Array();
                             var jsnewArraySource = new Array();
-                            var jsnewArrayBrand = new Array();
+                            var jsnewArraySubCategory = new Array();
                             <?php foreach($ids as $key => $val){ ?>
                             jsnewArrayId.push('<?php echo $val; ?>');
                             <?php } ?>
@@ -273,8 +307,8 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             <?php foreach($images as $key => $val){ ?>
                             jsnewArraySource.push('<?php echo $val; ?>');
                             <?php } ?>
-                            <?php foreach($brandsName as $key => $val){ ?>
-                            jsnewArrayBrand.push('<?php echo $val; ?>');
+                            <?php foreach($subCategories as $key => $val){ ?>
+                            jsnewArraySubCategory.push('<?php echo $val; ?>');
                             <?php } ?>
 
 
@@ -282,11 +316,11 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             modal.style.display = "block";
                             modalImg.src = this.src;
                             var altText = this.alt;
-                            var brandName = this.getAttribute("value");
+                            var subCategory = this.getAttribute("value");
                             captionText.innerHTML = altText
                                 <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
                                 + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + this.id + '" class="pencil"><i class="fa fa-pencil"></i></a>'
-                                <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
+                                <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
                             curImageId = this.id;
 
 
@@ -309,14 +343,14 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     var previousId = "";
                                     var previousCaption = "";
                                     var previousSource = "";
-                                    var previousBrand = "";
+                                    var previousSubCategory = "";
 
                                     for (var i = jsnewArrayId.length; i >= 0; i--) {
                                         if (boolArray2 === true) {
                                             previousId = jsnewArrayId[i];
                                             previousCaption = jsnewArrayCaption[i];
                                             previousSource = jsnewArraySource[i];
-                                            previousBrand = jsnewArrayBrand[i];
+                                            previousSubCategory = jsnewArraySubCategory[i];
                                             boolArray2 = false;
                                         }
                                         if (jsnewArrayId[i] === curImageId) {
@@ -340,11 +374,11 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
 
                                     modalImg.src = previousSource;
                                     var altText = previousCaption;
-                                    var brandName = previousBrand;
+                                    var subCategory = previousSubCategory;
                                     captionText.innerHTML = altText
                                         <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
                                         + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + previousId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
-                                        <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
+                                        <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
                                     curImageId = previousId;
                                 };
 
@@ -353,14 +387,14 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     var nextId = "";
                                     var nextCaption = "";
                                     var nextSource = "";
-                                    var nextBrand = "";
+                                    var nextSubCategory = "";
 
                                     for (var i = 0; i < jsnewArrayId.length; i++) {
                                         if (boolArray === true) {
                                             nextId = jsnewArrayId[i];
                                             nextCaption = jsnewArrayCaption[i];
                                             nextSource = jsnewArraySource[i];
-                                            nextBrand = jsnewArrayBrand[i];
+                                            nextSubCategory = jsnewArraySubCategory[i];
                                             boolArray = false;
                                         }
                                         if (jsnewArrayId[i] === curImageId) {
@@ -382,23 +416,23 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                     }
                                     modalImg.src = nextSource;
                                     var altText = nextCaption;
-                                    var brandName = nextBrand;
+                                    var subCategory = nextSubCategory;
                                     captionText.innerHTML = altText
                                         <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
                                         + '&nbsp;' + '<a href="./modifyImageForm.php?modificationId=' + nextId + '" class="pencil"><i class="fa fa-pencil"></i></a>'
-                                        <?php endif; ?>.concat("<br><i>".concat(brandName.concat("</i>")));
+                                        <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
                                     curImageId = nextId;
                                 };
                             } else {
                                 deleteButton.onclick = function () {
 
                                     <?php if(!isset($_GET["categorySelect"])){?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=&brandsName=&idImageDelete='.concat(curImageId);
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=&subCategorySelect=&idImageDelete='.concat(curImageId);
                                     <?php }else{?>
                                     <?php if(isset($_GET["brandsName"])){?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=<?php echo $_GET["brandsName"];?>&idImageDelete='.concat(curImageId);
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&subCategorySelect=<?php echo $_GET["subCategorySelect"];?>&idImageDelete='.concat(curImageId);
                                     <?php }else{?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&brandsName=&idImageDelete='.concat(curImageId);
+                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&subCategorySelect=&idImageDelete='.concat(curImageId);
                                     <?php } ?>
                                     <?php } ?>
                                 };

@@ -3,7 +3,7 @@ $categories = array(
     "Events" => "Events",
     "Travel" => "Travel",
     "Brands" => "Brands",
-    "Portrait" => "Portrait");
+    "Portraits" => "Portraits");
 
 ksort($categories);
 

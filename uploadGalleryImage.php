@@ -50,6 +50,23 @@ if(isset($_POST["submit_image"])) {
         }
     }
 
+    //Verify if portraits
+    if ($category_form === 'Portraits') {
+        $portraitType = mysqli_real_escape_string($db, $_POST['portraitsName']);
+        if (empty($portraitType)) {
+            array_push($errors, " Please, select a Portrait.");
+        } else {
+            $newPortrait_form = $portraitType;
+            if ($portraitType === 'Other') {
+                if (empty($_POST['newPortrait'])) {
+                    array_push($errors, " Please enter the new Portrait Name.");
+                } else {
+                    $newPortrait_form = mysqli_real_escape_string($db, $_POST['newPortrait']);
+                }
+            }
+        }
+    }
+
     //Images
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -107,6 +124,9 @@ if(isset($_POST["submit_image"])) {
                     }
                     elseif($category_form === 'Events'){
                         $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, gallerySubCategory) VALUES('$caption_form','$category_form','$name','$newEvent_form')";
+                    }
+                    elseif($category_form === 'Portraits'){
+                        $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage, gallerySubCategory) VALUES('$caption_form','$category_form','$name','$newPortrait_form')";
                     }
                     else {
                         $queryImage = "INSERT INTO gallery (galleryTitle, galleryCategory, galleryImage) VALUES('$caption_form','$category_form','$name')";
