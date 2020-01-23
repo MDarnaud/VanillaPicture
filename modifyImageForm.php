@@ -15,9 +15,11 @@ if(isset($_GET['modificationId'])){
             // Loop through all images
             while ($gallery = mysqli_fetch_assoc($gallery_result)) {
                 $image = $gallery['galleryImage'];
-                $category = $gallery['galleryCategory'];
+//                $category = $gallery['galleryCategory'];
+                $category = $_GET['categorySelect'];
                 $caption = $gallery['galleryTitle'];
-                $subCategory = $gallery['gallerySubCategory'];
+//                $subCategory = $gallery['gallerySubCategory'];
+                $subCategory = $_GET['subCategorySelect'];
             }
         }?>
 

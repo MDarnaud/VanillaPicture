@@ -15,13 +15,10 @@ if(isset($_POST["save_caption"])) {
     $queryGalleryUpdate = "UPDATE gallery SET galleryTitle='$caption_form' WHERE galleryId='$id_form'";
     mysqli_query($db, $queryGalleryUpdate);
 
-    $currentCategory = $_GET['categorySelect'];
-    $currentSubCategory = $_GET['subCategorySelect'];
-
-        if($currentCategory === 'Brands'||$currentCategory === 'Portraits'||$currentCategory === 'Events') {
-            header("location: ./gallery.php?categorySelect=" . $currentCategory . "&subCategorySelect=" . $currentSubCategory . "#". $imgId);
+        if($category_form === 'Brands'||$category_form === 'Portraits'||$category_form === 'Events') {
+            header("location: ./gallery.php?categorySelect=" . $category_form . "&subCategorySelect=" . $sub_category_form . "#". $imgId);
         }else{
-            header("location: ./gallery.php?categorySelect=" . $currentSubCategory. "#". $id_form);
+            header("location: ./gallery.php?categorySelect=" . $category_form. "#". $id_form);
         }
 
 }
