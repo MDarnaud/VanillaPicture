@@ -35,12 +35,12 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     <div class="col-12 col-12-medium col-8-small col-8-xsmall">
                 <ul class="customActions2">
                     <li>
-                        <button id="all" type="reset" value="All"
+                        <button class="customActions2Buttons" id="all" type="button" value="All"
                                 onclick="location.href= 'gallery.php'">All
                         </button>
                     </li>
                     <li>
-                        <button id="travel" type="reset" value="Travel"
+                        <button class="customActions2Buttons" id="travel" type="button" value="Travel"
                                 onclick="location.href= 'gallery.php?categorySelect=travel'">Travel
                         </button>
                     </li>
@@ -56,7 +56,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     }
                     ?>
                     <li class="dropdownHovering">
-                        <button style="margin-bottom:7px;" id="events" type="reset" value="Events"
+                        <button class="customActions2Buttons" id="events" type="button" value="Events"
                                 onclick="location.href= 'gallery.php?categorySelect=events'">Events
                         </button>
                         <div class="dropContents">
@@ -95,7 +95,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     }
                     ?>
                     <li class="dropdownHovering">
-                        <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands"
+                        <button class="customActions2Buttons" id="brands" type="button" value="Brands"
                                 onclick="location.href= 'gallery.php?categorySelect=brands'">Brands
                         </button>
                         <div class="dropContents">
@@ -135,7 +135,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     }
                     ?>
                     <li class="dropdownHovering">
-                        <button style="margin-bottom:7px;" id="portraits" type="reset" value="Portraits"
+                        <button class="customActions2Buttons" id="portraits" type="reset" value="Portraits"
                                 onclick="location.href= 'gallery.php?categorySelect=portraits'">Portraits
                         </button>
                         <div class="dropContents">
@@ -186,7 +186,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             </button>
                         </div>
                     <?php } else { ?>
-                        <div id="buttons">
+                        <div id="buttons" style="text-align: center">
                             <button style="width:20%;border-style:none; color:white;background-color: transparent;font-size:30px;"
                                     id="previousImg" class="reset" value="previousImg">&#8592;
                             </button>
@@ -478,7 +478,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
 </div>
 
 
-<?php include './footer/footer.php' ?>
+<?php include '../../footer/footer.php' ?>
 
 <!-- Scripts -->
 <script src="../../assets/js/jquery.min.js"></script>

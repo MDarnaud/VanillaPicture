@@ -48,6 +48,9 @@
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
+    padding-left:5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -62,7 +65,8 @@
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width: 100%;
+    text-align:center;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -70,7 +74,7 @@
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width: 90%;
     text-align: center;
     color: #ccc;
     padding: 10px 0;
