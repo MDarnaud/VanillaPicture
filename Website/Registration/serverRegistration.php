@@ -67,28 +67,27 @@ if (isset($_POST['reg_user'])) {
     // Finally, register user if there are no errors in the form
     if (count($errors) == 0) {
         //Hash password
-        $salt = $email;
-        $password = md5($salt.$password_1);//encrypt the password before saving in the database
+         $hash = password_hash($password_1, PASSWORD_DEFAULT);
 
         if($type === 'customer'){
             //Insert the user information in the table all_user in the database
-            $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
-                  VALUES('$email', '$password', 'customer' )";
+            $queryUser = "INSERT INTO all_user (userId, userPassword, userType)
+                  VALUES('$email', '$hash', 'customer' )";
             mysqli_query($db, $queryUser);
 
             //Insert the customer information in the table customer in the database
-            $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity, customerDate) 
+            $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity, customerDate)
   			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city','$currentDate')";
             mysqli_query($db, $queryCustomer);
 
         }elseif($type === 'model'){
             //Insert the user information in the table all_user in the database
-            $queryUser = "INSERT INTO all_user (userId, userPassword, userType) 
-                  VALUES('$email', '$password', 'model' )";
+            $queryUser = "INSERT INTO all_user (userId, userPassword, userType)
+                  VALUES('$email', '$hash', 'model' )";
             mysqli_query($db, $queryUser);
 
             //Insert the model information in the table model in the database
-            $queryCustomer = "INSERT INTO model (userId, modelFirstName, modelLastName, modelGender, modelDob, modelCountry, modelCity, modelDate) 
+            $queryCustomer = "INSERT INTO model (userId, modelFirstName, modelLastName, modelGender, modelDob, modelCountry, modelCity, modelDate)
   			  VALUES('$email', '$firstName', '$lastName', '$genderChar','$dob', '$country', '$city','$currentDate')";
             mysqli_query($db, $queryCustomer);
         }

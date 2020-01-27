@@ -73,8 +73,8 @@ if (isset($_POST['forgot_password'])) {
             $newPassword = randomPassword();
             //Insert the new hashed password in the table all_user in the database
             //Hash password
-            $salt = $email;
-            $newHashedPasswordDb = md5($salt.$newPassword);//encrypt the password before saving in the database
+            //encrypt the password before saving in the database
+            $newHashedPasswordDb = password_hash($newPassword, PASSWORD_DEFAULT);
             //Save in database
             $queryPassword = "UPDATE all_user SET userPassword='$newHashedPasswordDb' WHERE userId='$email'";
             mysqli_query($db, $queryPassword);
