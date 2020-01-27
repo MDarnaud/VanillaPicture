@@ -3403,7 +3403,9 @@ input, select, textarea {
 			}
 
 				.profiles .profile .image img {
-					border-radius: 100%;
+					border-radius: 50%;
+					width:200px;
+					height:auto;
 				}
 
 			.profiles .profile .content > :last-child {

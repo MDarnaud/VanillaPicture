@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
 	</head>
 	<body class="is-preload">
 
@@ -26,7 +26,7 @@
                     <div class="profiles">
                         <div class="profile">
                             <div class="image">
-                                <img src="images/pic05.jpg" alt="" />
+                                <img src="../../images/giftcard_50.jpg" alt="" />
                             </div>
                             <div class="content">
                                 <h3>$50</h3>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="profile">
                             <div class="image">
-                                <img src="images/pic06.jpg" alt="" />
+                                <img src="../../images/giftcard_100.jpg" alt="" />
                             </div>
                             <div class="content">
                                 <h3>$100</h3>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="profile">
                             <div class="image">
-                                <img src="images/pic07.jpg" alt="" />
+                                <img src="../../images/giftcard_200.jpg" alt="" />
                             </div>
                             <div class="content">
                                 <h3>$200</h3>
@@ -76,7 +76,7 @@
                     <h3>Package 1 - Portrait</h3>
                         <p>
                             <h4>Portrait Experience</h4>
-                            <span class="image left"><img src="images/package_portrait.jpg" alt="" /></span>
+                            <span class="image left"><img src="../../images/package_portrait.jpg" alt="" /></span>
                             Do you want beautiful portraits? Wether it is for social media, or to display in your house,
                             Vanilla Picture offers you the possibility to have high quality pictures that you will cherish forever.
                             Wether it is for you, your family, or your friends, we adapt to all situations! Contact us to learn more
@@ -87,10 +87,10 @@
             <div class="row">
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
-                    <h3>Package 2 - Enterprise</h3>
+                    <h3>Package 2 - Brand</h3>
                         <p>
                             <h4>Let's create your brand image</h4>
-                            <span class="image right"><img src="images/package_enterprise.jpg" alt="" /></span>
+                            <span class="image right"><img src="../../images/package_enterprise2.jpg" alt="" /></span>
                             Are you a company looking for the best way to propel your product and / or service? Vanilla Picture and its team offer you the
                             possibility to re-imagine your social media platforms. We will work together on new ideas in order to make your content unique
                             and grow your following on social media.
@@ -103,7 +103,7 @@
                     <h3>Package 3 - Travel</h3>
                     <p>
                         <h4>Make your ideas travel</h4>
-                        <span class="image left"><img src="images/package_travel.jpg" alt="" /></span>
+                        <span class="image left"><img src="../../images/package_travel2.jpg" alt="" /></span>
                     Do you want to reach a VAST clientele in a simple and efficient way? This service offers you the chance
                     to make you product travel (company or individual) with a complete web marketing team.
                     The goal is to create your brand image and then make it grow.
