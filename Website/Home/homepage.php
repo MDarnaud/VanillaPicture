@@ -195,7 +195,8 @@ if ($resultPost) { // if user exists
                 </ul>
             </div>
         </div>
-        <?php include './footer/footer.php' ?>
+        <!-- footer -->
+        <?php include '../../footer/footer.php' ?>
     </div>
 </div>
 

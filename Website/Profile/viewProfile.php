@@ -196,7 +196,8 @@ include './serverViewProfile.php'
 					</div>
 			</div>
 
-    <?php include './footer/footer.php' ?>
+    <!-- footer -->
+    <?php include '../../footer/footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>

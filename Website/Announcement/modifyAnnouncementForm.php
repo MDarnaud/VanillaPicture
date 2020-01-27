@@ -96,7 +96,8 @@ $modifPost = mysqli_fetch_assoc($modif_result);
     </div>
 </div>
 
-<?php include './footer/footer.php' ?>
+<!-- footer -->
+<?php include '../../footer/footer.php' ?>
 
 <!-- Scripts -->
 <script src="../../assets/js/jquery.min.js"></script>

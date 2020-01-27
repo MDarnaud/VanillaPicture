@@ -21,7 +21,6 @@ $db = mysqli_connect('localhost','root','','photography');
 </head>
 <body class="is-preload">
 
-<?php include '../Navigation/navigation.php' ?>
 <!-- Main -->
 <div id="main">
     <div class="wrapper">
