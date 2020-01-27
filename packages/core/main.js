@@ -7009,7 +7009,7 @@ Docs & License: https://fullcalendar.io/
                 dateMarker: dateMarker
             });
         };
-        // Forces navigation to a view for the given date.
+        // Forces Navigation to a view for the given date.
         // `viewType` can be a specific view name or a generic one like "week" or "day".
         // needs to change
         Calendar.prototype.zoomTo = function (dateMarker, viewType) {
