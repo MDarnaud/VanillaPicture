@@ -196,14 +196,8 @@ include './serverViewProfile.php'
 					</div>
 			</div>
 
-		<!-- Footer -->
-			<div id="footer">
-				<div class="wrapper style2">
-					<div class="copyright">
-						&copy; Untitled. All rights reserved. Lorem ipsum dolor sit amet.
-					</div>
-				</div>
-			</div>
+    <!-- footer -->
+    <?php include '../../footer/footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>

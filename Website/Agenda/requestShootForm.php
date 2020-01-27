@@ -100,14 +100,8 @@ if(isset($_GET["title"])){
 					</div>
 			</div>
 
-		<!-- Footer -->
-			<div id="footer">
-				<div class="wrapper style2">
-					<div class="copyright">
-						&copy; Untitled. All rights reserved. Vanilla Picture.
-					</div>
-				</div>
-			</div>
+    <!-- footer -->
+    <?php include '../../footer/footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>
