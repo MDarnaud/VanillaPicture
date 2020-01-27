@@ -30,7 +30,10 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
             <!-- Elements -->
             <header class="major">
                 <h1>Gallery</h1>
-                <ul class="customActions">
+                <div class="row">
+                    <div class="col-2-small col-2-xsmall"></div>
+                    <div class="col-12 col-12-medium col-8-small col-8-xsmall">
+                <ul class="customActions2">
                     <li>
                         <button id="all" type="reset" value="All"
                                 onclick="location.href= 'gallery.php'">All
@@ -160,6 +163,9 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </div>
                     </li>
                 </ul>
+            </div>
+                </div>
+                    <div class="col-2-small col-2-xsmall"></div>
             </header>
             <div class="row">
 

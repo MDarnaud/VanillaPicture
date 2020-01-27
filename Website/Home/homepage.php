@@ -47,12 +47,12 @@ $db = mysqli_connect('localhost','root','','photography');
                 <h2>BIOGRAPHY</h2>
             </header>
             <div class="image fit special biblio">
-                <img src="images/homepage_biblio.jpg" alt="" />
+                <!--<img src="images/homepage_biblio.jpg" alt="" />-->
             </div>
             <p class="special">
                 Sophie, better known under the name of Vanilla Picture,
                 is enjoying tremendous success. A pianist and artist at heart,
-                Sophie showcases all her talent through photography,
+                she showcases all her talent through photography,
                 a passion that has inhabited her since a very young age.
                 Sophie had the chance to photograph several models, actors and influencers.
                 Since 2017, his career has taken off with photo shoots from around
