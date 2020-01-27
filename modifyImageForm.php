@@ -15,9 +15,11 @@ if(isset($_GET['modificationId'])){
             // Loop through all images
             while ($gallery = mysqli_fetch_assoc($gallery_result)) {
                 $image = $gallery['galleryImage'];
-                $category = $gallery['galleryCategory'];
+//                $category = $gallery['galleryCategory'];
+                $category = $_GET['categorySelect'];
                 $caption = $gallery['galleryTitle'];
-                $brandsName = $gallery['galleryBrand'];
+//                $subCategory = $gallery['gallerySubCategory'];
+                $subCategory = $_GET['subCategorySelect'];
             }
         }?>
 
@@ -58,8 +60,9 @@ if(isset($_GET['modificationId'])){
 <!--                                                            Hidden field to go back from the modification page-->
                                                             <input type="hidden" name="imgId" id="imgId" value="<?php echo $imgId;?>">
                                                             <input type="hidden" name="imgCategory" id="imgCategory" value="<?php echo $category;?>">
-                                                            <?php if($category === 'Brands'){?>
-                                                                    <input type="hidden" name="imgBrandName" id="imgBrandName" value="<?php echo $brandsName;?>">
+                                                            <?php if($category === 'Brands'||$category === 'Events'||$category === 'Portraits'){?>
+                                                                    <input type="hidden" name="imgSubCategory"
+                                                                    id="imgSubCategory" value="<?php echo $subCategory;?>">
                                                             <?php } ?>
 
 

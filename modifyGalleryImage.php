@@ -10,15 +10,15 @@ if(isset($_POST["save_caption"])) {
     }
     $id_form = mysqli_real_escape_string($db, $_POST['imgId']);
     $category_form = mysqli_real_escape_string($db, $_POST['imgCategory']);
-    $brand_name_form = mysqli_real_escape_string($db, $_POST['imgBrandName']);
+    $sub_category_form = mysqli_real_escape_string($db, $_POST['imgSubCategory']);
 
     $queryGalleryUpdate = "UPDATE gallery SET galleryTitle='$caption_form' WHERE galleryId='$id_form'";
     mysqli_query($db, $queryGalleryUpdate);
 
-        if($category_form === 'Brands') {
-            header("location: ./gallery.php?categorySelect=" . $category_form . "&brandName=" . $brand_name_form);
+        if($category_form === 'Brands'||$category_form === 'Portraits'||$category_form === 'Events') {
+            header("location: ./gallery.php?categorySelect=" . $category_form . "&subCategorySelect=" . $sub_category_form . "#". $imgId);
         }else{
-            header("location: ./gallery.php?categorySelect=" . $category_form);
+            header("location: ./gallery.php?categorySelect=" . $category_form. "#". $id_form);
         }
 
 }
