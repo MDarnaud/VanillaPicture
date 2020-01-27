@@ -29,7 +29,8 @@ include 'sendEmailForgotPassword.php'; ?>
                 <?php include 'errorsSignIn.php' ?>
             </header>
             <div class="row gtr-200">
-                <div class="col-12 col-12-medium">
+                <div class="col-2"></div>
+                <div class="col-8 col-12-medium col-12-small">
 
                     <!-- Form -->
                     <form method="post" action="forgotPasswordForm.php">
@@ -46,12 +47,13 @@ include 'sendEmailForgotPassword.php'; ?>
                         <br>
                         <!-- Break -->
                         <div class="col-12">
-                            <ul class="actions">
+                            <ul class="customActions">
                                 <li><button type="submit" value="SignIn" class="primary" name="forgot_password">Submit</button></li>
                                 <li><button type="reset" value="Cancel" onclick="window.location.href='signIn.php'">Cancel</button></li>
                             </ul>
                         </div>
                 </div>
+                <div class="col-2"></div>
                 </form>
             </div>
         </div>

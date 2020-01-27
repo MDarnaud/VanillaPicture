@@ -37,7 +37,8 @@ include 'serverSignIn.php'; ?>
                                 <?php include 'errorsSignIn.php' ?>
 								     </header>
 							<div class="row gtr-200">
-								<div class="col-12 col-12-medium">
+                                <div class="col-2 "></div>
+								<div class="col-8 col-12-medium col-12-small">
 
 									<!-- Form -->
 										<form method="post" action="signIn.php">
@@ -59,12 +60,12 @@ include 'serverSignIn.php'; ?>
                                                            oninput="check(this)"
                                                            required/>
                                                 </div>
-                                                <div class="col-12 col-12-xsmall">
+                                                <div class="col-12 col-12-xsmall" style="text-align: center">
                                                     <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Forgot password?</strong></a>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">
-													<ul class="actions">
+													<ul class="customActions">
                                                         <li><button type="submit" value="SignIn" class="primary" name="signIn_user">Sign In</button></li>
                                                         <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
                                                         <script language='javascript' type='text/javascript'>
@@ -77,6 +78,7 @@ include 'serverSignIn.php'; ?>
 											</div>
 										</form>
 								</div>
+                                <div class="col-2"></div>
 							</div>
 						</div>
 					</div>

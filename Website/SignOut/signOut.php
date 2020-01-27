@@ -29,7 +29,7 @@
                                     <form method="post" action="signOut.php">
                                         <div class="row gtr-uniform">
                                     <div class="col-12">
-                                        <ul class="actions">
+                                        <ul class="customActions">
                                             <li><button type="submit" value="SignOut" class="primary" name="signOut_user">Sign Out</button></li>
                                             <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
                                             <script language='javascript' type='text/javascript'>

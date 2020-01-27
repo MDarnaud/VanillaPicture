@@ -130,7 +130,7 @@
 							</div>
 						</div>
                         <p>
-                            Already a member? <a href="../SignIn/signIn.php">Sign in</a>
+                            Already a member? <a href="../SignIn/signIn.php" style="color:lightseagreen; text-decoration: underline">Sign in</a>
                         </p>
                     </div>
                 </div>

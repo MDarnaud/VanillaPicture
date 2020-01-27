@@ -28,7 +28,7 @@ $db = mysqli_connect('localhost','root','','photography');
             <!-- Elements -->
             <header class="major">
                 <h1>Reports</h1>
-                <ul class="actions">
+                <ul class="customActions">
                     <li><button id="Summary" type="reset" value="Summary" onclick="location.href= 'reportsSummary.php'" >Summary</button></li>
                     <li><button id="Detail" type="reset" value="Detail" onclick="location.href= 'reportsDetail.php'" >Detail</button></li>
                     <li><button id="Exception" type="reset" value="Exception" onclick="location.href= 'reportsException.php'"  >Exception</button></li>

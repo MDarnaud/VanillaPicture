@@ -19,7 +19,7 @@ $db = mysqli_connect('localhost','root','','photography');
 </head>
 <body class="is-preload">
 
-<?php include './Navigation/navigation.php' ?>
+<?php include '../Navigation/navigation.php' ?>
 
 <div class="gift-up-target" data-site-id="c0505ce1-43e3-4979-bd71-77d36060e96c" data-platform="Other"></div>
 <script type="text/javascript">
