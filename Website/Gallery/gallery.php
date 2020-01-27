@@ -54,7 +54,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     ?>
                     <li class="dropdownHovering">
                         <button style="margin-bottom:7px;" id="events" type="reset" value="Events"
-                                onclick="location.href= 'gallery.php'">Events
+                                onclick="location.href= 'gallery.php?categorySelect=events'">Events
                         </button>
                         <div class="dropContents">
                             <ul class="dropotron level-0 right"
@@ -93,7 +93,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     ?>
                     <li class="dropdownHovering">
                         <button style="margin-bottom:7px;" id="brands" type="reset" value="Brands"
-                                onclick="location.href= 'gallery.php'">Brands
+                                onclick="location.href= 'gallery.php?categorySelect=brands'">Brands
                         </button>
                         <div class="dropContents">
                             <ul class="dropotron level-0 right"
@@ -133,7 +133,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     ?>
                     <li class="dropdownHovering">
                         <button style="margin-bottom:7px;" id="portraits" type="reset" value="Portraits"
-                                onclick="location.href= 'gallery.php'">Portraits
+                                onclick="location.href= 'gallery.php?categorySelect=portraits'">Portraits
                         </button>
                         <div class="dropContents">
                             <ul class="dropotron level-0 right"
