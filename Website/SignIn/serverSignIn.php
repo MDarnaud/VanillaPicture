@@ -27,9 +27,7 @@ if (isset($_POST['signIn_user'])) {
     }
     else{
         //Hash password
-        $salt = $email;
-        $password = md5($salt.$password_1);
-            if ($user['userPassword'] === $password) {
+        if (password_verify($password_1, $user['userPassword'])){
                 $_SESSION['userSignIn'] = $email;
                 $_SESSION['userTypeSignIn'] = $user['userType'];
                 header('location: ../Home/homepage.php');
@@ -37,5 +35,9 @@ if (isset($_POST['signIn_user'])) {
             else{
                 array_push($errors, "Password is invalid. ");
             }
+
+
+
+
     }
 }
