@@ -38,7 +38,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     </li>
                     <li>
                         <button id="travel" type="reset" value="Travel"
-                                onclick="location.href= 'gallery.php'">Travel
+                                onclick="location.href= 'gallery.php?categorySelect=travel'">Travel
                         </button>
                     </li>
                     <?php
