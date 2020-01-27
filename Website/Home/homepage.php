@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// connect to the database
+// connect to the databases
 $db = mysqli_connect('localhost','root','','photography');
 
 ?>
