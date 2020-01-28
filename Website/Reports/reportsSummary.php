@@ -3,7 +3,7 @@
 <!--        Summary Report-->
             <?php
 
-                echo '<h3>Yearly</h3>';
+
                 $currentYear = date("Y");
             // Yearly
                 $years = array();
@@ -67,6 +67,163 @@
                     $currentYear = $currentYear -1;
                 }
             ?>
+
+
+<!--Graphs Begin-->
+<?php
+
+
+//First
+$currentYear = date("Y");
+$dataPoints1 = array();
+for($i=0;$i<5;$i++) {
+    array_push($dataPoints1, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Number of New Customer']));
+    $currentYear = $currentYear - 1;
+}
+
+
+//Second
+$currentYear = date("Y");
+$dataPoints2 = array();
+for($i=0;$i<5;$i++) {
+    array_push($dataPoints2, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Number of Announcement']));
+    $currentYear = $currentYear - 1;
+}
+
+
+//Third
+$currentYear = date("Y");
+$dataPoints3 = array();
+for($i=0;$i<5;$i++) {
+    array_push($dataPoints3, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Amount Spent per Customer']));
+    $currentYear = $currentYear - 1;
+}
+
+//Fourth
+$currentYear = date("Y");
+$dataPoints4 = array();
+for($i=0;$i<5;$i++) {
+    array_push($dataPoints4, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Number of Giftcards']));
+    $currentYear = $currentYear - 1;
+}
+
+
+//Fifth
+$currentYear = date("Y");
+$dataPoints5 = array();
+for($i=0;$i<5;$i++) {
+    array_push($dataPoints5, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Amount of Giftcards']));
+    $currentYear = $currentYear - 1;
+}
+
+//Sixth
+$currentYear = date("Y");
+$dataPoints6 = array();
+for($i=0;$i<5;$i++) {
+    array_push($dataPoints6, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Number of Shoot Booked']));
+    $currentYear = $currentYear - 1;
+}
+
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                title: {
+                    text: "Summary chart"
+                },
+                subtitles: [{
+                    text: "Vanilla Picture"
+                }],
+                axisY: {
+                    includeZero: false
+                },
+                legend:{
+                    cursor: "pointer",
+                    itemclick: toggleDataSeries
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [{
+                    type: "stackedArea",
+                    name: "Customers",
+                    showInLegend: true,
+                    visible: false,
+                    yValueFormatString: "#,##0 ",
+                    dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+                },
+                    {
+                        type: "stackedArea",
+                        name: "Announcements",
+                        showInLegend: true,
+                        yValueFormatString: "#,##0 ",
+                        dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+                    },
+                    {
+                        type: "stackedArea",
+                        name: "$/User",
+                        showInLegend: true,
+                        visible: false,
+                        yValueFormatString: "#,##0 $",
+                        dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
+                    },
+                    {
+                        type: "stackedArea",
+                        name: "#Giftcards",
+                        showInLegend: true,
+                        visible: false,
+                        yValueFormatString: "#,##0 ",
+                        dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
+                    },
+                    {
+                        type: "stackedArea",
+                        name: "$Giftcards",
+                        showInLegend: true,
+                        visible: false,
+                        yValueFormatString: "#,##0 $",
+                        dataPoints: <?php echo json_encode($dataPoints5, JSON_NUMERIC_CHECK); ?>
+                    },
+                    {
+                        type: "stackedArea",
+                        name: "Shoots",
+                        showInLegend: true,
+                        yValueFormatString: "#,##0 ",
+                        dataPoints: <?php echo json_encode($dataPoints6, JSON_NUMERIC_CHECK); ?>
+                    }]
+            });
+
+            chart.render();
+
+            function toggleDataSeries(e){
+                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else{
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+<!--Graph End-->
+
+
+
+
+<br><br>
+            <h3>Yearly</h3>
                 <div class="table-wrapper">
                 <table class="alt">
                     <tbody>

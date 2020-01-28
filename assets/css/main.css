@@ -4573,3 +4573,14 @@ li button {
 .TitleForm{
 	margin: 0px 0px 0px 0px;
 }
+
+
+.canvasjs-chart-credit{
+	visibility:hidden;
+}
+.canvasjs-chart-credit[text='Trial Version'] {
+	visibility: hidden;
+	color:red;
+}
+
+
