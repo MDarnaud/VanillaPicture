@@ -2425,7 +2425,7 @@ input, select, textarea {
 		.image.fit {
 			display: block;
 			margin: 0 0 2rem 0;
-			width: 75%;
+			width: 100%;
 			/*MEGANE center*/
 		}
 
@@ -2450,7 +2450,7 @@ input, select, textarea {
 
 
 				.image.special.biblio {
-					max-width: 45%;
+					max-width: 50%;
 				}
 
 			}
