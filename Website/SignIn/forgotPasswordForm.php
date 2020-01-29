@@ -41,18 +41,14 @@ include 'sendEmailForgotPassword.php'; ?>
                             <div class="col-12 col-12-xsmall">
                                 <h5 class="TitleForm">Email:</h5>
                                 <i style="font-size:12px;"> * A new password will be send to you by email, it is possible to change the password afterward.</i>
-                                <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
                                     <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
-                                <?php else:?>
-                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
-                                <?php  endif; ?>
                             </div>
                         </div>
                         <br>
                         <!-- Break -->
                         <div class="col-12">
                             <ul class="customActions">
-                                <li><button type="submit" value="SignIn" class="primary" name="forgot_password">Submit</button></li>
+                                <li><button type="submit" value="forgot_password" class="primary" name="forgot_password">Submit</button></li>
                                 <li><button type="reset" value="Cancel" onclick="window.location.href='signIn.php'">Cancel</button></li>
                             </ul>
                         </div>
