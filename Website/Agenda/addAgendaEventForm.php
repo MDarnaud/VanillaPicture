@@ -55,25 +55,41 @@ $id = randomId();
                                 <input type="hidden" name="eventId" id="eventId" value="<?php echo $id?>" placeholder="Event Id"/>
                             </div>
                             <div class="col-8 col-12-xsmall">
-                                <label for="eventTitle">Enter Event Title (ex: write "Available", for customers to be able to request a shoot on this date)</label>
-                                <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Event Title" required/>
+<!--                                <label for="eventTitle">Enter Event Title (ex: write "Available", for customers to be able to request a shoot on this date)</label>-->
+                                <h5 class="TitleForm">Title:</h5>
+                                <i style="font-size:13px">Write "Available", for customers to be able to request a shoot on this date</i>
+                                <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Title" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
                             </div>
                             <div class="col-8 col-12-xsmall">
-                                <label for="eventLocation">Enter Event Location (ex: Toronto)</label>
-                                <input type="text" name="eventLocation" id="eventLocation" value="" placeholder="Event Location"/>
+<!--                                <label for="eventLocation">Enter Event Location (ex: Toronto)</label>-->
+                                <h5 class="TitleForm">Location:</h5>
+                                <input type="text" name="eventLocation" id="eventLocation" value="" placeholder="Location"/>
                             </div>
                             <div class="col-12 col-12-xsmall">
-                                <label for="eventStart">Enter Event Start (Date and Time)</label>
-                                <input type="datetime-local" name="eventStart" id="eventStart" value="" required/>
+<!--                                <label for="eventStart">Enter Event Start (Date and Time)</label>-->
+                                <h5 class="TitleForm">Start Date and Time:</h5>
+                                <input type="datetime-local" name="eventStart" id="eventStart" value="2020-01-20T00:00" required/>
                             </div>
                             <div class="col-12 col-12-xsmall">
-                                <label for="eventEnd">Enter Event End (if you wish for the event to last all day, leave blank)</label>
-                                <input type="datetime-local" name="eventEnd" id="eventEnd" value="" />
+<!--                                <label for="eventEnd">Enter Event End (if you wish for the event to last all day, leave blank)</label>-->
+                                <h5 class="TitleForm">End Date and Time:</h5>
+                                <i style="font-size:13px">If you wish for an event to last all day, leave blank</i><br>
+                                <input type="datetime-local" name="eventEnd" id="eventEnd" value="" oninput="check(this)"/>
+                                <script language='javascript' type='text/javascript'>
+                                    function check(input) {
+                                            if (!(input.value > document.getElementById('eventStart').value)) {
+                                                input.setCustomValidity('End Date is before the start date.');
+                                            } else {
+                                                // input is valid -- reset the error message
+                                                input.setCustomValidity('');
+                                            }
+                                    }
+                                </script>
                             </div>
                             <div class="col-6 col-12-small">
-                                <label>Check the box if this event is a shoot availability (for customers to book)</label>
+                                <label>This event is a shoot availability for customers to booked</label>
                                 <input type="checkbox" id="isAvailability" name="isAvailability" >
-                                <label for="isAvailability">Photoshoot Availability</label>
+                                <label for="isAvailability">Yes, it is available</label>
                             </div>
                             <!-- Break -->
                             <div class="col-12">
