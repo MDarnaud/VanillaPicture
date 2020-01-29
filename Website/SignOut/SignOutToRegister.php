@@ -1,4 +1,5 @@
 <?php
+
 // Start session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -6,18 +7,15 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Verify if the user is sign in
 if (isset($_SESSION['userSignIn'])) {
-    // Verify if the user has press the sign out button
-    if (isset($_POST['signOut_user'])) {
         // Unset sessions, set during the sign in
         unset($_SESSION['userSendEmail']);
         unset($_SESSION['userSignIn']);
         unset($_SESSION['userTypeSignIn']);
         // Go back to the home page when a user sign out
-        header('location: ../Home/homepage.php');
-    }
+        header('location: ../Registration/register.php');
 }else{
     // Go back to the home page if a user is not sign in
-    header('location: ../Home/homepage.php');
+    header('location: ../Registration/register.php');
 }
 
-
+?>

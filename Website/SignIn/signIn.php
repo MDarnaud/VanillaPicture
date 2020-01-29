@@ -61,7 +61,7 @@ include 'serverSignIn.php'; ?>
                                                            required/>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall" style="text-align: center">
-                                                    <a href="forgotPasswordForm.php"><strong style="text-decoration:underline">Forgot password?</strong></a>
+                                                    <a href="forgotPasswordForm.php?"><strong style="text-decoration:underline">Forgot password?</strong></strong></a>
                                                 </div>
 												<!-- Break -->
 												<div class="col-12">

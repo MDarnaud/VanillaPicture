@@ -2426,6 +2426,7 @@ input, select, textarea {
 			display: block;
 			margin: 0 0 2rem 0;
 			width: 100%;
+			/*MEGANE center*/
 		}
 
 			.image.fit img {
@@ -2466,7 +2467,7 @@ input, select, textarea {
 						object-position: center center;
 					}
 				.image.special.biblio img {
-					height: 35rem;
+					height: 25rem;
 					object-fit: cover;
 					object-position: center center;
 				}
@@ -4577,10 +4578,7 @@ li button {
 .canvasjs-chart-credit{
 	visibility:hidden;
 }
-.canvasjs-chart-credit[text='Trial Version'] {
-	visibility: hidden;
-	color:red;
-}
+
 
 input:disabled {
 	background: #f2f2f2;
