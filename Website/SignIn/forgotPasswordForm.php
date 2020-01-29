@@ -1,7 +1,10 @@
 <?php
+// Start the session
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// Include the back end for a forgetting password
 include 'sendEmailForgotPassword.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
