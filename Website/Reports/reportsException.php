@@ -15,7 +15,7 @@ include "serverExceptionReport.php";
 
                 ?>
                 <div class="wrapper special">
-                    <form method="post" action="reportsSummary.php" class="announcementHome" style="text-align:center">
+                    <form method="post" action="reportsException.php" class="announcementHome" style="text-align:center">
 
                         <div class="formDivision">
                             <h3> Choose your report preferences</h3>
