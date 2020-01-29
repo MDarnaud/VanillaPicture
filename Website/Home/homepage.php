@@ -46,7 +46,7 @@ $db = mysqli_connect('localhost','root','','photography');
             <header class="major">
                 <h2>BIOGRAPHY</h2>
             </header>
-            <div class="image fit special biblio">
+            <div  class="image fit special biblio">
                 <img src="../../images/homepage_biblio.jpg" alt="" />
             </div>
             <p class="special">
