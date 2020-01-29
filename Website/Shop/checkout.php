@@ -31,7 +31,12 @@ $db = mysqli_connect('localhost','root','','photography');
         s = i.getElementsByTagName(f)[0];
         s.parentNode.insertBefore(p, s);
     })(window, document, 'script', 'https://cdn.giftup.app/dist/gift-up.js', 'giftup');
+
+    document.getElementById("").setAttribute("value","megane");
+
 </script>
+
+
 
 
 

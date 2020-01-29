@@ -88,6 +88,10 @@ else {
                         }
                     },
 
+                    /*eventRender: function(event, eventElement) {
+                        eventElement.find("div.fc-content").prependToElement("<a href=''>&#10006;</a>");
+                    },*/
+
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
@@ -159,6 +163,7 @@ else {
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
+
 
 	</body>
 </html>
