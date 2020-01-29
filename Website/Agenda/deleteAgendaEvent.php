@@ -4,7 +4,7 @@ $eventId = $_GET["eventId"];
 
 
 //file path
-$file = "json/events.json";
+$file = "../../json/events.json";
 
 //get file
 $json = file_get_contents($file);
@@ -30,11 +30,10 @@ foreach($eventsArray as $key => $event) {
     }
 }
 
-var_dump($eventsArray);
 
 //,JSON_PRETTY_PRINT
 $jsonData = json_encode(array_values($eventsArray));
-file_put_contents("json/events.json", $jsonData);
-header("Location: ./agenda.php");
+file_put_contents("../../json/events.json", $jsonData);
+header("Location: agenda.php");
 ?>
 

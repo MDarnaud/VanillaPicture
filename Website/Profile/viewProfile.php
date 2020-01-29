@@ -32,7 +32,7 @@ include './serverViewProfile.php'
 								<h1>View Profile</h1>
                             </header>
 							<div class="row gtr-200">
-								<div class="col-12 col-12-medium">
+								<div class="col-8 col-8-medium col-12-small col-12-xsmall">
 <!--                                    Select all profile information-->
                                     <?php
                                     $email = $_SESSION['userSignIn'];
@@ -57,7 +57,7 @@ include './serverViewProfile.php'
 									<!-- Form -->
 										<form method="post" action="viewProfile.php">
 											<div class="row gtr-uniform">
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                                     <h3>Profile</h3>
                                                 </div>
 												<div class="col-12 col-12-xsmall">

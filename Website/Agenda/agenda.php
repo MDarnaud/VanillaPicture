@@ -20,7 +20,7 @@ else {
         $message = "(Please sign in/register to make a shoot request)";
     } else if ($userType != null) {
         if ($userType == "customer") {
-            $message = "(To make a shoot reservation, click on an event labeled 'available'.)";
+            $message = "(To make a shoot reservation, click on an availability.)";
         } else if ($userType == "photographer") {
             $message = "(To add an event, click on the 'add' dropdown of the agenda Navigation, to remove an event, click on the event directly in the calendar)";
         }
