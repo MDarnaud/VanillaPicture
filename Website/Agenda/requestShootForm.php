@@ -45,15 +45,15 @@ if(isset($_GET["title"])){
 										<form method="post" action="newShootRequest.php">
 											<div class="row gtr-uniform">
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Enter Location" />
+													<input type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Location" disabled/>
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<h5 class="TitleForm">Date:</h5>
-													<input type="date" name="date" id="date" value="<?php echo $startDate?>" />
+													<input type="date" name="date" id="date" value="<?php echo $startDate?>" disabled />
 												</div>
 												<div class="col-8 col-12-xsmall">
-                                                    <h5 class="TitleForm">Title:</h5>
-													<input type="time" name="time" id="time" value="" placeholder="Time" />
+                                                    <h5 class="TitleForm">Time:</h5>
+													<input type="time" name="time" id="time" value="" placeholder="Time" disabled/>
 												</div>
 												<!-- Break -->
 												<div class="col-12 col-12-small">
