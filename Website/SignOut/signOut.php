@@ -1,6 +1,7 @@
-<?php include 'serverSignOut.php';?>
 <?php
-//if (isset($_SESSION['userSignIn'])) {?>
+    // Include the back end of the sign out form
+    include 'serverSignOut.php';
+?>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
@@ -12,6 +13,7 @@
 		<link rel="stylesheet" href="../../assets/css/main.css" />
 	</head>
 	<body class="is-preload">
+<!--    Include the navigation page -->
     <?php include '../Navigation/navigation.php' ?>
 		<!-- Main -->
 			<div id="main">
@@ -30,6 +32,7 @@
                                         <div class="row gtr-uniform">
                                     <div class="col-12">
                                         <ul class="customActions">
+<!--                                            If press the user will be sign out-->
                                             <li><button type="submit" value="SignOut" class="primary" name="signOut_user">Sign Out</button></li>
                                             <li><button type="reset" value="Cancel" onclick="goBack()">Cancel</button></li>
                                             <script language='javascript' type='text/javascript'>
