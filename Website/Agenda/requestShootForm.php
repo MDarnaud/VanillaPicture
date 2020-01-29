@@ -48,16 +48,16 @@ if(isset($_GET["title"])){
 													<input type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Enter Location" />
 												</div>
 												<div class="col-8 col-12-xsmall">
-													<strong>Date</strong>
+													<h5 class="TitleForm">Date:</h5>
 													<input type="date" name="date" id="date" value="<?php echo $startDate?>" />
 												</div>
 												<div class="col-8 col-12-xsmall">
-													<strong>Time</strong>
+                                                    <h5 class="TitleForm">Title:</h5>
 													<input type="time" name="time" id="time" value="" placeholder="Time" />
 												</div>
 												<!-- Break -->
 												<div class="col-12 col-12-small">
-													<p><strong>Artist Choice</strong></p>
+                                                    <h5 class="TitleForm">Artist Choice:</h5>
 												</div>
 												<div class="col-4 col-12-small">
 													<input type="checkbox" id="checkboxMakeup" name="checkboxMakeup">
@@ -73,7 +73,7 @@ if(isset($_GET["title"])){
 												</div>
 
 												<div class="col-12">
-													<p><strong>Package Choice</strong></p>
+                                                    <h5 class="TitleForm">Package Choice:</h5>
 													<select name="packageCategory" id="packageCategory">
 														<option value="">- Select -</option>
 														<option value="package1">Package 1</option>

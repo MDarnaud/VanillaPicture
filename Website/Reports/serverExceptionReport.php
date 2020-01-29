@@ -70,7 +70,7 @@ if(isset($_POST['submit'])) {
         }
     }
 
-    header('location: ./reportsSummary.php?reportSelect=exception&errors='.$errors.'&customer='.$customer.'&announcement='.$announcement
+    header('location: ./reportsException.php?reportSelect=exception&errors='.$errors.'&customer='.$customer.'&announcement='.$announcement
         .'&shoot='.$shoot.'&payment='.$payment.'&period='.$period.'&year='.$year.'&month='.$month.'&age='.$age
     .'&location='.$location.'&packages='.$packages.'&paymentDropDown='.$paymentDropDown);
 }?>
