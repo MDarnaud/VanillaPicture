@@ -116,7 +116,7 @@ if ($resultPost) { // if user exists
             else{
                 if($eachPost['announcementModel'] === '1') {
                     $idLink = '../Announcement/applyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
-                    echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;">***If you wish to apply please <a class="linkHomeAnnouncement" href="../Registration/register.php">sign up</a> as a "Model"</i>';
+                    echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;">***If you wish to apply please <a class="linkHomeAnnouncement" href="../SignOut/SignOutToRegister.php">sign up</a> as a "Model"</i>';
                 }
             }
             echo '</p>';

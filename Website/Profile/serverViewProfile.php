@@ -52,19 +52,18 @@ if (isset($_POST['change_PW_User'])) {
         $user = mysqli_fetch_assoc($userResult);
 
         $salt = $email;
-        $password_current_hashed = md5($salt.$password_current);
-
-        if($password_current_hashed === $user['userPassword']){
+        if (password_verify($password_current, $user['userPassword'])){
             //Update the customer information in the table customer in the database
             //Hash password
             $salt = $email;
-            $newHashedPassword = md5($salt.$password_1);//encrypt the password before saving in the database
+            //encrypt the password before saving in the database
+            $newHashedPassword = password_hash($password_1, PASSWORD_DEFAULT);
             $queryPW = "UPDATE all_user SET userPassword='$newHashedPassword' WHERE userId='$email'";
             mysqli_query($db, $queryPW);
             if (mysqli_affected_rows($db) >= 1) {
                 header('location: ./viewProfile.php?changePasswordMessage=Password successfully changed.#changePasswordTitle');
             }else{
-                header('location: ./viewProfile.php');
+                header('location: ./viewProfile.php#changePasswordTitle');
             }
         }
         else{
