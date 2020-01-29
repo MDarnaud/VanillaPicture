@@ -47,7 +47,7 @@ $db = mysqli_connect('localhost','root','','photography');
                 <h2>BIOGRAPHY</h2>
             </header>
             <div class="image fit special biblio">
-                <!--<img src="images/homepage_biblio.jpg" alt="" />-->
+                <img src="../../images/homepage_biblio.jpg" alt="" />
             </div>
             <p class="special">
                 Sophie, better known under the name of Vanilla Picture,

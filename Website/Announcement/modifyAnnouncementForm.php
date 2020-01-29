@@ -49,15 +49,15 @@ $modifPost = mysqli_fetch_assoc($modif_result);
                                 <input type="text" name="title" id="title" value="<?php echo $modifPost['announcementTitle']?>" placeholder="Title" maxlength="50" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
                             </div>
                             <div class="col-8 col-12-xsmall">
-                                <textarea name="detail" id="detail" placeholder="Announcement Detail" maxlength="300" style="height:150px;weight:100px" required oninvalid="setCustomValidity('Details is invalid')" oninput="setCustomValidity('')"></textarea>
+                                <textarea name="detail" id="detail" placeholder="Announcement Detail" maxlength="300" style="height:150px;weight:100px" required oninvalid="setCustomValidity('Details is invalid')" oninput="setCustomValidity('')"><?php echo $modifPost['announcementDetail']?></textarea>
                             </div>
                             <div class="col-8 col-12-xsmall">
                                 <p>Start date</p>
-                                <input type="date" name="startDate" id="startDate" value="" placeholder="Start Date" required/>
+                                <input type="date" name="startDate" id="startDate" value="<?php echo $modifPost['announcementStartDate']?>" placeholder="Start Date" required/>
                             </div>
                             <div class="col-8 col-12-xsmall">
                                 <p>End date</p>
-                                <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required oninput="check(this)"/>
+                                <input type="date" name="endDate" id="endDate" value="<?php echo $modifPost['announcementEndDate']?>" placeholder="End Date" required oninput="check(this)"/>
                             </div>
                             <script language='javascript' type='text/javascript'>
                                 function check(input) {
