@@ -31,18 +31,18 @@
 										<h3>Register</h3>
 										<form method="post" action="register.php">
 											<div class="row gtr-uniform">
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Email:</h5>
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
-												<div class="col-8 col-12-xsmall">
+												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Password:</h5>
 													<input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
                                                            required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')"/>
 												</div>
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Confirm password:</h5>
                                                     <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
@@ -60,25 +60,25 @@
                                                         }
                                                     </script>
                                                 </div>
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
                                                     <h3>About you...</h3>
                                                 </div>
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">FirstName:</h5>
                                                     <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
                                                            maxlength="20" required oninvalid="setCustomValidity('FirstName is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">LastName:</h5>
                                                     <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name"
                                                            maxlength="20" required oninvalid="setCustomValidity('LastName is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
-												<div class="col-8 col-12-xsmall">
+												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Date of Birth:</h5>
 													<input type="date" name="dob" id="dob" value="" placeholder="Date of Birth" required
                                                            oninvalid="setCustomValidity('Date of birth is invalid')" oninput="setCustomValidity('')"/>
 												</div>
-												<div class="col-8 col-12-xsmall">
+												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Country:</h5>
 													<select name="country" id="country">
                                                             <option value="" selected hidden>-Select Country-</option>
@@ -91,12 +91,12 @@
                                                             ?>
                                                         </select>
                                                 </div>
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">City:</h5>
                                                     <input type="text" name="city" id="city" value="" placeholder="City" required
                                                            oninvalid="setCustomValidity('City is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
-                                                <div id="radioRegistration" class="col-8 col-12-xsmall">
+                                                <div id="radioRegistration" class="col-8 col-12-small col-12-xsmall">
                                                      Registration Type: &nbsp; &nbsp;
                                                     <input type="radio" name="registrationType" id="customer" value="customer" checked>
                                                     <label for="customer"> Customer </label>

@@ -28,19 +28,19 @@
                                 <!-- Form -->
                                 <form method="post" action="announcement.php">
                                     <div class="row gtr-uniform">
-                                        <div class="col-8 col-12-xsmall">
+                                        <div class="col-8 col-12-small col-12-xsmall">
                                             <h5 class="TitleForm">Title:</h5>
                                             <input type="text" name="title" id="title" value="" placeholder="Title" maxlength="50" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
                                         </div>
-                                        <div class="col-8 col-12-xsmall">
+                                        <div class="col-8 col-12-small col-12-xsmall">
                                             <h5 class="TitleForm">Details:</h5>
                                             <textarea name="detail" id="detail" value="" placeholder="Announcement Details" maxlength="300" style="height:150px;weight:100px" required oninvalid="setCustomValidity('Details is invalid')" oninput="setCustomValidity('')"></textarea>
                                         </div>
-                                        <div class="col-8 col-12-xsmall">
+                                        <div class="col-8 col-12-small col-12-xsmall">
                                             <h5 class="TitleForm">Start date:</h5>
                                             <input type="date" name="startDate" id="startDate" value="" placeholder="Start Date" required "/>
                                         </div>
-                                        <div class="col-8 col-12-xsmall">
+                                        <div class="col-8 col-12-small col-12-xsmall">
                                             <h5 class="TitleForm">End date:</h5>
                                             <input type="date" name="endDate" id="endDate" value="" placeholder="End Date" required oninput="check(this)"/>
                                             <script language='javascript' type='text/javascript'>

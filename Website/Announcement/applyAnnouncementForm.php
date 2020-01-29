@@ -38,7 +38,7 @@ include 'sendEmailApplicationModel.php';
                         <?php $linkAnnouncement = "applyAnnouncementForm.php?announcementId=".$_GET['announcementId']."&announcementTitle=".$_GET['announcementTitle'];?>
                         <form method="post" action="<?php echo $linkAnnouncement;?>">
                             <div class="row gtr-uniform">
-                                <div class="col-8 col-12-xsmall" id="firstParagraphApply">
+                                <div class="col-8 col-12-small col-12-xsmall" id="firstParagraphApply">
                                     <h5 class="TitleForm">Do you have past experience as a model?</h5>
                                         <input type="radio" name="experience" id="yes" value="yes">
                                         <label for="yes"> Yes </label>
@@ -62,7 +62,7 @@ include 'sendEmailApplicationModel.php';
                                     });
                                 </script>
 
-                                <div class="col-8 col-12-xsmall field"">
+                                <div class="col-8 col-12-small col-12-xsmall field"">
                                 <h5 class="TitleForm">Tell me a little about you...</h5><small style="font-size:12px;"><i>(Why should I pick you, what characterizes you physically or you can give an example of a previous shoot.)</i></small><br>
                                         <textarea name="message" id="message" title="Please fill out this field."rows="12" placeholder="Message" required oninvalid="setCustomValidity('A message is required')" oninput="setCustomValidity('')"></textarea>
                                 <input type="hidden" name="titleAnnouncement" id="titleAnnouncement" value="<?php echo $_GET['announcementTitle'];?>">

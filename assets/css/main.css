@@ -4586,4 +4586,11 @@ input:disabled {
 	background: #f2f2f2;
 }
 
+/*modify image form*/
+@media screen and (max-width: 800px) {
+	.image.special.fit.biblio {
+		margin-left:5%;
+	}
+}
+
 

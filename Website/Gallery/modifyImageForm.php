@@ -53,7 +53,7 @@ if(isset($_GET['modificationId'])){
                                                 <!-- Form -->
                                                     <form method="post" action="modifyImageForm.php">
                                                         <div class="row gtr-uniform">
-                                                                <div class="image special fit biblio" style="padding-left: 0px;padding-top:0px;">
+                                                                <div class="image special fit biblio" style="padding-left: 0px;padding-top:0px; ">
                                                                     <img class="biblio" id="<?php $imgId; ?>"src="<?php echo $image ?>">
                                                                 </div>
 

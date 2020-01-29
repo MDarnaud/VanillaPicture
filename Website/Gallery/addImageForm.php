@@ -29,7 +29,7 @@
 									<!-- Form -->
 										<form method="post" action="addImageForm.php" enctype="multipart/form-data">
 											<div class="row gtr-uniform">
-                                                <div class="col-8 col-12-xsmall" id="dropdownCategory">
+                                                <div class="col-8 col-12-small col-12-xsmall" id="dropdownCategory">
                                                     <h5 class="TitleForm">Category: </h5>
                                                     <select name="category" id="category" title="Category" required oninvalid="setCustomValidity('Category is invalid')" oninput="setCustomValidity('')">
                                                         <?php
@@ -140,11 +140,11 @@
                                                     });
                                                 </script>
 
-												<div class="col-8 col-12-xsmall">
+												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Caption: </h5>
                                                     <input type="text" name="caption" id="caption" value="" placeholder="Caption" maxlength="100" title="Please fill out this field." />
                                                 </div>
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-8 col-12-small col-12-xsmall">
 <!--                                                    Upload image here-->
                                                     <h5 class="TitleForm">Select image to upload:</h5>
                                                     <input type="file" name="fileToUpload" id="fileToUpload" required>
