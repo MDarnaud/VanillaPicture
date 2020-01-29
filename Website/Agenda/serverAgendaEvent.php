@@ -19,7 +19,7 @@ if(empty($_POST["isAvailability"])){
 $url = "requestShootForm.php";
 
 //file path
-$file = "json/events.json";
+$file = "../../json/events.json";
 
 //get file
 $json = file_get_contents($file);
@@ -46,6 +46,6 @@ else{
 array_push($eventsArray, $newEventArray);
 $jsonData = json_encode($eventsArray,JSON_PRETTY_PRINT);
 file_put_contents($file, $jsonData);
-header("Location: ./agenda.php");
+header("Location: agenda.php");
 
 ?>

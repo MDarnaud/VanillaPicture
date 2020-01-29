@@ -1,3 +1,12 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// connect to the databases
+$db = mysqli_connect('localhost','root','','photography');
+
+?>
 <!DOCTYPE HTML>
 
 <html lang="en">

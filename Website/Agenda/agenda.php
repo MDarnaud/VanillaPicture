@@ -62,7 +62,7 @@ else {
                     },
                     eventClick: function(info) {
                         info.jsEvent.preventDefault();
-                        var userType = "<?php echo $userType ?>";
+                        var userType = "customer";
 
                         if(userType == "customer")
                         {
@@ -93,7 +93,7 @@ else {
                     eventLimit: true, // allow "more" link when too many events
                     eventSources: [
                         {
-                            url: 'json/events.json',
+                            url: '../../json/events.json',
                             type: 'POST',
                             data: {
                                 //custom_param1: 'something',
