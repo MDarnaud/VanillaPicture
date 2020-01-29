@@ -1,4 +1,4 @@
-<?php include 'serverAnnouncement.php' ?>
+<?php include 'addAnnouncement.php' ?>
 <!DOCTYPE HTML>
 
 <html lang="en">

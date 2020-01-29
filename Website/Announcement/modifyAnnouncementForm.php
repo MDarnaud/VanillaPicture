@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'serverAnnouncement.php';
+include 'addAnnouncement.php';
 
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
@@ -42,7 +42,7 @@ $modifPost = mysqli_fetch_assoc($modif_result);
             <div style="margin:auto">
                 <div class="row gtr-200">
                     <!-- Form -->
-                    <form method="post" action="serverAnnouncement.php">
+                    <form method="post" action="addAnnouncement.php">
                         <div class="row gtr-uniform">
                             <div class="col-8 col-12-xsmall">
                                 <input type="hidden" name="id" id="id" value="<?php echo $modifPost['announcementId']?>"/>

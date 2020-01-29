@@ -49,7 +49,7 @@ $id = randomId();
             <div class="row gtr-200">
                 <div class="col-12 col-12-medium">
                     <!-- Form -->
-                    <form method="post" action="addAgendaEvent.php">
+                    <form method="post" action="serverAgendaEvent.php">
                         <div class="row gtr-uniform">
                             <div class="col-8 col-12-xsmall">
                                 <input type="hidden" name="eventId" id="eventId" value="<?php echo $id?>" placeholder="Event Id"/>
