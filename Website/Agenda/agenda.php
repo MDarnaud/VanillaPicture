@@ -62,7 +62,7 @@ else {
                     },
                     eventClick: function(info) {
                         info.jsEvent.preventDefault();
-                        var userType = "customer";
+                        var userType = "<?php echo $userType ?>";
 
                         if(userType == "customer")
                         {
