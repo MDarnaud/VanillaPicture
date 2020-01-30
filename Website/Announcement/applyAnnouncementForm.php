@@ -29,8 +29,7 @@ include 'sendEmailApplicationModel.php';
                 <header class="major">
                     <h1>Model Application</h1>
                     <p>You are currently applying to the announcement "<b><?php echo $_GET['announcementTitle'];?></b>".</p>
-<!--                    --><?php //include 'errorAnnouncementApplication';?>
-<!--                    Place to put error page-->
+
                 </header>
                 <div style="margin:auto">
                     <div class="row gtr-200">
@@ -47,6 +46,7 @@ include 'sendEmailApplicationModel.php';
                                 </div>
 
                                 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!--                            Verify if the model has any years of experience, if so open a the rest of the form    -->
                                 <script>
                                     $(document).ready(function () {
                                         $("input[type='radio']").click(function () {

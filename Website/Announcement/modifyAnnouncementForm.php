@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 include 'addAnnouncement.php';
 
-// connect to the database
+// Connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 
 // Get the selected announcement from the database
@@ -60,6 +60,7 @@ $modifPost = mysqli_fetch_assoc($modif_result);
                                 <input type="date" name="endDate" id="endDate" value="<?php echo $modifPost['announcementEndDate']?>" placeholder="End Date" required oninput="check(this)"/>
                             </div>
                             <script language='javascript' type='text/javascript'>
+//                                Validation for the dates
                                 function check(input) {
                                     if (!(input.value > document.getElementById('startDate').value)) {
                                         input.setCustomValidity('End Date is before the start date.');
