@@ -1,12 +1,12 @@
 
 <?php
+// Include the header of reports
 include "reportsSimilar.php";
 ?>
 <!--        Detail Report-->
 <?php
 
     // Yearly
-    $currentYear = date("Y");
     echo '<h3>Year '.$currentYear.'</h3>';
     echo '<h5>Customer Registration</h5>';
     ?>
@@ -31,13 +31,16 @@ include "reportsSimilar.php";
                     City
                 </th>
             </tr>
-            <!---->
+            <!-- Get the information for new customers for years-->
             <?php $currentYear = date("Y");?>
             <?php
-            // New customer
+            // New Customer
+            // Retrieve all records for the registration for the current year
             $customer_detail_y_query = "SELECT * FROM customer WHERE year(customerDate)='$currentYear'";
             $customer_d_y_result = mysqli_query($db, $customer_detail_y_query);
+            // Verify if their is record
             if(mysqli_num_rows($customer_d_y_result)>0){
+                // Get the records in variables
                 while ($row = mysqli_fetch_assoc($customer_d_y_result)) {
                     $textCustomerUserIdY = $row['userId'];
                     $textCustomerNameY = $row['customerFirstName'] . ' ' . $row['customerLastName'];
@@ -90,13 +93,14 @@ include "reportsSimilar.php";
                     End Date
                 </th>
             </tr>
-            <!---->
             <?php $currentYear = date("Y");?>
             <?php
-            // New customer
+            // New announcement
             $announcement_detail_y_query = "SELECT * FROM announcement WHERE year(announcementStartDate)='$currentYear'";
             $announcement_d_y_result = mysqli_query($db, $announcement_detail_y_query);
+            // Verify is there is announcement
             if(mysqli_num_rows($announcement_d_y_result)>0){
+                // Get the announcement from the db in variables
                 while ($row2 = mysqli_fetch_assoc($announcement_d_y_result)) {
                     $textAnnouncementUserIdY = $row2['announcementTitle'];
                     $textAnnouncementNameY = $row2['announcementDetail'];
@@ -152,9 +156,12 @@ include "reportsSimilar.php";
 
             <?php $currentYear = date("Y");?>
             <?php
+            // Booked Shoot
             $shoot_detail_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$currentYear'";
             $shoot_d_y_result = mysqli_query($db, $shoot_detail_y_query);
+            // Verify if there is any booked shoot in the database
             if(mysqli_num_rows($shoot_d_y_result)>0){
+                // Get the information from the db to variables
                 while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
                     $textShootTimeY = $row2['shootTime'];
                     $textShootDateY = $row2['shootDate'];
@@ -186,7 +193,7 @@ include "reportsSimilar.php";
     </div>
     <hr>
 
-    <?php echo '<h5>Gift Cards</h5>'; ?> <!--PAYMENTS-->
+    <?php echo '<h5>Gift Cards</h5>'; ?>
 
     <div class="table-wrapper">
         <table class="alt">
@@ -205,9 +212,12 @@ include "reportsSimilar.php";
 
             <?php $currentYear = date("Y");?>
             <?php
+            // Number of giftcards
             $payment_detail_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$currentYear'";
             $payment_d_y_result = mysqli_query($db, $payment_detail_y_query);
+            // Verify if there is any records
             if(mysqli_num_rows($payment_d_y_result)>0){
+                // Get the giftcards information from the db in variables
                 while ($row2 = mysqli_fetch_assoc($payment_d_y_result)) {
                     $textPaymentCustomerY = $row2['customerId'];
                     $textPaymentDateY = $row2['paymentDate'];
@@ -236,7 +246,7 @@ include "reportsSimilar.php";
     <!--               Monthly-->
 
     <?php // Monthly
-    $currentMonth = date("F");
+    $currentMonth = date("F"); // get the current month in a word format
     echo '<h3>Month of '.$currentMonth.'</h3>';
     echo '<h5>Customer Registration</h5>'; ?>
 
@@ -261,16 +271,17 @@ include "reportsSimilar.php";
                     City
                 </th>
             </tr>
-            <!---->
-            <?php $currentMonth = date("m");
-            $currentYear = date("Y");
-
+            <?php
+            $currentMonth = date("m"); // get the current month in number format
+            $currentYear = date("Y"); // get the current year in number format
             ?>
             <?php
             // New customer
             $customer_detail_m_query = "SELECT * FROM customer WHERE month(customerDate)='$currentMonth' AND year(customerDate)='$currentYear'";
             $customer_d_m_result = mysqli_query($db, $customer_detail_m_query);
+            // Verify if there is any records
             if(mysqli_num_rows($customer_d_m_result)>0){
+                // Get information from the db and put it in variables
                 while ($row = mysqli_fetch_assoc($customer_d_m_result)) {
                     $textCustomerUserIdM = $row['userId'];
                     $textCustomerNameM = $row['customerFirstName'] . ' ' . $row['customerLastName'];
@@ -322,15 +333,16 @@ include "reportsSimilar.php";
                     End Date
                 </th>
             </tr>
-            <!---->
             <?php
-            $currentMonth = date("m");
-            $currentYear = date("Y");?>
-            <?php
+            $currentMonth = date("m"); // get the current month in number format
+            $currentYear = date("Y"); // get the current year in number format
+
             // New customer
             $announcement_detail_m_query = "SELECT * FROM announcement WHERE month(announcementStartDate)='$currentMonth' AND year(announcementStartDate)='$currentYear'";
             $announcement_d_m_result = mysqli_query($db, $announcement_detail_m_query);
+            // Verify if there is any records
             if(mysqli_num_rows($announcement_d_m_result)>0){
+                // Get information from the db and put it in variables
                 while ($row2 = mysqli_fetch_assoc($announcement_d_m_result)) {
                     $textAnnouncementUserIdM = $row2['announcementTitle'];
                     $textAnnouncementNameM = $row2['announcementDetail'];
@@ -386,7 +398,9 @@ include "reportsSimilar.php";
             <?php
             $shoot_detail_y_query = "SELECT * FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'";
             $shoot_d_y_result = mysqli_query($db, $shoot_detail_y_query);
+            //Verify if there is any records
             if(mysqli_num_rows($shoot_d_y_result)>0){
+                // Get information from the db and put it in variables
                 while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
                     $textShootTimeY = $row2['shootTime'];
                     $textShootDateY = $row2['shootDate'];
@@ -437,9 +451,12 @@ include "reportsSimilar.php";
 
             <?php $currentYear = date("Y");?>
             <?php
+            // Number of Giftcards
             $payment_detail_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
             $payment_d_y_result = mysqli_query($db, $payment_detail_y_query);
+            // Verify if there is any records
             if(mysqli_num_rows($payment_d_y_result)>0){
+                // Get information from the db and put it in variables
                 while ($row2 = mysqli_fetch_assoc($payment_d_y_result)) {
                     $textPaymentCustomerY = $row2['customerId'];
                     $textPaymentDateY = $row2['paymentDate'];
