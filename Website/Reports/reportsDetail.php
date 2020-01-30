@@ -1,4 +1,3 @@
-
 <?php
 // Include the header of reports
 include "reportsSimilar.php";

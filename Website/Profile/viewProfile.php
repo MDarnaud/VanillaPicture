@@ -140,7 +140,7 @@ include './serverViewProfile.php'
 
 
 
-
+<!--                                Change password section-->
 <hr>
                                     <form method="post" action="viewProfile.php">
                                         <div class="row gtr-uniform">
@@ -187,9 +187,6 @@ include './serverViewProfile.php'
                                             </div>
                                         </div>
                                     </form>
-
-
-
 								</div>
 							</div>
 						</div>

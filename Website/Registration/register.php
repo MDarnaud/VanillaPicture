@@ -85,6 +85,7 @@
                                                             <?php
                                                             foreach($countries as $key => $value) {
                                                                 ?>
+<!--                                                            Country dropdown from another page    -->
                                                                 <option value="<?= $key ?>" title="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($value) ?></option>
                                                                 <?php
                                                             }
@@ -108,6 +109,7 @@
                                                 <!--                                    RadioButton clicked show the right dropdown-->
                                                 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
                                                 <script>
+                                                    // If the non-user selected a "Model"
                                                     $(document).ready(function () {
                                                         $("input[type='radio']").click(function () {
                                                             $('.genderChoice').remove();
