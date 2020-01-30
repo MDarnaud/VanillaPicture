@@ -5,7 +5,7 @@ include "reportsSimilar.php";
 ?>
 <!--        Detail Report-->
 <?php
-
+$currentYear = date("Y");
     // Yearly
     echo '<h3>Year '.$currentYear.'</h3>';
     echo '<h5>Customer Registration</h5>';

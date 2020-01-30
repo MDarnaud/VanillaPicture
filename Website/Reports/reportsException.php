@@ -4,8 +4,6 @@ include "reportsSimilar.php";
 include "serverExceptionReport.php";
 ?>
 <!--        Exception Report-->
-
-    <!--                Year or month choice radiobutton-->
     <div id="main">
         <div class="wrapper">
             <div class="inner">
@@ -19,7 +17,7 @@ include "serverExceptionReport.php";
 
                         <div class="formDivision">
                             <h3> Choose your report preferences</h3>
-
+<!--                Year or month choice radiobutton-->
                             <strong> Period: </strong>&nbsp; &nbsp;
                             <input type="radio" name="period" id="year" value="year">
                             <label for="year"> Year </label>
@@ -27,14 +25,19 @@ include "serverExceptionReport.php";
                             <input type="radio" name="period" id="month" value="month">
                             <label for="month"> Month </label>
 
-                            <!--                                    RadioButton clicked show the right dropdown-->
+<!--                 When radiobutton above clicked, rest of the form appears-->
                             <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
                             <script>
                                 $(document).ready(function () {
+                                    // If a radio button is clicked
                                     $("input[type='radio']").click(function () {
+                                        // Remove the section added if the raiod button had been previously clicked
                                         $('.dropdownPeriod').remove();
+                                        // Retrieve value of the clicked radio button
                                         var radioValue = $("input[name='period']:checked").val();
+                                        // Verify if the user selected year
                                         if (radioValue == 'year') {
+                                            // Append a year dropdown
                                             $('.formDivision').append('<div class="dropdownPeriod"><strong> Year: </strong>&nbsp; &nbsp;</div>');
                                             $('.formDivision').append('<div class="dropdownPeriod"><?php $years = range(2000, strftime("%Y", time())); ?>\n' +
                                                 '<select name="dropdownYear" id="dropdownYear" required oninvalid="setCustomValidity(\'Year is required\')" oninput="setCustomValidity(\'\')">\n' +
@@ -47,9 +50,13 @@ include "serverExceptionReport.php";
 
 
                                         }
+                                        // Verify if the user selected month
                                         if (radioValue == 'month') {
-                                            $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;<input type="month" name="dropdownMonth" id="dropdownMonth"></div>');
+                                            // Append a month dropdown
+                                            $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;' +
+                                                '<input type="month" name="dropdownMonth" id="dropdownMonth"></div>');
                                         }
+                                        // Append selection of all tables choices in checkbox format
                                         $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
                                         $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer" class="elementsTable">\n' +
                                             '     <label for="customer"> Customer Registration</label>\n' +
@@ -60,29 +67,36 @@ include "serverExceptionReport.php";
                                             '                <input type="checkbox" name="payment" id="payment" value="payment" class="elementsTable">\n' +
                                             '     <label for="payment"> Payments </label></div>');
 
+
                                         var checkboxValue;
+                                        // If a checkbox is clicked
                                         $(":checkbox").change(function () {
+                                            // Remove a paragraph which appears if a checkbox has previsoulsy been selected
                                             $('.filters').remove();
                                             checkboxValue = [];
+                                            // Verify which checkbox has been clicked
                                             $(':checkbox:checked').each(function (i) {
+                                                //Store checkbox value in an array
                                                 checkboxValue[i] = $(this).val();
                                             });
 
                                             $('.formDivision').append('<div class="filters"><br><strong>Filters: </strong>');
 
+                                            // Looping through the selected checkboxes
                                             $(checkboxValue).each(function (i) {
                                                 if (checkboxValue[i] == 'customer') {
-                                                    // Customer (Over 18 years old)
-                                                    //Put radio button
+                                                    // Customer (Over 18 years old or Under choices)
                                                     $('.filters').append('<p><h5>Customer Registration</h5><input type="radio" name="age" id="over" value="over" class="elementsTable">\n' +
                                                         '<label for="over"> Over 18 years old</label>\n' + '<input type="radio" name="age" id="under" value="under" class="elementsTable">\n' +
                                                         '    <label for="under"> Under 18 years old</label>\n' + '</p>');
                                                 }
                                                 if (checkboxValue[i] == 'announcement') {
+                                                    // Announcement (No filters)
                                                     $('.filters').append('<p><h5>Announcements</h5>');
                                                     $('.filters').append('No filters for this subject </p>');
                                                 }
                                                 if (checkboxValue[i] == 'shoot') {
+                                                    // Shoot (Location and Package number choices)
                                                     $('.filters').append('<p><h5>Shoots</h5>');
                                                     // Shoot(Location)
                                                     $('.filters').append('Location <input type="text" name="locationShoot" id="amountPay" value="" placeholder="ex: Toronto">\n');
@@ -101,14 +115,6 @@ include "serverExceptionReport.php";
                                     });
                                 });
                             </script>
-
-
-                            <!--                                    We here (Depending of the selected table put possible filters)-->
-                            <!--                                    Missing payment to do
-                                                                    Payment (Over certain amount)
-                            -->
-
-
                         </div>
                         <br>
                         <input type="submit" class="primary" name="submit" id="submit" value="Submit">
@@ -116,19 +122,21 @@ include "serverExceptionReport.php";
                 </div>
             </div>
             <?php
-            //Year Selection
+            // Year Selection
+            // Verify if there is any error with the preferences form (If so, dont display)
             if (isset($_GET['errors'])) {
                 if ($_GET['errors'] === '') {
+                    // Verify if the user selected "year" as a period
                     if ($_GET['period'] === 'year') {
                         //Checkbox elements selection
-                        //Save the choosen year
-                        $selectedYear = $_GET['year'];
-                        // Year Title
-                        echo '<h3>Year ' . $selectedYear . '</h3>';
+                            //Save the choosen year
+                            $selectedYear = $_GET['year'];
+                            // Year Title
+                            echo '<h3>Year ' . $selectedYear . '</h3>';
 
-                        //Customer Registration
-                        if ($_GET['customer'] === 'customer') {
-                            ?>
+                            //Customer Registration
+                            if ($_GET['customer'] === 'customer') {
+                                ?>
 
                             <h5>Customer Registration</h5>';
                             <div class="table-wrapper">
@@ -153,7 +161,7 @@ include "serverExceptionReport.php";
                                     </tr>
                                     <?php
                                     // New customer
-                                    //Age filter
+                                    // Age filter
                                     $dateAdult = date('Y-m-d', strtotime('18 years ago'));
                                     if ($_GET['age'] === 'over') {
                                         $customer_exception_y_query = "SELECT * FROM customer WHERE year(customerDate)='$selectedYear' AND $dateAdult > customerDob";
@@ -220,10 +228,9 @@ include "serverExceptionReport.php";
                                             End Date
                                         </th>
                                     </tr>
-                                    <!---->
                                     <?php $currentYear = date("Y"); ?>
                                     <?php
-                                    //announcement
+                                    // Announcement
                                     $announcement_exception_y_query = "SELECT * FROM announcement WHERE year(announcementStartDate)='$selectedYear'";
                                     $announcement_e_y_result = mysqli_query($db, $announcement_exception_y_query);
                                     if (mysqli_num_rows($announcement_e_y_result) > 0) {
@@ -258,30 +265,29 @@ include "serverExceptionReport.php";
                         }
                         //Shoots
                         if ($_GET['shoot'] === 'shoot') {
+                            // Verify if user has apply a filter for the Location
                             if ($_GET['location'] != '') {
                                 $location = $_GET['location'];
+                                // Verify if user has apply a filter for the Packages
                                 if ($_GET['packages'] != '') {
                                     $packages = $_GET['packages'];
-                                    //both input precised
+                                    // Both input precised
                                     $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location' AND shootPackage = '$packages'";
                                 } else {
                                     //only location precised
                                     $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootLocation = '$location'";
                                 }
                             } else if ($_GET['packages'] != '') {
-                                //only package precised
+                                // Only package precised
                                 $packages = $_GET['packages'];
                                 $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootPackage = '$packages'";
 
                             }
                             else {
-                                //no exception precised
+                                // No exception precised
                                 $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
                             }
                             echo '<h5>Shoots</h5>';
-                            /*
-                             * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current year for selected year
-                             */
                             ?>
                             <div class="table-wrapper">
                                 <table class="alt">
@@ -344,33 +350,32 @@ include "serverExceptionReport.php";
 
                         //Payments
                         if ($_GET['payment'] === 'payment') {
+                            // Verify if the user selected a payment amount filter
                             if ($_GET['paymentDropDown'] != '') {
                                 $paymentDd = $_GET['paymentDropDown'];
                                 if ($paymentDd != '') {
                                     if ($paymentDd === '050') {
-
+                                        // 0-50$
                                         $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal >= 0 AND paymentTotal <= 50";
 
                                     } elseif ($paymentDd === '51100') {
-
+                                        // 51-100$
                                         $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal >= 51 AND paymentTotal <= 100";
 
                                     } elseif ($paymentDd === '101200') {
-
+                                        // 101-200$
                                         $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal >= 101 AND paymentTotal <= 200";
 
                                     } elseif ($paymentDd === '201') {
-
+                                        // 201$ and more
                                         $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal >= 201";
 
                                     }
                                 } else {
+                                    //no filters
                                     $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear'";
                                 }
                                 echo '<h5>Payments</h5>';
-                                /*
-                                * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current year for selected year
-                                */
                                 ?>
 
                                 <div class="table-wrapper">
@@ -421,7 +426,8 @@ include "serverExceptionReport.php";
 
                             }
                         }
-                    } //Month
+                    }
+                    //Month
                     elseif ($_GET['period'] === 'month') {
                         $selectedMonthNotFormat = $_GET['month']; //January 2020 -> 2020-01
                         $selectedMonthName = date('F', strtotime($selectedMonthNotFormat));
@@ -451,10 +457,10 @@ include "serverExceptionReport.php";
                                             City
                                         </th>
                                     </tr>
-                                    <!---->
-                                    <?php $currentMonth = date("m");
-                                    $currentYear = date("Y");
 
+                                    <?php
+                                    $currentMonth = date("m");
+                                    $currentYear = date("Y");
                                     ?>
                                     <?php
                                     // New customer
@@ -523,12 +529,12 @@ include "serverExceptionReport.php";
                                             End Date
                                         </th>
                                     </tr>
-                                    <!---->
+
                                     <?php
                                     $currentMonth = date("m");
                                     $currentYear = date("Y"); ?>
                                     <?php
-                                    // New customer
+                                    // New announcement
                                     $announcement_exception_m_query = "SELECT * FROM announcement WHERE month(announcementStartDate)='$selectedMonth' AND year(announcementStartDate)='$selectedYearWithMonth'";
                                     $announcement_e_m_result = mysqli_query($db, $announcement_exception_m_query);
                                     if (mysqli_num_rows($announcement_e_m_result) > 0) {
@@ -565,28 +571,27 @@ include "serverExceptionReport.php";
                         if ($_GET['shoot'] === 'shoot') {
                             echo "<h5> Shoots </h5>";
 
+                            //Verify if user selected location filters
                             if ($_GET['location'] != '') {
                                 $location = $_GET['location'];
+                                //Verify if user selected packages filters
                                 if ($_GET['packages'] != '') {
                                     $packages = $_GET['packages'];
-                                    //both options precised
+                                    // Both options precised
                                     $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location' AND shootPackage = '$packages'";
                                 } else {
-                                    //only location precised
+                                    // Only location precised
                                     $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootLocation = '$location'";
                                 }
                             } else if ($_GET['packages'] != '') {
-                                //only package precised
+                                // Only package precised
                                 $packages = $_GET['packages'];
                                 $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'AND shootPackage = '$packages'";
                             } else {
-                                //no exception precised
+                                // No preferences precised
                                 $shoot_exception_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$selectedMonth' AND year(shootDate)='$selectedYearWithMonth'";
                             }
-
-                            /*
-                             * MEGANE look above and do the same for shoot table, copy paste what you did in detail report but change current month for selected month
-                             */ ?>
+                        ?>
                             <div class="table-wrapper">
                                 <table class="alt">
                                     <tbody>
@@ -649,34 +654,32 @@ include "serverExceptionReport.php";
                         }
                         //Payments
                         if ($_GET['payment'] === 'payment') {
-                            if ($_GET['payment'] === 'payment') {
+                            // Verify if the user made payment filters
                                 if ($_GET['paymentDropDown'] != '') {
                                     $paymentDd = $_GET['paymentDropDown'];
                                     if ($paymentDd != '') {
                                         if ($paymentDd === '050') {
-
+                                            // 0-50$
                                             $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal >= 0 AND paymentTotal <= 50";
 
                                         } elseif ($paymentDd === '51100') {
-
+                                            // 51-100$
                                             $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal >= 51 AND paymentTotal <= 100";
 
                                         } elseif ($paymentDd === '101200') {
-
+                                            // 101-200$
                                             $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal >= 101 AND paymentTotal <= 200";
 
                                         } elseif ($paymentDd === '201') {
-
+                                            // 201 and more
                                             $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal >= 201";
 
                                         }
                                     } else {
+                                        // no filters
                                         $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
                                     }
                                     echo "<h5> Payments </h5>";
-                                    /*
-                                    * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current month for selected month
-                                    */
                                     ?>
                                     <div class="table-wrapper">
                                         <table class="alt">
@@ -723,7 +726,6 @@ include "serverExceptionReport.php";
                                     <hr>
                                     <?php
                                 }
-                            }
                         }
                     }
                 }
@@ -736,10 +738,7 @@ include "serverExceptionReport.php";
 
 
     <br>
-    <!--Year or month dropdown-->
     <br>
-
-    <!--                Table choicesss-->
 
 
 
