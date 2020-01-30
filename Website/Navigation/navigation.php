@@ -17,7 +17,6 @@ echo '<header id="header" class="alt">
 
 
 
-//          Verify if user login
             if(!(isset($_SESSION['userSignIn']))) {
                 echo '<li><a href="../SignIn/signIn.php" class="icon fa-user-circle"> Sign in</a></li>';
             }
@@ -26,7 +25,7 @@ echo '<header id="header" class="alt">
                     echo '<li><a>Administration</a>
                             <ul>
                                 <li><a class="navdrop" href="../Announcement/announcement.php" style="color:white;">Announcement</a></li>
-                                 <li><a class="navdrop" href="" style="color:white;">Review</a></li>
+                              
                                 <li><a class="navdrop" href="../Reports/reportsSummary.php" style="color:white;">Reports</a></li>
                             </ul>
                           </li>';

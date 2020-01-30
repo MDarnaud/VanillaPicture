@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// connect to the databases
+// Connect to the databases
 $db = mysqli_connect('localhost','root','','photography');
 
 ?>
@@ -67,10 +67,10 @@ $db = mysqli_connect('localhost','root','','photography');
     </div>
 </div>
 
-<!-- Two -->
+
 <!--                            Announcement -->
 <?php
-//Insert the announcement information in the table announcement in the database
+// Insert the announcement information in the table announcement in the database
 $queryAnnouncement = "SELECT * FROM announcement";
 $resultPost = mysqli_query($db, $queryAnnouncement);
 
@@ -90,11 +90,11 @@ if ($resultPost) { // if user exists
     }
     $noElements = false;
     foreach ($resultPost as $eachPost) {
-        //verify if end date is after now and start date is before now
+        // Verify if end date is after now and start date is before now
         if ((strtotime($eachPost['announcementEndDate']) > strtotime('now')) && strtotime($eachPost['announcementStartDate']) <= strtotime('now')) {
             echo '<p class="announcementHome"> <strong>'.$eachPost['announcementTitle'].'</strong><br>'
                 .$eachPost['announcementDetail'].'  - <small><i>By Sophie Perras</i></small>';
-            //Only administrator can modify annoucement
+            // Only administrator can modify annoucement
             if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'){
                 $idLink = '../Announcement/modifyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
                 $idLinkDelete = '../Announcement/deleteAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
@@ -104,8 +104,6 @@ if ($resultPost) { // if user exists
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
                 echo '<a class="linkHomeAnnouncement" href='.$idLinkDelete.'>Delete </a>';
-//                echo '<button class="linkHomeAnnouncement" onclick="complexConfirm()">Delete </button>';
-
             }
             else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){
                 if($eachPost['announcementModel'] === '1') {
