@@ -17,7 +17,7 @@ if(isset($_GET["sendEmail"])){
 }
 else {
     if ($userType == null) {
-        $message = '<i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../Registration/register.php">sign up</a> as a "Customer"</i>';
+        $message = '<i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../SignOut/SignOutToRegister.php">sign up</a> as a "Customer"</i>';
     } else if ($userType != null) {
         if ($userType == "customer") {
             $message = "(To make a shoot reservation, click on an availability.)";
