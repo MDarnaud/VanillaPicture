@@ -42,10 +42,10 @@
                                                 </div>
 
                                                 <?php
-                                                 // connect to the database
+                                                 // Connect to the database
                                                 $db = mysqli_connect('localhost','root','','photography');
 
-                                                //Brands
+                                                // Brands
                                                 $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
                                                 $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
                                                 if (mysqli_num_rows($gallery_result_brand_name) > 0) {
@@ -54,7 +54,7 @@
                                                     }
                                                 }
 
-                                                //Events
+                                                // Events
                                                 $gallery_event_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Events'";
                                                 $gallery_result_event_name = mysqli_query($db, $gallery_event_name_query);
                                                 if (mysqli_num_rows($gallery_result_event_name) > 0) {
@@ -63,7 +63,7 @@
                                                     }
                                                 }
 
-                                                //Portrait
+                                                // Portrait
                                                 $gallery_portrait_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Portraits'";
                                                 $gallery_result_portrait_name = mysqli_query($db, $gallery_portrait_name_query);
                                                 if (mysqli_num_rows($gallery_result_portrait_name) > 0) {

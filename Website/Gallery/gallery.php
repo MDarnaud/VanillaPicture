@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// connect to the database
+// Connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'photography');
 ?>
 <!DOCTYPE HTML>
@@ -45,7 +45,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </button>
                     </li>
                     <?php
-                    //Look for any events name
+                    // Look for any events name
                     $gallery_event_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Events'";
                     $gallery_result_event_name = mysqli_query($db, $gallery_event_name_query);
                     if (mysqli_num_rows($gallery_result_event_name) > 0) {
@@ -84,7 +84,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </div>
                     </li>
                     <?php
-                    //Look for any brands name
+                    // Look for any brands name
                     $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
                     $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
                     if (mysqli_num_rows($gallery_result_brand_name) > 0) {
@@ -124,7 +124,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     </li>
 
                     <?php
-                    //Look for any portraits name
+                    // Look for any portraits name
                     $gallery_portrait_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Portraits'";
                     $gallery_result_portrait_name = mysqli_query($db, $gallery_portrait_name_query);
                     if (mysqli_num_rows($gallery_result_portrait_name) > 0) {
@@ -227,7 +227,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         $categories[] = $gallery['galleryCategory'];
                     }
 
-                    // Initialize column indexx
+                    // Initialize column index
                     $columnIndex = 1;
 
                     // Display images
@@ -300,7 +300,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         var img = document.getElementById(imgs[i].id);
                         var curImageId = "";
                         img.onclick = function () {
-                            // alert(curImageId);
                             var jsnewArrayId = new Array();
                             var jsnewArrayCaption = new Array();
                             var jsnewArraySource = new Array();
@@ -334,7 +333,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 '&subCategorySelect=' + subCategory +
                                 '"' + 'class="pencil"><i class="fa fa-pencil"></i></a>'
                                 <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
-                            // captionText.innerHTML = category;
                             curImageId = this.id;
 
 
