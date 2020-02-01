@@ -1,8 +1,6 @@
 <?php
 // Start session
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include '../../Header/SessionConnection.php';
 
 // Verify if the user is sign in
 if (isset($_SESSION['userSignIn'])) {

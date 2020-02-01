@@ -1,8 +1,8 @@
 <!-- Header -->
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../../Header/SessionConnection.php';
+
 echo '<header id="header" class="alt">
     <nav id="nav">
         <ul>

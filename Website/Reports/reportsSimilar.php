@@ -1,8 +1,6 @@
 <?php
-// Start sessions
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../../Header/SessionConnection.php';
 
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');

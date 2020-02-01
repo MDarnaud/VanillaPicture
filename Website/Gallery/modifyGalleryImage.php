@@ -1,4 +1,7 @@
 <?php
+// Start the session
+include '../../Header/SessionConnection.php';
+
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 

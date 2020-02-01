@@ -1,7 +1,7 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../../Header/SessionConnection.php';
+
 include 'serverSignIn.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -85,7 +85,7 @@ include 'serverSignIn.php'; ?>
 			</div>
 
     <!-- footer -->
-    <?php include '../../footer/footer.php' ?>
+    <?php include '../../Footer/Footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>

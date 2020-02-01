@@ -1,8 +1,6 @@
 <?php
 // Start the session
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include '../../Header/SessionConnection.php';
 
 // Include the back end for a forgetting password
 include 'sendEmailForgotPassword.php'; ?>
@@ -62,7 +60,7 @@ include 'sendEmailForgotPassword.php'; ?>
 </div>
 
 <!-- footer -->
-<?php include '../../footer/footer.php' ?>
+<?php include '../../Footer/Footer.php' ?>
 
 <!-- Scripts -->
 <script src="../../assets/js/jquery.min.js"></script>

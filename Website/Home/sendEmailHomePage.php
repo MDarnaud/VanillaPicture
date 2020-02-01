@@ -5,9 +5,9 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../../emailTool/autoload.php';
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../../Header/SessionConnection.php';
+
 // Initializing variables
 $errors = array();
 $email = "";

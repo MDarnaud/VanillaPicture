@@ -1,8 +1,7 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../../Header/SessionConnection.php';
 
 include 'addAnnouncement.php';
 
@@ -98,7 +97,7 @@ $modifPost = mysqli_fetch_assoc($modif_result);
 </div>
 
 <!-- footer -->
-<?php include '../../footer/footer.php' ?>
+<?php include '../../Footer/Footer.php' ?>
 
 <!-- Scripts -->
 <script src="../../assets/js/jquery.min.js"></script>

@@ -1,8 +1,8 @@
 <?php
 include 'modifyGalleryImage.php';
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../../Header/SessionConnection.php';
+
 $db = mysqli_connect('localhost','root','','photography');
 
 if(isset($_GET['modificationId'])){
@@ -87,7 +87,7 @@ if(isset($_GET['modificationId'])){
                             </div>
                         </div>
 
-                <?php include '../../footer/footer.php' ?>
+                <?php include '../../Footer/Footer.php' ?>
 
                     <!-- Scripts -->
                         <script src="../../assets/js/jquery.min.js"></script>

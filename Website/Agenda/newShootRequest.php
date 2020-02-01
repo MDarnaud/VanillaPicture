@@ -5,16 +5,15 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../../emailTool/autoload.php';
 
+// Start the session
+include '../../Header/SessionConnection.php';
+
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 
 if($db->connect_error)
 {
     echo $db->connect_error;
-}
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
 }
 
 //get user email (ID)

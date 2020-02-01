@@ -6224,7 +6224,7 @@ var CalendarComponent = /** @class */ (function (_super) {
         }
         if (footerLayout) {
             if (!this.footer) {
-                this.footer = new Toolbar(this.context, 'fc-footer-toolbar');
+                this.footer = new Toolbar(this.context, 'fc-Footer-toolbar');
                 appendToElement(this.el, this.footer.el);
             }
             this.footer.receiveProps(__assign({ layout: footerLayout }, toolbarProps));
