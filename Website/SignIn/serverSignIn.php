@@ -1,7 +1,7 @@
 <?php
 
 // Start the session
-include '../Header/SessionConnection.php';
+include '../Header/sessionConnection.php';
 
 // Initializing variables
 $email    = "";

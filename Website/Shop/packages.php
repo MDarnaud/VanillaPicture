@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include '../Header/SessionConnection.php';
+include '../Header/sessionConnection.php';
 
 // connect to the databases
 $db = mysqli_connect('localhost','root','','photography');
@@ -128,13 +128,8 @@ $db = mysqli_connect('localhost','root','','photography');
     <!-- footer -->
     <?php include '../Footer/footer.php' ?>
 
-		<!-- Scripts -->
-			<script src="../../assets/js/jquery.min.js"></script>
-			<script src="../../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../../assets/js/browser.min.js"></script>
-			<script src="../../assets/js/breakpoints.min.js"></script>
-			<script src="../../assets/js/util.js"></script>
-			<script src="../../assets/js/main.js"></script>
+    <!--Script Links-->
+    <?php include '../Footer/scriptsLinks.php'?>
 
 	</body>
 </html>

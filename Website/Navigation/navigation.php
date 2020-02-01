@@ -1,7 +1,7 @@
 <!-- Header -->
 <?php
 // Start the session
-include '../Header/SessionConnection.php';
+include '../Header/sessionConnection.php';
 
 echo '<header id="header" class="alt">
     <nav id="nav">

@@ -1,6 +1,6 @@
 <?php
 // Start session
-include '../Header/SessionConnection.php';
+include '../Header/sessionConnection.php';
 
 // Verify if the user is sign in
 if (isset($_SESSION['userSignIn'])) {
