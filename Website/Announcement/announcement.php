@@ -82,7 +82,7 @@
 			</div>
 
     <!-- footer -->
-    <?php include '../../Footer/Footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>

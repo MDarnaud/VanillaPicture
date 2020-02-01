@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 //agenda message
 $message = "";
@@ -154,7 +154,7 @@ else {
 			</div>
 
     <!-- footer -->
-    <?php include '../../Footer/Footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>

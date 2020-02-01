@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
@@ -65,7 +65,7 @@ if(isset($_SESSION['userSignIn'])){
 
 
 <!-- footer -->
-<?php include '../../Footer/Footer.php' ?>
+<?php include '../Footer/footer.php' ?>
 
 <!-- Scripts -->
 <script src="../../assets/js/jquery.min.js"></script>

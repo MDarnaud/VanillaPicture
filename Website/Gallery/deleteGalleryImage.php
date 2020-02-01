@@ -3,7 +3,7 @@
 $imgId = $_GET['idImageDelete'];
 
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 // Connect to the database
 $db = mysqli_connect('localhost','root','','photography');

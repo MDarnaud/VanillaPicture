@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 //generate a random number that will be the event id
 function randomId()
@@ -104,7 +104,7 @@ $id = randomId();
 </div>
 
 <!-- footer -->
-<?php include '../../Footer/Footer.php' ?>
+<?php include '../Footer/footer.php' ?>
 
 <!-- Scripts -->
 <script src="../../assets/js/jquery.min.js"></script>

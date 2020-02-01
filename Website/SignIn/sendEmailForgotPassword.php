@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 require '..\..\emailTool\autoload.php';
 
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 // initializing variables
 $errors = array();

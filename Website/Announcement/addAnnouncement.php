@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 // Initializing variables
 $errors = array();

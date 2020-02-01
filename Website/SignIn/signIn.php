@@ -1,7 +1,6 @@
 <?php
 // Start the session
-include '../../Header/SessionConnection.php';
-
+include '../Header/SessionConnection.php';
 include 'serverSignIn.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -85,7 +84,7 @@ include 'serverSignIn.php'; ?>
 			</div>
 
     <!-- footer -->
-    <?php include '../../Footer/Footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
 		<!-- Scripts -->
 			<script src="../../assets/js/jquery.min.js"></script>

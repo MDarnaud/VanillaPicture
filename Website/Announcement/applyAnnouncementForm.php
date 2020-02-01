@@ -3,7 +3,7 @@
 $db = mysqli_connect('localhost','root','','photography');
 
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 include 'sendEmailApplicationModel.php';
 ?>
@@ -87,7 +87,7 @@ include 'sendEmailApplicationModel.php';
     </div>
 
     <!-- footer -->
-    <?php include '../../Footer/Footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
     <!-- Scripts -->
     <script src="../../assets/js/jquery.min.js"></script>

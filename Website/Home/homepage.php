@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include '../../Header/SessionConnection.php';
+include '../Header/SessionConnection.php';
 
 // Connect to the databases
 $db = mysqli_connect('localhost','root','','photography');
@@ -193,7 +193,7 @@ if ($resultPost) { // if user exists
             </div>
         </div>
         <!-- footer -->
-        <?php include '../../Footer/Footer.php' ?>
+        <?php include '../Footer/footer.php' ?>
     </div>
 </div>
 
