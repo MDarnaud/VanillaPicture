@@ -169,7 +169,7 @@
             buildUI(title, sub, onOk, onCancel, "prompt");
         },
         mscAlert: function(title, sub, onOk, onCancel) {
-            buildUI(title, sub, onOk, onCancel, "alert");
+             buildUI(title, sub, onOk, onCancel, "alert");
         },
         mscClose: function() {
             var prev = document.getElementsByClassName('msc-confirm');

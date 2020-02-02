@@ -102,20 +102,40 @@ if ($resultPost) { // if user exists
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement" id="demo1">Delete</a>';?>
+                echo '<a class="linkHomeAnnouncement del" id="'.$eachPost['announcementId'].'" onclick="myDelete()">Delete</a>';?>
                 <link rel="stylesheet" href="../../popUp/css/msc-style.css">
                 <link rel="icon" type="image/png" href="/favicon.png">
                     <script src="../../popUp/js/msc-script.js"></script>
                     <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            var demobtn = document.querySelector("#demo1");
-                            demobtn.addEventListener("click", function () {
-                                mscConfirm("Delete?", function () {
-                                    <?php header($idLinkDelete);?>
-                                    mscAlert("Post deleted");
-                                });
+                        //document.addEventListener("DOMContentLoaded", function() {
+                        //    var myVar = "<?php //echo $eachPost['announcementId']; ?>//";
+                        //    //var myVar2 = "#".concat(myVar);
+                        //    //var myVar3 = '"'.concat(myVar2.concat('"'));
+                        //    var numItems = document.querySelectorAll(".del").length;
+                        //    //loop through object compare with php value
+                        //    for(var i=0; i< numItems; i++) {
+                        //        //     var demobtn = document.querySelector(".del"); //replace by #demo1 so it works on one
+                        //        var demobtn = document.querySelectorAll(".del")[i];
+                        //        if(myVar === demobtn.id) {
+                        //            alert('yo');
+                        //        }
+                        //    }
+                        //            demobtn.addEventListener("click", function () {
+                        //                mscConfirm("Delete?", function () {
+                        //                    <!--                                    --><?php ////header($idLinkDelete);?>
+                        //                    mscAlert("Post deleted");
+                        //                });
+                        //            });
+                        //});
+                        function myDelete(){
+                            mscConfirm("Delete?", function () {
+<!--                                --><?php //header("../Gallery/gallery.php");?>
+                             // window.location.href = "homepage.php";
+                                  mscAlert("Post deleted");
+                                  //Search in the msc-script.js to put window.location.href = "../../Website/Gallery/gallery.php";
+
                             });
-                        });
+                        }
                     </script>
 <!--                            --><?php //header($idLinkDelete);?>
 <?php
