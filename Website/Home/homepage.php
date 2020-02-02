@@ -102,20 +102,22 @@ if ($resultPost) { // if user exists
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement" onclick="deleteconfig()">Delete </a>';?>
-                <script>
-                    function deleteconfig(){
-
-                        var del=confirm("Are you sure you want to delete this record?");
-                        if (del==true){
-                            alert ("record deleted")
-                            <?php //header($idLinkDelete);?>
-                        }else{
-                            alert("Record Not Deleted")
-                        }
-                        return del;
-                    }
-                </script>
+                echo '<a class="linkHomeAnnouncement" id="demo1">Delete</a>';?>
+                <link rel="stylesheet" href="../../popUp/css/msc-style.css">
+                <link rel="icon" type="image/png" href="/favicon.png">
+                    <script src="../../popUp/js/msc-script.js"></script>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var demobtn = document.querySelector("#demo1");
+                            demobtn.addEventListener("click", function () {
+                                mscConfirm("Delete?", function () {
+                                    <?php header($idLinkDelete);?>
+                                    mscAlert("Post deleted");
+                                });
+                            });
+                        });
+                    </script>
+<!--                            --><?php //header($idLinkDelete);?>
 <?php
             }
             else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){
