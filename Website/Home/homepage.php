@@ -96,13 +96,12 @@ if ($resultPost) { // if user exists
             // Only administrator can modify annoucement
             if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'){
                 $idLink = '../Announcement/modifyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
-                $idLinkDelete = '../Announcement/deleteAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
                 if($eachPost['announcementModel'] === '1') {
                     echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;"> * This announcement is a model search</i>';
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement del" id="'.$eachPost['announcementId'].'" onclick="myDelete()">Delete</a>';?>
+                echo '<a class="linkHomeAnnouncement" id="'.$eachPost['announcementId'].'" onclick="myDelete(this.id)">Delete</a>';?>
                 <link rel="stylesheet" href="../../popUp/css/msc-style.css">
                 <link rel="icon" type="image/png" href="/favicon.png">
                     <script src="../../popUp/js/msc-script.js"></script>
@@ -127,13 +126,10 @@ if ($resultPost) { // if user exists
                         //                });
                         //            });
                         //});
-                        function myDelete(){
+                        function myDelete(clicked_id){
                             mscConfirm("Delete?", function () {
-<!--                                --><?php //header("../Gallery/gallery.php");?>
-                             // window.location.href = "homepage.php";
                                   mscAlert("Post deleted");
-                                  //Search in the msc-script.js to put window.location.href = "../../Website/Gallery/gallery.php";
-
+                                  //Pass the id to the js file
                             });
                         }
                     </script>

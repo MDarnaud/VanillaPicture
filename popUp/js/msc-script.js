@@ -143,7 +143,8 @@
                 if(type === "prompt") {
                     options.onOk(input.value);
                 }else {
-                    options.onOk();
+                    // options.onOk();
+                     window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId='.$eachPost['announcementId']";
                 }
             }
         }
