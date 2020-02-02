@@ -102,7 +102,21 @@ if ($resultPost) { // if user exists
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement" href='.$idLinkDelete.'>Delete </a>';
+                echo '<a class="linkHomeAnnouncement" onclick="deleteconfig()">Delete </a>';?>
+                <script>
+                    function deleteconfig(){
+
+                        var del=confirm("Are you sure you want to delete this record?");
+                        if (del==true){
+                            alert ("record deleted")
+                            <?php //header($idLinkDelete);?>
+                        }else{
+                            alert("Record Not Deleted")
+                        }
+                        return del;
+                    }
+                </script>
+<?php
             }
             else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){
                 if($eachPost['announcementModel'] === '1') {
@@ -198,6 +212,8 @@ if ($resultPost) { // if user exists
 </div>
 <!--Script Links-->
 <?php include '../Footer/scriptsLinks.php'?>
+<script src="dist/gModal.min.js"></script>
+<link href="dist/gModal.min.css" rel="stylesheet" />
 </body>
 </html>
 
