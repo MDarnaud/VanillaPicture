@@ -25,8 +25,9 @@
     var KEY_ESC = 27;
     var KEY_ENTER = 13;
 
-    function buildUI(clicked_id, title, sub, onOk, onCancel, type) {
+    function buildUI(typeOfPage, clicked_id, title, sub, onOk, onCancel, type) {
         var newId = clicked_id;
+        var newType = typeOfPage;
         if (typeof window === 'undefined') {
             throw 'Cannot use this in node.';
         }
@@ -145,7 +146,11 @@
                     options.onOk(input.value);
                 }else {
                     // options.onOk();
-                     window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId=".concat(newId);
+                    if (newType === 'announcement') {
+                        window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId=".concat(newId);
+                    }else if(newType === 'gallery '){
+                        //nothing yet
+                    }
                 }
             }
         }
@@ -164,8 +169,8 @@
         }
     };
     var exportData = {
-        mscConfirm: function(clicked_id, title, sub, onOk, onCancel) {
-            buildUI(clicked_id, title, sub, onOk, onCancel, "confirm");
+        mscConfirm: function(typeOfPage, clicked_id, title, sub, onOk, onCancel) {
+            buildUI(typeOfPage, clicked_id, title, sub, onOk, onCancel, "confirm");
         },
         mscPrompt: function(title, sub, onOk, onCancel) {
             buildUI(title, sub, onOk, onCancel, "prompt");

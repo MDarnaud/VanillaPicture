@@ -106,28 +106,9 @@ if ($resultPost) { // if user exists
                 <link rel="icon" type="image/png" href="/favicon.png">
                     <script src="../../popUp/js/msc-script.js"></script>
                     <script>
-                        //document.addEventListener("DOMContentLoaded", function() {
-                        //    var myVar = "<?php //echo $eachPost['announcementId']; ?>//";
-                        //    //var myVar2 = "#".concat(myVar);
-                        //    //var myVar3 = '"'.concat(myVar2.concat('"'));
-                        //    var numItems = document.querySelectorAll(".del").length;
-                        //    //loop through object compare with php value
-                        //    for(var i=0; i< numItems; i++) {
-                         //    var demobtn = document.querySelector(".del"); //replace by #demo1 so it works on one
-                        //        var demobtn = document.querySelectorAll(".del")[i];
-                        //        if(myVar === demobtn.id) {
-                        //            alert('yo');
-                        //        }
-                        //    }
-                        //            demobtn.addEventListener("click", function () {
-                        //                mscConfirm("Delete?", function () {
-                        //                    <!--                                    --><?php ////header($idLinkDelete);?>
-                        //                    mscAlert("Post deleted");
-                        //                });
-                        //            });
-                        //});
                         function myDelete(clicked_id){
-                            mscConfirm(clicked_id, "Delete?", function () {
+                            var typeOfPage = "announcement";
+                            mscConfirm(typeOfPage, clicked_id, "Delete?", function () {
                                   mscAlert("Post deleted");
                             });
                         }
