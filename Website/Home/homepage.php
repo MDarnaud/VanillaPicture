@@ -113,7 +113,7 @@ if ($resultPost) { // if user exists
                         //    var numItems = document.querySelectorAll(".del").length;
                         //    //loop through object compare with php value
                         //    for(var i=0; i< numItems; i++) {
-                        //        //     var demobtn = document.querySelector(".del"); //replace by #demo1 so it works on one
+                         //    var demobtn = document.querySelector(".del"); //replace by #demo1 so it works on one
                         //        var demobtn = document.querySelectorAll(".del")[i];
                         //        if(myVar === demobtn.id) {
                         //            alert('yo');
@@ -127,13 +127,11 @@ if ($resultPost) { // if user exists
                         //            });
                         //});
                         function myDelete(clicked_id){
-                            mscConfirm("Delete?", function () {
+                            mscConfirm(clicked_id, "Delete?", function () {
                                   mscAlert("Post deleted");
-                                  //Pass the id to the js file
                             });
                         }
                     </script>
-<!--                            --><?php //header($idLinkDelete);?>
 <?php
             }
             else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){

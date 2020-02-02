@@ -25,7 +25,8 @@
     var KEY_ESC = 27;
     var KEY_ENTER = 13;
 
-    function buildUI(title, sub, onOk, onCancel, type) {
+    function buildUI(clicked_id, title, sub, onOk, onCancel, type) {
+        var newId = clicked_id;
         if (typeof window === 'undefined') {
             throw 'Cannot use this in node.';
         }
@@ -144,7 +145,7 @@
                     options.onOk(input.value);
                 }else {
                     // options.onOk();
-                     window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId='.$eachPost['announcementId']";
+                     window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId=".concat(newId);
                 }
             }
         }
@@ -163,14 +164,14 @@
         }
     };
     var exportData = {
-        mscConfirm: function(title, sub, onOk, onCancel) {
-            buildUI(title, sub, onOk, onCancel, "confirm");
+        mscConfirm: function(clicked_id, title, sub, onOk, onCancel) {
+            buildUI(clicked_id, title, sub, onOk, onCancel, "confirm");
         },
         mscPrompt: function(title, sub, onOk, onCancel) {
             buildUI(title, sub, onOk, onCancel, "prompt");
         },
         mscAlert: function(title, sub, onOk, onCancel) {
-             buildUI(title, sub, onOk, onCancel, "alert");
+            buildUI(title, sub, onOk, onCancel, "alert");
         },
         mscClose: function() {
             var prev = document.getElementsByClassName('msc-confirm');
