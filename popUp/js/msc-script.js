@@ -25,9 +25,11 @@
     var KEY_ESC = 27;
     var KEY_ENTER = 13;
 
-    function buildUI(typeOfPage, clicked_id, title, sub, onOk, onCancel, type) {
+    function buildUI(typeOfPage, categorySelect, subCategorySelect, clicked_id, title, sub, onOk, onCancel, type) {
         var newId = clicked_id;
         var newType = typeOfPage;
+        var newCategory =  categorySelect;
+        var newSubCategory = subCategorySelect;
         if (typeof window === 'undefined') {
             throw 'Cannot use this in node.';
         }
@@ -148,8 +150,8 @@
                     // options.onOk();
                     if (newType === 'announcement') {
                         window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId=".concat(newId);
-                    }else if(newType === 'gallery '){
-                        //nothing yet
+                    }else if(newType === 'gallery'){
+                         window.location.href = "../../Website/Gallery/deleteGalleryImage.php?categorySelect=".concat(newCategory,"&subCategorySelect=",newSubCategory,"&idImageDelete=",newId);
                     }
                 }
             }
@@ -169,8 +171,8 @@
         }
     };
     var exportData = {
-        mscConfirm: function(typeOfPage, clicked_id, title, sub, onOk, onCancel) {
-            buildUI(typeOfPage, clicked_id, title, sub, onOk, onCancel, "confirm");
+        mscConfirm: function(typeOfPage, categorySelect, subCategorySelect, clicked_id, title, sub, onOk, onCancel) {
+            buildUI(typeOfPage, categorySelect, subCategorySelect, clicked_id, title, sub, onOk, onCancel, "confirm");
         },
         mscPrompt: function(title, sub, onOk, onCancel) {
             buildUI(title, sub, onOk, onCancel, "prompt");

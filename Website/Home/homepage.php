@@ -108,7 +108,9 @@ if ($resultPost) { // if user exists
                     <script>
                         function myDelete(clicked_id){
                             var typeOfPage = "announcement";
-                            mscConfirm(typeOfPage, clicked_id, "Delete?", function () {
+                            var categorySelect = "";
+                            var subCategorySelect = "";
+                            mscConfirm(typeOfPage, categorySelect, subCategorySelect, clicked_id, "Delete?", function () {
                                   mscAlert("Post deleted");
                             });
                         }
