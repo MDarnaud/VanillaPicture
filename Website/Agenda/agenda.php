@@ -21,11 +21,26 @@ else {
     } else if ($userType != null) {
         if ($userType == "customer") {
             $message = "(To make a shoot reservation, click on an availability.)";
-        } else if ($userType == "photographer") {
-            $message = "(To add an event, click on the 'add' dropdown of the agenda Navigation, to remove an event, click on the event directly in the calendar)";
+        } else if ($userType == "administrator") {
+            $message = "(To add an event, click on the 'add' button, to edit an event, click on the event directly in the calendar)";
         }
     }
 }
+
+
+// connect to the database
+$db = mysqli_connect('localhost','root','','photography');
+//get events from database
+$event_query = "SELECT eventId as id, title, start, end, url FROM events";
+$result = mysqli_query($db,$event_query);
+$myArray = array();
+if ($result->num_rows > 0) {
+// output data of each row
+    while($row = $result->fetch_assoc()) {
+        $myArray[] = $row;
+    }
+}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -76,15 +91,23 @@ else {
                             }
                         }
                         else if(userType == "administrator"){
-                            var url = "deleteAgendaEvent.php";
+                                var url = "editAgendaEventForm.php";
+                                var id = (info.event.id).toString();
+                                var startDate = info.event.start;
+                                var endDate = null;
+                                var endDateString = null;
 
-                            var id = (info.event.id).toString();
-                            var queryString = "?eventId=" + id;
+                                if(info.event.end != null){
+                                    endDate = info.event.end;
+                                    endDateString = endDate.toDateString();
+                                }
 
-                            var conf = confirm("Do you want to delete this event?");
-                            if (conf == true){
+                                var title = info.event.title;
+                                var startDateString = startDate.toDateString();
+
+                                var queryString = "?id=" + id + "&startDate=" + startDateString + "&title=" + title + "&endDate=" + endDateString;
                                 window.open(url + queryString);
-                            }
+
                         }
                     },
 
@@ -95,20 +118,7 @@ else {
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
-                    eventSources: [
-                        {
-                            url: '../../json/events.json',
-                            type: 'POST',
-                            data: {
-                                //custom_param1: 'something',
-                            },
-                            error: function() {
-                                alert('there was an error while fetching events!');
-                            },
-                            backgroundColor: '#5f9ea0',
-                            borderColor: 'white' // a non-ajax option
-                        }
-                    ],
+                    events: <?php echo json_encode($myArray); ?>,
 
                 });
 
@@ -146,6 +156,7 @@ else {
                                 <li><button id="addEvent" value="addEvent" onclick="location.href='addAgendaEventForm.php'">Add Event</button></li>
                             </ul>
                             <?php }?>
+
                             <br>
 						</header>
                         <div id='calendar'></div>

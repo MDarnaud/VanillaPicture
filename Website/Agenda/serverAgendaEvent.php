@@ -1,4 +1,7 @@
 <?php
+// connect to the database
+$db = mysqli_connect('localhost','root','','photography');
+
 //get new user information
 $eventTitle = $_POST["eventTitle"];
 $eventId = $_POST["eventId"];
@@ -8,44 +11,46 @@ if($_POST["eventLocation"] != null){
 }
 $eventStart = $_POST["eventStart"];
 $eventEnd = $_POST["eventEnd"];
-$isAvailability = true;
+$isAvailability = false;
+$url = null;
 
-if(empty($_POST["isAvailability"])){
-    $isAvailability = false;
+if(!empty($_POST["isAvailability"])){
+    $isAvailability = true;
+    //go to request if availability is checked
+    $url = "requestShootForm.php";
 }
 
-
-//go to request if availability is checked
-$url = "requestShootForm.php";
-
-//file path
-$file = "../../json/events.json";
-
-//get file
-$json = file_get_contents($file);
-//put file into associative array
-$eventsArray = json_decode($json,true);
-
-
-//create array to hold new user information
-//array for user input
-$newEventArray = array();
+//Insert the new event
 if($eventEnd == null){
-    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart, "url"=>$url);
+    $queryEvent = "INSERT INTO events (eventId, title, start, url)
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$url')";
+    mysqli_query($db, $queryEvent)or die(mysqli_error($db));
+
+    var_dump($queryEvent);
 }
 else if($isAvailability == false){
-    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd);
+    $queryEvent = "INSERT INTO events (eventId, title, start, end)
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd')";
+    mysqli_query($db, $queryEvent)or die(mysqli_error($db));
+
+
 }
 else if($eventEnd == null && $isAvailability == false){
-    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart);
+    $queryEvent = "INSERT INTO events (eventId, title, start)
+                    VALUES('$eventId', '$eventTitle', '$eventStart')";
+    mysqli_query($db, $queryEvent)or die(mysqli_error($db));
+
+
 }
 else{
-    $newEventArray = array("id"=>$eventId,"title"=>$eventTitle,"start"=>$eventStart, "end"=>$eventEnd, "url"=>$url);
+    $queryEvent = "INSERT INTO events (eventId, title, start, end, url)
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$url')";
+    mysqli_query($db, $queryEvent) or die(mysqli_error($db));
+
+
 }
 
-array_push($eventsArray, $newEventArray);
-$jsonData = json_encode($eventsArray,JSON_PRETTY_PRINT);
-file_put_contents($file, $jsonData);
 header("Location: agenda.php");
+
 
 ?>

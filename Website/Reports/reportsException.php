@@ -35,7 +35,7 @@ include "serverExceptionReport.php";
                                         $('.dropdownPeriod').remove();
                                         var radioValue = $("input[name='period']:checked").val();
                                         if (radioValue == 'year') {
-                                            $('.formDivision').append('<div class="dropdownPeriod"><strong> Year: </strong>&nbsp; &nbsp;</div>');
+                                            $('.formDivision').append('<div class="dropdownPeriod"><h3> Year: </h3>&nbsp; &nbsp;</div>');
                                             $('.formDivision').append('<div class="dropdownPeriod"><?php $years = range(2000, strftime("%Y", time())); ?>\n' +
                                                 '<select name="dropdownYear" id="dropdownYear" required oninvalid="setCustomValidity(\'Year is required\')" oninput="setCustomValidity(\'\')">\n' +
                                                 '<option value="">Select Year</option>\n' +
@@ -50,7 +50,7 @@ include "serverExceptionReport.php";
                                         if (radioValue == 'month') {
                                             $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;<input type="month" name="dropdownMonth" id="dropdownMonth"></div>');
                                         }
-                                        $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
+                                        $('.formDivision').append('<div class="dropdownPeriod"><br><h3> Elements: </h3>&nbsp; &nbsp;</div>');
                                         $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer" class="elementsTable">\n' +
                                             '     <label for="customer"> Customer Registration</label>\n' +
                                             '                <input type="checkbox" name="annoucement" id="announcement" value="announcement" class="elementsTable">\n' +
@@ -68,7 +68,7 @@ include "serverExceptionReport.php";
                                                 checkboxValue[i] = $(this).val();
                                             });
 
-                                            $('.formDivision').append('<div class="filters"><br><strong>Filters: </strong>');
+                                            $('.formDivision').append('<div class="filters"><br><h3>Filters: </h3>');
 
                                             $(checkboxValue).each(function (i) {
                                                 if (checkboxValue[i] == 'customer') {
@@ -674,9 +674,7 @@ include "serverExceptionReport.php";
                                         $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
                                     }
                                     echo "<h5> Payments </h5>";
-                                    /*
-                                    * MEGANE look above and do the same for payment table, copy paste what you did in detail report but change current month for selected month
-                                    */
+
                                     ?>
                                     <div class="table-wrapper">
                                         <table class="alt">

@@ -56,7 +56,7 @@ $name = $customer['customerFirstName'] . ' ' . $customer['customerLastName'];
 //insert into table shoot the new request
 $queryShoot = "INSERT INTO shoot (shootTime, shootDate, shootLocation, customerId, shootArtistType, shootCustomerNotes, shootPackage)
 VALUES ('$shootTime', '$shootDate', '$shootTitle', '$customerId', '$artists', '$customerNotes', '$shootPackage')";
-//$result = mysqli_query($db, $queryShoot) or die(mysqli_error($db));
+$result = mysqli_query($db, $queryShoot) or die(mysqli_error($db));
 
 
 

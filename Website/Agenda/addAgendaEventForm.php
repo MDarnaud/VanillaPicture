@@ -60,20 +60,19 @@ $id = randomId();
                                 <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Title" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
-<!--                                <label for="eventLocation">Enter Event Location (ex: Toronto)</label>-->
+
                                 <h4 class="TitleForm">Location:</h4>
                                 <input type="text" name="eventLocation" id="eventLocation" value="" placeholder="Location"/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
-<!--                                <label for="eventStart">Enter Event Start (Date and Time)</label>-->
-                                <h4 class="TitleForm">Start Date and Time:</h4>
-                                <input type="datetime-local" name="eventStart" id="eventStart" value="2020-01-20T00:00" required/>
+
+                                <h4 class="TitleForm">Start Date:</h4>
+                                <input type="date" name="eventStart" id="eventStart" required/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
-<!--                                <label for="eventEnd">Enter Event End (if you wish for the event to last all day, leave blank)</label>-->
-                                <h4 class="TitleForm">End Date and Time:</h4>
-                                <i style="font-size:13px">If you wish for an event to last all day, leave blank</i><br>
-                                <input type="datetime-local" name="eventEnd" id="eventEnd" value="" oninput="check(this)"/>
+                                <h4 class="TitleForm">End Date:</h4>
+                                <i style="font-size:13px">If you wish for an event to last one day, leave blank</i><br>
+                                <input type="date" name="eventEnd" id="eventEnd" value="" oninput="check(this)"/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
                                             if (!(input.value > document.getElementById('eventStart').value)) {
@@ -86,7 +85,7 @@ $id = randomId();
                                 </script>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
-                                <label>This event is a shoot availability for customers to booked</label>
+                                <label>This event is a shoot availability that customers can book</label>
                                 <input type="checkbox" id="isAvailability" name="isAvailability" >
                                 <label for="isAvailability">Yes, it is available</label>
                             </div>
