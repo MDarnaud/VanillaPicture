@@ -46,7 +46,7 @@
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 10002;/* Sit on top */
     padding-top: 100px; /* Location of the box */
     padding-left:5%;
     padding-right: 5%;

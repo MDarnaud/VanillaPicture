@@ -5,20 +5,20 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../../emailTool/autoload.php';
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-// initializing variables
+// Start the session
+include '../Header/sessionConnection.php';
+
+// Initializing variables
 $errors = array();
 $email = "";
 
-// connect to the database
+// Connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'photography');
 
 // REGISTER USER
 if (isset($_POST['sendMessage'])) {
     if (!isset($_SESSION['userSignIn']) || $_SESSION['userTypeSignIn'] !== 'administrator') {
-        // receive all input values from the form
+        // Receive all input values from the form
         $name = mysqli_real_escape_string($db, $_POST['name']);
         $email = mysqli_real_escape_string($db, $_POST['email']);
         $message = mysqli_real_escape_string($db, $_POST['message']);
@@ -40,7 +40,7 @@ if (isset($_POST['sendMessage'])) {
         }
 
         $subject = "Vanilla Website - FAQ";
-        //Put right link
+        // Put right link
         $message = '<strong>' . $name . ',</strong>' . ' has send you this message :<br>' . $message .
             '<br><br> ' . 'If you wish to reply, you can do so via ' . $email . '.';
 
@@ -56,12 +56,12 @@ if (isset($_POST['sendMessage'])) {
         $mail->Username = "ariouellette2000@gmail.com"; //sender gmail
         $mail->Password = 'Spot6516'; //password for the gmail
         try {
-            //receiver, replace with email enter
+            // Receiver, replace with email enter
             $mail->AddAddress("arianeouellette@yahoo.ca");
         } catch (\PHPMailer\PHPMailer\Exception $e) {
         }
         try {
-            //sender
+            // Sender
             $mail->SetFrom("ariouellette2000@gmail.com");
         } catch (\PHPMailer\PHPMailer\Exception $e) {
         }

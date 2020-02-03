@@ -1,6 +1,9 @@
 <?php
 $errors = array();
 
+// Start the session
+include '../Header/sessionConnection.php';
+
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 
@@ -77,7 +80,7 @@ if(isset($_POST["submit_image"])) {
         $file_temp = $_FILES['fileToUpload']['tmp_name'];
         $info = getimagesize($file_temp);
 
-        //If error here for tmp_name not found change size upload in php info()
+    //If error here for tmp_name not found change size upload in php info()
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
         $uploadOk = 1;

@@ -1,8 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-// connect to the database
+// Start the session
+include '../Header/sessionConnection.php';
+
+// Connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'photography');
 ?>
 <!DOCTYPE HTML>
@@ -45,7 +45,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </button>
                     </li>
                     <?php
-                    //Look for any events name
+                    // Look for any events name
                     $gallery_event_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Events'";
                     $gallery_result_event_name = mysqli_query($db, $gallery_event_name_query);
                     if (mysqli_num_rows($gallery_result_event_name) > 0) {
@@ -84,7 +84,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </div>
                     </li>
                     <?php
-                    //Look for any brands name
+                    // Look for any brands name
                     $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
                     $gallery_result_brand_name = mysqli_query($db, $gallery_brand_name_query);
                     if (mysqli_num_rows($gallery_result_brand_name) > 0) {
@@ -124,7 +124,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     </li>
 
                     <?php
-                    //Look for any portraits name
+                    // Look for any portraits name
                     $gallery_portrait_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Portraits'";
                     $gallery_result_portrait_name = mysqli_query($db, $gallery_portrait_name_query);
                     if (mysqli_num_rows($gallery_result_portrait_name) > 0) {
@@ -170,7 +170,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
             <div class="row">
 
                 <!--                 The Modal -->
-                <div id="myModal" class="modal" style="z-index:100;">
+                <div id="myModal" class="modal">
 
                     <!--                     The Close Button -->
                     <span class="closeModal">&times;</span>
@@ -227,7 +227,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         $categories[] = $gallery['galleryCategory'];
                     }
 
-                    // Initialize column indexx
+                    // Initialize column index
                     $columnIndex = 1;
 
                     // Display images
@@ -300,7 +300,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         var img = document.getElementById(imgs[i].id);
                         var curImageId = "";
                         img.onclick = function () {
-                            // alert(curImageId);
                             var jsnewArrayId = new Array();
                             var jsnewArrayCaption = new Array();
                             var jsnewArraySource = new Array();
@@ -319,7 +318,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             <?php } ?>
 
 
-                            modal.style.zIndex = "20000";
+
                             modal.style.display = "block";
                             modalImg.src = this.src;
                             var altText = this.alt;
@@ -334,7 +333,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 '&subCategorySelect=' + subCategory +
                                 '"' + 'class="pencil"><i class="fa fa-pencil"></i></a>'
                                 <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
-                            // captionText.innerHTML = category;
                             curImageId = this.id;
 
 
@@ -447,14 +445,27 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 };
                             } else {
                                 deleteButton.onclick = function () {
-
+                                    var clicked_id = curImageId;
+                                    var typeOfPage = "gallery";
+                                    var categorySelect = "oiu";
+                                    var subCategorySelect = "";
                                     <?php if(!isset($_GET["categorySelect"])){?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=&subCategorySelect=&idImageDelete='.concat(curImageId);
+
+                                        mscConfirm(typeOfPage, categorySelect, subCategorySelect, clicked_id, "Delete?", function () {
+                                            mscAlert("Post deleted");
+                                        });
                                     <?php }else{?>
-                                    <?php if(isset($_GET["brandsName"])){?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&subCategorySelect=<?php echo $_GET["subCategorySelect"];?>&idImageDelete='.concat(curImageId);
+                                    <?php if(isset($_GET["subCategorySelect"])){?>
+                                        categorySelect = "<?php echo $_GET['categorySelect']?>";
+                                        subCategorySelect = "<?php echo $_GET['subCategorySelect']?>";
+                                        mscConfirm(typeOfPage, categorySelect, subCategorySelect, clicked_id, "Delete?", function () {
+                                            mscAlert("Post deleted");
+                                        });
                                     <?php }else{?>
-                                    window.location.href = './deleteGalleryImage.php?categorySelect=<?php echo $_GET["categorySelect"];?>&subCategorySelect=&idImageDelete='.concat(curImageId);
+                                         categorySelect = "<?php echo $_GET['categorySelect']?>";
+                                        mscConfirm(typeOfPage, categorySelect, subCategorySelect, clicked_id, "Delete?", function () {
+                                            mscAlert("Post deleted");
+                                        });
                                     <?php } ?>
                                     <?php } ?>
                                 };
@@ -478,16 +489,14 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
 </div>
 
 
-<?php include '../../footer/footer.php' ?>
+<?php include '../Footer/footer.php' ?>
 
-<!-- Scripts -->
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/jquery.dropotron.min.js"></script>
-<script src="../../assets/js/browser.min.js"></script>
-<script src="../../assets/js/breakpoints.min.js"></script>
-<script src="../../assets/js/util.js"></script>
-<script src="../../assets/js/main.js"></script>
+<!--Script Links-->
+<?php include '../Footer/scriptsLinks.php'?>
 
+<link rel="stylesheet" href="../../popUp/css/msc-style.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script src="../../popUp/js/msc-script.js"></script>
 
 </body>
 </html>

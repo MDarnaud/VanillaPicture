@@ -1,9 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../Header/sessionConnection.php';
 
-// connect to the databases
+// Connect to the databases
 $db = mysqli_connect('localhost','root','','photography');
 
 ?>
@@ -67,10 +66,10 @@ $db = mysqli_connect('localhost','root','','photography');
     </div>
 </div>
 
-<!-- Two -->
+
 <!--                            Announcement -->
 <?php
-//Insert the announcement information in the table announcement in the database
+// Insert the announcement information in the table announcement in the database
 $queryAnnouncement = "SELECT * FROM announcement";
 $resultPost = mysqli_query($db, $queryAnnouncement);
 
@@ -90,22 +89,33 @@ if ($resultPost) { // if user exists
     }
     $noElements = false;
     foreach ($resultPost as $eachPost) {
-        //verify if end date is after now and start date is before now
+        // Verify if end date is after now and start date is before now
         if ((strtotime($eachPost['announcementEndDate']) > strtotime('now')) && strtotime($eachPost['announcementStartDate']) <= strtotime('now')) {
             echo '<p class="announcementHome"> <strong>'.$eachPost['announcementTitle'].'</strong><br>'
                 .$eachPost['announcementDetail'].'  - <small><i>By Sophie Perras</i></small>';
-            //Only administrator can modify annoucement
+            // Only administrator can modify annoucement
             if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'){
                 $idLink = '../Announcement/modifyAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
-                $idLinkDelete = '../Announcement/deleteAnnouncementForm.php?announcementId='.$eachPost['announcementId'];
                 if($eachPost['announcementModel'] === '1') {
                     echo '<br><i class="linkHomeAnnouncement" style="text-decoration: none;"> * This announcement is a model search</i>';
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement" href='.$idLinkDelete.'>Delete </a>';
-//                echo '<button class="linkHomeAnnouncement" onclick="complexConfirm()">Delete </button>';
-
+                echo '<a class="linkHomeAnnouncement" id="'.$eachPost['announcementId'].'" onclick="myDelete(this.id)">Delete</a>';?>
+                <link rel="stylesheet" href="../../popUp/css/msc-style.css">
+                <link rel="icon" type="image/png" href="/favicon.png">
+                    <script src="../../popUp/js/msc-script.js"></script>
+                    <script>
+                        function myDelete(clicked_id){
+                            var typeOfPage = "announcement";
+                            var categorySelect = "";
+                            var subCategorySelect = "";
+                            mscConfirm(typeOfPage, categorySelect, subCategorySelect, clicked_id, "Delete?", function () {
+                                  mscAlert("Post deleted");
+                            });
+                        }
+                    </script>
+<?php
             }
             else if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'model'){
                 if($eachPost['announcementModel'] === '1') {
@@ -196,18 +206,13 @@ if ($resultPost) { // if user exists
             </div>
         </div>
         <!-- footer -->
-        <?php include '../../footer/footer.php' ?>
+        <?php include '../Footer/footer.php' ?>
     </div>
 </div>
-
-<!-- Scripts -->
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/jquery.dropotron.min.js"></script>
-<script src="../../assets/js/browser.min.js"></script>
-<script src="../../assets/js/breakpoints.min.js"></script>
-<script src="../../assets/js/util.js"></script>
-<script src="../../assets/js/main.js"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<!--Script Links-->
+<?php include '../Footer/scriptsLinks.php'?>
+<script src="dist/gModal.min.js"></script>
+<link href="dist/gModal.min.css" rel="stylesheet" />
 </body>
 </html>
 

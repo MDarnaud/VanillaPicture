@@ -1,10 +1,9 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../Header/sessionConnection.php';
 include 'serverSignIn.php'; ?>
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<title>Sign in</title>
 		<meta charset="utf-8" />
@@ -52,13 +51,33 @@ include 'serverSignIn.php'; ?>
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')"/>
                                                     <?php  endif; ?>
                                                 </div>
-												<div class="col-12 col-12-xsmall">
+												<div class="col-11 col-11-xsmall">
                                                     <h5 class="TitleForm">Password :</h5>
                                                     <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
-                                                           oninput="check(this)"
                                                            required/>
+                                                </div>
+                                                <div class="col-1 col-1-xsmall">
+                                                    <i id="pass-status" style="font-size: 125%;margin-top: 30px"
+                                                       class="fa fa-eye" aria-hidden="true" onClick="myFunction()"></i>
+                                                </div>
+                                                    <script>
+                                                        function myFunction() {
+                                                            var passwordInput = document.getElementById('password_1');
+                                                            var passStatus = document.getElementById('pass-status');
+
+                                                            if (passwordInput.type == 'password'){
+                                                                passwordInput.type='text';
+                                                                passStatus.className='fa fa-eye-slash';
+
+                                                            }
+                                                            else{
+                                                                passwordInput.type='password';
+                                                                passStatus.className='fa fa-eye';
+                                                            }
+                                                        }
+                                                    </script>
                                                 </div>
                                                 <div class="col-12 col-12-xsmall" style="text-align: center">
                                                     <a href="forgotPasswordForm.php?"><strong style="text-decoration:underline">Forgot password?</strong></strong></a>
@@ -85,15 +104,10 @@ include 'serverSignIn.php'; ?>
 			</div>
 
     <!-- footer -->
-    <?php include '../../footer/footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
-		<!-- Scripts -->
-			<script src="../../assets/js/jquery.min.js"></script>
-			<script src="../../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../../assets/js/browser.min.js"></script>
-			<script src="../../assets/js/breakpoints.min.js"></script>
-			<script src="../../assets/js/util.js"></script>
-			<script src="../../assets/js/main.js"></script>
+    <!--Script Links-->
+    <?php include '../Footer/scriptsLinks.php'?>
 
 	</body>
 </html>

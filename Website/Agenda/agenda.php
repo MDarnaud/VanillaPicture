@@ -1,7 +1,7 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../Header/sessionConnection.php';
+
 //agenda message
 $message = "";
 //user type
@@ -17,7 +17,7 @@ if(isset($_GET["sendEmail"])){
 }
 else {
     if ($userType == null) {
-        $message = '<i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../Registration/register.php">sign up</a> as a "Customer"</i>';
+        $message = '<i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../SignOut/SignOutToRegister.php">sign up</a> as a "Customer"</i>';
     } else if ($userType != null) {
         if ($userType == "customer") {
             $message = "(To make a shoot reservation, click on an availability.)";
@@ -165,15 +165,10 @@ if ($result->num_rows > 0) {
 			</div>
 
     <!-- footer -->
-    <?php include '../../footer/footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
-		<!-- Scripts -->
-			<script src="../../assets/js/jquery.min.js"></script>
-			<script src="../../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../../assets/js/browser.min.js"></script>
-			<script src="../../assets/js/breakpoints.min.js"></script>
-			<script src="../../assets/js/util.js"></script>
-			<script src="../../assets/js/main.js"></script>
+    <!--Script Links-->
+    <?php include '../Footer/scriptsLinks.php'?>
 
 
 	</body>

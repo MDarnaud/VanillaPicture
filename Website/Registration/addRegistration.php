@@ -1,11 +1,12 @@
 <?php
-session_start();
+// Start the session
+include '../Header/sessionConnection.php';
 
-// initializing variables
+// Initializing variables
 $email    = "";
 $errors = array();
 
-// connect to the database
+// Connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 
 // REGISTER USER
@@ -35,7 +36,7 @@ if (isset($_POST['reg_user'])) {
     $currentDate = date("Y-m-d");
 
 
-    // form validation: ensure that the form is correctly filled ...
+    // Form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
     if (empty($email)) { array_push($errors, "Email "); }
     if (empty($password_1)) { array_push($errors, "Password "); }
@@ -52,7 +53,7 @@ if (isset($_POST['reg_user'])) {
         }
     }
 
-    // first check the database to make sure
+    // First check the database to make sure
     // a user does not already exist with the same username and/or email
     $user_check_query = "SELECT * FROM all_user WHERE userId='$email' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
@@ -70,23 +71,23 @@ if (isset($_POST['reg_user'])) {
          $hash = password_hash($password_1, PASSWORD_DEFAULT);
 
         if($type === 'customer'){
-            //Insert the user information in the table all_user in the database
+            // Insert the user information in the table all_user in the database
             $queryUser = "INSERT INTO all_user (userId, userPassword, userType)
                   VALUES('$email', '$hash', 'customer' )";
             mysqli_query($db, $queryUser);
 
-            //Insert the customer information in the table customer in the database
+            // Insert the customer information in the table customer in the database
             $queryCustomer = "INSERT INTO customer (userId, customerFirstName, customerLastName, customerDob, customerCountry, customerCity, customerDate)
   			  VALUES('$email', '$firstName', '$lastName', '$dob', '$country', '$city','$currentDate')";
             mysqli_query($db, $queryCustomer);
 
         }elseif($type === 'model'){
-            //Insert the user information in the table all_user in the database
+            // Insert the user information in the table all_user in the database
             $queryUser = "INSERT INTO all_user (userId, userPassword, userType)
                   VALUES('$email', '$hash', 'model' )";
             mysqli_query($db, $queryUser);
 
-            //Insert the model information in the table model in the database
+            // Insert the model information in the table model in the database
             $queryCustomer = "INSERT INTO model (userId, modelFirstName, modelLastName, modelGender, modelDob, modelCountry, modelCity, modelDate)
   			  VALUES('$email', '$firstName', '$lastName', '$genderChar','$dob', '$country', '$city','$currentDate')";
             mysqli_query($db, $queryCustomer);

@@ -1,8 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
+// Start the session
+include '../Header/sessionConnection.php';
 
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
@@ -29,6 +27,7 @@ $db = mysqli_connect('localhost','root','','photography');
             <header class="major">
                 <h1>Reports</h1>
                 <ul class="customActions">
+<!--                    Report Navigation-->
                     <li><button id="Summary" type="reset" value="Summary" onclick="location.href= 'reportsSummary.php'" >Summary</button></li>
                     <li><button id="Detail" type="reset" value="Detail" onclick="location.href= 'reportsDetail.php'" >Detail</button></li>
                     <li><button id="Exception" type="reset" value="Exception" onclick="location.href= 'reportsException.php'"  >Exception</button></li>

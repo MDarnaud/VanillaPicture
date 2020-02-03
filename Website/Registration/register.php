@@ -85,6 +85,7 @@
                                                             <?php
                                                             foreach($countries as $key => $value) {
                                                                 ?>
+<!--                                                            Country dropdown from another page    -->
                                                                 <option value="<?= $key ?>" title="<?= htmlspecialchars($value) ?>"><?= htmlspecialchars($value) ?></option>
                                                                 <?php
                                                             }
@@ -108,6 +109,7 @@
                                                 <!--                                    RadioButton clicked show the right dropdown-->
                                                 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
                                                 <script>
+                                                    // If the non-user selected a "Model"
                                                     $(document).ready(function () {
                                                         $("input[type='radio']").click(function () {
                                                             $('.genderChoice').remove();
@@ -146,15 +148,10 @@
 			</div>
 
     <!-- footer -->
-    <?php include '../../footer/footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
-		<!-- Scripts -->
-			<script src="../../assets/js/jquery.min.js"></script>
-			<script src="../../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../../assets/js/browser.min.js"></script>
-			<script src="../../assets/js/breakpoints.min.js"></script>
-			<script src="../../assets/js/util.js"></script>
-			<script src="../../assets/js/main.js"></script>
+    <!--Script Links-->
+    <?php include '../Footer/scriptsLinks.php'?>
 
 	</body>
 </html>

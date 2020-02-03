@@ -1,8 +1,8 @@
 <?php
 include 'modifyGalleryImage.php';
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../Header/sessionConnection.php';
+
 $db = mysqli_connect('localhost','root','','photography');
 
 if(isset($_GET['modificationId'])){
@@ -15,10 +15,8 @@ if(isset($_GET['modificationId'])){
             // Loop through all images
             while ($gallery = mysqli_fetch_assoc($gallery_result)) {
                 $image = $gallery['galleryImage'];
-//                $category = $gallery['galleryCategory'];
                 $category = $_GET['categorySelect'];
                 $caption = $gallery['galleryTitle'];
-//                $subCategory = $gallery['gallerySubCategory'];
                 $subCategory = $_GET['subCategorySelect'];
             }
         }?>
@@ -89,15 +87,11 @@ if(isset($_GET['modificationId'])){
                             </div>
                         </div>
 
-                <?php include '../../footer/footer.php' ?>
+<!--                footer-->
+                <?php include '../Footer/footer.php' ?>
 
-                    <!-- Scripts -->
-                        <script src="../../assets/js/jquery.min.js"></script>
-                        <script src="../../assets/js/jquery.dropotron.min.js"></script>
-                        <script src="../../assets/js/browser.min.js"></script>
-                        <script src="../../assets/js/breakpoints.min.js"></script>
-                        <script src="../../assets/js/util.js"></script>
-                        <script src="../../assets/js/main.js"></script>
+                <!--Script Links-->
+                <?php include '../Footer/scriptsLinks.php'?>
 
                 </body>
             </html>

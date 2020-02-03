@@ -1,7 +1,7 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../Header/sessionConnection.php';
+
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 
@@ -140,26 +140,71 @@ include './serverViewProfile.php'
 
 
 
-
+<!--                                Change password section-->
 <hr>
                                     <form method="post" action="viewProfile.php">
                                         <div class="row gtr-uniform">
-                                                <div class="col-8 col-12-xsmall">
+                                                <div class="col-12 col-12-xsmall">
                                                     <h3 id="changePasswordTitle"><br><br>Change password</h3>
                                                     <p><?php include('../Registration/errorsRegistration.php');?></p>
                                                     <p><?php if(isset($_GET['changePasswordMessage'])){echo $_GET['changePasswordMessage'];}?></p>
                                                 </div>
-                                                <div class="col-12 col-12-xsmall">
+
+                                                <div class="col-11 col-11-xsmall">
                                                     <p><strong>Current Password : </strong>&nbsp; &nbsp; <input type="password" name="password_current" id="password_current" value="" placeholder="Current Password"
                                                     title="Current Password""/>
                                                 </div>
-                                                <div class="col-12 col-12-xsmall">
+                                                <div class="col-1 col-1-xsmall">
+                                                    <i id="pass-status-current" style="font-size: 125%;margin-top: 40px"
+                                                       class="fa fa-eye" aria-hidden="true" onClick="myFunction()"></i>
+                                                </div>
+
+                                                <script>
+                                                    function myFunction() {
+                                                        var passwordInput = document.getElementById('password_current');
+                                                        var passStatus = document.getElementById('pass-status-current');
+
+                                                        if (passwordInput.type == 'password'){
+                                                            passwordInput.type='text';
+                                                            passStatus.className='fa fa-eye-slash';
+
+                                                        }
+                                                        else{
+                                                            passwordInput.type='password';
+                                                            passStatus.className='fa fa-eye';
+                                                        }
+                                                    }
+                                                </script>
+
+
+                                                <div class="col-11 col-11-xsmall">
                                                     <p><strong>Password : </strong>&nbsp; &nbsp; <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                                                                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                                                                                 title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
                                                                                                         required oninvalid="setCustomValidity('New password is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
-                                                <div class="col-12 col-12-xsmall">
+                                        <div class="col-1 col-1-xsmall">
+                                            <i id="pass-status-pw" style="font-size: 125%;margin-top: 40px"
+                                               class="fa fa-eye" aria-hidden="true" onClick="myFunction2()"></i>
+                                        </div>
+                                        <!--                                                    <button onclick="myFunction()">Show Password</button>-->
+                                        <script>
+                                            function myFunction2() {
+                                                var passwordInput = document.getElementById('password_1');
+                                                var passStatus = document.getElementById('pass-status-pw');
+
+                                                if (passwordInput.type == 'password'){
+                                                    passwordInput.type='text';
+                                                    passStatus.className='fa fa-eye-slash';
+
+                                                }
+                                                else{
+                                                    passwordInput.type='password';
+                                                    passStatus.className='fa fa-eye';
+                                                }
+                                            }
+                                        </script>
+                                                <div class="col-11 col-11-xsmall">
                                                     <p><strong>Confirm Password :</strong>&nbsp; &nbsp;
                                                         <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password"
                                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
@@ -177,7 +222,28 @@ include './serverViewProfile.php'
                                                             }
                                                         </script>
                                                     </div>
-                                                    </p>
+                                        <div class="col-1 col-1-xsmall">
+                                            <i id="pass-status-confirmPW" style="font-size: 125%;margin-top: 40px"
+                                               class="fa fa-eye" aria-hidden="true" onClick="myFunction3()"></i>
+                                        </div>
+                                        <!--                                                    <button onclick="myFunction()">Show Password</button>-->
+                                        <script>
+                                            function myFunction3() {
+                                                var passwordInput = document.getElementById('password_2');
+                                                var passStatus = document.getElementById('pass-status-confirmPW');
+
+                                                if (passwordInput.type == 'password'){
+                                                    passwordInput.type='text';
+                                                    passStatus.className='fa fa-eye-slash';
+
+                                                }
+                                                else{
+                                                    passwordInput.type='password';
+                                                    passStatus.className='fa fa-eye';
+                                                }
+                                            }
+                                        </script>
+                                                    </form>
                                                 </div>
                                             <!-- Break -->
                                             <div class="col-12">
@@ -187,9 +253,6 @@ include './serverViewProfile.php'
                                             </div>
                                         </div>
                                     </form>
-
-
-
 								</div>
 							</div>
 						</div>
@@ -197,15 +260,10 @@ include './serverViewProfile.php'
 			</div>
 
     <!-- footer -->
-    <?php include '../../footer/footer.php' ?>
+    <?php include '../Footer/footer.php' ?>
 
-		<!-- Scripts -->
-			<script src="../../assets/js/jquery.min.js"></script>
-			<script src="../../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../../assets/js/browser.min.js"></script>
-			<script src="../../assets/js/breakpoints.min.js"></script>
-			<script src="../../assets/js/util.js"></script>
-			<script src="../../assets/js/main.js"></script>
+    <!--Script Links-->
+    <?php include '../Footer/scriptsLinks.php'?>
 
 	</body>
 </html>

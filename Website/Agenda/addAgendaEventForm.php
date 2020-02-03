@@ -1,7 +1,6 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Start the session
+include '../Header/sessionConnection.php';
 
 //generate a random number that will be the event id
 function randomId()
@@ -104,15 +103,10 @@ $id = randomId();
 </div>
 
 <!-- footer -->
-<?php include '../../footer/footer.php' ?>
+<?php include '../Footer/footer.php' ?>
 
-<!-- Scripts -->
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/jquery.dropotron.min.js"></script>
-<script src="../../assets/js/browser.min.js"></script>
-<script src="../../assets/js/breakpoints.min.js"></script>
-<script src="../../assets/js/util.js"></script>
-<script src="../../assets/js/main.js"></script>
+<!--Script Links-->
+<?php include '../Footer/scriptsLinks.php'?>
 
 </body>
 </html>

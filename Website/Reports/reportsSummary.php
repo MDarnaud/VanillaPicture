@@ -21,7 +21,6 @@
                     $textAnnouncementY = $totalNewAnnouncementY['totalAnnouncement'];
 
                     // Booked Shoot
-                    // MEGANE (count num of shootId where date booked = this year)
                     $bookedShoot_summary_y_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE year(shootDate)='$currentYear'";
                     $bookedShoot_result = mysqli_query($db, $bookedShoot_summary_y_query);
                     $totalBookedShootY = mysqli_fetch_assoc($bookedShoot_result);
@@ -33,21 +32,18 @@
                     $textPBookedHoursY = '%';
 
                     // $ spends per customer
-                    // MEGANE (count total balance where date bought = this year, count total customer, divide $ by customer)
                     $averageSpent_summary_y_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE year(paymentDate)='$currentYear'";
                     $averagePayments_result = mysqli_query($db, $averageSpent_summary_y_query);
                     $averagePaymentsY = mysqli_fetch_assoc($averagePayments_result);
                     $textAveragePaymentY = '$'.$averagePaymentsY['averagePayments'];
 
                     // number of giftcards
-                    // MEGANE (count num of giftcards id where date bought = this year)
                     $giftCard_summary_y_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE year(paymentDate)='$currentYear'";
                     $giftCards_result = mysqli_query($db, $giftCard_summary_y_query);
                     $totalGiftCardsY = mysqli_fetch_assoc($giftCards_result);
                     $textNumGiftcardY = $totalGiftCardsY['totalGiftCards'];
 
                     // amount of gitcards
-                    // MEGANE (count total balance of all giftcards where date bought = this year)
                     $totalPayment_summar_y_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summar_y_query);
                     $totalPaymentsY = mysqli_fetch_assoc($totalPayments_result);
@@ -311,8 +307,7 @@ for($i=0;$i<5;$i++) {
                 $textAnnouncementM = $totalNewAnnouncementM['totalAnnouncement'];
 
                 // Booked Shoot
-                // MEGANE (count num of shootId where date booked = this month) and year!!!
-                    $BookedShoot_summary_M_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'"; //change shootDate to requestDate
+                $BookedShoot_summary_M_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'"; //change shootDate to requestDate
                     $bookedShoot_result = mysqli_query($db, $bookedShoot_summary_y_query);
                     $totalBookedShootM = mysqli_fetch_assoc($bookedShoot_result);
                     $textNumBookedShootM = $totalBookedShootM['totalShoots'];
@@ -322,21 +317,18 @@ for($i=0;$i<5;$i++) {
                     $textPBookedHoursM = ' %';
 
                 // $ spends per customer
-                // MEGANE (count total balance where date bought = this month, count total customer, divide $ by customer)and year!!!
                     $averageSpent_summary_M_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
                     $averagePayments_result = mysqli_query($db, $averageSpent_summary_M_query);
                     $averagePaymentsM = mysqli_fetch_assoc($averagePayments_result);
                     $textSpentCustomerM = '$'.$averagePaymentsM['averagePayments'];
 
                 // number of giftcards
-                // MEGANE (count num of giftcards id where date bought = this month)and year!!!
                     $numGiftcard_summary_M_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
                     $giftCards_result = mysqli_query($db, $numGiftcard_summary_M_query);
                     $totalGiftCardsM = mysqli_fetch_assoc($giftCards_result);
                     $textNumGiftcardM = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
-                // MEGANE (count total balance of all giftcards where date bought = this month)and year!!!
                     $totalPayment_summary_m_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summary_m_query);
                     $totalPaymentsM = mysqli_fetch_assoc($totalPayments_result);
@@ -425,7 +417,8 @@ for($i=0;$i<5;$i++) {
                         </tbody>
                     </table>
                 </div>
-<!--                Loop for a few weeks-->
+
+<!--                Loop for a five weeks-->
             <?php
             //Weekly
                 $day = date('w');
@@ -454,8 +447,7 @@ for($i=0;$i<5;$i++) {
                 $textAnnouncementW = $totalNewAnnouncementW['totalAnnouncement'];
 
                 // Booked Shoot
-                // MEGANE (count num of shootId where date booked = this week)
-                    $numShoot_summary_w_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE shootDate>='$week_start_day' AND shootDate<='$week_end_day'"; //change shootDate to requestDate
+                $numShoot_summary_w_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE shootDate>='$week_start_day' AND shootDate<='$week_end_day'"; //change shootDate to requestDate
                     $bookedShoot_result = mysqli_query($db, $numShoot_summary_w_query);
                     $totalBookedShootW = mysqli_fetch_assoc($bookedShoot_result);
                     $textNumBookedShootW = $totalBookedShootW['totalShoots'];
@@ -465,21 +457,18 @@ for($i=0;$i<5;$i++) {
                     $textPBookedHoursW = ' %';
 
                 // $ spends per customer
-                // MEGANE (count total balance where date bought = this week, count total customer, divide $ by customer)
                     $averageSpent_summary_w_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
                     $averagePayments_result = mysqli_query($db, $averageSpent_summary_w_query);
                     $averagePaymentsW = mysqli_fetch_assoc($averagePayments_result);
                     $textSpentCustomerW = '$'.$averagePaymentsW['averagePayments'];
 
                 // number of giftcards
-                // MEGANE (count num of giftcards id where date bought = this week)
                     $numGiftcard_summary_w_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
                     $giftCards_result = mysqli_query($db, $numGiftcard_summary_w_query);
                     $totalGiftCardsW = mysqli_fetch_assoc($giftCards_result);
                     $textNumGiftcardW = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
-                // MEGANE (count total balance of all giftcards where date bought = this week)
                     $totalPayment_summary_w_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summary_w_query);
                     $totalPaymentsW = mysqli_fetch_assoc($totalPayments_result);
@@ -581,15 +570,10 @@ for($i=0;$i<5;$i++) {
 </div>
 
 <!-- footer -->
-<?php include '../../footer/footer.php' ?>
+<?php include '../Footer/footer.php' ?>
 
-<!-- Scripts -->
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/jquery.dropotron.min.js"></script>
-<script src="../../assets/js/browser.min.js"></script>
-<script src="../../assets/js/breakpoints.min.js"></script>
-<script src="../../assets/js/util.js"></script>
-<script src="../../assets/js/main.js"></script>
+<!--Script Links-->
+<?php include '../Footer/scriptsLinks.php'?>
 
 
     </body>

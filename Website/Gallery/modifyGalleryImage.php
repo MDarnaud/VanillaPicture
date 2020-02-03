@@ -1,4 +1,7 @@
 <?php
+// Start the session
+include '../Header/sessionConnection.php';
+
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 
@@ -8,6 +11,7 @@ if(isset($_POST["save_caption"])) {
     if($caption_form === ''){
         $caption_form = null;
     }
+
     $id_form = mysqli_real_escape_string($db, $_POST['imgId']);
     $category_form = mysqli_real_escape_string($db, $_POST['imgCategory']);
     $sub_category_form = mysqli_real_escape_string($db, $_POST['imgSubCategory']);
