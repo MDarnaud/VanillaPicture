@@ -36,7 +36,8 @@ $modifPost = mysqli_fetch_assoc($modif_result);
         <div class="inner">
             <header class="major">
                 <h1>Modify Announcement</h1>
-                <p>Please fill out the form to modify an announcement on the home page.</p>
+                <p>Please fill out the form to modify an announcement.</p>
+                <?php include "errorsAnnouncement.php" ?>
             </header>
             <div style="margin:auto">
                 <div class="row gtr-200">

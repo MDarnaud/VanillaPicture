@@ -82,11 +82,19 @@ if ($resultPost) { // if user exists
                                                 <header class="major">
                                                     <h2 id="announcementSection">ANNOUNCEMENT</h2>
                                                 </header>';
-    if (isset($_GET['sendEmailApplication'])) {
-        echo $_GET['sendEmailApplication'];
+    if (isset($_GET['sendEmailApplication'])) {?>
+        <div class="isa_success" >
+            <i class="fa fa-times-circle"></i>
+                <?php echo $_GET['sendEmailApplication'];?>
+        </div>
+    <?php
     }
-    if(isset($_GET['DeleteMessage'])){
-        echo $_GET['DeleteMessage'];
+    if(isset($_GET['DeleteMessage'])){?>
+        <div class="isa_success" >
+            <i class="fa fa-times-circle"></i>
+                <?php echo $_GET['DeleteMessage'];?>
+        </div>
+<?php
     }
     $noElements = false;
     foreach ($resultPost as $eachPost) {
