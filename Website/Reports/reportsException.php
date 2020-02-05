@@ -7,9 +7,15 @@ include "serverExceptionReport.php";
     <div id="main">
         <div class="wrapper">
             <div class="inner">
-                <?php if (isset($_GET['errors'])) {
-                    echo $_GET['errors'];
-                }
+                <?php
+
+                if (isset($_GET['errors'])) {
+                    ?>
+                    <div class="isa_error" >
+                        <i class="fa fa-times-circle"></i>
+                        <?php echo $_GET['errors'];?>
+                    </div>
+                <?php }
 
                 ?>
                 <div class="wrapper special">
@@ -54,7 +60,7 @@ include "serverExceptionReport.php";
                                         if (radioValue == 'month') {
                                             // Append a month dropdown
                                             $('.formDivision').append('<div class="dropdownPeriod"><strong> Month: </strong>&nbsp; &nbsp;' +
-                                                '<input type="month" name="dropdownMonth" id="dropdownMonth"></div>');
+                                                '<input type="month" name="dropdownMonth" id="dropdownMonth" required oninvalid="setCustomValidity(\'Month is required\')" oninput="setCustomValidity(\'\')"></div>');
                                         }
                                         // Append selection of all tables choices in checkbox format
                                         $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
