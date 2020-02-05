@@ -35,14 +35,35 @@
                                                     <h5 class="TitleForm">Email:</h5>
                                                     <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
-												<div class="col-8 col-12-small col-12-xsmall">
+												<div class="col-8 col-11-small col-11-xsmall">
                                                     <h5 class="TitleForm">Password:</h5>
 													<input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
                                                            required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')"/>
 												</div>
-                                                <div class="col-8 col-12-small col-12-xsmall">
+                                                <div class="col-1 col-1-xsmall">
+                                                    <i id="pass-status" style="font-size: 125%;margin-top: 30px"
+                                                       class="fa fa-eye" aria-hidden="true" onClick="myFunction()"></i>
+                                                </div>
+
+                                                <script>
+                                                    function myFunction() {
+                                                        var passwordInput = document.getElementById('password_1');
+                                                        var passStatus = document.getElementById('pass-status');
+
+                                                        if (passwordInput.type == 'password'){
+                                                            passwordInput.type='text';
+                                                            passStatus.className='fa fa-eye-slash';
+
+                                                        }
+                                                        else{
+                                                            passwordInput.type='password';
+                                                            passStatus.className='fa fa-eye';
+                                                        }
+                                                    }
+                                                </script>
+                                                <div class="col-8 col-11-small col-11-xsmall">
                                                     <h5 class="TitleForm">Confirm password:</h5>
                                                     <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
@@ -60,6 +81,27 @@
                                                         }
                                                     </script>
                                                 </div>
+                                                <div class="col-1 col-1-xsmall">
+                                                    <i id="pass-status-2" style="font-size: 125%;margin-top: 30px"
+                                                       class="fa fa-eye" aria-hidden="true" onClick="myFunction2()"></i>
+                                                </div>
+
+                                                <script>
+                                                    function myFunction2() {
+                                                        var passwordInput = document.getElementById('password_2');
+                                                        var passStatus = document.getElementById('pass-status-2');
+
+                                                        if (passwordInput.type == 'password'){
+                                                            passwordInput.type='text';
+                                                            passStatus.className='fa fa-eye-slash';
+
+                                                        }
+                                                        else{
+                                                            passwordInput.type='password';
+                                                            passStatus.className='fa fa-eye';
+                                                        }
+                                                    }
+                                                </script>
                                                 <div class="col-8 col-12-small col-12-xsmall">
                                                     <h3>About you...</h3>
                                                 </div>
