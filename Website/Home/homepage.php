@@ -154,8 +154,20 @@ if ($resultPost) { // if user exists
                 <h2 id = "getInTouch">Get in touch</h2>
                 <p>Please fill out this form with your own information, to send an email to Sophie Perras.</p>
                 <?php if(isset($_GET['sendEmailHome'])){
-                    echo $_GET['sendEmailHome'];
-                }?>
+                    if($_GET['sendEmailHome'] === 'Email successfully sent'){
+                    ?>
+                        <div class="isa_success" >
+                            <i class="fa fa-times-circle"></i>
+                            <?php echo $_GET['sendEmailHome'];?>
+                        </div>
+                    <?php }else{?>
+                        <div class="isa_error" >
+                            <i class="fa fa-times-circle"></i>
+                            <?php echo $_GET['sendEmailHome'];?>
+                        </div>
+                <?php
+                }}?>
+
             </header>
             <div class="content">
                 <div class="form">

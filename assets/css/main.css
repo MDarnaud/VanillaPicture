@@ -4620,3 +4620,27 @@ input:disabled {
 	background-color: white;
 }
 
+
+
+/*message error*/
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+	margin: 10px 0px; !important;
+}
+
+.isa_error {
+	color: #D8000C; !important;
+	background-color: #FFD2D2; !important;
+}
+
+.isa_success {
+	color: #4F8A10; !important;
+	background-color: #DFF2BF; !important;
+}
+.isa_success i, .isa_error i {
+	margin:10px 10px; !important;
+	font-size:1.1em; !important;
+	vertical-align:middle; !important;
+}

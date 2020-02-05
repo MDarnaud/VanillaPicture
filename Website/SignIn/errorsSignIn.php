@@ -1,12 +1,11 @@
 <?php  if (count($errors) > 0) : ?>
-    <div class="error">
-        <p>
         <?php foreach ($errors as $error) : ?>
-                <?php echo $error; ?>
+                    <div class="isa_error" >
+                        <i class="fa fa-times-circle"></i>
+                        <?php echo $error; ?>
+                    </div>
             <?php if($error === 'Password is invalid. ') :?>
                 <?php $_COOKIE['invalidPW'] = 'true' ?>
             <?php  endif ?>
         <?php endforeach ?>
-        </p>
-    </div>
 <?php  endif ?>

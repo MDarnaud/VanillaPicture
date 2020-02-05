@@ -27,11 +27,11 @@ if (isset($_POST['update_User'])) {
     $queryCustomer = "UPDATE customer SET customerCountry='$country', customerCity='$city' WHERE userId='$email'";
     mysqli_query($db, $queryCustomer);
     if (mysqli_affected_rows($db) >= 1) {
-        header('location: ./viewProfile.php');
+        header('location: ./viewProfile.php?changeUserMessage=Personal Information successfully changed.');
+
     }
 
 }
-
 if (isset($_POST['change_PW_User'])) {
     // Retrieve new information in the form
     $password_current = mysqli_real_escape_string($db, $_POST['password_current']);
