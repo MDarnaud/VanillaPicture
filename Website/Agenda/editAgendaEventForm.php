@@ -88,19 +88,23 @@ $convertedStartDate = date( 'yy-m-d', $startTime );
                             </div>
                             <!-- Break -->
                             <div class="col-12">
+<!--                                <ul class="actions">-->
+<!--                                    <button type="submit" class="button primary icon fa-pencil">Update Event</button>-->
+<!--                                </ul>-->
                                 <ul class="actions">
-                                    <li><input type="submit" value="Update Event" class="primary" /></li>
+                                    <button type="submit" class="button icon fa-pencil-square">Update Event</button>
                                 </ul>
                             </div>
                         </div>
                     </form>
-
+                    <div class="col-2 col-2-medium col-2-small col-2-xsmall">
                     <form method="post" action="deleteAgendaEvent.php">
                         <input type="hidden" name="eventId" id="eventId" value="<?php echo $eventId?>" placeholder="Event Id"/>
                         <ul class="actions">
-                            <li><input style="background-color: crimson" type="submit" value="Delete Event" class="primary" /></li>
+                            <button type="submit" class="button icon fa-trash" id="deleteEventButton">Delete Event</button>
                         </ul>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,15 +112,10 @@ $convertedStartDate = date( 'yy-m-d', $startTime );
 </div>
 
 <!-- footer -->
-<?php include '../../footer/footer.php' ?>
+<?php include '../Footer/footer.php' ?>
 
-<!-- Scripts -->
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/jquery.dropotron.min.js"></script>
-<script src="../../assets/js/browser.min.js"></script>
-<script src="../../assets/js/breakpoints.min.js"></script>
-<script src="../../assets/js/util.js"></script>
-<script src="../../assets/js/main.js"></script>
+<!--Script Links-->
+<?php include '../Footer/scriptsLinks.php'?>
 
 </body>
 </html>

@@ -10,7 +10,6 @@ if(isset($_SESSION['userSignIn'])){
     $userType = $_SESSION['userTypeSignIn'];
 }
 
-
 //check user type/origin and display message accordingly
 if(isset($_GET["sendEmail"])){
     $message = '<p style="color: darkslategrey">'.$_GET["sendEmail"].'</p>';

@@ -4592,3 +4592,9 @@ input:disabled {
 }
 
 
+/*delete event button hover*/
+#deleteEventButton:hover{
+	color: rgba(255, 0, 0,0.7) !important;;
+	background-color: white;
+}
+
