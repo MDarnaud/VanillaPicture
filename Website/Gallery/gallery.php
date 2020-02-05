@@ -447,7 +447,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 deleteButton.onclick = function () {
                                     var clicked_id = curImageId;
                                     var typeOfPage = "gallery";
-                                    var categorySelect = "oiu";
+                                    var categorySelect = "";
                                     var subCategorySelect = "";
                                     <?php if(!isset($_GET["categorySelect"])){?>
 

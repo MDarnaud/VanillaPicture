@@ -22,13 +22,24 @@ if (isset($_POST['update_User'])) {
     if (empty($city)) { array_push($errors, "City "); }
     if (empty($country)) { array_push($errors, "Country "); }
 
+    if($_SESSION['userTypeSignIn'] === 'customer') {
+        //Update the customer information in the table customer in the database
+        $queryCustomer = "UPDATE customer SET customerCountry='$country', customerCity='$city' WHERE userId='$email'";
+        mysqli_query($db, $queryCustomer);
+        if (mysqli_affected_rows($db) >= 1) {
+            header('location: ./viewProfile.php?changeUserMessage=Personal Information successfully changed.');
 
-    //Update the customer information in the table customer in the database
-    $queryCustomer = "UPDATE customer SET customerCountry='$country', customerCity='$city' WHERE userId='$email'";
-    mysqli_query($db, $queryCustomer);
-    if (mysqli_affected_rows($db) >= 1) {
-        header('location: ./viewProfile.php?changeUserMessage=Personal Information successfully changed.');
+        }
+    }
 
+    if($_SESSION['userTypeSignIn'] === 'model') {
+        //Update the model information in the table customer in the database
+        $queryModel = "UPDATE model SET modelCountry='$country', modelCity='$city' WHERE userId='$email'";
+        mysqli_query($db, $queryModel);
+        if (mysqli_affected_rows($db) >= 1) {
+            header('location: ./viewProfile.php?changeUserMessage=Personal Information successfully changed.');
+
+        }
     }
 
 }
