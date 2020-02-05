@@ -140,7 +140,7 @@ input, select, textarea {
 	}
 
 	body, input, select, textarea {
-		font-family: "Lato", Arial, Helvetica, sans-serif;
+		font-family: adobe-caslon-pro, "Levo";
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 2.15;
@@ -2466,11 +2466,16 @@ input, select, textarea {
 						object-fit: cover;
 						object-position: center center;
 					}
-				.image.special.biblio img {
-					height: 25rem;
-					object-fit: cover;
-					object-position: center center;
+
+					.image.special.biblio {
+						margin:auto;
+						max-width: 70%;
+						margin-bottom: 3%;
+					}
+				.image.special.biblio img{
+					height: 70%; !important;
 				}
+
 
 			}
 
@@ -2487,12 +2492,37 @@ input, select, textarea {
 						height: 25rem;
 					}
 
+					.image.special.biblio {
+						margin:auto;
+						max-width: 50%;
+						margin-bottom: 3%;
+					}
+					.image.special.biblio img{
+						height: 50%; !important;
+					}
+
 			}
 
 			@media screen and (max-width: 480px) {
 
 				.image.special img {
 					height: 10rem;
+				}
+				.image.special.video {
+					margin:auto;
+					max-width: 100%;
+					max-height: 100%;
+					margin-bottom: 10%;
+				}
+				.image.special.video img{
+					height: 50%; !important;
+				}
+
+				.image.special.biblio {
+					margin:auto;
+					max-width: 70%;
+					max-height: 70%;
+					margin-bottom: 3%;
 				}
 
 			}
@@ -4583,14 +4613,6 @@ li button {
 input:disabled {
 	background: #f2f2f2;
 }
-
-/*modify image form*/
-@media screen and (max-width: 800px) {
-	.image.special.fit.biblio {
-		margin-left:5%;
-	}
-}
-
 
 /*delete event button hover*/
 #deleteEventButton:hover{

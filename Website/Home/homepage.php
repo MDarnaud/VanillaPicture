@@ -25,7 +25,8 @@ $db = mysqli_connect('localhost','root','','photography');
     <div class="wrapper style1 special">
         <div class="inner">
             <h1 class="heading alt">VANILLA PICTURE</h1>
-            <p>Be different, Taste Vanilla</p>
+            <p>Photographer</p>
+
             <div class="image fit special video">
                 <img src="../../images/homepage_frontcover.jpg" alt="" />
             </div>
@@ -106,6 +107,7 @@ if ($resultPost) { // if user exists
                 <link rel="icon" type="image/png" href="/favicon.png">
                     <script src="../../popUp/js/msc-script.js"></script>
                     <script>
+                        //Function for delete popup
                         function myDelete(clicked_id){
                             var typeOfPage = "announcement";
                             var categorySelect = "";

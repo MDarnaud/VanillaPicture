@@ -1,7 +1,10 @@
 <?php
 // Start the session
 include '../Header/sessionConnection.php';
-include 'serverSignIn.php'; ?>
+include 'serverSignIn.php';
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>

@@ -10,7 +10,7 @@ $errors = array();
 
 // Connect to the database
 $db = mysqli_connect('localhost','root','','photography');
-
+if(!isset($_SESSION['userSignIn'])){
 // REGISTER USER
 if (isset($_POST['signIn_user'])) {
     // Receive all input values from the form
@@ -39,9 +39,8 @@ if (isset($_POST['signIn_user'])) {
             else{
                 array_push($errors, "Password is invalid. ");
             }
-
-
-
-
     }
 }
+ }else{
+   header('location: ../SignOut/signOut.php');
+}?>
