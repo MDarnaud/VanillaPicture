@@ -98,18 +98,31 @@ $convertedStartDate = date( 'yy-m-d', $startTime );
                         </div>
                     </form>
                     <div class="col-2 col-2-medium col-2-small col-2-xsmall">
-                    <form method="post" action="deleteAgendaEvent.php">
-                        <input type="hidden" name="eventId" id="eventId" value="<?php echo $eventId?>" placeholder="Event Id"/>
+<!--                    <form method="post" action="deleteAgendaEvent.php">-->
+<!--                        <input type="hidden" name="eventId" id="eventId" value="--><!--" placeholder="Event Id"/>-->
                         <ul class="actions">
-                            <button type="submit" class="button icon fa-trash" id="deleteEventButton">Delete Event</button>
+                            <button type="submit" class="button icon fa-trash" id="deleteEventButton" onclick="myDelete('<?php echo $eventId?>');">Delete Event</button>
                         </ul>
-                    </form>
+<!--                    </form>-->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="../../popUp/js/msc-script.js"></script>
+<link rel="stylesheet" href="../../popUp/css/msc-style.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script>
+    function myDelete(event_id){
+        var typeOfPage = "event";
+        var categorySelect = "";
+        var subCategorySelect = "";
+        mscConfirm(typeOfPage, categorySelect, subCategorySelect, event_id, "Delete?", function () {
+            mscAlert("Event deleted");
+        });
+    }
+</script>
 
 <!-- footer -->
 <?php include '../Footer/footer.php' ?>

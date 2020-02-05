@@ -3,7 +3,7 @@
 $db = mysqli_connect('localhost','root','','photography');
 
 //get event information
-$eventId = $_POST["eventId"];
+$eventId = $_GET["eventId"];
 
 //DELETE FROM table_name WHERE condition;
 $queryDeleteEvent = "DELETE FROM events WHERE eventId='$eventId'";

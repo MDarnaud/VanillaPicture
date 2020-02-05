@@ -152,7 +152,9 @@
                         window.location.href = "../../Website/Announcement/deleteAnnouncementForm.php?announcementId=".concat(newId);
                     }else if(newType === 'gallery'){
                          window.location.href = "../../Website/Gallery/deleteGalleryImage.php?categorySelect=".concat(newCategory,"&subCategorySelect=",newSubCategory,"&idImageDelete=",newId);
-                    }
+                    }else if(newType === 'event'){
+                        window.location.href = "../../Website/Agenda/deleteAgendaEvent.php?eventId=".concat(newId);
+                }
                 }
             }
         }
