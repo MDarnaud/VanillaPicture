@@ -82,7 +82,7 @@ include 'serverSignIn.php';
                                                         }
                                                     </script>
                                                 </div>
-                                                <div class="col-12 col-12-xsmall" style="text-align: center">
+                                                <div class="col-12 col-12-xsmall" style="text-align: left; padding-top:1%">
                                                     <a href="forgotPasswordForm.php?"><strong style="text-decoration:underline">Forgot password?</strong></strong></a>
                                                 </div>
 												<!-- Break -->
