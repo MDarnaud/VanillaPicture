@@ -482,7 +482,6 @@ for($i=0;$i<5;$i++) {
                     $totalofferedShootW = mysqli_fetch_assoc($offeredShoot_result);
                     $textTotalOfferedShootW = $totalofferedShootW['totalOfferedShoots'];
 
-                    var_dump($textNumBookedShootW);
 
                     if($textNumBookedShootW != 0) {
                         //percentage calculation
