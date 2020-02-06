@@ -1,5 +1,7 @@
 <?php include 'countrieslist.php';
-        include 'addRegistration.php'; ?>
+        include 'addRegistration.php';
+
+if(!isset($_SESSION['userSignIn'])){?>
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -197,4 +199,7 @@
 
 	</body>
 </html>
+<?php }else{
+    header('location: ../../Website/SignOut/signOut.php');
+}?>
 

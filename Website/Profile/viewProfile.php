@@ -6,7 +6,9 @@ include '../Header/sessionConnection.php';
 $db = mysqli_connect('localhost','root','','photography');
 
 include '../Registration/countrieslist.php';
-include './serverViewProfile.php'
+include './serverViewProfile.php';
+
+if(isset($_SESSION['userSignIn'])){
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -281,3 +283,6 @@ include './serverViewProfile.php'
 
 	</body>
 </html>
+<?php }else{
+    header('location: ../../Website/SignIn/signIn.php');
+}?>

@@ -1,4 +1,7 @@
-<?php include('reportsSimilar.php'); ?>
+<?php include('reportsSimilar.php');
+if(isset($_SESSION['userSignIn'])){
+    if($_SESSION['userTypeSignIn'] === 'administrator'){
+?>
 
 <!--        Summary Report-->
             <?php
@@ -591,3 +594,10 @@ for($i=0;$i<5;$i++) {
 
     </body>
 </html>
+<?php }else{
+        header('location: ../../Website/Home/homepage.php');
+    }
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}
+?>

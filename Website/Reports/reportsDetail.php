@@ -1,6 +1,8 @@
 <?php
 // Include the header of reports
 include "reportsSimilar.php";
+if(isset($_SESSION['userSignIn'])){
+    if($_SESSION['userTypeSignIn'] === 'administrator'){
 ?>
 <!--        Detail Report-->
 <?php
@@ -495,4 +497,9 @@ $currentYear = date("Y");
 
 </body>
 </html>
-
+<?php }else{
+    header('location: ../../Website/Home/homepage.php');
+}
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}

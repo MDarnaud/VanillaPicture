@@ -2,6 +2,9 @@
 <?php
 include "reportsSimilar.php";
 include "serverExceptionReport.php";
+
+if(isset($_SESSION['userSignIn'])){
+    if($_SESSION['userTypeSignIn'] === 'administrator'){
 ?>
 <!--        Exception Report-->
     <div id="main">
@@ -761,4 +764,9 @@ include "serverExceptionReport.php";
 
 </body>
 </html>
-
+<?php }else{
+        header('location: ../../Website/Home/homepage.php');
+    }
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}

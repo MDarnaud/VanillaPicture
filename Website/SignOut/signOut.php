@@ -2,6 +2,7 @@
     // Include the back end of the sign out form
     include 'serverSignOut.php';
 ?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>

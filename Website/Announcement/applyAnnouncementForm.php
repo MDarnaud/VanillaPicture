@@ -6,6 +6,9 @@ $db = mysqli_connect('localhost','root','','photography');
 include '../Header/sessionConnection.php';
 
 include 'sendEmailApplicationModel.php';
+
+if(!isset($_SESSION['userSignIn'])) {
+if ($_SESSION['userTypeSignIn'] === 'model') {
 ?>
     <!DOCTYPE HTML>
     <html lang="en">
@@ -94,4 +97,9 @@ include 'sendEmailApplicationModel.php';
 
     </body>
     </html>
-
+<?php } else {
+    header('location: ../../Website/SignOut/signOut.php');
+}
+}else{
+    header('location: ../../Website/SignIn/signIn.php');
+}?>
