@@ -13,38 +13,36 @@ $eventStart = $_POST["eventStart"];
 $eventEnd = $_POST["eventEnd"];
 $isAvailability = false;
 $url = null;
+$color = "#33cccc";
 
 if(!empty($_POST["isAvailability"])){
     $isAvailability = true;
     //go to request if availability is checked
     $url = "requestShootForm.php";
+    $color = "#00cc99";
 }
 
 //Insert the new event
-if($eventEnd == null){
-    $queryEvent = "INSERT INTO events (eventId, title, start, url)
-                    VALUES('$eventId', '$eventTitle', '$eventStart', '$url')";
+if($eventEnd == null && $isAvailability == true){
+    $queryEvent = "INSERT INTO events (eventId, title, start, url, color)
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$url', '$color')";
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 
     var_dump($queryEvent);
 }
-else if($isAvailability == false){
-    $queryEvent = "INSERT INTO events (eventId, title, start, end)
-                    VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd')";
-    mysqli_query($db, $queryEvent)or die(mysqli_error($db));
-
-
-}
 else if($eventEnd == null && $isAvailability == false){
-    $queryEvent = "INSERT INTO events (eventId, title, start)
-                    VALUES('$eventId', '$eventTitle', '$eventStart')";
+    $queryEvent = "INSERT INTO events (eventId, title, start, color)
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$color')";
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
-
-
+}
+else if($isAvailability == false){
+    $queryEvent = "INSERT INTO events (eventId, title, start, end, color)
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$color')";
+    mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 }
 else{
     $queryEvent = "INSERT INTO events (eventId, title, start, end, url)
-                    VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$url')";
+                    VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$url', '$color')";
     mysqli_query($db, $queryEvent) or die(mysqli_error($db));
 
 
