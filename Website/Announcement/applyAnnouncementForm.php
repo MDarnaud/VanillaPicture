@@ -7,7 +7,7 @@ include '../Header/sessionConnection.php';
 
 include 'sendEmailApplicationModel.php';
 
-if(!isset($_SESSION['userSignIn'])) {
+if(isset($_SESSION['userSignIn'])) {
 if ($_SESSION['userTypeSignIn'] === 'model') {
 ?>
     <!DOCTYPE HTML>

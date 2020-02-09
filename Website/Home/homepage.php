@@ -110,7 +110,7 @@ if ($resultPost) { // if user exists
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement" id="'.$eachPost['announcementId'].'" onclick="myDelete(this.id)">Delete</a>';?>
+                echo '<a style="cursor:pointer" class="linkHomeAnnouncement" id="'.$eachPost['announcementId'].'" onclick="myDelete(this.id)">Delete</a>';?>
                 <link rel="stylesheet" href="../../popUp/css/msc-style.css">
                 <link rel="icon" type="image/png" href="/favicon.png">
                     <script src="../../popUp/js/msc-script.js"></script>
