@@ -34,6 +34,7 @@ if (isset($_POST['signIn_user'])) {
         if (password_verify($password_1, $user['userPassword'])){
                 $_SESSION['userSignIn'] = $email;
                 $_SESSION['userTypeSignIn'] = $user['userType'];
+                unset($_SESSION['userNewAccount']);
                 header('location: ../Home/homepage.php');
             }
             else{

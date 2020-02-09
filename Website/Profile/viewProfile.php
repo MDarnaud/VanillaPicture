@@ -270,7 +270,11 @@ if(isset($_SESSION['userSignIn'])){
                                         </div>
                                     </form>
 								</div>
-							</div>
+                        <hr>
+                        <div  style="text-align:center; margin-top:10%;">
+                            <button onclick="location.href ='../SignOut/signOut.php'"> Sign Out</button>
+                        </div>
+                        </div>
 						</div>
 					</div>
 			</div>
