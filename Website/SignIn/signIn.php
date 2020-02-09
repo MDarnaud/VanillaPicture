@@ -1,7 +1,10 @@
 <?php
 // Start the session
 include '../Header/sessionConnection.php';
-include 'serverSignIn.php'; ?>
+include 'serverSignIn.php';
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
@@ -25,9 +28,12 @@ include 'serverSignIn.php'; ?>
 							<header class="major">
 								<h1>Sign In</h1>
                                 <p>Not a member yet? Register <a href="../Registration/register.php"><strong style="color:cadetblue; text-decoration:underline">HERE</strong></a></p>
-                                <?php if(isset($_SESSION["userNewAccount"]) && !(isset($_GET["cancel"]))):?>
-                                    <p>Sign in to your new account.</p>
-                                <?php  endif; ?>
+                                <?php if(isset($_SESSION["userNewAccount"])){?>
+                                        <div class="isa_success" >
+                                            <i class="fa fa-check-circle"></i>
+                                            <?php echo 'Your account has been created. Please sign in. ';?>
+                                        </div>
+                                    <?php } ?>
                                 <?php if(isset($_GET['sendEmail'])):?>
                                     <p><?PHP echo $_GET['sendEmail'];?></p>
                                 <?php  elseif(isset($_GET['adminType'])):?>
@@ -44,12 +50,11 @@ include 'serverSignIn.php'; ?>
 											<div class="row gtr-uniform">
 												<div class="col-12 col-12-xsmall">
                                                     <h5 class="TitleForm">Email :</h5>
-                                                    <?php if(isset($_SESSION["userNewAccount"])  && !(isset($_GET["cancel"]))):?>
-                                                        <input type="email" name="email" id="email" value="" placeholder="Email"
-                                                               title="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
-                                                    <?php else:?>
-                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')"/>
-                                                    <?php  endif; ?>
+                                                    <?php if(isset($_SESSION["userNewAccount"])){?>
+                                                    <input type="email" name="email" id="email" value="<?php echo $_SESSION["userNewAccount"];?>" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
+                                                    <?php }else{ ?>
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
+                                                    <?php } ?>
                                                 </div>
 												<div class="col-11 col-11-xsmall">
                                                     <h5 class="TitleForm">Password :</h5>

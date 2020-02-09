@@ -1,5 +1,6 @@
 <?php
 $errors = array();
+$success = array();
 
 // Start the session
 include '../Header/sessionConnection.php';
@@ -138,7 +139,7 @@ if(isset($_POST["submit_image"])) {
                 }
                 if (mysqli_affected_rows($db) >= 1) {
                     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                        array_push($errors, "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.");
+                        array_push($success, "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.");
                     } else {
                         array_push($errors, " Sorry, there was an error uploading your file.");
                     }

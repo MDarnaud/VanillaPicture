@@ -6,7 +6,9 @@ include '../Header/sessionConnection.php';
 $db = mysqli_connect('localhost','root','','photography');
 
 include '../Registration/countrieslist.php';
-include './serverViewProfile.php'
+include './serverViewProfile.php';
+
+if(isset($_SESSION['userSignIn'])){
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -60,6 +62,13 @@ include './serverViewProfile.php'
                                                 <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                                     <h3>Profile</h3>
                                                 </div>
+                                                <?php if(isset($_GET['changeUserMessage'])){?>
+
+                                                    <div class="isa_success col-12 col-12-medium col-12-small col-12-xsmall" style="padding-top:0px; text-align: center">
+                                                        <i class="fa fa-check-circle" style="margin-top: 0px;vertical-align:middle;"></i>
+                                                        <?php echo $_GET['changeUserMessage'];?>
+                                                    </div>
+                                                <?php }?>
 												<div class="col-12 col-12-xsmall">
                                                     <p><strong>Email :</strong>&nbsp; &nbsp;<?php echo $user['userId']; ?></p>
                                                 </div>
@@ -146,8 +155,15 @@ include './serverViewProfile.php'
                                         <div class="row gtr-uniform">
                                                 <div class="col-12 col-12-xsmall">
                                                     <h3 id="changePasswordTitle"><br><br>Change password</h3>
-                                                    <p><?php include('../Registration/errorsRegistration.php');?></p>
-                                                    <p><?php if(isset($_GET['changePasswordMessage'])){echo $_GET['changePasswordMessage'];}?></p>
+
+                                                    <?php if(isset($_GET['changePasswordMessage'])){?>
+
+                                                    <div class="isa_success" >
+                                                        <i class="fa fa-check-circle"></i>
+                                                        <?php echo $_GET['changePasswordMessage'];?>
+                                                    </div>
+                                                       <?php }?>
+                                                            <?php include 'errorsProfile.php' ?>
                                                 </div>
 
                                                 <div class="col-11 col-11-xsmall">
@@ -243,8 +259,8 @@ include './serverViewProfile.php'
                                                 }
                                             }
                                         </script>
-                                                    </form>
                                                 </div>
+                                        <br>
                                             <!-- Break -->
                                             <div class="col-12">
                                                 <ul class="actions">
@@ -254,7 +270,11 @@ include './serverViewProfile.php'
                                         </div>
                                     </form>
 								</div>
-							</div>
+                        <hr>
+                        <div  style="text-align:center; margin-top:10%;">
+                            <button onclick="location.href ='../SignOut/signOut.php'"> Sign Out</button>
+                        </div>
+                        </div>
 						</div>
 					</div>
 			</div>
@@ -267,3 +287,6 @@ include './serverViewProfile.php'
 
 	</body>
 </html>
+<?php }else{
+    header('location: ../../Website/SignIn/signIn.php');
+}?>

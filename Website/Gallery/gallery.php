@@ -30,6 +30,29 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
             <!-- Elements -->
             <header class="major">
                 <h1>Gallery</h1>
+                
+<!--                Button go back to the top-->
+                <button onclick="topFunction()" id="myBtn" title="Go to top" class="fa fa-angle-double-up"></button>
+                <script>
+                mybutton = document.getElementById("myBtn");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+
+                function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+                } else {
+                mybutton.style.display = "none";
+                }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                }
+                </script>
                 <div class="row">
                     <div class="col-2-small col-2-xsmall"></div>
                     <div class="col-12 col-12-medium col-8-small col-8-xsmall">
@@ -447,7 +470,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 deleteButton.onclick = function () {
                                     var clicked_id = curImageId;
                                     var typeOfPage = "gallery";
-                                    var categorySelect = "oiu";
+                                    var categorySelect = "";
                                     var subCategorySelect = "";
                                     <?php if(!isset($_GET["categorySelect"])){?>
 

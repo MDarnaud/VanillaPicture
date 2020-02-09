@@ -140,7 +140,7 @@ input, select, textarea {
 	}
 
 	body, input, select, textarea {
-		font-family: "Lato", Arial, Helvetica, sans-serif;
+		font-family: adobe-caslon-pro, "Levo";
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 2.15;
@@ -2466,11 +2466,16 @@ input, select, textarea {
 						object-fit: cover;
 						object-position: center center;
 					}
-				.image.special.biblio img {
-					height: 25rem;
-					object-fit: cover;
-					object-position: center center;
+
+					.image.special.biblio {
+						margin:auto;
+						max-width: 70%;
+						margin-bottom: 3%;
+					}
+				.image.special.biblio img{
+					height: 70%; !important;
 				}
+
 
 			}
 
@@ -2487,12 +2492,37 @@ input, select, textarea {
 						height: 25rem;
 					}
 
+					.image.special.biblio {
+						margin:auto;
+						max-width: 50%;
+						margin-bottom: 3%;
+					}
+					.image.special.biblio img{
+						height: 50%; !important;
+					}
+
 			}
 
 			@media screen and (max-width: 480px) {
 
 				.image.special img {
 					height: 10rem;
+				}
+				.image.special.video {
+					margin:auto;
+					max-width: 100%;
+					max-height: 100%;
+					margin-bottom: 10%;
+				}
+				.image.special.video img{
+					height: 50%; !important;
+				}
+
+				.image.special.biblio {
+					margin:auto;
+					max-width: 70%;
+					max-height: 70%;
+					margin-bottom: 3%;
 				}
 
 			}
@@ -4584,17 +4614,122 @@ input:disabled {
 	background: #f2f2f2;
 }
 
-/*modify image form*/
-@media screen and (max-width: 800px) {
-	.image.special.fit.biblio {
-		margin-left:5%;
-	}
-}
-
-
 /*delete event button hover*/
 #deleteEventButton:hover{
 	color: rgba(255, 0, 0,0.7) !important;;
 	background-color: white;
 }
 
+
+
+/*message error*/
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+	margin: 10px 0px; !important;
+}
+
+.isa_error {
+	color: #D8000C; !important;
+	background-color: #FFD2D2; !important;
+}
+
+.isa_success {
+	color: #4F8A10; !important;
+	background-color: #DFF2BF; !important;
+}
+.isa_success i, .isa_error i {
+	margin:10px 10px; !important;
+	font-size:1.1em; !important;
+	vertical-align:middle; !important;
+}
+
+
+/*Top button in gallery*/
+#myBtn {
+	display: none; /* Hidden by default */
+	position: fixed; /* Fixed/sticky position */
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 30px; /* Place the button 30px from the right */
+	z-index: 99; /* Make sure it does not overlap */
+	border: none; /* Remove borders */
+	outline: none; /* Remove outline */
+	background-color: cadetblue; /* Set a background color */
+	color: black; /* Text color */
+	cursor: pointer; /* Add a mouse pointer on hover */
+	padding: 15px; /* Some padding */
+	border-radius: 10px; /* Rounded corners */
+	font-size: 18px; /* Increase font size */
+	opacity :0.64; /* Transparency of background */
+}
+
+#myBtn:hover {
+	background-color: rgba(129, 127, 125, 0.64); /* Add a dark-grey background on hover */
+}
+
+
+/*Feature icons*/
+/* Feature Icons */
+
+ul.feature-icons {
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-moz-align-items: -moz-stretch;
+	-ms-align-items: -ms-stretch;
+	align-items: stretch;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	-moz-flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	cursor: default;
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.feature-icons li {
+	padding: 0 2.5rem;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+ul.feature-icons li a {
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 1.25rem;
+}
+
+ul.feature-icons li .icon {
+	border-radius: 100%;
+	border: 2px solid;
+	display: block;
+	height: 6rem;
+	line-height: 6rem;
+	margin: 0 auto 1rem auto;
+	text-align: center;
+	width: 6rem;
+}
+
+ul.feature-icons li .icon:before {
+	font-size: 2rem;
+}
+
+
+/*Footer icons*/
+.footer-icons li a:hover{
+	color:cadetblue;
+}
+
+.footer-icons li a{
+	color: #ccc;
+}
+
+.footer-icons{
+	margin-bottom:0px;
+}

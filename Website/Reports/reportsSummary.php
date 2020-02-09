@@ -1,4 +1,7 @@
-<?php include('reportsSimilar.php'); ?>
+<?php include('reportsSimilar.php');
+if(isset($_SESSION['userSignIn'])){
+    if($_SESSION['userTypeSignIn'] === 'administrator'){
+?>
 
 <!--        Summary Report-->
             <?php
@@ -303,10 +306,16 @@ for($i=0;$i<5;$i++) {
                 // New customer
                 $currentYear = date("Y");
                 $currentMonth = date("m");
+                $boolMonth = false;
                 $months = array();
                 for($i=0; $i<5;$i++) {
-                $currentMonth = date("m", strtotime("-".$i."months", $currentMonth));
-
+                    // Current month and five before
+                    if($boolMonth == false){
+                        $currentMonth = date("m");
+                        $boolMonth = true;
+                    }else{
+                        $currentMonth = date("m", strtotime("-" . $i+1 . "months", $currentMonth));
+                    }
                 $customer_summary_month_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE month(customerDate)='$currentMonth' AND year(customerDate)='$currentYear'";
                 $customer_s_m_result = mysqli_query($db, $customer_summary_month_query);
                 $totalNewCustomerM = mysqli_fetch_assoc($customer_s_m_result);
@@ -403,11 +412,18 @@ for($i=0;$i<5;$i++) {
 
                         <?php $currentMonth = date("m");?>
                         <?php $currentDate = date("Y-m-d")?>
+                        <?php $boolMonth = false; ?>
                         <?php for($i=0;$i<5;$i++) { ?>
-                            <tr>
-                                <th>
-                                    <?php
-                                    $currentMonth = date("m", strtotime("-".$i."months", $currentMonth));
+                        <tr>
+                            <th>
+                                <?php
+                                // Current month and five before
+                                if($boolMonth == false){
+                                    $currentMonth = date("m");
+                                    $boolMonth = true;
+                                }else{
+                                    $currentMonth = date("m", strtotime("-" . $i+1 . "months", $currentMonth));
+                                }
                                     $dateObj = DateTime::createFromFormat('!m', $currentMonth);
                                     $monthName = $dateObj->format('F');
                                     echo $monthName;
@@ -453,7 +469,7 @@ for($i=0;$i<5;$i++) {
 
                 $weeks = array();
 
-                echo '<h3>Weekly</h3>';
+                echo '<hr><h3>Weekly</h3>';
 
                 $months = array();
                 for($i=0; $i<5;$i++) {
@@ -614,3 +630,10 @@ for($i=0;$i<5;$i++) {
 
     </body>
 </html>
+<?php }else{
+        header('location: ../../Website/Home/homepage.php');
+    }
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}
+?>

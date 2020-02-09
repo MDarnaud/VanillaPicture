@@ -25,7 +25,8 @@ $db = mysqli_connect('localhost','root','','photography');
     <div class="wrapper style1 special">
         <div class="inner">
             <h1 class="heading alt">VANILLA PICTURE</h1>
-            <p>Be different, Taste Vanilla</p>
+            <p>Photographer</p>
+
             <div class="image fit special video">
                 <img src="../../images/homepage_frontcover.jpg" alt="" />
             </div>
@@ -81,11 +82,19 @@ if ($resultPost) { // if user exists
                                                 <header class="major">
                                                     <h2 id="announcementSection">ANNOUNCEMENT</h2>
                                                 </header>';
-    if (isset($_GET['sendEmailApplication'])) {
-        echo $_GET['sendEmailApplication'];
+    if (isset($_GET['sendEmailApplication'])) {?>
+        <div class="isa_success" >
+            <i class="fa fa-check-circle"></i>
+                <?php echo $_GET['sendEmailApplication'];?>
+        </div>
+    <?php
     }
-    if(isset($_GET['DeleteMessage'])){
-        echo $_GET['DeleteMessage'];
+    if(isset($_GET['DeleteMessage'])){?>
+        <div class="isa_success" >
+            <i class="fa fa-check-circle"></i>
+                <?php echo $_GET['DeleteMessage'];?>
+        </div>
+<?php
     }
     $noElements = false;
     foreach ($resultPost as $eachPost) {
@@ -101,11 +110,12 @@ if ($resultPost) { // if user exists
                 }
                 echo '<br><a class="linkHomeAnnouncement" href='.$idLink.'> Modify </a>';
                 echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-                echo '<a class="linkHomeAnnouncement" id="'.$eachPost['announcementId'].'" onclick="myDelete(this.id)">Delete</a>';?>
+                echo '<a style="cursor:pointer" class="linkHomeAnnouncement" id="'.$eachPost['announcementId'].'" onclick="myDelete(this.id)">Delete</a>';?>
                 <link rel="stylesheet" href="../../popUp/css/msc-style.css">
                 <link rel="icon" type="image/png" href="/favicon.png">
                     <script src="../../popUp/js/msc-script.js"></script>
                     <script>
+                        //Function for delete popup
                         function myDelete(clicked_id){
                             var typeOfPage = "announcement";
                             var categorySelect = "";
@@ -152,8 +162,20 @@ if ($resultPost) { // if user exists
                 <h2 id = "getInTouch">Get in touch</h2>
                 <p>Please fill out this form with your own information, to send an email to Sophie Perras.</p>
                 <?php if(isset($_GET['sendEmailHome'])){
-                    echo $_GET['sendEmailHome'];
-                }?>
+                    if($_GET['sendEmailHome'] === 'Email successfully sent'){
+                    ?>
+                        <div class="isa_success" >
+                            <i class="fa fa-check-circle"></i>
+                            <?php echo $_GET['sendEmailHome'];?>
+                        </div>
+                    <?php }else{?>
+                        <div class="isa_error" >
+                            <i class="fa fa-times-circle"></i>
+                            <?php echo $_GET['sendEmailHome'];?>
+                        </div>
+                <?php
+                }}?>
+
             </header>
             <div class="content">
                 <div class="form">
@@ -176,7 +198,7 @@ if ($resultPost) { // if user exists
                             </div>
                         </div>
                         <ul class="actions special">
-                            <li><input type="submit" class="primary" name="sendMessage" class="button" value="sendMessage" /></li>
+                            <li><input type="submit" class="primary" name="sendMessage" class="button" value="Send Message" /></li>
                         </ul>
                     </form>
                 </div>
