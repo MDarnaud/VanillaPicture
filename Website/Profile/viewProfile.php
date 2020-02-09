@@ -65,7 +65,7 @@ if(isset($_SESSION['userSignIn'])){
                                                 <?php if(isset($_GET['changeUserMessage'])){?>
 
                                                     <div class="isa_success col-12 col-12-medium col-12-small col-12-xsmall" style="padding-top:0px; text-align: center">
-                                                        <i class="fa fa-times-circle" style="margin-top: 0px;vertical-align:middle;"></i>
+                                                        <i class="fa fa-check-circle" style="margin-top: 0px;vertical-align:middle;"></i>
                                                         <?php echo $_GET['changeUserMessage'];?>
                                                     </div>
                                                 <?php }?>
@@ -159,7 +159,7 @@ if(isset($_SESSION['userSignIn'])){
                                                     <?php if(isset($_GET['changePasswordMessage'])){?>
 
                                                     <div class="isa_success" >
-                                                        <i class="fa fa-times-circle"></i>
+                                                        <i class="fa fa-check-circle"></i>
                                                         <?php echo $_GET['changePasswordMessage'];?>
                                                     </div>
                                                        <?php }?>

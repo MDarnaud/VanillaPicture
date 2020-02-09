@@ -20,7 +20,7 @@
 
 <?php if(count($postAnnouncement)>0):?>
     <div class="isa_success" >
-        <i class="fa fa-times-circle"></i>
+        <i class="fa fa-check-circle"></i>
             <?php foreach ($postAnnouncement as $post) : ?>
                 <?php echo $post ?>
             <?php endforeach ?>

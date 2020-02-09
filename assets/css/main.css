@@ -4667,3 +4667,69 @@ input:disabled {
 #myBtn:hover {
 	background-color: rgba(129, 127, 125, 0.64); /* Add a dark-grey background on hover */
 }
+
+
+/*Feature icons*/
+/* Feature Icons */
+
+ul.feature-icons {
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-moz-align-items: -moz-stretch;
+	-ms-align-items: -ms-stretch;
+	align-items: stretch;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	-ms-justify-content: center;
+	justify-content: center;
+	-moz-flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	cursor: default;
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.feature-icons li {
+	padding: 0 2.5rem;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+ul.feature-icons li a {
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 1.25rem;
+}
+
+ul.feature-icons li .icon {
+	border-radius: 100%;
+	border: 2px solid;
+	display: block;
+	height: 6rem;
+	line-height: 6rem;
+	margin: 0 auto 1rem auto;
+	text-align: center;
+	width: 6rem;
+}
+
+ul.feature-icons li .icon:before {
+	font-size: 2rem;
+}
+
+
+/*Footer icons*/
+.footer-icons li a:hover{
+	color:cadetblue;
+}
+
+.footer-icons li a{
+	color: #ccc;
+}
+
+.footer-icons{
+	margin-bottom:0px;
+}

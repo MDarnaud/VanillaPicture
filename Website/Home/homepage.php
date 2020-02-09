@@ -84,14 +84,14 @@ if ($resultPost) { // if user exists
                                                 </header>';
     if (isset($_GET['sendEmailApplication'])) {?>
         <div class="isa_success" >
-            <i class="fa fa-times-circle"></i>
+            <i class="fa fa-check-circle"></i>
                 <?php echo $_GET['sendEmailApplication'];?>
         </div>
     <?php
     }
     if(isset($_GET['DeleteMessage'])){?>
         <div class="isa_success" >
-            <i class="fa fa-times-circle"></i>
+            <i class="fa fa-check-circle"></i>
                 <?php echo $_GET['DeleteMessage'];?>
         </div>
 <?php
@@ -165,7 +165,7 @@ if ($resultPost) { // if user exists
                     if($_GET['sendEmailHome'] === 'Email successfully sent'){
                     ?>
                         <div class="isa_success" >
-                            <i class="fa fa-times-circle"></i>
+                            <i class="fa fa-check-circle"></i>
                             <?php echo $_GET['sendEmailHome'];?>
                         </div>
                     <?php }else{?>
@@ -198,7 +198,7 @@ if ($resultPost) { // if user exists
                             </div>
                         </div>
                         <ul class="actions special">
-                            <li><input type="submit" class="primary" name="sendMessage" class="button" value="sendMessage" /></li>
+                            <li><input type="submit" class="primary" name="sendMessage" class="button" value="Send Message" /></li>
                         </ul>
                     </form>
                 </div>
