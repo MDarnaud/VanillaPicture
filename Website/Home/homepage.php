@@ -18,7 +18,7 @@ $db = mysqli_connect('localhost','root','','photography');
 </head>
 <body class="is-preload">
 
-<?php include '../Navigation/Navigation.php' ?>
+<?php include '../Navigation/navigation.php' ?>
 
 <!-- Banner -->
 <div id="banner">
