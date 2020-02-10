@@ -30,7 +30,7 @@ else {
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 //get events from database
-$event_query = "SELECT eventId as id, title, start, end, url FROM events";
+$event_query = "SELECT eventId as id, title, start, end, url, color FROM events";
 $result = mysqli_query($db,$event_query);
 $myArray = array();
 if ($result->num_rows > 0) {
@@ -110,16 +110,15 @@ if ($result->num_rows > 0) {
                         }
                     },
 
-                    /*eventRender: function(event, eventElement) {
-                        eventElement.find("div.fc-content").prependToElement("<a href=''>&#10006;</a>");
-                    },*/
 
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
                     events: <?php echo json_encode($myArray); ?>,
+                    eventColor: '#609f9f',
 
                 });
+
 
                 calendar.render();
             });

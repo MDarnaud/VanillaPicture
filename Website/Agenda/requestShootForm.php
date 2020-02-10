@@ -44,15 +44,15 @@ if(isset($_GET["title"])){
 										<form method="post" action="newShootRequest.php">
 											<div class="row gtr-uniform">
 												<div class="col-8 col-12-xsmall">
-													<input type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Location" disabled/>
+													<input style="background-color: lightgray" type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Location" READONLY/>
 												</div>
 												<div class="col-8 col-12-xsmall">
 													<h5 class="TitleForm">Date:</h5>
-													<input type="date" name="date" id="date" value="<?php echo $startDate?>" disabled />
+													<input style="background-color: lightgray" type="date" name="date" id="date" value="<?php echo $startDate?>" READONLY/>
 												</div>
 												<div class="col-8 col-12-xsmall">
-                                                    <h5 class="TitleForm">Time:</h5>
-													<input type="time" name="time" id="time" value="" placeholder="Time" disabled/>
+                                                    <h5 class="TitleForm">Time (ex: 12:00 PM):</h5>
+													<input type="time" name="time" id="time" value="" placeholder="Time"/>
 												</div>
 												<!-- Break -->
 												<div class="col-12 col-12-small">
@@ -73,7 +73,7 @@ if(isset($_GET["title"])){
 
 												<div class="col-12">
                                                     <h5 class="TitleForm">Package Choice:</h5>
-													<select name="packageCategory" id="packageCategory">
+													<select name="packageCategory" id="packageCategory" >
 														<option value="">- Select -</option>
 														<option value="package1">Package 1</option>
 														<option value="package2">Package 2</option>
@@ -82,7 +82,7 @@ if(isset($_GET["title"])){
 												</div>
 
 												<div class="col-12">
-													<textarea name="customerNotes" id="customerNotes" placeholder="Notes for photographer" rows="6"></textarea>
+													<textarea name="customerNotes" id="customerNotes" placeholder="Write your request here" rows="6"></textarea>
 												</div>
 												<!-- Break -->
 												<div class="col-12">

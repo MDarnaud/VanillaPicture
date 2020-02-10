@@ -58,6 +58,27 @@ if(isset($_SESSION['userSignIn'])){
         s = i.getElementsByTagName(f)[0];
         s.parentNode.insertBefore(p, s);
     })(window, document, 'script', 'https://cdn.giftup.app/dist/gift-up.js', 'giftup');
+
+
+    /*//get info of gift card and send it to the database payment table
+    // Track conversions:
+    giftup("conversion", function (payload) {
+        // get gift card info
+        console.log(payload);
+        document.write(payload);
+
+        var giftCardsArr = payload.giftCards;
+        /*var x;
+        var orderGiftCards;
+        for (orderGiftCards in payload){
+            for(x in orderGiftCards){
+                if(orderGiftCards[x] == "id"){
+
+                }
+            }
+        }*/
+        //window.alert(payload.giftCards.id)*/
+    });
 </script>
 
 
