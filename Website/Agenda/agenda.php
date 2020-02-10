@@ -22,6 +22,8 @@ else {
             $message = "(To make a shoot reservation, click on an availability.)";
         } else if ($userType == "administrator") {
             $message = "(To add an event, click on the 'add' button, to edit an event, click on the event directly in the calendar)";
+        } else{
+            $message = "(To make a shoot reservation, <a class=\"linkHomeAnnouncement\" href=\"../SignOut/SignOutToRegister.php\">sign up</a> as a \"customer\")";
         }
     }
 }
