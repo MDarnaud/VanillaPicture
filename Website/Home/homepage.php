@@ -39,7 +39,7 @@ $db = mysqli_connect('localhost','root','','photography');
     </div>
 </div>
 
-<!-- One -->
+<!-- Biography -->
 <div id="one">
     <div class="wrapper special">
         <div class="inner">
