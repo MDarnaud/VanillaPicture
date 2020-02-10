@@ -3,7 +3,7 @@
 // Start the session
 include '../Header/sessionConnection.php';
 
-include 'addAnnouncement.php';
+include 'serverAnnouncement.php';
 if(isset($_SESSION['userSignIn'])) {
 if ($_SESSION['userTypeSignIn'] === 'administrator') {
     if(isset($_GET['announcementId'])) {
@@ -45,7 +45,7 @@ if ($_SESSION['userTypeSignIn'] === 'administrator') {
                     <div style="margin:auto">
                         <div class="row gtr-200">
                             <!-- Form -->
-                            <form method="post" action="addAnnouncement.php">
+                            <form method="post" action="serverAnnouncement.php">
                                 <div class="row gtr-uniform">
                                     <div class="col-8  col-12-small col-12-xsmall">
                                         <input type="hidden" name="id" id="id"

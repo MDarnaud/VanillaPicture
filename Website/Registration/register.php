@@ -1,5 +1,5 @@
 <?php include 'countrieslist.php';
-        include 'addRegistration.php';
+        include 'serverRegistration.php';
 
 if(!isset($_SESSION['userSignIn'])){?>
 
@@ -120,7 +120,19 @@ if(!isset($_SESSION['userSignIn'])){?>
 												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Date of Birth:</h5>
 													<input type="date" name="dob" id="dob" value="" placeholder="Date of Birth" required
-                                                           oninvalid="setCustomValidity('Date of birth is invalid')" oninput="setCustomValidity('')"/>
+                                                           oninput="checkDob(this)"/>
+                                                    <script language='javascript' type='text/javascript'>
+                                                        function checkDob(input) {
+                                                            var todayDate = new Date().toISOString().slice(0,10);
+                                                            if (input.value > todayDate) {
+                                                                var dobElement = document.getElementById('dob');
+                                                                dobElement.setCustomValidity('Date of Birth is invalid.');
+                                                            } else {
+                                                                // input is valid -- reset the error message
+                                                                input.setCustomValidity('');
+                                                            }
+                                                        }
+                                                    </script>
 												</div>
 												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Country:</h5>
