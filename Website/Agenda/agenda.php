@@ -115,7 +115,6 @@ if ($result->num_rows > 0) {
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
                     events: <?php echo json_encode($myArray); ?>,
-                    eventColor: '#609f9f',
 
                 });
 
@@ -142,18 +141,18 @@ if ($result->num_rows > 0) {
 		<!-- One -->
 			<div id="main">
 				<div class="wrapper">
-					<div class="inner">
+					<div class="inner"><?php
+                        if ($userType == "administrator"){
+                        ?>
+                        <div style="text-align:left !important;">
+                            <a href="addAgendaEventForm.php"><span>&#43</span> Add Event</a>
+                        </div>
+                        <?php }?>
+
 						<header class="major">
 							<h1>AGENDA</h1>
-                            <p>See Sophie's availabilities and request a shoot accordingly</p>
-                                <h4><?php echo $message ?></h4></p>
-                            <?php
-                            if ($userType == "administrator"){
-                            ?>
-                            <ul class="customActions">
-                                <li><button id="addEvent" value="addEvent" onclick="location.href='addAgendaEventForm.php'">Add Event</button></li>
-                            </ul>
-                            <?php }?>
+                            <p>See Sophie's availabilities and request a shoot accordingly <br>
+                                <i style=" font-size: large"><?php echo $message ?></i></p>
 
                             <br>
 						</header>

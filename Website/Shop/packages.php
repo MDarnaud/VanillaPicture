@@ -78,11 +78,13 @@ $db = mysqli_connect('localhost','root','','photography');
             <div class="row">
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
+                    <div style="text-align: center">
                     <h2>PACKAGES</h2>
-                    <p style="font-size:x-large">Your vision, our magic.</p>
-                    <p>We wish to make your ideas reality. If you want to stand out, our bold and unique visual will help you.</p>
-                    <h3>Package 1 - Portrait</h3>
-                        <p>
+                    <p style="font-size:x-large">Your vision, our magic. <br>
+                        <i style="font-size: large">We wish to make your ideas reality. If you want to stand out, our bold and unique visual will help you.</i></p>
+                    </div>
+                    <p>
+                    <h3 style="margin-bottom: 0;">Package 1 - Portrait</h3>
                             <h4>Portrait Experience</h4>
                             <span class="image left"><img src="../../images/package_portrait.jpg" alt="" /></span>
                             Do you want beautiful portraits? Wether it is for social media, or to display in your house,
@@ -95,8 +97,8 @@ $db = mysqli_connect('localhost','root','','photography');
             <div class="row">
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
-                    <h3>Package 2 - Brand</h3>
-                        <p>
+                    <p>
+                    <h3 style="margin-bottom: 0;">Package 2 - Brand</h3>
                             <h4>Let's create your brand image</h4>
                             <span class="image right"><img src="../../images/package_enterprise2.jpg" alt="" /></span>
                             Are you a company looking for the best way to propel your product and / or service? Vanilla Picture and its team offer you the
@@ -108,8 +110,8 @@ $db = mysqli_connect('localhost','root','','photography');
             <div class="row"  style="padding-bottom: 2%;">
                 <div class="col-2 col-12-medium"></div>
                 <div class="col-8 col-12-medium">
-                    <h3>Package 3 - Travel</h3>
                     <p>
+                    <h3 style="margin-bottom: 0;">Package 3 - Travel</h3>
                         <h4>Make your ideas travel</h4>
                         <span class="image left"><img src="../../images/package_travel2.jpg" alt="" /></span>
                     Do you want to reach a VAST clientele in a simple and efficient way? This service offers you the chance
