@@ -119,7 +119,7 @@ $db = mysqli_connect('localhost','root','','photography');
                 </div>
             </div>
                     <ul class="customActions">
-                        <li><a href="../Gallery/gallery.php" class="button">See Photography Shoots</a></li>
+                        <li><a href="../Gallery/gallery.php" class="button">See Gallery</a></li>
                     </ul>
     </div>
     </div>
