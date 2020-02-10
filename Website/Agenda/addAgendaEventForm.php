@@ -73,8 +73,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">End Date:</h4>
-                                <i style="font-size:13px">If you wish for an event to last one day, leave blank</i><br>
-                                <input type="date" name="eventEnd" id="eventEnd" value="" oninput="check(this)"/>
+                                <input type="date" name="eventEnd" id="eventEnd" value="" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
                                             if (!(input.value > document.getElementById('eventStart').value)) {
