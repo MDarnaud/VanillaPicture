@@ -12,6 +12,9 @@ if (isset($_GET["startDate"])){
 if(isset($_GET["title"])){
     $title = $_GET["title"];
 }
+
+if(isset($_SESSION['userSignIn'])){
+    if($_SESSION['userTypeSignIn'] === 'customer'){
 ?>
 
 <!DOCTYPE HTML>
@@ -107,3 +110,10 @@ if(isset($_GET["title"])){
 
 	</body>
 </html>
+
+    <?php }else{
+        header('location: ../../Website/Home/homepage.php');
+    }
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}

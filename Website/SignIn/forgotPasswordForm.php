@@ -38,7 +38,7 @@ include 'sendEmailForgotPassword.php'; ?>
                         <div class="row gtr-uniform">
                             <div class="col-12 col-12-xsmall">
                                 <h5 class="TitleForm">Email:</h5>
-                                <i style="font-size:12px;"> * A new password will be send to you by email, it is possible to change the password afterward.</i>
+                                <i style="font-size:12px;"> * A new password will be sent to you by email, it is possible to change the password afterwards.</i>
                                     <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                             </div>
                         </div>

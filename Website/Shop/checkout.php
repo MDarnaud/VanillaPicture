@@ -76,9 +76,9 @@ if(isset($_SESSION['userSignIn'])){
 
                 }
             }
-        }*/
-        //window.alert(payload.giftCards.id)*/
-    });
+        }
+        //window.alert(payload.giftCards.id)
+    });*/
 </script>
 
 

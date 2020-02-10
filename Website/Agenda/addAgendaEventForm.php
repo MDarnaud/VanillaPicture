@@ -19,6 +19,9 @@ function randomId()
 }
 
 $id = randomId();
+
+if(isset($_SESSION['userSignIn'])){
+if($_SESSION['userTypeSignIn'] === 'administrator'){
 ?>
 
 <!DOCTYPE HTML>
@@ -110,3 +113,10 @@ $id = randomId();
 
 </body>
 </html>
+
+<?php }else{
+    header('location: ../../Website/Home/homepage.php');
+}
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}
