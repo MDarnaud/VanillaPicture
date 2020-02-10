@@ -221,7 +221,7 @@ if ($resultPost) { // if user exists
                         <span class="icon fa-phone"></span>
                         <div>
                             <strong>Phone</strong>
-                            (450) 806-6346
+                            <a href="tel:450-806-6346">(450) 806-6346</a>
                         </div>
                     </li>
                 </ul>

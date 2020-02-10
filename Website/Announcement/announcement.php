@@ -1,4 +1,4 @@
-<?php include 'addAnnouncement.php';
+<?php include 'serverAnnouncement.php';
 
 if(isset($_SESSION['userSignIn'])) {
     if ($_SESSION['userTypeSignIn'] === 'administrator') {

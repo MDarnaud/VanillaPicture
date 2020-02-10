@@ -19,7 +19,7 @@ if(!empty($_POST["isAvailability"])){
     $isAvailability = true;
     //go to request if availability is checked
     $url = "requestShootForm.php";
-    $color = "#00cc99";
+    $color = "#5f9ea0";
 }
 
 //Insert the new event
