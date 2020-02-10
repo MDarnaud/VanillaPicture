@@ -3952,15 +3952,15 @@ ul.customActions2 {
 
 	#banner {
 		background-color: #ffffff;
-		color: #000000;
+		color: #424242;
 	}
 
 		#banner input, #banner select, #banner textarea {
-			color: #000000;
+			color: #424242;
 		}
 
 		#banner a {
-			color: #000000;
+			color: #424242;
 		}
 
 			#banner a:hover {
@@ -3968,11 +3968,11 @@ ul.customActions2 {
 			}
 
 		#banner strong, #banner b {
-			color: #000000;
+			color: #424242;
 		}
 
 		#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
-			color: #000000;
+			color: #424242;
 		}
 
 		#banner blockquote {
@@ -4204,7 +4204,7 @@ ul.customActions2 {
 /* Footer */
 
 	#footer {
-		color: #000000;
+		color: #424242;
 		text-align: center;
 	}
 
@@ -4213,7 +4213,7 @@ ul.customActions2 {
 		}
 
 		#footer h1, #footer h2, #footer h3, #footer h4, #footer h5 {
-			color: #000000;
+			color: #424242;
 		}
 
 		#footer input[type="text"],

@@ -26,7 +26,8 @@ if ($_GET["endDate"] != "null"){
 $startTime = strtotime($eventStart);
 $convertedStartDate = date( 'yy-m-d', $startTime );
 
-
+if(isset($_SESSION['userSignIn'])){
+if($_SESSION['userTypeSignIn'] === 'administrator'){
 
 ?>
 
@@ -132,3 +133,10 @@ $convertedStartDate = date( 'yy-m-d', $startTime );
 
 </body>
 </html>
+
+<?php }else{
+    header('location: ../../Website/Home/homepage.php');
+}
+}else{
+    header('location: ../../Website/Home/homepage.php');
+}
