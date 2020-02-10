@@ -3,6 +3,7 @@
 // Start the session
 include '../Header/sessionConnection.php';
 
+
 echo '<header id="header" class="alt">
     <nav id="nav">
         <ul>
@@ -42,3 +43,6 @@ echo '<header id="header" class="alt">
     </nav>
 </header>';
 ?>
+
+<!-- default favicon -->
+<link rel="shortcut icon" href="/favicon.ico" sizes="32x32" type="image/png">

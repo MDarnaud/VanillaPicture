@@ -41,7 +41,7 @@ else if($isAvailability == false){
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 }
 else{
-    $queryEvent = "INSERT INTO events (eventId, title, start, end, url)
+    $queryEvent = "INSERT INTO events (eventId, title, start, end, url, color)
                     VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$url', '$color')";
     mysqli_query($db, $queryEvent) or die(mysqli_error($db));
 
