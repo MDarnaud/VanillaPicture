@@ -139,8 +139,9 @@ input, select, textarea {
 		color: #181818;
 	}
 
-	body, input, select, textarea {
-		font-family: adobe-caslon-pro, "Levo";
+body, input, select, textarea {
+		/*font-family: Roboto, "Levo";*/
+		font-family: "Louize";
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 2.15;

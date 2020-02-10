@@ -242,7 +242,7 @@ $currentYear = date("Y");
     </div>
 
 
-    <hr>
+    <hr style="margin-top: 15%;margin-bottom: 15%;">
 
     <!--               Monthly-->
 

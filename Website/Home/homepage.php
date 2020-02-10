@@ -159,7 +159,7 @@ if ($resultPost) { // if user exists
     <div class="wrapper style2">
         <div class="inner">
             <header class="major">
-                <h2 id = "getInTouch">Get in touch</h2>
+                <h2 id = "getInTouch">GET IN TOUCH</h2>
                 <p>Please fill out this form with your own information, to send an email to Sophie Perras.</p>
                 <?php if(isset($_GET['sendEmailHome'])){
                     if($_GET['sendEmailHome'] === 'Email successfully sent'){
