@@ -345,9 +345,10 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             modalImg.src = this.src;
                             var altText = this.alt;
                             var subCategory = this.getAttribute("value");
-                            var category = this.getAttribute("name");
+                            // var category = this . getAttribute("name");
+                            var category = '<?php if(isset($_GET['categorySelect'])){echo $_GET['categorySelect'];}else{echo "all";}?>';
 
-                            captionText.innerHTML = altText
+                                captionText.innerHTML = altText
                                 <?php if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator'):?>
                                 + '&nbsp;' +
                                 '<a href="./modifyImageForm.php?modificationId=' + this.id +
@@ -355,6 +356,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 '&subCategorySelect=' + subCategory +
                                 '"' + 'class="pencil"><i class="fa fa-pencil"></i></a>'
                                 <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
+
                             curImageId = this.id;
 
 
