@@ -50,7 +50,13 @@ if(isset($_SESSION['userSignIn'])){
                     $averageSpent_summary_y_query = "SELECT AVG(paymentTotal) as averagePayments FROM payment WHERE year(paymentDate)='$currentYear'";
                     $averagePayments_result = mysqli_query($db, $averageSpent_summary_y_query);
                     $averagePaymentsY = mysqli_fetch_assoc($averagePayments_result);
-                    $textAveragePaymentY = '$'.$averagePaymentsY['averagePayments'];
+                    if ($averagePaymentsY['averagePayments'] == null){
+                        $textAveragePaymentY = '$0';
+                    }
+                    else{
+                        $textAveragePaymentY = '$'.$averagePaymentsY['averagePayments'];
+                    }
+
 
                     // number of giftcards
                     $giftCard_summary_y_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE year(paymentDate)='$currentYear'";
@@ -58,11 +64,16 @@ if(isset($_SESSION['userSignIn'])){
                     $totalGiftCardsY = mysqli_fetch_assoc($giftCards_result);
                     $textNumGiftcardY = $totalGiftCardsY['totalGiftCards'];
 
-                    // amount of gitcards
+                    // amount of giftcards
                     $totalPayment_summar_y_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summar_y_query);
                     $totalPaymentsY = mysqli_fetch_assoc($totalPayments_result);
-                    $textSpentGiftcardY = '$'.$totalPaymentsY['totalPaymentsAmount'];
+                    if ($totalPaymentsY['totalPaymentsAmount'] == null){
+                        $textSpentGiftcardY = '$0';
+                    }
+                    else{
+                        $textSpentGiftcardY = '$'.$totalPaymentsY['totalPaymentsAmount'];
+                    }
 
                     //Two dimensional array
                     $newdata = array(
@@ -353,6 +364,12 @@ for($i=0;$i<5;$i++) {
                     $averagePayments_result = mysqli_query($db, $averageSpent_summary_M_query);
                     $averagePaymentsM = mysqli_fetch_assoc($averagePayments_result);
                     $textSpentCustomerM = '$'.$averagePaymentsM['averagePayments'];
+                    if ($averagePaymentsM['averagePayments'] == null){
+                        $textSpentCustomerM = '$0';
+                    }
+                    else{
+                        $textSpentCustomerM = '$'.$averagePaymentsM['averagePayments'];
+                    }
 
                 // number of giftcards
                     $numGiftcard_summary_M_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
@@ -364,7 +381,12 @@ for($i=0;$i<5;$i++) {
                     $totalPayment_summary_m_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summary_m_query);
                     $totalPaymentsM = mysqli_fetch_assoc($totalPayments_result);
-                    $textSpentGiftcardM = '$'.$totalPaymentsM['totalPaymentsAmount'];
+                    if ($totalPaymentsM['totalPaymentsAmount'] == null){
+                        $textSpentGiftcardM = '$0';
+                    }
+                    else{
+                        $textSpentGiftcardM = '$'.$totalPaymentsM['totalPaymentsAmount'];
+                    }
 
                    //Two dimensional array
                     $newdata = array(
@@ -513,6 +535,12 @@ for($i=0;$i<5;$i++) {
                     $averagePayments_result = mysqli_query($db, $averageSpent_summary_w_query);
                     $averagePaymentsW = mysqli_fetch_assoc($averagePayments_result);
                     $textSpentCustomerW = '$'.$averagePaymentsW['averagePayments'];
+                    if ($averagePaymentsW['averagePayments'] == null){
+                        $textSpentCustomerW = '$0';
+                    }
+                    else{
+                        $textSpentCustomerW = '$'.$averagePaymentsW['averagePayments'];
+                    }
 
                 // number of giftcards
                     $numGiftcard_summary_w_query = "SELECT count(paymentId) as totalGiftCards FROM payment WHERE paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
@@ -524,7 +552,12 @@ for($i=0;$i<5;$i++) {
                     $totalPayment_summary_w_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summary_w_query);
                     $totalPaymentsW = mysqli_fetch_assoc($totalPayments_result);
-                    $textSpentGiftcardW = ' $'.$totalPaymentsM['totalPaymentsAmount'];
+                    if ($totalPaymentsW['totalPaymentsAmount'] == null){
+                        $textSpentGiftcardW = '$0';
+                    }
+                    else{
+                        $textSpentGiftcardW = '$'.$totalPaymentsW['totalPaymentsAmount'];
+                    }
 
 
                     //Two dimensional array
