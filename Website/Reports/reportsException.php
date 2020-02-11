@@ -13,12 +13,14 @@ if(isset($_SESSION['userSignIn'])){
                 <?php
 
                 if (isset($_GET['errors'])) {
-                    ?>
-                    <div class="isa_error" >
-                        <i class="fa fa-times-circle"></i>
-                        <?php echo $_GET['errors'];?>
-                    </div>
-                <?php }
+                    if ($_GET['errors'] != "") {
+                        ?>
+                        <div class="isa_error">
+                            <i class="fa fa-times-circle"></i>
+                            <?php echo $_GET['errors']; ?>
+                        </div>
+                    <?php }
+                }
 
                 ?>
                 <div class="wrapper special">
@@ -69,7 +71,7 @@ if(isset($_SESSION['userSignIn'])){
                                         $('.formDivision').append('<div class="dropdownPeriod"><br><strong> Elements: </strong>&nbsp; &nbsp;</div>');
                                         $('.formDivision').append('<div class="dropdownPeriod"><input type="checkbox" name="customer" id="customer" value="customer" class="elementsTable">\n' +
                                             '     <label for="customer"> Customer Registration</label>\n' +
-                                            '                <input type="checkbox" name="annoucement" id="announcement" value="announcement" class="elementsTable">\n' +
+                                            '                <input type="checkbox" name="announcement" id="announcement" value="announcement" class="elementsTable">\n' +
                                             '     <label for="announcement"> Announcements </label>\n' +
                                             '                <input type="checkbox" name="shoot" id="shoot" value="shoot" class="elementsTable">\n' +
                                             '     <label for="shoot"> Shoots </label>\n' +
@@ -147,7 +149,7 @@ if(isset($_SESSION['userSignIn'])){
                             if ($_GET['customer'] === 'customer') {
                                 ?>
 
-                            <h5>Customer Registration</h5>';
+                            <h5>Customer Registration</h5>
                             <div class="table-wrapper">
                                 <table class="alt">
                                     <tbody>
