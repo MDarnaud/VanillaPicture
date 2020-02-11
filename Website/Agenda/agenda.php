@@ -83,11 +83,12 @@ if ($result->num_rows > 0) {
 
                         if(userType == "customer")
                         {
-                            if (info.event.url) {
+                            if (info.event.url == "requestShootForm.php") {
+                                var id = (info.event.id).toString();
                                 var startDate = info.event.start;
                                 var title = info.event.title;
                                 var startDateString = startDate.toDateString();
-                                var queryString = "?startDate=" + startDateString + "&title=" + title;
+                                var queryString = "?startDate=" + startDateString + "&title=" + title + "&id=" + id;
 
                                 window.open(info.event.url + queryString);
                             }

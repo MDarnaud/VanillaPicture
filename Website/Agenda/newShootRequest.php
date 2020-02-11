@@ -21,6 +21,8 @@ $customerEmail = $_SESSION["userSignIn"];
 
 //GET FORM INFORMATION
 //title
+$eventId = mysqli_real_escape_string($db, $_POST['eventId']);
+//title
 $shootTitle = mysqli_real_escape_string($db, $_POST['title']);
 //date
 $shootDate = mysqli_real_escape_string($db,$_POST["date"]);
@@ -57,7 +59,9 @@ $queryShoot = "INSERT INTO shoot (shootTime, shootDate, shootLocation, customerI
 VALUES ('$shootTime', '$shootDate', '$shootTitle', '$customerId', '$artists', '$customerNotes', '$shootPackage')";
 $result = mysqli_query($db, $queryShoot) or die(mysqli_error($db));
 
-
+//delete event requested from agenda
+$queryDeleteEvent = "DELETE FROM events WHERE eventId = '$eventId'";
+$result = mysqli_query($db, $queryDeleteEvent) or die(mysqli_error($db));
 
 
 

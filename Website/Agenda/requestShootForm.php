@@ -12,7 +12,9 @@ if (isset($_GET["startDate"])){
 if(isset($_GET["title"])){
     $title = $_GET["title"];
 }
-
+if(isset($_GET["id"])){
+    $eventId = $_GET["id"];
+}
 if(isset($_SESSION['userSignIn'])){
     if($_SESSION['userTypeSignIn'] === 'customer'){
 ?>
@@ -47,6 +49,7 @@ if(isset($_SESSION['userSignIn'])){
 									<!-- Form -->
 										<form method="post" action="newShootRequest.php">
 											<div class="row gtr-uniform">
+                                                <input type="hidden" name="eventId" id="eventId" value="<?php echo $eventId?>">
 												<div class="col-8 col-12-xsmall">
 													<input style="background-color: lightgray" type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Location" READONLY/>
 												</div>

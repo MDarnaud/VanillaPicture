@@ -15,7 +15,7 @@ $isAvailability = false;
 $url = null;
 $color = "#33cccc";
 
-if(!empty($_POST["isAvailability"])){
+if(isset($_POST["isAvailability"])){
     $isAvailability = true;
     //go to request if availability is checked
     $url = "requestShootForm.php";
