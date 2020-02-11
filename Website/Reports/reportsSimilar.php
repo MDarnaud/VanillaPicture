@@ -7,6 +7,7 @@ $db = mysqli_connect('localhost','root','','photography');
 ?>
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
+<?php include '../Header/favicon.html';?>
 <head>
     <title>Reports</title>
     <meta charset="utf-8" />

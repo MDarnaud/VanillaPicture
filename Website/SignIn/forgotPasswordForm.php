@@ -6,6 +6,7 @@ include '../Header/sessionConnection.php';
 include 'sendEmailForgotPassword.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
+<?php include '../Header/favicon.html';?>
 <head>
     <title>Forgot Password</title>
     <meta charset="utf-8" />

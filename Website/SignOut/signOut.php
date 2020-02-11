@@ -5,6 +5,7 @@
 
 <!DOCTYPE HTML>
 <html lang="en">
+<?php include '../Header/favicon.html';?>
 	<head>
 		<title>Sign Out</title>
 		<meta charset="utf-8" />

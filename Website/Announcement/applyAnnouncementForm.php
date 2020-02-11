@@ -12,6 +12,7 @@ if ($_SESSION['userTypeSignIn'] === 'model') {
 ?>
     <!DOCTYPE HTML>
     <html lang="en">
+    <?php include '../Header/favicon.html';?>
     <head>
         <title>Model Application</title>
         <meta charset="utf-8" />

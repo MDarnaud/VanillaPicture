@@ -8,6 +8,7 @@ $db = mysqli_connect('localhost','root','','photography');
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
+<?php include '../Header/favicon.html';?>
 <head>
     <title>Vanilla Picture</title>
     <meta charset="utf-8" />
@@ -15,6 +16,7 @@ $db = mysqli_connect('localhost','root','','photography');
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="../../assets/css/main.css" />
+
 </head>
 <body class="is-preload">
 

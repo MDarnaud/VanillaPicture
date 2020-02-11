@@ -15,7 +15,6 @@ $eventStart = $_GET["startDate"];
 
 
 if ($_GET["endDate"] != "null"){
-    var_dump($_GET["endDate"]);
     $eventEnd = $_GET["endDate"];
     $endTime = strtotime($eventEnd);
     $convertedEndDate = date( 'yy-m-d', $endTime );
@@ -35,6 +34,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
 
 
 <html lang="en">
+    <?php include '../Header/favicon.html';?>
 <head>
     <title>Agenda Event Form</title>
     <meta charset="utf-8" />
@@ -74,11 +74,11 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">End Date:</h4>
-                                <i style="font-size:13px">If you wish for an event to last one day, leave blank</i><br>
+
                                 <input type="date" name="eventEnd" id="eventEnd" value="<?php if ($_GET["endDate"] != "null"){echo $convertedEndDate;}?>" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
-                                        if (!(input.value > document.getElementById('eventStart').value)) {
+                                        if (!(input.value >= document.getElementById('eventStart').value)) {
                                             input.setCustomValidity('End Date is before the start date.');
                                         } else {
                                             // input is valid -- reset the error message

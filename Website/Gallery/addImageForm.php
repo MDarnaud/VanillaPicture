@@ -2,6 +2,7 @@
         include 'uploadGalleryImage.php'; ?>
 <!DOCTYPE HTML>
 <html lang="en">
+<?php include '../Header/favicon.html';?>
 	<head>
 		<title>Add Image</title>
 		<meta charset="utf-8" />

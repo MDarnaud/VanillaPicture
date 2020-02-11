@@ -9,6 +9,7 @@ $db = mysqli_connect('localhost','root','','photography');
 <!DOCTYPE HTML>
 
 <html lang="en">
+<?php include '../Header/favicon.html';?>
 	<head>
 		<title>Packages</title>
 		<meta charset="utf-8" />

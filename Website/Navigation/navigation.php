@@ -4,7 +4,8 @@
 include '../Header/sessionConnection.php';
 
 
-echo '<header id="header" class="alt">
+echo
+'<header id="header" class="alt">
     <nav id="nav">
         <ul>
             <li class="current"><a href="../Home/homepage.php">Home</a></li>

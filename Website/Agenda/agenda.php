@@ -43,6 +43,7 @@ if ($result->num_rows > 0) {
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
+<?php include '../Header/favicon.html';?>
 	<head>
 		<title>Agenda</title>
 		<meta charset="utf-8" />
@@ -134,6 +135,7 @@ if ($result->num_rows > 0) {
         </style>
 
 	</head>
+
 	<body class="is-preload">
 
     <?php include '../Navigation/navigation.php' ?>

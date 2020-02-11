@@ -25,6 +25,7 @@ if(isset($_GET['modificationId'])){
 <!--        HTML-->
         <!DOCTYPE HTML>
             <html lang="en">
+        <?php include '../Header/favicon.html';?>
                 <head>
                     <title>Modify Caption</title>
                     <meta charset="utf-8" />

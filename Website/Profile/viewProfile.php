@@ -12,6 +12,7 @@ if(isset($_SESSION['userSignIn'])){
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
+    <?php include '../Header/favicon.html';?>
 	<head>
 		<title>View Account</title>
 		<meta charset="utf-8" />

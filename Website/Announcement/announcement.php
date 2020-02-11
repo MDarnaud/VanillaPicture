@@ -6,6 +6,7 @@ if(isset($_SESSION['userSignIn'])) {
         <!DOCTYPE HTML>
 
         <html lang="en">
+        <?php include '../Header/favicon.html';?>
         <head>
             <title>Announcement</title>
             <meta charset="utf-8"/>
@@ -56,7 +57,7 @@ if(isset($_SESSION['userSignIn'])) {
                                                required oninput="check(this)"/>
                                         <script language='javascript' type='text/javascript'>
                                             function check(input) {
-                                                if (!(input.value > document.getElementById('startDate').value)) {
+                                                if (!(input.value >= document.getElementById('startDate').value)) {
                                                     input.setCustomValidity('End Date is before the start date.');
                                                 } else {
                                                     // input is valid -- reset the error message
