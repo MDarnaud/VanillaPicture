@@ -17,20 +17,20 @@ if(isset($_POST['submit'])) {
     $payment = mysqli_real_escape_string($db, $_POST['payment']);
 
     // Filters
-        // Customer
-        $periodAge = mysqli_real_escape_string($db, $_POST['age']);
-        $age = '';
+    // Customer
+    $periodAge = mysqli_real_escape_string($db, $_POST['age']);
+    $age = '';
 
-            // Shoot
-                //Location
-                $locationShoot = mysqli_real_escape_string($db, $_POST['locationShoot']);
-                $location = '';
-                //Package
-                $packageShoot = mysqli_real_escape_string($db, $_POST['packages']);
-                $packages = '';
-            //Payment
-            $paymentShoot = mysqli_real_escape_string($db, $_POST['paymentAmount']);
-            $paymentDropDown = '';
+    // Shoot
+    //Location
+    $locationShoot = mysqli_real_escape_string($db, $_POST['locationShoot']);
+    $location = '';
+    //Package
+    $packageShoot = mysqli_real_escape_string($db, $_POST['packages']);
+    $packages = '';
+    //Payment
+    $paymentShoot = mysqli_real_escape_string($db, $_POST['paymentAmount']);
+    $paymentDropDown = '';
 
 
 
@@ -65,5 +65,5 @@ if(isset($_POST['submit'])) {
 
     header('location: ./reportsException.php?reportSelect=exception&errors='.$errors.'&customer='.$customer.'&announcement='.$announcement
         .'&shoot='.$shoot.'&payment='.$payment.'&period='.$period.'&year='.$year.'&month='.$month.'&age='.$age
-    .'&location='.$location.'&packages='.$packages.'&paymentDropDown='.$paymentDropDown);
+        .'&location='.$location.'&packages='.$packages.'&paymentDropDown='.$paymentDropDown);
 }?>
