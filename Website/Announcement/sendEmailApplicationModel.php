@@ -5,15 +5,15 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../../emailTool/autoload.php';
 
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
 // initializing variables
 $errors = array();
 $email = "";
-
-// connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'photography');
 
 // REGISTER USER
 if (isset($_POST['submit_application'])) {

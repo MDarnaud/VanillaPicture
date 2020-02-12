@@ -2,8 +2,8 @@
 
 $errors = "";
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+// Database Connection
+include '../Header/dbConnection.php';
 
 // Initialize variables
 $errors = "";

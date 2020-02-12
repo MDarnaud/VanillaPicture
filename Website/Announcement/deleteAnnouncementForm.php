@@ -3,8 +3,8 @@
 // Put this page to delete an announcement
 // If you have time add a pop up
 $annId = $_GET['announcementId'];
-// Connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+// Database Connection
+include '../Header/dbConnection.php';
 
 // Find path of file
 $path_announcement_query = "SELECT * FROM announcement WHERE announcementId='$annId'";

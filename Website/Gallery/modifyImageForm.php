@@ -1,5 +1,8 @@
 <?php
 include 'modifyGalleryImage.php';
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 

@@ -1,4 +1,8 @@
-<?php include 'countrieslist.php';
+<?php
+// Database Connection
+include '../Header/dbConnection.php';
+
+include 'countrieslist.php';
         include 'serverRegistration.php';
 
 if(!isset($_SESSION['userSignIn'])){?>

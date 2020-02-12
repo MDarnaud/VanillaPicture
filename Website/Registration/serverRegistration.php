@@ -1,4 +1,7 @@
 <?php
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
@@ -6,8 +9,6 @@ include '../Header/sessionConnection.php';
 $email    = "";
 $errors = array();
 
-// Connect to the database
-$db = mysqli_connect('localhost','root','','photography');
 
 // REGISTER USER
 if (isset($_POST['reg_user'])) {

@@ -1,6 +1,6 @@
 <?php
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+// Database Connection
+include '../Header/dbConnection.php';
 
 //get event information
 $eventId = $_GET["eventId"];

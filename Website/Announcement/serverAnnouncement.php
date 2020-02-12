@@ -1,4 +1,7 @@
 <?php
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
@@ -7,8 +10,6 @@ $errors = array();
 $errorsDate = array();
 $postAnnouncement = array();
 
-// Connect to the database
-$db = mysqli_connect('localhost','root','','photography');
 
 // REGISTER USER
 if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) {
