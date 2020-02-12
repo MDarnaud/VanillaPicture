@@ -61,25 +61,22 @@ if(isset($_SESSION['userSignIn'])){
     })(window, document, 'script', 'https://cdn.giftup.app/dist/gift-up.js', 'giftup');
 
 
-    /*//get info of gift card and send it to the database payment table
+    //get info of gift card and send it to the database payment table
     // Track conversions:
     giftup("conversion", function (payload) {
         // get gift card info
-        console.log(payload);
-        document.write(payload);
+        document.write(payload.orderId + "<br>");
 
-        var giftCardsArr = payload.giftCards;
-        /*var x;
-        var orderGiftCards;
-        for (orderGiftCards in payload){
-            for(x in orderGiftCards){
-                if(orderGiftCards[x] == "id"){
 
-                }
+        var singleGiftCard;
+        var orderC;
+        document.write(payload["revenue"];
+        /*for (orderC in payload){
+            document.write(payload["revenue"] + " <br>");
+
             }
-        }
-        //window.alert(payload.giftCards.id)
-    });*/
+        }*/
+    });
 </script>
 
 
