@@ -322,6 +322,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                     for (var i = 0; i < imgs.length; i++) {
                         var img = document.getElementById(imgs[i].id);
                         var curImageId = "";
+
                         img.onclick = function () {
                             var jsnewArrayId = new Array();
                             var jsnewArrayCaption = new Array();
@@ -341,7 +342,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             <?php } ?>
 
 
-
                             modal.style.display = "block";
                             modalImg.src = this.src;
                             var altText = this.alt;
@@ -359,7 +359,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                                 <?php endif; ?>.concat("<br><i>".concat(subCategory.concat("</i>")));
 
                             curImageId = this.id;
-
 
                             if (nextButton || previousButton) {
                                 if (this.id === jsnewArrayId[jsnewArrayId.length - 1]) {
