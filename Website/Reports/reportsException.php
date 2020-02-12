@@ -665,8 +665,10 @@ if(isset($_SESSION['userSignIn'])){
                             }
                             //Payments
                             if ($_GET['payment'] === 'payment') {
+                                window.alert("hi");
                                 // Verify if the user made payment filters
                                 if ($_GET['paymentDropDown'] != '') {
+                                    window.alert("hello");
                                     $paymentDd = $_GET['paymentDropDown'];
                                     if ($paymentDd != '') {
                                         if ($paymentDd === '050') {
