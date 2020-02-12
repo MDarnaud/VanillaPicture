@@ -138,3 +138,20 @@
         width: 100%;
     }
 }
+
+
+    .prev {
+        width: 20%;
+        border-style: none;
+        color: white;
+        background-color: transparent;
+        font-size: 30px;
+    }
+
+    .next {
+        width: 20%;
+        border-style: none;
+        color: white;
+        background-color: transparent;
+        font-size: 30px;
+    }

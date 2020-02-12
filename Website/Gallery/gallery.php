@@ -211,11 +211,11 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                         </div>
                     <?php } else { ?>
                         <div id="buttons" style="text-align: center">
-                            <button style="width:20%;border-style:none; color:white;background-color: transparent;font-size:30px;"
-                                    id="previousImg" class="reset" value="previousImg">&#8592;
+                            <button
+                                    id="previousImg" class="reset prev" value="previousImg">&#8592;
                             </button>
-                            <button style="width:20%;border-style:none; color:white;background-color: transparent;font-size:30px;"
-                                    id="nextImg" class="reset" value="nextImg">&#8594;
+                            <button
+                                    id="nextImg" class="reset next" value="nextImg">&#8594;
                             </button>
                         </div>
                     <?php } ?>
