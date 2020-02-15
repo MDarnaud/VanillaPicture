@@ -100,16 +100,12 @@ if ($result->num_rows > 0) {
                                 var url = "editAgendaEventForm.php";
                                 var id = (info.event.id).toString();
                                 var startDate = info.event.start;
-                                var endDate = null;
-                                var endDateString = null;
-
-                                if(info.event.end != null){
-                                    endDate = info.event.end;
-                                    endDateString = endDate.toDateString();
-                                }
+                                var endDate = info.event.end;
 
                                 var title = info.event.title;
                                 var startDateString = startDate.toDateString();
+                                var endDateString = endDate.toDateString();
+
 
                                 var queryString = "?id=" + id + "&startDate=" + startDateString + "&title=" + title + "&endDate=" + endDateString;
                                 window.open(url + queryString);

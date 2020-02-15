@@ -10,19 +10,16 @@ include '../Header/sessionConnection.php';
 $eventTitle = $_GET["title"];
 $eventId = $_GET["id"];
 $eventStart = $_GET["startDate"];
+$eventEnd = $_GET["endDate"];
 
-
-
-if ($_GET["endDate"] != "null"){
-    $eventEnd = $_GET["endDate"];
-    $endTime = strtotime($eventEnd);
-    $convertedEndDate = date( 'yy-m-d', $endTime );
-}
 
 
 //convert string to date for input boxes
 $startTime = strtotime($eventStart);
 $convertedStartDate = date( 'yy-m-d', $startTime );
+
+$endTime = strtotime($eventEnd);
+$convertedEndDate = date( 'yy-m-d', $endTime );
 
 if(isset($_SESSION['userSignIn'])){
 if($_SESSION['userTypeSignIn'] === 'administrator'){
@@ -74,7 +71,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">End Date:</h4>
 
-                                <input type="date" name="eventEnd" id="eventEnd" value="<?php if ($_GET["endDate"] != "null"){echo $convertedEndDate;}?>" oninput="check(this)" required/>
+                                <input type="date" name="eventEnd" id="eventEnd" value="<?php echo $convertedEndDate?>" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
                                         if (!(input.value >= document.getElementById('eventStart').value)) {

@@ -71,14 +71,14 @@ if (isset($_POST['submit_announcement'])) {
 if(isset($_POST['update_announcement'])){
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
-        echo 'yo';
         $id = mysqli_real_escape_string($db, $_POST['id']);
         // Insert the announcement information in the table announcement in the database
         $queryAnnouncement = "UPDATE announcement SET announcementDetail='$detail', announcementTitle='$title', announcementStartDate='$startDate', announcementEndDate='$endDate', announcementModel='$modelSearch' WHERE announcementId='$id'";
         mysqli_query($db, $queryAnnouncement);
 
-        if (mysqli_affected_rows($db) >= 1) {
+        header("location: ../Home/homepage.php#announcementSection");
+        /*if (mysqli_affected_rows($db) >= 1) { //does not work if no value is updated
             header("location: ../Home/homepage.php#announcementSection");
-        }
+        }*/
     }
 }
