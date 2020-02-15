@@ -2611,6 +2611,7 @@ body, input, select, textarea {
 		 display: flex;
 		 justify-content: center;
 		 list-style: none;
+		padding-left: 0rem !important;
 	 }
 
 ul.customActions2 {
@@ -3179,8 +3180,8 @@ ul.customActions2 {
 		.spotlights button,
 		.spotlights .button {
 			background-color: transparent;
-			box-shadow: inset 0 0 0 1px #20c5e7;
-			color: #20c5e7 !important;
+			box-shadow: inset 0 0 0 1px #8c8c8c;
+			color: #8c8c8c !important;
 		}
 
 			.spotlights input[type="submit"]:hover,
@@ -3188,7 +3189,7 @@ ul.customActions2 {
 			.spotlights input[type="button"]:hover,
 			.spotlights button:hover,
 			.spotlights .button:hover {
-				background-color: rgba(32, 197, 231, 0.1);
+				background-color: rgba(255, 255, 255, 0.075);
 			}
 
 				.spotlights input[type="submit"]:hover:active,
@@ -3196,7 +3197,7 @@ ul.customActions2 {
 				.spotlights input[type="button"]:hover:active,
 				.spotlights button:hover:active,
 				.spotlights .button:hover:active {
-					background-color: rgba(32, 197, 231, 0.25);
+					background-color: rgba(255, 255, 255, 0.075);
 				}
 
 			.spotlights input[type="submit"].primary,
@@ -3214,7 +3215,7 @@ ul.customActions2 {
 				.spotlights input[type="button"].primary:hover,
 				.spotlights button.primary:hover,
 				.spotlights .button.primary:hover {
-					background-color: rgba(32, 197, 231, 0.5);
+					background: rgba(255, 255, 255, 0.075);
 				}
 
 					.spotlights input[type="submit"].primary:hover:active,
@@ -3222,7 +3223,7 @@ ul.customActions2 {
 					.spotlights input[type="button"].primary:hover:active,
 					.spotlights button.primary:hover:active,
 					.spotlights .button.primary:hover:active {
-						background-color: rgba(32, 197, 231, 0.75);
+						background: rgba(255, 255, 255, 0.075);
 					}
 
 		.spotlights label {
@@ -3248,8 +3249,8 @@ ul.customActions2 {
 			.spotlights input[type="url"]:focus,
 			.spotlights select:focus,
 			.spotlights textarea:focus {
-				border-color: #20c5e7;
-				box-shadow: 0 0 0 1px #20c5e7;
+				border-color: #8c8c8c;
+				box-shadow: 0 0 0 1px #8c8c8c;
 			}
 
 		.spotlights select {
@@ -3273,14 +3274,14 @@ ul.customActions2 {
 
 		.spotlights input[type="checkbox"]:checked + label:before,
 		.spotlights input[type="radio"]:checked + label:before {
-			border-color: #20c5e7;
+			border-color: #8c8c8c;
 			color: #000000;
 		}
 
 		.spotlights input[type="checkbox"]:focus + label:before,
 		.spotlights input[type="radio"]:focus + label:before {
-			border-color: #20c5e7;
-			box-shadow: 0 0 0 1px #20c5e7;
+			border-color: #8c8c8c;
+			box-shadow: 0 0 0 1px #8c8c8c;
 		}
 
 		.spotlights ::-webkit-input-placeholder {
@@ -3356,7 +3357,7 @@ ul.customActions2 {
 				}
 
 			.spotlights .spotlight .content {
-				background: #20c5e7;
+				background: #8c8c8c;
 				border-radius: 0 0 4px 4px;
 				font-weight: 700;
 				padding: 1.25rem 1rem;
@@ -3617,7 +3618,7 @@ ul.customActions2 {
 					}
 
 					#header > nav > ul > li.active > a {
-						color: #310072;
+						color: #8c8c8c;
 					}
 
 		.dropotron {
@@ -4016,7 +4017,7 @@ ul.customActions2 {
 				#banner input[type="button"]:hover:active,
 				#banner button:hover:active,
 				#banner .button:hover:active {
-					background-color: rgba(32, 197, 231, 0.25);
+					background-color: rgba(255, 255, 255, 0.25);
 				}
 
 			#banner input[type="submit"].primary,
@@ -4034,7 +4035,7 @@ ul.customActions2 {
 				#banner input[type="button"].primary:hover,
 				#banner button.primary:hover,
 				#banner .button.primary:hover {
-					background-color: rgba(32, 197, 231, 0.5);
+					background-color: rgba(255, 255, 255, 0.25);
 				}
 
 					#banner input[type="submit"].primary:hover:active,
@@ -4068,8 +4069,8 @@ ul.customActions2 {
 			#banner input[type="url"]:focus,
 			#banner select:focus,
 			#banner textarea:focus {
-				border-color: #20c5e7;
-				box-shadow: 0 0 0 1px #20c5e7;
+				border-color: #8c8c8c;
+				box-shadow: 0 0 0 1px #8c8c8c;
 			}
 
 		#banner select {
@@ -4093,14 +4094,14 @@ ul.customActions2 {
 
 		#banner input[type="checkbox"]:checked + label:before,
 		#banner input[type="radio"]:checked + label:before {
-			border-color: #20c5e7;
+			border-color: #8c8c8c;
 			color: #000000;
 		}
 
 		#banner input[type="checkbox"]:focus + label:before,
 		#banner input[type="radio"]:focus + label:before {
-			border-color: #20c5e7;
-			box-shadow: 0 0 0 1px #20c5e7;
+			border-color: #8c8c8c;
+			box-shadow: 0 0 0 1px #8c8c8c;
 		}
 
 		#banner ::-webkit-input-placeholder {
@@ -4342,7 +4343,7 @@ ul.customActions2 {
 						#footer .content .icons input[type="button"]:hover:active,
 						#footer .content .icons button:hover:active,
 						#footer .content .icons .button:hover:active {
-							background-color: rgba(32, 197, 231, 0.25);
+							background-color: rgba(255, 255, 255, 0.25);
 						}
 
 					#footer .content .icons input[type="submit"].primary,

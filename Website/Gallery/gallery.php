@@ -205,7 +205,7 @@ include '../Header/sessionConnection.php';
                     <?php if (isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator') { ?>
                         <!--                     Modal Caption (Image Text) -->
                         <div id="deleteButton">
-                            <button style="width:30%;border:1px solid white; color:white;background-color: transparent;"
+                            <button style="width:50%;border:1px solid white; color:white;background-color: transparent;"
                                     id="deleteImg" class="reset" value="deleteImg">Delete
                             </button>
                         </div>
