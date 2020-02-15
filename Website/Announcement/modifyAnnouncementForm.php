@@ -86,7 +86,7 @@ if ($_SESSION['userTypeSignIn'] === 'administrator') {
                                                 input.setCustomValidity('');
                                             }
 
-                                            if (!(input.value > new Date())) {
+                                            if (input.value < new Date()) {
                                                 input.setCustomValidity('End Date is before today\'s date.');
                                             } else {
                                                 // input is valid -- reset the error message
