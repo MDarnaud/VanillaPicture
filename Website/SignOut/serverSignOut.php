@@ -1,4 +1,7 @@
 <?php
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start session
 include '../Header/sessionConnection.php';
 

@@ -1,4 +1,7 @@
 <?php
+// Database Connection
+include '../Header/dbConnection.php';
+
     // Include the back end of the sign out form
     include 'serverSignOut.php';
 ?>

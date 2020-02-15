@@ -1,9 +1,10 @@
 <?php
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
-// Connect to the databases
-$db = mysqli_connect('localhost','root','','photography');
 
 ?>
 <!DOCTYPE HTML>

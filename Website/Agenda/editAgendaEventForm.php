@@ -1,10 +1,9 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// Database Connection
+include '../Header/dbConnection.php';
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+//Start session
+include '../Header/sessionConnection.php';
 
 //get event info
 //get new user information

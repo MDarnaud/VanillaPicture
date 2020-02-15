@@ -1,9 +1,10 @@
 <?php
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
 
 if(isset($_POST["save_caption"])) {
     // Caption

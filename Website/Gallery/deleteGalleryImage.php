@@ -5,8 +5,8 @@ $imgId = $_GET['idImageDelete'];
 // Start the session
 include '../Header/sessionConnection.php';
 
-// Connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+// Database Connection
+include '../Header/dbConnection.php';
 
 // Find path of file
 $path_get_query = "SELECT * FROM gallery WHERE galleryId='$imgId'";

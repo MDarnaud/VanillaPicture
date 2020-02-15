@@ -2,11 +2,13 @@
 $errors = array();
 $success = array();
 
+// Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+
 
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit_image"])) {

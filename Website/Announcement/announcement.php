@@ -1,4 +1,6 @@
 <?php include 'serverAnnouncement.php';
+// Database Connection
+include '../Header/dbConnection.php';
 
 if(isset($_SESSION['userSignIn'])) {
     if ($_SESSION['userTypeSignIn'] === 'administrator') {

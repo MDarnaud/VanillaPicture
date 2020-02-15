@@ -5,11 +5,13 @@ use PHPMailer\PHPMailer\Exception;
 
 require '../../emailTool/autoload.php';
 
+//Database Connection
+include '../Header/dbConnection.php';
+
 // Start the session
 include '../Header/sessionConnection.php';
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+
 
 if($db->connect_error)
 {

@@ -1,5 +1,7 @@
 <?php include 'categorieslist.php';
-        include 'uploadGalleryImage.php'; ?>
+        include 'uploadGalleryImage.php';
+// Database Connection
+include '../Header/dbConnection.php';?>
 <!DOCTYPE HTML>
 <html lang="en">
 <?php include '../Header/favicon.html';?>
