@@ -45,11 +45,11 @@ if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) 
     }
 
     // Verify if end date is after start date
-    if (!(strtotime($endDate) > strtotime($startDate))) {
+    if (strtotime($endDate) < strtotime($startDate)) {
         array_push($errorsDate, " End Date is before the start date.");
     }
     // Verify if end date is before now
-    if (!(strtotime($endDate) > strtotime('now'))) {
+    if (strtotime($endDate) < strtotime('now')) {
         array_push($errorsDate, " End Date is before today's date.");
     }
 }
@@ -69,6 +69,7 @@ if (isset($_POST['submit_announcement'])) {
 }
 
 if(isset($_POST['update_announcement'])){
+
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
         $id = mysqli_real_escape_string($db, $_POST['id']);

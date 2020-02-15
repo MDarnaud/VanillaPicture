@@ -51,27 +51,31 @@ if(isset($_SESSION['userSignIn'])) {
                                     <div class="col-8 col-12-small col-12-xsmall">
                                         <h5 class="TitleForm">Start date:</h5>
                                         <input type="date" name="startDate" id="startDate" value=""
-                                               placeholder="Start Date" required "/>
+                                               placeholder="Start Date" required oninvalid="setCustomValidity('Start Date is invalid')"
+                                               oninput="setCustomValidity('')"/>
                                     </div>
                                     <div class="col-8 col-12-small col-12-xsmall">
                                         <h5 class="TitleForm">End date:</h5>
                                         <input type="date" name="endDate" id="endDate" value="" placeholder="End Date"
-                                               required oninput="check(this)"/>
+                                               required oninput="checkEnd(this)"/>
                                         <script language='javascript' type='text/javascript'>
-                                            function check(input) {
-                                                if (!(input.value >= document.getElementById('startDate').value)) {
+                                            function checkEnd(input) {
+                                                if (input.value < document.getElementById('startDate').value) {
                                                     input.setCustomValidity('End Date is before the start date.');
                                                 } else {
                                                     // input is valid -- reset the error message
                                                     input.setCustomValidity('');
+
+                                                    var todayDate = new Date().toISOString().slice(0,10);
+
+                                                    if (input.value < todayDate) {
+                                                        input.setCustomValidity('End Date is before today\'s date.');
+                                                    } else {
+                                                        // input is valid -- reset the error message
+                                                        input.setCustomValidity('');
+                                                    }
                                                 }
 
-                                                if (input.value < new Date()) {
-                                                    input.setCustomValidity('End Date is before today\'s date.');
-                                                } else {
-                                                    // input is valid -- reset the error message
-                                                    input.setCustomValidity('');
-                                                }
                                             }
                                         </script>
                                     </div>
