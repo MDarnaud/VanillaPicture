@@ -63,18 +63,30 @@ if (isset($_SESSION['userSignIn'])) {
     })(window, document, 'script', 'https://cdn.giftup.app/dist/gift-up.js', 'giftup');
 
 
-    //get info of gift card and send it to the database payment table
+    //variable to hold payment amount
+    var myOrderAmount = 0;
+
+    //boolean to check if function has been executed
+    var checkoutDone = false;
+
     // Track conversions:
     giftup("conversion", function (payload) {
-        document.write(payload["revenue"]); // = amount
-        var orderAmount = payload["revenue"];
+        //document.write(payload["revenue"]); // = amount
+        myOrderAmount = payload["revenue"];
+        checkoutDone = true;
 
-
-
+        if (checkoutDone === true) {
+            $.post("addPaymentTodb.php",
+                {
+                    amount: myOrderAmount
+                },
+                function (data, status) {
+                    console.log("success" + data + status);
+                });
+        }
     });
 
 </script>
-
 
 
 <!-- footer -->
@@ -82,6 +94,7 @@ if (isset($_SESSION['userSignIn'])) {
 
 <!--Script Links-->
 <?php include '../Footer/scriptsLinks.php' ?>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 
 </body>

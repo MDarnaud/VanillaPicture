@@ -67,7 +67,7 @@ if ($_SESSION['userTypeSignIn'] === 'model') {
                                 </script>
 
                                 <div class="col-8 col-12-small col-12-xsmall field"">
-                                <h5 class="TitleForm">Tell me a little about you...</h5><small style="font-size:12px;"><i>(Why should I pick you, what characterizes you physically or you can give an example of a previous shoot.)</i></small><br>
+                                <h5 class="TitleForm">Tell me a little about you...</h5><small style="font-size:12px;"><i>(Why would you be a good fit, what characterizes you physically, examples of past experiences)</i></small><br>
                                         <textarea name="message" id="message" title="Please fill out this field."rows="12" placeholder="Message" required oninvalid="setCustomValidity('A message is required')" oninput="setCustomValidity('')"></textarea>
                                 <input type="hidden" name="titleAnnouncement" id="titleAnnouncement" value="<?php echo $_GET['announcementTitle'];?>">
                                 </div>
@@ -75,12 +75,8 @@ if ($_SESSION['userTypeSignIn'] === 'model') {
                                 <div class="col-12">
                                     <ul class="actions">
                                         <li><button type="submit" value="Submit" class="primary" name="submit_application">Submit</button></li>
-                                        <li><button type="reset" value="Cancel" onclick="goHome()">Back</button></li>
-                                        <script language='javascript' type='text/javascript'>
-                                            // function goHome() {
-                                                window.location.href ="../Home/homepage.php";
-                                            }
-                                        </script></ul>
+                                        <li><button type="reset" value="Cancel" onclick="window.location.href ='../Home/homepage.php'">Back</button></li>
+                                    </ul>
                                 </div>
                             </div>
                         </form>

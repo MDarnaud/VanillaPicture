@@ -39,7 +39,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             <img id="" src="../../images/giftcard_50.jpg" alt=""/>
                         </div>
                         <div class="content">
-                            <h3>$50</h3>
+                            <strong style="font-size:x-large">$50</strong>
                             <p>This $50 gift card can partially cover a shoot. Perfect to offer as a gift!</p>
                             <!--<ul class="actions">
                                 <li><a href="#" class="button small">Buy</a></li>
@@ -51,7 +51,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             <img id="" src="../../images/giftcard_100.jpg" alt=""/>
                         </div>
                         <div class="content">
-                            <h3>$100</h3>
+                            <strong style="font-size:x-large">$100</strong>
                             <p>This $100 gift card can partially cover a shoot. Contact me for more information on
                                 prices!</p>
                         </div>
@@ -61,7 +61,7 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
                             <img id="" src="../../images/giftcard_200.jpg" alt=""/>
                         </div>
                         <div class="content">
-                            <h3>$200</h3>
+                            <strong style="font-size:x-large">$200</strong>
                             <p>This $200 gift card could cover the price of an entire shoot depending on your needs.
                                 Contact me if you wish to know the exact amount you need!</p>
                         </div>

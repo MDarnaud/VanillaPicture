@@ -18,6 +18,7 @@ $age = "";
 $location = "";
 $packages = "";
 $paymentDropDown = "";
+$periodAge = "";
 
 
 
@@ -45,9 +46,9 @@ if(isset($_POST['submit'])) {
                 $customer = mysqli_real_escape_string($db, $_POST['customer']);
                 // Filters
                 // Customer
-                $periodAge = mysqli_real_escape_string($db, $_POST['age']);
-                $age = '';
-
+                if (isset($_POST['age'])) {
+                    $periodAge = mysqli_real_escape_string($db, $_POST['age']);
+                }
                 // Variables
                 if ($periodAge === 'over') {
                     $age = 'over';
@@ -57,33 +58,26 @@ if(isset($_POST['submit'])) {
             }
             if (isset($_POST['announcement'])) {
                 $announcement = mysqli_real_escape_string($db, $_POST['announcement']);
-                //Filters
-
             }
             if (isset($_POST['shoot'])) {
                 $shoot = mysqli_real_escape_string($db, $_POST['shoot']);
                 // Filters
                 //Location
-                $locationShoot = mysqli_real_escape_string($db, $_POST['locationShoot']);
-                $location = '';
-                //Package
-                $packageShoot = mysqli_real_escape_string($db, $_POST['packages']);
-                $packages = '';
+                if(isset($_POST['locationShoot'])){
+                $location = mysqli_real_escape_string($db, $_POST['locationShoot']);
+            }
 
-                // Variables
-                if ($locationShoot != '') {
-                    $location = $locationShoot;
+                //Package
+                if(isset($_POST['packages'])) {
+                    $packages = mysqli_real_escape_string($db, $_POST['packages']);
                 }
+
             }
             if (isset($_POST['payment'])) {
                 $payment = mysqli_real_escape_string($db, $_POST['payment']);
                 // Filters
-                $paymentShoot = mysqli_real_escape_string($db, $_POST['paymentAmount']);
-                $paymentDropDown = '';
-
-                // Variables
-                if ($packageShoot != '') {
-                    $packages = $packageShoot;
+                if (isset( $_POST['paymentAmount'])) {
+                    $paymentDropDown = mysqli_real_escape_string($db, $_POST['paymentAmount']);
                 }
             }
         }

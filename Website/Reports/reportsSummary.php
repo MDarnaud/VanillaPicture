@@ -10,6 +10,7 @@ if(isset($_SESSION['userSignIn'])){
                 $currentYear = date("Y");
             // Yearly
                 $years = array();
+                $years2 = array();
                 for($i=0; $i<5;$i++) {
                     // New customer
                     $customer_summary_y_query = "SELECT count(customerId) as totalCustomer FROM customer WHERE year(customerDate)='$currentYear'";
@@ -36,7 +37,7 @@ if(isset($_SESSION['userSignIn'])){
                     $totalofferedShootY = mysqli_fetch_assoc($offeredShoot_result);
                     $textTotalOfferedShootY = $totalofferedShootY['totalOfferedShoots'];
 
-                    if($textNumBookedShootY != 0) {
+                    if($textNumBookedShootY != 0 && $totalofferedShootY['totalOfferedShoots'] != 0) {
                         //percentage calculation
                         $percentageBookedCalcul = (($totalBookedShootY['totalShoots']*100)/$totalofferedShootY['totalOfferedShoots']);
                         $textPBookedHoursY =  $percentageBookedCalcul.' %';
@@ -52,9 +53,11 @@ if(isset($_SESSION['userSignIn'])){
                     $averagePaymentsY = mysqli_fetch_assoc($averagePayments_result);
                     if ($averagePaymentsY['averagePayments'] == null){
                         $textAveragePaymentY = '$0';
+                        $noTextAveragePaymentY = 0;
                     }
                     else{
                         $textAveragePaymentY = '$'.$averagePaymentsY['averagePayments'];
+                        $noTextAveragePaymentY = $averagePaymentsY['averagePayments'];
                     }
 
 
@@ -70,9 +73,11 @@ if(isset($_SESSION['userSignIn'])){
                     $totalPaymentsY = mysqli_fetch_assoc($totalPayments_result);
                     if ($totalPaymentsY['totalPaymentsAmount'] == null){
                         $textSpentGiftcardY = '$0';
+                        $noTextSpentGiftcardY = 0;
                     }
                     else{
                         $textSpentGiftcardY = '$'.$totalPaymentsY['totalPaymentsAmount'];
+                        $noTextSpentGiftcardY = $totalPaymentsY['totalPaymentsAmount'];
                     }
 
                     //Two dimensional array
@@ -86,6 +91,12 @@ if(isset($_SESSION['userSignIn'])){
                             "Percentage of Booked Hours" => $textPBookedHoursY
                     );
                     array_push($years,array($currentYear=>$newdata));
+                    $newdata2 = array(
+                        "Amount Spent per Customer 2" => $noTextAveragePaymentY,
+                        "Amount of Giftcards 2" => $noTextSpentGiftcardY
+                    );
+                    array_push($years2,array($currentYear=>$newdata2));
+
                     $currentYear = $currentYear -1;
                 }
             ?>
@@ -101,6 +112,7 @@ $dataPoints1 = array();
 for($i=0;$i<5;$i++) {
     array_push($dataPoints1, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Number of New Customer']));
     $currentYear = $currentYear - 1;
+    //echo $years[$i][$currentYear]['Number of New Customer'];
 }
 
 
@@ -117,9 +129,11 @@ for($i=0;$i<5;$i++) {
 $currentYear = date("Y");
 $dataPoints3 = array();
 for($i=0;$i<5;$i++) {
-    array_push($dataPoints3, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Amount Spent per Customer']));
+    array_push($dataPoints3, array("label" => "$currentYear", "y" => $years2[$i][$currentYear]['Amount Spent per Customer 2']));
     $currentYear = $currentYear - 1;
+    //echo $years[$i][$currentYear]['Amount Spent per Customer'];
 }
+
 
 //Fourth
 $currentYear = date("Y");
@@ -134,7 +148,7 @@ for($i=0;$i<5;$i++) {
 $currentYear = date("Y");
 $dataPoints5 = array();
 for($i=0;$i<5;$i++) {
-    array_push($dataPoints5, array("label" => "$currentYear", "y" => $years[$i][$currentYear]['Amount of Giftcards']));
+    array_push($dataPoints5, array("label" => "$currentYear", "y" => $years2[$i][$currentYear]['Amount of Giftcards 2']));
     $currentYear = $currentYear - 1;
 }
 
@@ -196,7 +210,7 @@ for($i=0;$i<5;$i++) {
                     },
                     {
                         type: "stackedArea",
-                        name: "#Giftcards",
+                        name: "#Orders",
                         showInLegend: true,
                         visible: false,
                         yValueFormatString: "#,##0 ",
@@ -263,7 +277,7 @@ for($i=0;$i<5;$i++) {
                                 Amount Spent per Customer
                             </th>
                             <th>
-                                Number of Giftcards
+                                Number of Orders
                             </th>
                             <th>
                                 Amount of Giftcards
@@ -350,7 +364,7 @@ for($i=0;$i<5;$i++) {
                     $totalofferedShootM = mysqli_fetch_assoc($offeredShoot_result);
                     $textTotalOfferedShootM = $totalofferedShootM['totalOfferedShoots'];
 
-                    if($textNumBookedShootM != 0) {
+                    if($textNumBookedShootM != 0 && $totalofferedShootM['totalOfferedShoots'] != 0) {
                         //percentage calculation
                         $percentageBookedCalcul = (($totalBookedShootM['totalShoots']*100)/$totalofferedShootM['totalOfferedShoots']);
                         $textPBookedHoursM =  $percentageBookedCalcul.' %';
@@ -378,7 +392,7 @@ for($i=0;$i<5;$i++) {
                     $textNumGiftcardM = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
-                    $totalPayment_summary_m_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayment_summary_m_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summary_m_query);
                     $totalPaymentsM = mysqli_fetch_assoc($totalPayments_result);
                     if ($totalPaymentsM['totalPaymentsAmount'] == null){
@@ -419,7 +433,7 @@ for($i=0;$i<5;$i++) {
                                 Amount Spent per Customer
                             </th>
                             <th>
-                                Number of Giftcards
+                                Number of Orders
                             </th>
                             <th>
                                 Amount of Giftcards
@@ -521,7 +535,7 @@ for($i=0;$i<5;$i++) {
                     $textTotalOfferedShootW = $totalofferedShootW['totalOfferedShoots'];
 
 
-                    if($textNumBookedShootW != 0) {
+                    if($textNumBookedShootW != 0 && $totalofferedShootW['totalOfferedShoots'] != 0) {
                         //percentage calculation
                         $percentageBookedCalcul = (($totalBookedShootW['totalShoots']*100)/$totalofferedShootW['totalOfferedShoots']);
                         $textPBookedHoursW =  $percentageBookedCalcul.' %';
@@ -549,7 +563,7 @@ for($i=0;$i<5;$i++) {
                     $textNumGiftcardW = $totalGiftCardsM['totalGiftCards'];
 
                 // amount of gitcards
-                    $totalPayment_summary_w_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE year(paymentDate)='$currentYear'";
+                    $totalPayment_summary_w_query = "SELECT SUM(paymentTotal) as totalPaymentsAmount FROM payment WHERE  paymentDate>='$week_start_day' AND paymentDate<='$week_end_day'";
                     $totalPayments_result = mysqli_query($db, $totalPayment_summary_w_query);
                     $totalPaymentsW = mysqli_fetch_assoc($totalPayments_result);
                     if ($totalPaymentsW['totalPaymentsAmount'] == null){
@@ -598,7 +612,7 @@ for($i=0;$i<5;$i++) {
                             Amount Spent per Customer
                         </th>
                         <th>
-                            Number of Giftcards
+                            Number of Orders
                         </th>
                         <th>
                             Amount of Giftcards

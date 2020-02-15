@@ -194,7 +194,7 @@ $currentYear = date("Y");
     </div>
     <hr>
 
-    <?php echo '<h5>Gift Cards</h5>'; ?>
+    <?php echo '<h5>Payments</h5>'; ?>
 
     <div class="table-wrapper">
         <table class="alt">
@@ -220,7 +220,7 @@ $currentYear = date("Y");
             if(mysqli_num_rows($payment_d_y_result)>0){
                 // Get the giftcards information from the db in variables
                 while ($row2 = mysqli_fetch_assoc($payment_d_y_result)) {
-                    $textPaymentCustomerY = $row2['customerId'];
+                    $textPaymentCustomerY = $row2['userId'];
                     $textPaymentDateY = $row2['paymentDate'];
                     $textPaymentTotalY = $row2['paymentTotal'];
                     ?>
@@ -397,33 +397,33 @@ $currentYear = date("Y");
 
             <?php $currentYear = date("Y");?>
             <?php
-            $shoot_detail_y_query = "SELECT * FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'";
-            $shoot_d_y_result = mysqli_query($db, $shoot_detail_y_query);
+            $shoot_detail_m_query = "SELECT * FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'";
+            $shoot_d_m_result = mysqli_query($db, $shoot_detail_m_query);
             //Verify if there is any records
-            if(mysqli_num_rows($shoot_d_y_result)>0){
+            if(mysqli_num_rows($shoot_d_m_result)>0){
                 // Get information from the db and put it in variables
-                while ($row2 = mysqli_fetch_assoc($shoot_d_y_result)) {
-                    $textShootTimeY = $row2['shootTime'];
-                    $textShootDateY = $row2['shootDate'];
-                    $textShootLocationY = $row2['shootLocation'];
-                    $textShootArtistY = $row2['shootArtistType'];
-                    $textShootPackageY = $row2['shootPackage'];
+                while ($row2 = mysqli_fetch_assoc($shoot_d_m_result)) {
+                    $textShootTimeM = $row2['shootTime'];
+                    $textShootDateM = $row2['shootDate'];
+                    $textShootLocationM = $row2['shootLocation'];
+                    $textShootArtistM = $row2['shootArtistType'];
+                    $textShootPackageM = $row2['shootPackage'];
                     ?>
                     <tr>
                         <td>
-                            <?php echo $textShootTimeY;?>
+                            <?php echo $textShootTimeM;?>
                         </td>
                         <td>
-                            <?php echo $textShootDateY?>
+                            <?php echo $textShootDateM?>
                         </td>
                         <td>
-                            <?php echo $textShootLocationY?>
+                            <?php echo $textShootLocationM?>
                         </td>
                         <td>
-                            <?php echo $textShootArtistY?>
+                            <?php echo $textShootArtistM?>
                         </td>
                         <td>
-                            <?php echo $textShootPackageY?>
+                            <?php echo $textShootPackageM?>
                         </td>
                     </tr>
                 <?php }
@@ -433,7 +433,7 @@ $currentYear = date("Y");
     </div>
     <hr>
 
-    <?php echo '<h5>Gift Cards</h5>'; ?> <!--PAYMENTS-->
+    <?php echo '<h5>Payments</h5>'; ?> <!--PAYMENTS-->
 
     <div class="table-wrapper">
         <table class="alt">
@@ -453,25 +453,25 @@ $currentYear = date("Y");
             <?php $currentYear = date("Y");?>
             <?php
             // Number of Giftcards
-            $payment_detail_y_query = "SELECT * FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
-            $payment_d_y_result = mysqli_query($db, $payment_detail_y_query);
+            $payment_detail_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$currentMonth' AND year(paymentDate)='$currentYear'";
+            $payment_d_m_result = mysqli_query($db, $payment_detail_m_query);
             // Verify if there is any records
-            if(mysqli_num_rows($payment_d_y_result)>0){
+            if(mysqli_num_rows($payment_d_m_result)>0){
                 // Get information from the db and put it in variables
-                while ($row2 = mysqli_fetch_assoc($payment_d_y_result)) {
-                    $textPaymentCustomerY = $row2['customerId'];
-                    $textPaymentDateY = $row2['paymentDate'];
-                    $textPaymentTotalY = $row2['paymentTotal'];
+                while ($row2 = mysqli_fetch_assoc($payment_d_m_result)) {
+                    $textPaymentCustomerM = $row2['userId'];
+                    $textPaymentDateM = $row2['paymentDate'];
+                    $textPaymentTotalM = $row2['paymentTotal'];
                     ?>
                     <tr>
                         <td>
-                            <?php echo $textPaymentCustomerY?>
+                            <?php echo $textPaymentCustomerM?>
                         </td>
                         <td>
-                            <?php echo $textPaymentDateY?>
+                            <?php echo $textPaymentDateM?>
                         </td>
                         <td>
-                            <?php echo '$'.$textPaymentTotalY?>
+                            <?php echo '$'.$textPaymentTotalM?>
                         </td>
                     </tr>
                 <?php }

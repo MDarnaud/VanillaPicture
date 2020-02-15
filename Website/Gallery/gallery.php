@@ -519,7 +519,6 @@ $db = mysqli_connect('localhost', 'root', '', 'photography');
 <?php include '../Footer/scriptsLinks.php'?>
 
 <link rel="stylesheet" href="../../popUp/css/msc-style.css">
-<link rel="icon" type="image/png" href="/favicon.png">
 <script src="../../popUp/js/msc-script.js"></script>
 
 </body>

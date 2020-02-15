@@ -1,10 +1,9 @@
-
 <?php
 include "reportsSimilar.php";
 include "serverExceptionReport.php";
 
-if(isset($_SESSION['userSignIn'])){
-    if($_SESSION['userTypeSignIn'] === 'administrator'){
+if (isset($_SESSION['userSignIn'])) {
+    if ($_SESSION['userTypeSignIn'] === 'administrator') {
         ?>
         <!--        Exception Report-->
         <div id="main">
@@ -24,7 +23,8 @@ if(isset($_SESSION['userSignIn'])){
 
                     ?>
                     <div class="wrapper special">
-                        <form method="post" action="reportsException.php" class="announcementHome" style="text-align:center">
+                        <form method="post" action="reportsException.php" class="announcementHome"
+                              style="text-align:center">
 
                             <div class="formDivision">
                                 <h3> Choose your report preferences</h3>
@@ -117,7 +117,7 @@ if(isset($_SESSION['userSignIn'])){
                                                     }
                                                     if (checkboxValue[i] == 'payment') {
                                                         // Payment (Over certain amount)
-                                                        $('.filters').append('<p><h5>Payments</h5>Payment amount between <select name="paymentAmount"><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n' + '</p>');
+                                                        $('.filters').append('<p><h5>Payments</h5>Payment amount between <select id="paymentAmount" name="paymentAmount"><option value="" selected hidden>--Select Range--</option><option value="050"> 0 - 50 $</option><option value="51100"> 51 - 100 $</option><option value="101200"> 101 - 200 $</option><option value="201"> 201 $ and more .. </option></select>\n' + '</p>');
                                                     }
                                                 })
                                                 $('.formDivision').append('</div>');
@@ -293,8 +293,7 @@ if(isset($_SESSION['userSignIn'])){
                                     $packages = $_GET['packages'];
                                     $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear' AND shootPackage = '$packages'";
 
-                                }
-                                else {
+                                } else {
                                     // No exception precised
                                     $shoot_exception_y_query = "SELECT * FROM shoot WHERE year(shootDate)='$selectedYear'";
                                 }
@@ -363,8 +362,10 @@ if(isset($_SESSION['userSignIn'])){
                             if ($_GET['payment'] === 'payment') {
                                 // Verify if the user selected a payment amount filter
                                 if ($_GET['paymentDropDown'] != '') {
+                                    //echo "filter not empty";
                                     $paymentDd = $_GET['paymentDropDown'];
                                     if ($paymentDd != '') {
+                                        //echo "payment dd not empty";
                                         if ($paymentDd === '050') {
                                             // 0-50$
                                             $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal >= 0 AND paymentTotal <= 50";
@@ -380,65 +381,64 @@ if(isset($_SESSION['userSignIn'])){
                                         } elseif ($paymentDd === '201') {
                                             // 201$ and more
                                             $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear' AND paymentTotal >= 201";
-
                                         }
-                                    } else {
-                                        //no filters
-                                        $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear'";
                                     }
-                                    echo '<h5>Payments</h5>';
-                                    ?>
-
-                                    <div class="table-wrapper">
-                                        <table class="alt">
-                                            <tbody>
-                                            <tr>
-                                                <th>
-                                                    Customer ID
-                                                </th>
-                                                <th>
-                                                    Payment Date
-                                                </th>
-                                                <th>
-                                                    Amount Paid
-                                                </th>
-                                            </tr>
-
-                                            <?php $currentYear = date("Y");?>
-                                            <?php
-                                            $payment_e_y_result = mysqli_query($db, $payment_exception_y_query);
-                                            if(mysqli_num_rows($payment_e_y_result)>0){
-                                                while ($row2 = mysqli_fetch_assoc($payment_e_y_result)) {
-                                                    $textPaymentCustomerY = $row2['customerId'];
-                                                    $textPaymentDateY = $row2['paymentDate'];
-                                                    $textPaymentTotalY = $row2['paymentTotal'];
-                                                    ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php echo $textPaymentCustomerY?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textPaymentDateY?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textPaymentTotalY?>
-                                                        </td>
-                                                    </tr>
-                                                <?php }
-                                            }?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                    <hr>
-
-                                    <?php
-
+                                } else {
+                                    //echo "no filter applied<br> ";
+                                    //no filters
+                                    $payment_exception_y_query = "SELECT * FROM payment WHERE year(paymentDate)='$selectedYear'";
                                 }
+                                echo '<h5>Payments</h5>';
+                                ?>
+
+                                <div class="table-wrapper">
+                                    <table class="alt">
+                                        <tbody>
+                                        <tr>
+                                            <th>
+                                                Customer ID
+                                            </th>
+                                            <th>
+                                                Payment Date
+                                            </th>
+                                            <th>
+                                                Amount Paid
+                                            </th>
+                                        </tr>
+
+                                        <?php $currentYear = date("Y"); ?>
+                                        <?php
+                                        $payment_e_y_result = mysqli_query($db, $payment_exception_y_query);
+                                        if (mysqli_num_rows($payment_e_y_result) > 0) {
+                                            while ($row2 = mysqli_fetch_assoc($payment_e_y_result)) {
+                                                $textPaymentCustomerY = $row2['userId'];
+                                                $textPaymentDateY = $row2['paymentDate'];
+                                                $textPaymentTotalY = $row2['paymentTotal'];
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo $textPaymentCustomerY ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $textPaymentDateY ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "$".$textPaymentTotalY ?>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                        } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <hr>
+
+                                <?php
+
                             }
-                        }
-                        //Month
+                        } //Month
                         elseif ($_GET['period'] === 'month') {
                             $selectedMonthNotFormat = $_GET['month']; //January 2020 -> 2020-01
                             $selectedMonthName = date('F', strtotime($selectedMonthNotFormat));
@@ -665,10 +665,8 @@ if(isset($_SESSION['userSignIn'])){
                             }
                             //Payments
                             if ($_GET['payment'] === 'payment') {
-                                window.alert("hi");
                                 // Verify if the user made payment filters
                                 if ($_GET['paymentDropDown'] != '') {
-                                    window.alert("hello");
                                     $paymentDd = $_GET['paymentDropDown'];
                                     if ($paymentDd != '') {
                                         if ($paymentDd === '050') {
@@ -688,57 +686,57 @@ if(isset($_SESSION['userSignIn'])){
                                             $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth' AND paymentTotal >= 201";
 
                                         }
-                                    } else {
-                                        // no filters
-                                        $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
                                     }
-                                    echo "<h5> Payments </h5>";
-                                    ?>
-                                    <div class="table-wrapper">
-                                        <table class="alt">
-                                            <tbody>
-                                            <tr>
-                                                <th>
-                                                    Customer ID
-                                                </th>
-                                                <th>
-                                                    Payment Date
-                                                </th>
-                                                <th>
-                                                    Amount Paid
-                                                </th>
-                                            </tr>
-
-                                            <?php $currentYear = date("Y");?>
-                                            <?php
-                                            $payment_e_m_result = mysqli_query($db, $payment_exception_m_query);
-                                            if(mysqli_num_rows($payment_e_m_result)>0){
-                                                while ($row2 = mysqli_fetch_assoc($payment_e_m_result)) {
-                                                    $textPaymentCustomerY = $row2['customerId'];
-                                                    $textPaymentDateY = $row2['paymentDate'];
-                                                    $textPaymentTotalY = $row2['paymentTotal'];
-                                                    ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php echo $textPaymentCustomerY?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textPaymentDateY?>
-                                                        </td>
-                                                        <td>
-                                                            <?php echo $textPaymentTotalY?>
-                                                        </td>
-                                                    </tr>
-                                                <?php }
-                                            }?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                    <hr>
-                                    <?php
+                                } else {
+                                    // no filters
+                                    $payment_exception_m_query = "SELECT * FROM payment WHERE month(paymentDate)='$selectedMonth' AND year(paymentDate)='$selectedYearWithMonth'";
                                 }
+                                echo "<h5> Payments </h5>";
+                                ?>
+                                <div class="table-wrapper">
+                                    <table class="alt">
+                                        <tbody>
+                                        <tr>
+                                            <th>
+                                                Customer ID
+                                            </th>
+                                            <th>
+                                                Payment Date
+                                            </th>
+                                            <th>
+                                                Amount Paid
+                                            </th>
+                                        </tr>
+
+                                        <?php $currentYear = date("Y"); ?>
+                                        <?php
+                                        $payment_e_m_result = mysqli_query($db, $payment_exception_m_query);
+                                        if (mysqli_num_rows($payment_e_m_result) > 0) {
+                                            while ($row2 = mysqli_fetch_assoc($payment_e_m_result)) {
+                                                $textPaymentCustomerY = $row2['userId'];
+                                                $textPaymentDateY = $row2['paymentDate'];
+                                                $textPaymentTotalY = $row2['paymentTotal'];
+                                                ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php echo $textPaymentCustomerY ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo $textPaymentDateY ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo "$".$textPaymentTotalY ?>
+                                                    </td>
+                                                </tr>
+                                            <?php }
+                                        } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <hr>
+                                <?php
                             }
                         }
                     }
@@ -754,8 +752,6 @@ if(isset($_SESSION['userSignIn'])){
         <br>
 
 
-
-
         </div>
         </div>
         </div>
@@ -763,14 +759,14 @@ if(isset($_SESSION['userSignIn'])){
         <?php include '../Footer/footer.php' ?>
 
         <!--Script Links-->
-        <?php include '../Footer/scriptsLinks.php'?>
+        <?php include '../Footer/scriptsLinks.php' ?>
 
 
         </body>
         </html>
-    <?php }else{
+    <?php } else {
         header('location: ../../Website/Home/homepage.php');
     }
-}else{
+} else {
     header('location: ../../Website/Home/homepage.php');
 }
