@@ -32,8 +32,6 @@ else {
 }
 
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
 //get events from database
 $event_query = "SELECT eventId as id, eventTitle as title, eventStart as start, eventEnd as end, eventUrl as url, eventColor as color FROM events";
 $result = mysqli_query($db,$event_query);
