@@ -39,9 +39,14 @@ include 'serverSignIn.php';
                                         </div>
                                     <?php } ?>
                                 <?php if(isset($_GET['sendEmail'])):?>
-                                    <p><?PHP echo $_GET['sendEmail'];?></p>
+                                <div class="isa_success" >
+                                    <i class="fa fa-check-circle"></i>
+                                    <?PHP echo $_GET['sendEmail'];?></div>
                                 <?php  elseif(isset($_GET['adminType'])):?>
-                                    <p><?PHP echo $_GET['adminType'];?></p>
+                                <div class="isa_error" >
+                                    <i class="fa fa-times-circle"></i>
+                                    <?PHP echo $_GET['adminType'];?>
+                                    </div>
                                 <?php  endif;?>
                                 <?php include 'errorsSignIn.php' ?>
 								     </header>

@@ -89,7 +89,7 @@ if (isset($_POST['forgot_password'])) {
             }
 
             //TODO: Change this address
-            $to = 'arianeouellette@yahoo.ca';
+            $to = $email;
 
             // Always set content-type when sending HTML email
             $headers = "MIME-Version: 1.0" . "\r\n";
