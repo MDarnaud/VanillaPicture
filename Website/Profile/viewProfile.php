@@ -82,6 +82,11 @@ if(isset($_SESSION['userSignIn'])){
                                                     <p><strong>Date of Birth :</strong>&nbsp; &nbsp;<?php if($user['userType'] === 'customer'){echo $customer['customerDob']; }
                                                     elseif($user['userType'] === 'model'){echo $model['modelDob']; }?></p>
                                                 </div>
+                                                <?php if($user['userType'] === 'model'){?>
+                                                <div class="col-12 col-12-xsmall">
+                                                    <p><strong>Gender :</strong> &nbsp; <?php if($user['userType'] === 'model'){ if($model['modelGender'] === 'F'){echo 'Female';}elseif($model['modelGender'] === 'M'){echo 'Male';}else{echo 'Other';}} ?><br></p>
+                                                </div>
+                                                <?php } ?>
                                                 <div class="col-12 col-12-xsmall">
                                                     <p><strong>Country :</strong>&nbsp; &nbsp;
                                                         <select name="country" id="country" title="Country">

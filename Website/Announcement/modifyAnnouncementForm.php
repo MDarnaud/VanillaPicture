@@ -78,20 +78,23 @@ if ($_SESSION['userTypeSignIn'] === 'administrator') {
                                     </div>
                                     <script language='javascript' type='text/javascript'>
                                         //                                Validation for the dates
-                                        function check(input) {
-                                            if (!(input.value > document.getElementById('startDate').value)) {
+                                        function checkEnd(input) {
+                                            if (input.value < document.getElementById('startDate').value) {
                                                 input.setCustomValidity('End Date is before the start date.');
                                             } else {
                                                 // input is valid -- reset the error message
                                                 input.setCustomValidity('');
+
+                                                var todayDate = new Date().toISOString().slice(0,10);
+
+                                                if (input.value < todayDate) {
+                                                    input.setCustomValidity('End Date is before today\'s date.');
+                                                } else {
+                                                    // input is valid -- reset the error message
+                                                    input.setCustomValidity('');
+                                                }
                                             }
 
-                                            if (!(input.value > new Date())) {
-                                                input.setCustomValidity('End Date is before today\'s date.');
-                                            } else {
-                                                // input is valid -- reset the error message
-                                                input.setCustomValidity('');
-                                            }
                                         }
                                     </script>
                                     <div class="col-8 col-12-xsmall">
