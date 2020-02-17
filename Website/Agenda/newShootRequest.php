@@ -92,7 +92,7 @@ $mail->Host = "smtp.gmail.com";
 $mail->Port = 465;
 $mail->IsHTML(true);
 $mail->Username = "meganedarnaud@gmail.com"; //sender gmail
-$mail->Password = 'Chat1234!'; //password for the gmail
+$mail->Password = 'BaxoueBenane88!!'; //password for the gmail
 try {
     //receiver, replace with email enter
     $mail->AddAddress("meganedarnaud@gmail.com");
