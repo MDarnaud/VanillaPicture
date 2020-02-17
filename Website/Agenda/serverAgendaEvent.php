@@ -9,8 +9,9 @@ $eventId = $_POST["eventId"];
 if($_POST["eventLocation"] != null){
     $eventTitle .= " - Location: ".$_POST["eventLocation"];
 }
-$eventStart = $_POST["eventStart"];
-$eventEnd = $_POST["eventEnd"];
+$eventStart = $_POST["eventStart"]."T00:00:00";
+$eventEnd = $_POST["eventEnd"]."T01:00:00";
+
 $isAvailability = false;
 $url = null;
 $color = "#33cccc";
@@ -24,24 +25,24 @@ if(isset($_POST["isAvailability"])){
 
 //Insert the new event
 if($eventEnd == null && $isAvailability == true){
-    $queryEvent = "INSERT INTO events (eventId, title, start, url, color)
+    $queryEvent = "INSERT INTO events (eventId, eventTitle, eventStart, eventUrl, eventColor)
                     VALUES('$eventId', '$eventTitle', '$eventStart', '$url', '$color')";
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 
     var_dump($queryEvent);
 }
 else if($eventEnd == null && $isAvailability == false){
-    $queryEvent = "INSERT INTO events (eventId, title, start, color)
+    $queryEvent = "INSERT INTO events (eventId, eventTitle, eventStart, eventColor)
                     VALUES('$eventId', '$eventTitle', '$eventStart', '$color')";
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 }
 else if($isAvailability == false){
-    $queryEvent = "INSERT INTO events (eventId, title, start, end, color)
+    $queryEvent = "INSERT INTO events (eventId, eventTitle, eventStart, eventEnd, eventColor)
                     VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$color')";
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 }
 else{
-    $queryEvent = "INSERT INTO events (eventId, title, start, end, url, color)
+    $queryEvent = "INSERT INTO events (eventId, eventTitle, eventStart, eventEnd, eventUrl, eventColor)
                     VALUES('$eventId', '$eventTitle', '$eventStart', '$eventEnd', '$url', '$color')";
     mysqli_query($db, $queryEvent) or die(mysqli_error($db));
 

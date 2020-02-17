@@ -35,7 +35,7 @@ else {
 // connect to the database
 $db = mysqli_connect('localhost','root','','photography');
 //get events from database
-$event_query = "SELECT eventId as id, title, start, end, url, color FROM events";
+$event_query = "SELECT eventId as id, eventTitle as title, eventStart as start, eventEnd as end, eventUrl as url, eventColor as color FROM events";
 $result = mysqli_query($db,$event_query);
 $myArray = array();
 if ($result->num_rows > 0) {
@@ -89,9 +89,18 @@ if ($result->num_rows > 0) {
                             if (info.event.url == "requestShootForm.php") {
                                 var id = (info.event.id).toString();
                                 var startDate = info.event.start;
+                                var endDate = info.event.end;
+
                                 var title = info.event.title;
+                                if(endDate != null) {
+                                    var endDateString = endDate.toDateString();
+                                }
+                                else {
+                                    var endDateString = startDate.toDateString();;
+                                }
                                 var startDateString = startDate.toDateString();
-                                var queryString = "?startDate=" + startDateString + "&title=" + title + "&id=" + id;
+
+                                var queryString = "?startDate=" +  startDateString + "&endDate=" + endDateString + "&title=" + title + "&id=" + id;
 
                                 window.open(info.event.url + queryString);
                             }
@@ -103,8 +112,14 @@ if ($result->num_rows > 0) {
                                 var endDate = info.event.end;
 
                                 var title = info.event.title;
+                                if(endDate != null) {
+                                    var endDateString = endDate.toDateString();
+                                }
+                                else {
+                                    var endDateString = startDate.toDateString();;
+                                }
                                 var startDateString = startDate.toDateString();
-                                var endDateString = endDate.toDateString();
+
 
 
                                 var queryString = "?id=" + id + "&startDate=" + startDateString + "&title=" + title + "&endDate=" + endDateString;
@@ -117,6 +132,8 @@ if ($result->num_rows > 0) {
                     navLinks: true, // can click day/week names to navigate views
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
+                    nextDayThreshold: '00:00:00',
+                    displayEventTime: false,
                     events: <?php echo json_encode($myArray); ?>,
 
                 });

@@ -80,7 +80,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                                 <input type="date" name="eventEnd" id="eventEnd" value="" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
-                                            if (!(input.value > document.getElementById('eventStart').value)) {
+                                            if (!(input.value >= document.getElementById('eventStart').value)) {
                                                 input.setCustomValidity('End Date is before or same as the start date.');
                                             } else {
                                                 // input is valid -- reset the error message
