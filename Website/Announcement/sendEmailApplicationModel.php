@@ -1,9 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require '../../emailTool/autoload.php';
 
 // Database Connection
 include '../Header/dbConnection.php';
@@ -64,6 +59,9 @@ if (isset($_POST['submit_application'])) {
             $resultName = mysqli_query($db, $name_check_query);
             $nameValue = mysqli_fetch_assoc($resultName);
 
+            //TODO: Change this address
+            $to = 'arianeouellette@yahoo.ca';
+
             $name = $nameValue['modelFirstName'] . ' ' . $nameValue['modelLastName'];
             $subject = "Vanilla Website - Model " . $name;
             //Put right link
@@ -75,42 +73,17 @@ if (isset($_POST['submit_application'])) {
               </ul><br>'. '<br>' .
                 ' If you wish to contact this potentiel model, do so via <b>'.$email.'</b>';
 
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-            $mail = new PHPMailer(true);
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 1;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = "ariouellette2000@gmail.com"; //sender gmail (website address)
-            $mail->Password = 'Spot6516'; //password for the gmail
-            try {
-                //receiver, replace with email enter
-                $mail->AddAddress("arianeouellette@yahoo.ca");
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-            }
-            try {
-                //sender
-                $mail->SetFrom("ariouellette2000@gmail.com");
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-            }
-//        $mail->Subject = $subject . " from " . $name;
-            $mail->Subject = $subject;
-            $mail->Body = $message;
+// More headers
+            $headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
 
-            try {
-                if (!$mail->Send()) {
-                    echo "Mailer Error: " . $mail->ErrorInfo;
-                } else {
-                    $_SESSION['userNewAccount'] = $email;
+            mail($to,$subject,$message,$headers);
+
                     header('location: ../Home/homepage.php?sendEmailApplication=Email successfully send#announcementSection');
 
-
-                }
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-            }
         }
     }
 }

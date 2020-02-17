@@ -1,9 +1,5 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
 
-require '../../emailTool/autoload.php';
 
 //Database Connection
 include '../Header/dbConnection.php';
@@ -68,6 +64,12 @@ $result = mysqli_query($db, $queryDeleteEvent) or die(mysqli_error($db));
 
 
 //SEND REQUEST EMAIL
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
 
 $subject = "New Shoot Request";
 //Put right link
@@ -82,39 +84,10 @@ $message = 'A customer has requested a shoot in one of your availabilities <br>
             Package chosen: '. $shootPackage .'<br>
             To communicate with '.$name.' Send a message to '. $customerEmail;
 
+//TODO: Change this address
+$to = 'arianeouellette@yahoo.ca';
 
-$mail = new PHPMailer(true);
-$mail->IsSMTP();
-$mail->SMTPDebug = 1;
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = 'ssl';
-$mail->Host = "smtp.gmail.com";
-$mail->Port = 465;
-$mail->IsHTML(true);
-$mail->Username = "meganedarnaud@gmail.com"; //sender gmail
-$mail->Password = 'BaxoueBenane88!!'; //password for the gmail
-try {
-    //receiver, replace with email enter
-    $mail->AddAddress("meganedarnaud@gmail.com");
-} catch (Exception $e) {
-    echo $e."add address";
-}
-try {
-    //sender
-    $mail->SetFrom("meganedarnaud@gmail.com");
-} catch (Exception $e) {
-    echo $e."set from";
-}
-$mail->Subject = $subject;
-$mail->Body = $message;
+mail($to,$subject,$message,$headers);
 
-try {
-    if (!$mail->Send()) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
-    } else {
-        $_SESSION['userNewAccount'] = $email;
         header('location: ./agenda.php?sendEmail=Your request has been sent to Vanilla Picture!');
-    }
-} catch (Exception $e) {
-    echo $e."add address";
-}
+

@@ -1,10 +1,13 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+/*
+ * use PHPMailer\PHPMailer\PHPMailer;
+ * use PHPMailer\PHPMailer\SMTP;
+ * use PHPMailer\PHPMailer\Exception;
+ */
 
-require '../../emailTool/autoload.php';
-
+//require '../../emailTool/autoload.php';
+//Db connection
+include '../Header/dbConnection.php';
 // Start the session
 include '../Header/sessionConnection.php';
 
@@ -12,14 +15,12 @@ include '../Header/sessionConnection.php';
 $errors = array();
 $email = "";
 
-// Connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'photography');
 
 // REGISTER USER
 if (isset($_POST['sendMessage'])) {
     if (!isset($_SESSION['userSignIn']) || $_SESSION['userTypeSignIn'] !== 'administrator') {
         // Receive all input values from the form
-        $name = mysqli_real_escape_string($db, $_POST['name']);
+        $name = $db->real_escape_string($_POST['name']);
         $email = mysqli_real_escape_string($db, $_POST['email']);
         $message = mysqli_real_escape_string($db, $_POST['message']);
 
@@ -35,52 +36,31 @@ if (isset($_POST['sendMessage'])) {
         if (empty($message)) {
             array_push($errors, "Message ");
         }
-        if($errors != 0){
+        if(!empty($errors)){
             header('location: ./homepage.php?sendEmailHome=Please fill all fields.#getInTouch');
         }
+
+        //TODO: Change this address
+        $to = 'arianeouellette@yahoo.ca';
 
         $subject = "Vanilla Website - FAQ";
         // Put right link
         $message = '<strong>' . $name . ',</strong>' . ' has send you this message :<br>' . $message .
             '<br><br> ' . 'If you wish to reply, you can do so via ' . $email . '.';
 
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        $mail = new PHPMailer(true);
-        $mail->IsSMTP();
-        $mail->SMTPDebug = 1;
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
-        $mail->Host = "smtp.gmail.com";
-        $mail->Port = 465;
-        $mail->IsHTML(true);
-        $mail->Username = "ariouellette2000@gmail.com"; //sender gmail
-        $mail->Password = 'Spot6516'; //password for the gmail
-        try {
-            // Receiver, replace with email enter
-            $mail->AddAddress("arianeouellette@yahoo.ca");
-        } catch (\PHPMailer\PHPMailer\Exception $e) {
-        }
-        try {
-            // Sender
-            $mail->SetFrom("ariouellette2000@gmail.com");
-        } catch (\PHPMailer\PHPMailer\Exception $e) {
-        }
-//        $mail->Subject = $subject . " from " . $name;
-        $mail->Subject = $subject;
-        $mail->Body = $message;
+// More headers
+        $headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
 
-        try {
-            if (!$mail->Send()) {
-                echo "Mailer Error: " . $mail->ErrorInfo;
-            } else {
-                $_SESSION['userNewAccount'] = $email;
-                header('location: ./homepage.php?sendEmailHome=Email successfully sent#getInTouch');
-            }
-        } catch (\PHPMailer\PHPMailer\Exception $e) {
-        }
+        mail($to,$subject,$message,$headers);
+
+         header('location: ./homepage.php?sendEmailHome=Email successfully sent#getInTouch');
 
     } else {
-        header('location: ./homepage.php?sendEmailHome=Administrators are not allowed to send FAQ email.#getInTouch');
+       header('location: ./homepage.php?sendEmailHome=Administrators are not allowed to send FAQ email.#getInTouch');
     }
 }
 

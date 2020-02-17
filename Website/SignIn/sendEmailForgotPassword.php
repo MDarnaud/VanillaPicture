@@ -1,9 +1,4 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require '..\..\emailTool\autoload.php';
 
 // Database Connection
 include '../Header/dbConnection.php';
@@ -15,8 +10,6 @@ include '../Header/sessionConnection.php';
 $errors = array();
 $email = "";
 
-// Connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'photography');
 
 // REGISTER USER
 if (isset($_POST['forgot_password'])) {
@@ -94,46 +87,26 @@ if (isset($_POST['forgot_password'])) {
             }else{
                 $name = $nameValueModel['modelFirstName'] . ' ' . $nameValueModel['modelLastName'];
             }
+
+            //TODO: Change this address
+            $to = 'arianeouellette@yahoo.ca';
+
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            // More headers
+            $headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
+
             $subject = "Forgot your password for Vanilla Picture";
             // Write the message for the email
             $message = '<strong>Dear ' . $name . ',</strong><br>' . 'You recently requested a new password for Vanilla Picture website. Your new password is <strong>' . $newPassword . '</strong>.<br>' .
                 'Don\'t hesitate to change your password afterward with the "View Profile" options available after ' . '<a href="http://localhost:63342/VanillaPicture3/Website/SignIn/signIn.php">Sign In</a> .<br>' .
                 '<br>Thank you, <br>Vanilla Picture';
 
+            mail($to,$subject,$message,$headers);
 
-            $mail = new PHPMailer(true);
-            $mail->IsSMTP();
-            $mail->SMTPDebug = 1;
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465;
-            $mail->IsHTML(true);
-            $mail->Username = "ariouellette2000@gmail.com"; //sender gmail
-            $mail->Password = 'Spot6516'; //password for the gmail
-            try {
-                //receiver, replace with email enter
-                $mail->AddAddress("arianeouellette@yahoo.ca");
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-            }
-            try {
-                //sender
-                $mail->SetFrom("ariouellette2000@gmail.com");
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-            }
-
-            $mail->Subject = $subject;
-            $mail->Body = $message;
-
-            try {
-                if (!$mail->Send()) {
-                    echo "Mailer Error: " . $mail->ErrorInfo;
-                } else {
-                    $_SESSION['userNewAccount'] = $email;
                     header('location: signIn.php?sendEmail=Email successfully sent');
-                }
-            } catch (\PHPMailer\PHPMailer\Exception $e) {
-            }
 
         }
         else{
