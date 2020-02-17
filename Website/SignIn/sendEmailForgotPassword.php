@@ -101,7 +101,7 @@ if (isset($_POST['forgot_password'])) {
             $subject = "Forgot your password for Vanilla Picture";
             // Write the message for the email
             $message = '<strong>Dear ' . $name . ',</strong><br>' . 'You recently requested a new password for Vanilla Picture website. Your new password is <strong>' . $newPassword . '</strong>.<br>' .
-                'Don\'t hesitate to change your password afterward with the "View Profile" options available after ' . '<a href="http://localhost:63342/VanillaPicture3/Website/SignIn/signIn.php">Sign In</a> .<br>' .
+                'Don\'t hesitate to change your password afterward with the "View Profile" options available after ' . '<a href="https://vanillapicture.rho.productions/Website/SignIn/signIn.php">Sign In</a> .<br>' .
                 '<br>Thank you, <br>Vanilla Picture';
 
             mail($to,$subject,$message,$headers);

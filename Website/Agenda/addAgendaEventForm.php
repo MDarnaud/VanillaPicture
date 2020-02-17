@@ -33,7 +33,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
 <html lang="en">
     <?php include '../Header/favicon.html';?>
 <head>
-    <title>Agenda Event Form</title>
+    <title>Agenda Event</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />

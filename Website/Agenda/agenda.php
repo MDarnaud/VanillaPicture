@@ -15,18 +15,19 @@ if(isset($_SESSION['userSignIn'])){
 
 //check user type/origin and display message accordingly
 if(isset($_GET["sendEmail"])){
-    $message = '<p style="color: darkslategrey">'.$_GET["sendEmail"].'</p>';
+    $getEmailMessage = $_GET["sendEmail"];
+    $message = "<div class=\"isa_success\"><i class=\"fa fa-check-circle\"></i>".$getEmailMessage."</div>";
 }
 else {
     if ($userType == null) {
-        $message = '<i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../SignOut/SignOutToRegister.php">sign up</a> as a "Customer"</i>';
+        $message = '<p><i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../SignOut/SignOutToRegister.php">sign up</a> as a "Customer"</i></p>';
     } else if ($userType != null) {
         if ($userType == "customer") {
-            $message = "(To make a shoot reservation, click on an availability.)";
+            $message = "<p><i style=\"color:cadetblue\">(To make a shoot reservation, click on an availability.)</i></p>";
         } else if ($userType == "administrator") {
-            $message = "(To add an event, click on the 'add' button, to edit an event, click on the event directly in the calendar)";
+            $message = "<p> <i style=\"color:cadetblue\">(To add an event, click on the 'add' button, to edit an event, click on the event directly in the calendar)</i></p>";
         } else{
-            $message = "(To make a shoot reservation, <a class=\"linkHomeAnnouncement\" href=\"../SignOut/SignOutToRegister.php\">sign up</a> as a \"customer\")";
+            $message = " <p><i style=\"color:cadetblue\">(To make a shoot reservation, <a class=\"linkHomeAnnouncement\" href=\"../SignOut/SignOutToRegister.php\">sign up</a> as a \"customer\")</i></p>";
         }
     }
 }
@@ -171,8 +172,7 @@ if ($result->num_rows > 0) {
 						<header class="major">
 							<h1>AGENDA</h1>
                             <p>See Sophie's availabilities and request a shoot accordingly <br>
-                                <i style=" font-size: large"><?php echo $message ?></i></p>
-
+                               <?php echo $message ?>
                             <br>
 						</header>
                         <div id='calendar'></div>

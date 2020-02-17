@@ -12,7 +12,7 @@ include '../Header/sessionConnection.php';
 <html lang="en">
 <?php include '../Header/favicon.html'; ?>
 <head>
-    <title>Packages</title>
+    <title>Shop</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta name="description" content=""/>

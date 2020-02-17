@@ -10,8 +10,7 @@ $email    = "";
 $errors = array();
 $email = $_SESSION['userSignIn'];
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+
 
 // REGISTER USER
 if (isset($_POST['update_User'])) {
@@ -44,6 +43,8 @@ if (isset($_POST['update_User'])) {
 
         }
     }
+
+
 
 }
 if (isset($_POST['change_PW_User'])) {

@@ -5,8 +5,6 @@ include '../Header/dbConnection.php';
 // Start the session
 include '../Header/sessionConnection.php';
 
-//// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
 ?>
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/html">

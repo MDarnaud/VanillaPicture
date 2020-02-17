@@ -14,13 +14,13 @@ $eventEnd = $_POST["eventEnd"]."T01:00:00";
 
 $isAvailability = false;
 $url = null;
-$color = "#33cccc";
+$color = "#5f9ea0";
 
 if(isset($_POST["isAvailability"])){
     $isAvailability = true;
     //go to request if availability is checked
     $url = "requestShootForm.php";
-    $color = "#5f9ea0"; //shoot available
+    $color = "#33cccc"; //shoot available
 }
 
 //Insert the new event

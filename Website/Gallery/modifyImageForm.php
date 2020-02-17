@@ -1,12 +1,12 @@
 <?php
 include 'modifyGalleryImage.php';
+
 // Database Connection
 include '../Header/dbConnection.php';
 
 // Start the session
 include '../Header/sessionConnection.php';
 
-$db = mysqli_connect('localhost','root','','photography');
 
 if(isset($_GET['modificationId'])){
     if(isset($_SESSION['userSignIn'])&& $_SESSION['userTypeSignIn'] === 'administrator') {

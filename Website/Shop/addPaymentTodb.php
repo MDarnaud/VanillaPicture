@@ -2,8 +2,7 @@
 // Start the session
 include '../Header/sessionConnection.php';
 
-// connect to the database
-$db = mysqli_connect('localhost','root','','photography');
+include '../Header/dbConnection.php';
 
 $amount = mysqli_real_escape_string($db, $_POST['amount']);
 $email = $_SESSION['userSignIn'];

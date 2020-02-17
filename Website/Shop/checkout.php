@@ -1,12 +1,12 @@
 <?php
 // Start the session
 include '../Header/sessionConnection.php';
-
-// connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'photography');
+// Include Database
+include '../Header/dbConnection.php';
 
 $email = "";
 $name = "";
+
 
 //user type
 $userType = null;
@@ -28,6 +28,12 @@ if (isset($_SESSION['userSignIn'])) {
         $model = mysqli_fetch_assoc($resultModel);
         $name = $model['modelFirstName'];
     }
+    elseif ($user['userType'] === 'administrator') {
+        $photographer_check_query = "SELECT * FROM photographer WHERE userId='$email'";
+        $resultPhotographer = mysqli_query($db, $photographer_check_query);
+        $photographer = mysqli_fetch_assoc($resultPhotographer);
+        $name = $photographer['photographerFirstName'];
+    }
 }
 
 
@@ -36,7 +42,7 @@ if (isset($_SESSION['userSignIn'])) {
 <html lang="en">
 <?php include '../Header/favicon.html'; ?>
 <head>
-    <title>Vanilla Picture</title>
+    <title>Checkout</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta name="description" content=""/>

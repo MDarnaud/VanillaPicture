@@ -71,18 +71,18 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 // More headers
 $headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
 
-$subject = "New Shoot Request";
+$subject = "Vanilla Website - New Shoot Request";
 //Put right link
-$message = 'A customer has requested a shoot in one of your availabilities <br>
-            Customer Name: '. $name .'<br>
-            Customer Email: '. $name .'<br>
-            Location: '. $shootTitle .'<br>
-            Date: '. $shootDate .'<br>
-            Time: '. $shootTime .'<br>
-            Artists Requested: '. $artists .'<br>
-            Customer Notes: '. $customerNotes .'<br>
-            Package chosen: '. $shootPackage .'<br>
-            To communicate with '.$name.' Send a message to '. $customerEmail;
+$message = '<strong>' . $name . '</strong> has requested the shoot <b>"' . $shootTitle . '" on Vanilla Picture website. <br> </b>. Here are the details: <br>'
+    . '<ul>
+                <li>Shoot Date: <b>' . $shootDate . '</b></li>
+                <li>Shoot Time: <b>' . $shootTime . '</b></li>
+                <li>Customer Email <b>' . $customerEmail . '</b></li>
+                <li>Artists Requested: <b>' . $artists . '</b></li>
+                <li>Package Chosen : <b>'.$shootPackage.'</b></li>
+                <li>Notes : <b>'.$customerNotes.'</b></li>
+              </ul><br>'. '<br>' .
+    ' To communicate with '.$name.' Send a message to '. $customerEmail.'</b>';
 
 //TODO: Change this address
 $to = 'arianeouellette@yahoo.ca';

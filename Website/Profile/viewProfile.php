@@ -15,7 +15,7 @@ if(isset($_SESSION['userSignIn'])){
 <html lang="en">
     <?php include '../Header/favicon.html';?>
 	<head>
-		<title>View Account</title>
+		<title>Profile</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />

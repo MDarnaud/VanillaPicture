@@ -10,9 +10,6 @@ if(isset($_SESSION['userSignIn'])) {
 if ($_SESSION['userTypeSignIn'] === 'administrator') {
     if(isset($_GET['announcementId'])) {
 
-// Connect to the database
-        $db = mysqli_connect('localhost', 'root', '', 'photography');
-
 // Get the selected announcement from the database
         $idSelect = $_GET['announcementId'];
         $id_check_query = "SELECT * FROM announcement WHERE announcementId='$idSelect'";

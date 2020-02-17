@@ -45,8 +45,7 @@ include '../Header/dbConnection.php';?>
                                                 </div>
 
                                                 <?php
-                                                 // Connect to the database
-                                                $db = mysqli_connect('localhost','root','','photography');
+
 
                                                 // Brands
                                                 $gallery_brand_name_query = "SELECT DISTINCT gallerySubCategory FROM gallery WHERE gallerySubCategory IS NOT NULL AND galleryCategory = 'Brands'";
