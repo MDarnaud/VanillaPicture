@@ -16,7 +16,7 @@ echo
                     <a href="../Gallery/gallery.php">Gallery</a>
             </li>';
 
-            echo '<li><a href="../Shop/packages.php">Packages</a></li>
+            echo '<li><a href="../Shop/shop.php">Shop</a></li>
                     <li><a href="../Agenda/agenda.php">Agenda</a></li>
                     ';
 

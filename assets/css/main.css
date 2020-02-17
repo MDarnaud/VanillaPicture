@@ -4572,7 +4572,8 @@ ul.customActions2 {
 
 /*		Dropdown gallery brands */
 .dropContents{display: none;}
-.dropdownHovering:hover .dropContents{display:block;}
+.dropdownHovering:active .dropContents, .dropdownHovering:focus .dropContents, .dropdownHovering:hover .dropContents{display:block;}
+
 li button {
 	list-style-type: none;
 }
