@@ -9,8 +9,20 @@ $eventId = $_POST["eventId"];
 if($_POST["eventLocation"] != null){
     $eventTitle .= " - Location: ".$_POST["eventLocation"];
 }
-$eventStart = $_POST["eventStart"]."T00:00:00";
-$eventEnd = $_POST["eventEnd"]."T01:00:00";
+$eventStart = null;
+$eventEnd = null;
+
+if ($_POST["eventStart"] == $_POST["eventEnd"]){
+    $eventStart = $_POST["eventStart"];
+}
+else{
+    $eventStart = $_POST["eventStart"];
+    $eventEndBad = $_POST["eventEnd"];
+    echo $eventEnd;
+    //add one day because the calendar excludes the end date
+    $eventEnd = date('Y-m-d', strtotime($eventEndBad. ' +1 day'));
+
+}
 
 $isAvailability = false;
 $url = null;
@@ -29,7 +41,6 @@ if($eventEnd == null && $isAvailability == true){
                     VALUES('$eventId', '$eventTitle', '$eventStart', '$url', '$color')";
     mysqli_query($db, $queryEvent)or die(mysqli_error($db));
 
-    var_dump($queryEvent);
 }
 else if($eventEnd == null && $isAvailability == false){
     $queryEvent = "INSERT INTO events (eventId, eventTitle, eventStart, eventColor)
@@ -48,8 +59,8 @@ else{
 
 
 }
-
+/*
 header("Location: agenda.php");
-
+*/
 
 ?>

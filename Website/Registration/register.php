@@ -20,7 +20,6 @@ if(!isset($_SESSION['userSignIn'])){?>
 	</head>
 	<body class="is-preload">
 
-    <?php include '../Navigation/Navigation.php' ?>
 
 		<!-- Main -->
 			<div id="main">
