@@ -1,7 +1,8 @@
 <?php include 'categorieslist.php';
         include 'uploadGalleryImage.php';
 // Database Connection
-include '../Header/dbConnection.php';?>
+include '../Header/dbConnection.php';
+if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administrator') {?>
 <!DOCTYPE HTML>
 <html lang="en">
 <?php include '../Header/favicon.html';?>
@@ -178,4 +179,7 @@ include '../Header/dbConnection.php';?>
 
 	</body>
 </html>
+<?php }else{
+    header('location: ../Home/homepage.php');
+}?>
 

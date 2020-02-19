@@ -155,7 +155,7 @@ if(isset($_SESSION['userSignIn']) && $_SESSION['userTypeSignIn'] === 'administra
         }
     }
 }else{
-    header('../Home/homepage.php');
+    header('location: ../Home/homepage.php');
 }
 
 ?>
