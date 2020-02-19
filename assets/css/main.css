@@ -140,8 +140,7 @@ input, select, textarea {
 	}
 
 body, input, select, textarea {
-		/*font-family: Roboto, "Levo";*/
-		font-family: "Louize";
+		font-family: Arial, "Levo";
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 2.15;
