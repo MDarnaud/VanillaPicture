@@ -12,11 +12,15 @@ $eventId = $_GET["id"];
 $eventStart = $_GET["startDate"];
 $eventEnd = $_GET["endDate"];
 
-
+echo $eventStart."<br>";
 
 //convert string to date for input boxes
 $startTime = strtotime($eventStart);
-$convertedStartDate = date( 'yy-m-d', $startTime );
+echo $startTime."<br>";
+
+$convertedStartDate = date( 'Y-m-d\TH:i', $startTime );
+echo($convertedStartDate." 1985-04-12T23:20");
+var_dump();
 
 $endTime = strtotime($eventEnd);
 $convertedEndDate = date( 'yy-m-d', $endTime );
@@ -66,12 +70,12 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
 
                                 <h4 class="TitleForm">Start Date:</h4>
-                                <input type="date" name="eventStart" id="eventStart" value="<?php echo $convertedStartDate ?>" required/>
+                                <i>Date Format: month/day/year hour/minute/AM or PM</i>
+                                <input type="datetime-local" name="eventStart" id="eventStart" value="1985-04-12T23:20" required/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">End Date:</h4>
-
-                                <input type="date" name="eventEnd" id="eventEnd" value="<?php echo $convertedEndDate?>" oninput="check(this)" required/>
+                                <input type="datetime-local" name="eventEnd" id="eventEnd" value="<?php $convertedEndDate?>" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
                                         if (!(input.value >= document.getElementById('eventStart').value)) {

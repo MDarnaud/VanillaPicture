@@ -9,20 +9,10 @@ $eventId = $_POST["eventId"];
 if($_POST["eventLocation"] != null){
     $eventTitle .= " - Location: ".$_POST["eventLocation"];
 }
-$eventStart = null;
-$eventEnd = null;
 
-if ($_POST["eventStart"] == $_POST["eventEnd"]){
-    $eventStart = $_POST["eventStart"];
-}
-else{
-    $eventStart = $_POST["eventStart"];
-    $eventEndBad = $_POST["eventEnd"];
-    echo $eventEnd;
-    //add one day because the calendar excludes the end date
-    $eventEnd = date('Y-m-d', strtotime($eventEndBad. ' +1 day'));
 
-}
+$eventStart = $_POST["eventStart"];
+$eventEnd = $_POST["eventEnd"];
 
 $isAvailability = false;
 $url = null;

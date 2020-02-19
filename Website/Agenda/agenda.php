@@ -110,14 +110,16 @@ if ($result->num_rows > 0) {
                                 var startDate = info.event.start;
                                 var endDate = info.event.end;
 
+                                alert(startDate);
+
                                 var title = info.event.title;
                                 if(endDate != null) {
-                                    var endDateString = endDate.toDateString();
+                                    var endDateString = endDate.toLocaleString();
                                 }
                                 else {
-                                    var endDateString = startDate.toDateString();;
+                                    var endDateString = startDate.toLocaleString();;
                                 }
-                                var startDateString = startDate.toDateString();
+                                var startDateString = startDate.toLocaleString();
 
 
 
@@ -132,7 +134,7 @@ if ($result->num_rows > 0) {
                     editable: false,
                     eventLimit: true, // allow "more" link when too many events
                     nextDayThreshold: '00:00:00',
-                    displayEventTime: false,
+                    displayEventTime: true,
                     events: <?php echo json_encode($myArray); ?>,
 
                 });

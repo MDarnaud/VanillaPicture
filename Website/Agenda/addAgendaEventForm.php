@@ -73,15 +73,16 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
 
                                 <h4 class="TitleForm">Start Date:</h4>
-                                <input type="date" name="eventStart" id="eventStart" required/>
+                                <i>Date Format: month/day/year hour/minute/AM or PM</i>
+                                <input type="datetime-local" name="eventStart" id="eventStart" required/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">End Date:</h4>
-                                <input type="date" name="eventEnd" id="eventEnd" value="" oninput="check(this)" required/>
+                                <input type="datetime-local" name="eventEnd" id="eventEnd" value="" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
                                             if (!(input.value >= document.getElementById('eventStart').value)) {
-                                                input.setCustomValidity('End Date is before or same as the start date.');
+                                                input.setCustomValidity('End Date is before the start date.');
                                             } else {
                                                 // input is valid -- reset the error message
                                                 input.setCustomValidity('');
