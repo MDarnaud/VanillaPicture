@@ -126,7 +126,7 @@ if(isset($_SESSION['userSignIn'])){
                                                 </div>
                                                 <div class="col-12 col-12-xsmall">
                                                     <p><strong>City :</strong>&nbsp; &nbsp; <input type="text" name="city" id="city" value=<?php if($user['userType'] === 'customer'){ echo $customer['customerCity'];}
-                                                        elseif($user['userType'] === 'model'){ echo $model['modelCity'];}?> title="City" placeholder="City" required/><br></p>
+                                                        elseif($user['userType'] === 'model'){ echo $model['modelCity'];}?> title="City" placeholder="City" maxlength="35" required/><br></p>
                                                 </div>
                                                 <!-- Break -->
                                                 <div class="col-12">
@@ -174,8 +174,8 @@ if(isset($_SESSION['userSignIn'])){
                                                 </div>
 
                                                 <div class="col-11 col-11-xsmall">
-                                                    <p><strong>Current Password : </strong>&nbsp; &nbsp; <input type="password" name="password_current" id="password_current" value="" placeholder="Current Password"
-                                                    title="Current Password""/>
+                                                    <p><strong>Current Password : </strong>&nbsp; &nbsp; <input type="password" name="password_current" id="password_current" value="" placeholder="Current Password" minlength="6" maxlength="80"
+                                                    title="Current Password"/>
                                                 </div>
                                                 <div class="col-1 col-1-xsmall">
                                                     <i id="pass-status-current" style="font-size: 125%;margin-top: 40px"
@@ -204,7 +204,7 @@ if(isset($_SESSION['userSignIn'])){
                                                     <p><strong>Password : </strong>&nbsp; &nbsp; <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                                                                                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                                                                                 title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
-                                                                                                        required oninvalid="setCustomValidity('New password is invalid')" oninput="setCustomValidity('')"/>
+                                                                                                        required oninvalid="setCustomValidity('New password is invalid')" oninput="setCustomValidity('')" minlength="6" maxlength="80"/>
                                                 </div>
                                         <div class="col-1 col-1-xsmall">
                                             <i id="pass-status-pw" style="font-size: 125%;margin-top: 40px"
@@ -232,7 +232,7 @@ if(isset($_SESSION['userSignIn'])){
                                                         <input type="password" name="password_2" id="password_2" value="" placeholder="Confirm Password"
                                                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                                title="Please enter the same Password as above"
-                                                               oninput="check(this)"
+                                                               oninput="check(this)" minlength="6" maxlength="80"
                                                                />
                                                         <script language='javascript' type='text/javascript'>
                                                             function check(input) {

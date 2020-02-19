@@ -110,7 +110,7 @@ if (isset($_SESSION['userSignIn'])) {
                                                         // Shoot (Location and Package number choices)
                                                         $('.filters').append('<p><h5>Shoots</h5>');
                                                         // Shoot(Location)
-                                                        $('.filters').append('Location <input type="text" name="locationShoot" id="amountPay" value="" placeholder="ex: Toronto">\n');
+                                                        $('.filters').append('Location <input type="text" name="locationShoot" id="amountPay" value="" placeholder="ex: Toronto" maxlength="50">\n');
                                                         //Shoot(Packages -123)
                                                         $('.filters').append('Packages Choice <select name="packages" id="packages"><option value="" selected hidden>--Select Package--</option><option value="1">Package 1</option><option value="2">Package 2</option><option value="3">Package 3</option></select>\n' + '</p>');
 

@@ -186,11 +186,11 @@ if ($resultPost) { // if user exists
                         <div class="fields">
                             <div class="field half">
                                 <h5 class="TitleForm">Name:</h5>
-                                <input name="name" id="name" placeholder="Name" type="text" required oninvalid="setCustomValidity('Name is invalid')" oninput="setCustomValidity('')"/>
+                                <input name="name" id="name" placeholder="Name" type="text" required oninvalid="setCustomValidity('Name is invalid')" oninput="setCustomValidity('')" maxlength="30"/>
                             </div>
                             <div class="field half">
                                 <h5 class="TitleForm">Email:</h5>
-                                <input name="email" id="email" placeholder="Email" type="email"
+                                <input name="email" id="email" placeholder="Email" type="email" maxlength="80"
                                     <?php if(isset($_SESSION['userSignIn'])){echo 'value="'.$_SESSION['userSignIn'].'"';}?>
                                        required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
                             </div>

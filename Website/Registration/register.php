@@ -39,14 +39,14 @@ if(!isset($_SESSION['userSignIn'])){?>
 											<div class="row gtr-uniform">
                                                 <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Email:</h5>
-                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')" maxlength="80"/>
                                                 </div>
 												<div class="col-8 col-11-small col-11-xsmall">
                                                     <h5 class="TitleForm">Password:</h5>
 													<input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
-                                                           required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')"/>
+                                                           required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')" minlength="6" maxlength="80"/>
 												</div>
                                                 <div class="col-1 col-1-xsmall">
                                                     <i id="pass-status" style="font-size: 125%;margin-top: 30px"
@@ -75,6 +75,7 @@ if(!isset($_SESSION['userSignIn'])){?>
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Please enter the same Password as above"
                                                            oninput="check(this)"
+                                                           minlength="6" maxlength="80"
                                                            required/>
                                                     <script language='javascript' type='text/javascript'>
                                                         function check(input) {
@@ -114,12 +115,12 @@ if(!isset($_SESSION['userSignIn'])){?>
                                                 <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">FirstName:</h5>
                                                     <input type="text" name="firstName" id="firstName" value="" placeholder="First Name"
-                                                           maxlength="20" required oninvalid="setCustomValidity('FirstName is invalid')" oninput="setCustomValidity('')"/>
+                                                           maxlength="30" required oninvalid="setCustomValidity('FirstName is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
                                                 <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">LastName:</h5>
                                                     <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name"
-                                                           maxlength="20" required oninvalid="setCustomValidity('LastName is invalid')" oninput="setCustomValidity('')"/>
+                                                           maxlength="30" required oninvalid="setCustomValidity('LastName is invalid')" oninput="setCustomValidity('')"/>
                                                 </div>
 												<div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">Date of Birth:</h5>
@@ -155,7 +156,7 @@ if(!isset($_SESSION['userSignIn'])){?>
                                                 <div class="col-8 col-12-small col-12-xsmall">
                                                     <h5 class="TitleForm">City:</h5>
                                                     <input type="text" name="city" id="city" value="" placeholder="City" required
-                                                           oninvalid="setCustomValidity('City is invalid')" oninput="setCustomValidity('')"/>
+                                                           oninvalid="setCustomValidity('City is invalid')" oninput="setCustomValidity('')" maxlength="35"/>
                                                 </div>
                                                 <div id="radioRegistration" class="col-8 col-12-small col-12-xsmall">
                                                      Registration Type: &nbsp; &nbsp;
