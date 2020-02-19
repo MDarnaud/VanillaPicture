@@ -59,8 +59,8 @@ else{
 
 
 }
-/*
+
 header("Location: agenda.php");
-*/
+
 
 ?>
