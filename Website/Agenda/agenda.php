@@ -110,16 +110,10 @@ if ($result->num_rows > 0) {
                                 var startDate = info.event.start;
                                 var endDate = info.event.end;
 
-                                alert(startDate);
 
                                 var title = info.event.title;
-                                if(endDate != null) {
-                                    var endDateString = endDate.toLocaleString();
-                                }
-                                else {
-                                    var endDateString = startDate.toLocaleString();;
-                                }
                                 var startDateString = startDate.toLocaleString();
+                                var endDateString = endDate.toLocaleString();
 
 
 

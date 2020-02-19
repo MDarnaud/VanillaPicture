@@ -5,11 +5,11 @@ include '../Header/dbConnection.php';
 include '../Header/sessionConnection.php';
 
 //get date to fill form
-$startDate = date("Y-m-d");
+$convertedStartDate = null;
 $title = "";
 if (isset($_GET["startDate"])){
     $startDateString = $_GET["startDate"];
-    $startDate = date('Y-m-d', strtotime($startDateString));
+    $convertedStartDate = date('Y-m-d\TH:i', strtotime($startDateString));
 }
 if(isset($_GET["title"])){
     $title = $_GET["title"];
@@ -56,13 +56,10 @@ if(isset($_SESSION['userSignIn'])){
 													<input style="background-color: lightgray" type="text" name="title" id="title" value="<?php echo $title?>" placeholder="Location" READONLY/>
 												</div>
 												<div class="col-8 col-12-xsmall">
-													<h5 class="TitleForm">Date:</h5>
-													<input style="background-color: lightgray" type="date" name="date" id="date" value="<?php echo $startDate?>" READONLY/>
+													<h5 class="TitleForm">Date/Time:</h5>
+													<input style="background-color: lightgray" type="datetime-local" name="date" id="date" value="<?php echo $convertedStartDate?>" READONLY/>
 												</div>
-												<div class="col-8 col-12-xsmall">
-                                                    <h5 class="TitleForm">Time (ex: 12:00 PM):</h5>
-													<input type="time" name="time" id="time" value="" placeholder="Time"/>
-												</div>
+
 												<!-- Break -->
 												<div class="col-12 col-12-small">
                                                     <h5 class="TitleForm">Artist Choice:</h5>
