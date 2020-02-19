@@ -55,11 +55,12 @@ if (isset($_POST['submit_announcement'])||isset($_POST['update_announcement'])) 
 }
 
 if (isset($_POST['submit_announcement'])) {
+    $today =   date_create()->format('Y-m-d H:i:s');
     // Insert if no errors
     if (count($errors) == 0 && count($errorsDate) == 0) {
         // Insert the announcement information in the table announcement in the database
-        $queryAnnouncement = "INSERT INTO announcement (announcementTitle, announcementDetail, announcementStartDate, announcementEndDate, announcementModel) 
-  			  VALUES('$title', '$detail', '$startDate', '$endDate', '$modelSearch')";
+        $queryAnnouncement = "INSERT INTO announcement (announcementTitle, announcementDetail, announcementStartDate, announcementEndDate, announcementModel,announcementCreation) 
+  			  VALUES('$title', '$detail', '$startDate', '$endDate', '$modelSearch','$today')";
         mysqli_query($db, $queryAnnouncement);
 
         if (mysqli_affected_rows($db) >= 1) {
