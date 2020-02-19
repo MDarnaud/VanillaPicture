@@ -60,9 +60,9 @@ include 'serverSignIn.php';
 												<div class="col-12 col-12-xsmall">
                                                     <h5 class="TitleForm">Email :</h5>
                                                     <?php if(isset($_SESSION["userNewAccount"])){?>
-                                                    <input type="email" name="email" id="email" value="<?php echo $_SESSION["userNewAccount"];?>" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
+                                                    <input type="email" name="email" id="email" value="<?php echo $_SESSION["userNewAccount"];?>" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')" maxlength="80"/>
                                                     <?php }else{ ?>
-                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')"/>
+                                                    <input type="email" name="email" id="email" value="" placeholder="Email" required oninvalid="setCustomValidity('Email is invalid')" oninput="setCustomValidity('')" maxlength="80"/>
                                                     <?php } ?>
                                                 </div>
 												<div class="col-11 col-11-xsmall">
@@ -70,7 +70,9 @@ include 'serverSignIn.php';
                                                     <input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
-                                                           required/>
+                                                           required
+                                                            maxlength="20"
+                                                            minlength="6"/>
                                                 </div>
                                                 <div class="col-1 col-1-xsmall">
                                                     <i id="pass-status" style="font-size: 125%;margin-top: 30px"

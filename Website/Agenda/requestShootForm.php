@@ -91,7 +91,7 @@ if(isset($_SESSION['userSignIn'])){
 												</div>
 
 												<div class="col-12">
-													<textarea name="customerNotes" id="customerNotes" placeholder="Write your request here" rows="6"></textarea>
+													<textarea name="customerNotes" id="customerNotes" placeholder="Write your request here" rows="6" maxlength="100"></textarea>
 												</div>
 												<!-- Break -->
 												<div class="col-12">

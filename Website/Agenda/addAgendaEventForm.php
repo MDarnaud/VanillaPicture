@@ -63,12 +63,12 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">Title:</h4>
                                 <i style="font-size:13px">ex: write a title such as "Available", for customers to understand they can request a shoot on this date</i>
-                                <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Title" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
+                                <input type="text" name="eventTitle" id="eventTitle" value="" placeholder="Title" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')" maxlength="50"/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
 
                                 <h4 class="TitleForm">Location:</h4>
-                                <input type="text" name="eventLocation" id="eventLocation" value="" placeholder="Location"/>
+                                <input type="text" name="eventLocation" id="eventLocation" value="" placeholder="Location" maxlength="50"/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
 

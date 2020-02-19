@@ -61,7 +61,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
                                 <h4 class="TitleForm">Title and Location:</h4>
-                                <input type="text" name="eventTitle" id="eventTitle" value="<?php echo $eventTitle?>" placeholder="Title" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')"/>
+                                <input type="text" name="eventTitle" id="eventTitle" value="<?php echo $eventTitle?>" placeholder="Title" required oninvalid="setCustomValidity('Title is invalid')" oninput="setCustomValidity('')" maxlength="100"/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
 
@@ -85,9 +85,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                             </div>
                             <!-- Break -->
                             <div class="col-12">
-<!--                                <ul class="actions">-->
-<!--                                    <button type="submit" class="button primary icon fa-pencil">Update Event</button>-->
-<!--                                </ul>-->
+
                                 <ul class="actions">
                                     <button type="submit" class="button icon fa-pencil-square">Update Event</button>
                                 </ul>
@@ -95,12 +93,9 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                         </div>
                     </form>
                     <div class="col-2 col-2-medium col-2-small col-2-xsmall">
-<!--                    <form method="post" action="deleteAgendaEvent.php">-->
-<!--                        <input type="hidden" name="eventId" id="eventId" value="--><!--" placeholder="Event Id"/>-->
                         <ul class="actions">
                             <button type="submit" class="button icon fa-trash" id="deleteEventButton" onclick="myDelete('<?php echo $eventId?>');">Delete Event</button>
                         </ul>
-<!--                    </form>-->
                     </div>
                 </div>
             </div>
