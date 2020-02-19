@@ -43,6 +43,7 @@ if(!isset($_SESSION['userSignIn'])){?>
                                                 </div>
 												<div class="col-8 col-11-small col-11-xsmall">
                                                     <h5 class="TitleForm">Password:</h5>
+                                                    <i>Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers</i>
 													<input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"

@@ -36,9 +36,9 @@ if (isset($_POST['sendMessage'])) {
         if (empty($message)) {
             array_push($errors, "Message ");
         }
-        if(!empty($errors)){
+        if (!empty($errors)) {
             header('location: ./homepage.php?sendEmailHome=Please fill all fields.#getInTouch');
-        }
+        }else{
 
         //TODO: Change this address
         $to = 'arianeouellette@yahoo.ca';
@@ -55,10 +55,10 @@ if (isset($_POST['sendMessage'])) {
 // More headers
         $headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
 
-        mail($to,$subject,$message,$headers);
+        mail($to, $subject, $message, $headers);
 
-         header('location: ./homepage.php?sendEmailHome=Email successfully sent#getInTouch');
-
+        header('location: ./homepage.php?sendEmailHome=Email successfully sent#getInTouch');
+    }
     } else {
        header('location: ./homepage.php?sendEmailHome=Administrators are not allowed to send FAQ email.#getInTouch');
     }
