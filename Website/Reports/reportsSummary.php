@@ -32,7 +32,7 @@ if(isset($_SESSION['userSignIn'])){
 
                     // % booked hours (available / booked)
                     // MEGANE (count number of available hour where date put = this year, count number of hours shoot booked where date booked = this year, calculate %)
-                    $offeredShoot_summary_y_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE year(start)='$currentYear' AND url IS NOT NULL ";
+                    $offeredShoot_summary_y_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE year(eventStart)='$currentYear' AND eventUrl IS NOT NULL ";
                     $offeredShoot_result = mysqli_query($db, $offeredShoot_summary_y_query);
                     $totalofferedShootY = mysqli_fetch_assoc($offeredShoot_result);
                     $textTotalOfferedShootY = $totalofferedShootY['totalOfferedShoots'];
@@ -354,20 +354,22 @@ for($i=0;$i<5;$i++) {
 
                 // Booked Shoot
                 $BookedShoot_summary_M_query ="SELECT count(shootId) as totalShoots FROM shoot WHERE month(shootDate)='$currentMonth' AND year(shootDate)='$currentYear'"; //change shootDate to requestDate
-                    $bookedShoot_result = mysqli_query($db, $bookedShoot_summary_y_query);
-                    $totalBookedShootM = mysqli_fetch_assoc($bookedShoot_result);
+                    $bookedShoot_resultM = mysqli_query($db, $BookedShoot_summary_M_query);
+                    $totalBookedShootM = mysqli_fetch_assoc($bookedShoot_resultM);
                     $textNumBookedShootM = $totalBookedShootM['totalShoots'];
+                    //echo $textNumBookedShootM."<br>";
 
                     // % booked hours (available / booked)
-                    $offeredShoot_summary_m_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE month(start)='$currentMonth' AND year(start)='$currentYear' AND url IS NOT NULL ";
-                    $offeredShoot_result = mysqli_query($db, $offeredShoot_summary_m_query);
-                    $totalofferedShootM = mysqli_fetch_assoc($offeredShoot_result);
+                    $offeredShoot_summary_m_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE month(eventStart)='$currentMonth' AND year(eventStart)='$currentYear' AND eventUrl IS NOT NULL ";
+                    $offeredShoot_resultM = mysqli_query($db, $offeredShoot_summary_m_query);
+                    $totalofferedShootM = mysqli_fetch_assoc($offeredShoot_resultM);
                     $textTotalOfferedShootM = $totalofferedShootM['totalOfferedShoots'];
+                    echo $textTotalOfferedShootM;
 
                     if($textNumBookedShootM != 0 && $totalofferedShootM['totalOfferedShoots'] != 0) {
                         //percentage calculation
-                        $percentageBookedCalcul = (($totalBookedShootM['totalShoots']*100)/$totalofferedShootM['totalOfferedShoots']);
-                        $textPBookedHoursM =  $percentageBookedCalcul.' %';
+                        $percentageBookedCalculM = (($totalBookedShootM['totalShoots']*100)/$totalofferedShootM['totalOfferedShoots']);
+                        $textPBookedHoursM =  $percentageBookedCalculM.' %';
                     }
                     else{
                         $textPBookedHoursM = '0 %';
@@ -529,7 +531,7 @@ for($i=0;$i<5;$i++) {
 
                 // % booked hours (available / booked)
                 // MEGANE (count number of available hour where date put = this week, count number of hours shoot booked where date booked = this month, calculate %)
-                    $offeredShoot_summary_w_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE start>='$week_start_day' AND start<='$week_end_day' AND url IS NOT NULL ";
+                    $offeredShoot_summary_w_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE eventStart>='$week_start_day' AND eventStart<='$week_end_day' AND eventUrl IS NOT NULL ";
                     $offeredShoot_result = mysqli_query($db, $offeredShoot_summary_w_query);
                     $totalofferedShootW = mysqli_fetch_assoc($offeredShoot_result);
                     $textTotalOfferedShootW = $totalofferedShootW['totalOfferedShoots'];

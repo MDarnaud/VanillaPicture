@@ -79,11 +79,12 @@ if(isset($_SESSION['userSignIn'])){
 
 												<div class="col-12">
                                                     <h5 class="TitleForm">Package Choice:</h5>
+                                                    <i style="font-size:smaller">If you wish to learn about the different packages, <a href="../Shop/shop.php#packagesAnchor" style="color:#5f9ea0 !important;"target="_blank">click here</a></i>
 													<select name="packageCategory" id="packageCategory" >
 														<option value="">- Select -</option>
-														<option value="package1">Package 1</option>
-														<option value="package2">Package 2</option>
-														<option value="package3">Package 3</option>
+														<option value="package1">Package 1 - Portrait</option>
+														<option value="package2">Package 2 - Brand</option>
+														<option value="package3">Package 3 - Travel</option>
 													</select>
 												</div>
 

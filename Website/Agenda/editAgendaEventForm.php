@@ -69,7 +69,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                                 <input type="datetime-local" name="eventStart" id="eventStart" value="<?php echo $convertedStartDate?>" required/>
                             </div>
                             <div class="col-8 col-8-medium col-12-small col-12-xsmall">
-                                <h4 class="TitleForm">End Date/Time:</h4>
+                                <h4 class="TitleForm">End Date/Time :</h4>
                                 <input type="datetime-local" name="eventEnd" id="eventEnd" value="<?php echo $convertedEndDate?>" oninput="check(this)" required/>
                                 <script language='javascript' type='text/javascript'>
                                     function check(input) {
@@ -78,6 +78,7 @@ if($_SESSION['userTypeSignIn'] === 'administrator'){
                                         } else {
                                             // input is valid -- reset the error message
                                             input.setCustomValidity('');
+
                                         }
                                     }
                                 </script>

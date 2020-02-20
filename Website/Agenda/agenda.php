@@ -15,15 +15,14 @@ if(isset($_SESSION['userSignIn'])){
 
 //check user type/origin and display message accordingly
 if(isset($_GET["sendEmail"])){
-    $getEmailMessage = $_GET["sendEmail"];
-    $message = "<div class=\"isa_success\"><i class=\"fa fa-check-circle\"></i>".$getEmailMessage."</div>";
+    $message = $_GET["sendEmail"];
 }
 else {
     if ($userType == null) {
         $message = '<p><i class="linkHomeAnnouncement" style="text-decoration: none;">If you wish to request a shoot please <a class="linkHomeAnnouncement" href="../SignOut/SignOutToRegister.php">sign up</a> as a "Customer"</i></p>';
     } else if ($userType != null) {
         if ($userType == "customer") {
-            $message = "<p><i style=\"color:cadetblue\">(To make a shoot reservation, click on an availability.)</i></p>";
+            $message = "<p><i style=\"color:cadetblue\">(To make a shoot reservation, click on a <b style='color:#33cccc !important'>light blue</b> event.)</b></p>";
         } else if ($userType == "administrator") {
             $message = "<p> <i style=\"color:cadetblue\">(To add an event, click on the 'add' button, to edit an event, click on the event directly in the calendar)</i></p>";
         } else{
@@ -34,7 +33,9 @@ else {
 
 
 //get events from database
-$event_query = "SELECT eventId as id, eventTitle as title, eventStart as start, eventEnd as end, eventUrl as url, eventColor as color FROM events";
+$event_query = "SELECT eventId as id, eventTitle as title, eventStart as start, eventEnd as end, eventUrl as url, eventColor as color 
+FROM events
+WHERE eventHidden='false'";
 $result = mysqli_query($db,$event_query);
 $myArray = array();
 if ($result->num_rows > 0) {

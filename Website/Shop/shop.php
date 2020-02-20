@@ -84,7 +84,7 @@ include '../Header/sessionConnection.php';
             <div class="col-2 col-12-medium"></div>
             <div class="col-8 col-12-medium">
                 <div style="text-align: center">
-                    <h2>PACKAGES</h2>
+                    <h2 id="packagesAnchor">PACKAGES</h2>
                     <p style="font-size:x-large">Your vision, our magic. <br>
                         <i style="font-size: large">We wish to make your ideas reality. If you want to stand out, our
                             bold and unique visual will help you.</i></p>
