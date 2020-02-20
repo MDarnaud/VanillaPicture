@@ -73,8 +73,9 @@ include '../Header/sessionConnection.php';
 
 <!--                            Announcement -->
 <?php
+
 // Insert the announcement information in the table announcement in the database
-$queryAnnouncement = "SELECT * FROM announcement";
+$queryAnnouncement = "SELECT * FROM announcement ORDER BY announcementCreation DESC";
 $resultPost = mysqli_query($db, $queryAnnouncement);
 
 if ($resultPost) { // if user exists
