@@ -24,6 +24,10 @@ $eventId = mysqli_real_escape_string($db, $_POST['eventId']);
 $shootTitle = mysqli_real_escape_string($db, $_POST['title']);
 //date
 $shootDate = mysqli_real_escape_string($db,$_POST["date"]);
+//time
+$shootDateConv = strtotime($shootDate);
+$shootTime = date("h:m A", $shootDateConv);
+
 
 //message to customer
 $message = null;
@@ -59,13 +63,12 @@ $queryCheckUnique = "SELECT count(shootId) as sameShoots FROM shoot WHERE custom
 $resultQueryCheckUnique = mysqli_query($db, $queryCheckUnique);
 $isUniqueShoot = mysqli_fetch_assoc($resultQueryCheckUnique);
 $textCheckUnique = $isUniqueShoot['sameShoots'];
-echo $textCheckUnique;
 
 
 if($textCheckUnique == 0 ) {
 //insert into table shoot the new request
-    $queryShoot = "INSERT INTO shoot (shootDate, shootLocation, customerId, shootArtistType, shootCustomerNotes, shootPackage)
-VALUES ('$shootDate', '$shootTitle', '$customerId', '$artists', '$customerNotes', '$shootPackage')";
+    $queryShoot = "INSERT INTO shoot (shootDate, shootTime, shootLocation, customerId, shootArtistType, shootCustomerNotes, shootPackage)
+VALUES ('$shootDate', '$shootTime', '$shootTitle', '$customerId', '$artists', '$customerNotes', '$shootPackage')";
     $result = mysqli_query($db, $queryShoot) or die(mysqli_error($db));
 
 //Hide event
@@ -93,7 +96,8 @@ $subject = "Vanilla Website - New Shoot Request";
 //Put right link
 $message = '<strong>' . $name . '</strong> has requested the shoot <b>"' . $shootTitle . '" on Vanilla Picture website. <br> </b>. Here are the details: <br>'
     . '<ul>
-                <li>Shoot Date/time: <b>' . $shootDate . '</b></li>
+                <li>Shoot Date: <b>' . $shootDate . '</b></li>
+                <li>Shoot Time: <b>' . $shootTime . '</b></li>
                 <li>Customer Email <b>' . $customerEmail . '</b></li>
                 <li>Artists Requested: <b>' . $artists . '</b></li>
                 <li>Package Chosen : <b>'.$shootPackage.'</b></li>
@@ -107,5 +111,5 @@ $to = 'arianeouellette@yahoo.ca';
 mail($to,$subject,$message,$headers);*/
 
 echo $message;
-header("location: ./agenda.php?sendEmail=$message");
+//header("location: ./agenda.php?sendEmail=$message");
 
