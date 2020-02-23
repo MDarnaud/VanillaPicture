@@ -84,7 +84,7 @@ else {
 }
 
 
-/*//SEND REQUEST EMAIL
+//SEND REQUEST EMAIL
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -108,8 +108,8 @@ $message = '<strong>' . $name . '</strong> has requested the shoot <b>"' . $shoo
 //TODO: Change this address
 $to = 'arianeouellette@yahoo.ca';
 
-mail($to,$subject,$message,$headers);*/
+mail($to,$subject,$message,$headers);
 
 echo $message;
-//header("location: ./agenda.php?sendEmail=$message");
+header("location: ./agenda.php?sendEmail=$message");
 
