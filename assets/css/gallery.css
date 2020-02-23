@@ -64,10 +64,12 @@
 .modal-content {
     margin: auto;
     display: block;
-    width: 80%;
+    width: 40%;
     max-width: 100%;
     text-align:center;
 }
+
+
 
 /* Caption of Modal   (Image Text) - Same Width as the Image */
 #caption {
@@ -132,26 +134,46 @@
     opacity: 0.5;
 }
 
+
+
+
 /* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
     .modal-content {
-        width: 100%;
+        width: 70%;
     }
+
 }
 
 
-    .prev {
-        width: 20%;
-        border-style: none;
-        color: white;
-        background-color: transparent;
-        font-size: 30px;
-    }
+.prev {
+    width: 5%;
+    border-style: none;
+    color: white;
+    background-color: transparent;
+    font-size: 40px;
+    box-shadow: inset 0 0 0 0 transparent;
+!important;
+    padding: 0 0 0 0;
+!important;
+    margin-right: 10%;
+}
 
-    .next {
-        width: 20%;
-        border-style: none;
-        color: white;
-        background-color: transparent;
-        font-size: 30px;
-    }
+.next {
+    width: 5%;
+    border-style: none;
+    color: white;
+    background-color: transparent;
+    font-size: 40px;
+    box-shadow: inset 0 0 0 0 transparent;
+!important;
+    padding: 0 0 0 0;
+!important;
+}
+
+
+#buttons { position: relative; }
+
+#buttons .prev { left: 0; float:left;}
+
+#buttons .next { right: 0; float:right;}

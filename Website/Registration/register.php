@@ -43,14 +43,14 @@ if(!isset($_SESSION['userSignIn'])){?>
                                                 </div>
 												<div class="col-8 col-11-small col-11-xsmall">
                                                     <h5 class="TitleForm">Password:</h5>
-                                                    <i>Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers</i>
+                                                    <i style="font-size: 11px;">Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers</i>
 													<input type="password" name="password_1" id="password_1" value="" placeholder="Password"
                                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
                                                            title="Password must contain between 6 and 20 characters, including UPPER/lowercase and numbers"
                                                            required oninvalid="setCustomValidity('Password is invalid')" oninput="setCustomValidity('')" minlength="6" maxlength="80"/>
 												</div>
                                                 <div class="col-1 col-1-xsmall">
-                                                    <i id="pass-status" style="font-size: 125%;margin-top: 30px"
+                                                    <i id="pass-status" style="font-size: 125%;margin-top: 63px"
                                                        class="fa fa-eye" aria-hidden="true" onClick="myFunction()"></i>
                                                 </div>
 

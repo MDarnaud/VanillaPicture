@@ -198,7 +198,7 @@ include '../Header/sessionConnection.php';
 
                     <!--                     The Close Button -->
                     <span class="closeModal">&times;</span>
-
+                    <div class="butest">
                     <!--                     Modal Content (The Image) -->
                     <img class="modal-content" id="img01">
                     <div id="caption"></div>
@@ -212,13 +212,16 @@ include '../Header/sessionConnection.php';
                     <?php } else { ?>
                         <div id="buttons" style="text-align: center">
                             <button
-                                    id="previousImg" class="reset prev" value="previousImg">&#8592;
+                                    id="previousImg" class="prev" value="previousImg">
+                                <i class="fa fa-angle-left"></i>
                             </button>
                             <button
-                                    id="nextImg" class="reset next" value="nextImg">&#8594;
+                                    id="nextImg" class="next" value="nextImg">
+                                <i class="fa fa-angle-right"></i>
                             </button>
                         </div>
                     <?php } ?>
+                    </div>
                 </div>
                 <?php
                 $categorySelected = '';
