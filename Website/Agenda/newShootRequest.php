@@ -30,7 +30,7 @@ $shootTime = date("h:m A", $shootDateConv);
 
 
 //message to customer
-$message = null;
+$messageEmail = null;
 
 //artists
 $artists = null;
@@ -76,11 +76,11 @@ VALUES ('$shootDate', '$shootTime', '$shootTitle', '$customerId', '$artists', '$
     mysqli_query($db, $queryHideEvent) or die(mysqli_error($db));
 
     //confirm message
-    $message = "<div class=\"isa_success\"><i class=\"fa fa-check-circle\"></i>Your request has been sent to Vanilla Picture!</div>";
+    $messageEmail = "<div class=\"isa_success\"><i class=\"fa fa-check-circle\"></i>Your request has been sent to Vanilla Picture!</div>";
 }
 else {
     //confirm message
-    $message = "<div class=\"isa_error\"><i class=\"fa fa-times-circle\"></i>You have already made this request</div>";
+    $messageEmail = "<div class=\"isa_error\"><i class=\"fa fa-times-circle\"></i>You have already made this request</div>";
 }
 
 
@@ -110,6 +110,5 @@ $to = 'arianeouellette@yahoo.ca';
 
 mail($to,$subject,$message,$headers);
 
-echo $message;
-header("location: ./agenda.php?sendEmail=$message");
+header("location: ./agenda.php?sendEmail=$messageEmail");
 
