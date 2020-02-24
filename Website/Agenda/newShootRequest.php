@@ -59,7 +59,7 @@ $customerId = $customer['customerId'];
 $name = $customer['customerFirstName'] . ' ' . $customer['customerLastName'];
 
 //check if shoot has already been requested
-$queryCheckUnique = "SELECT count(shootId) as sameShoots FROM shoot WHERE customerId='$customerId' AND shootDate='$shootDate'";
+$queryCheckUnique = "SELECT count(shootId) as sameShoots FROM shoot WHERE customerId='$customerId' AND shootDate='$shootDate' AND shootTime='$shootTime'";
 $resultQueryCheckUnique = mysqli_query($db, $queryCheckUnique);
 $isUniqueShoot = mysqli_fetch_assoc($resultQueryCheckUnique);
 $textCheckUnique = $isUniqueShoot['sameShoots'];
@@ -77,25 +77,19 @@ VALUES ('$shootDate', '$shootTime', '$shootTitle', '$customerId', '$artists', '$
 
     //confirm message
     $messageEmail = "<div class=\"isa_success\"><i class=\"fa fa-check-circle\"></i>Your request has been sent to Vanilla Picture!</div>";
-}
-else {
-    //confirm message
-    $messageEmail = "<div class=\"isa_error\"><i class=\"fa fa-times-circle\"></i>You have already made this request</div>";
-}
 
-
-//SEND REQUEST EMAIL
+    //SEND REQUEST EMAIL
 // Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    $headers = "MIME-Version: 1.0" . "\r\n";
+    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
+    $headers .= 'From: <noreply@vanillapicture.rho.productions>' . "\r\n";
 
-$subject = "Vanilla Website - New Shoot Request";
+    $subject = "Vanilla Website - New Shoot Request";
 //Put right link
-$message = '<strong>' . $name . '</strong> has requested the shoot <b>"' . $shootTitle . '" on Vanilla Picture website. <br> </b>. Here are the details: <br>'
-    . '<ul>
+    $message = '<strong>' . $name . '</strong> has requested the shoot <b>"' . $shootTitle . '" on Vanilla Picture website. <br> </b>. Here are the details: <br>'
+        . '<ul>
                 <li>Shoot Date: <b>' . $shootDate . '</b></li>
                 <li>Shoot Time: <b>' . $shootTime . '</b></li>
                 <li>Customer Email <b>' . $customerEmail . '</b></li>
@@ -103,12 +97,17 @@ $message = '<strong>' . $name . '</strong> has requested the shoot <b>"' . $shoo
                 <li>Package Chosen : <b>'.$shootPackage.'</b></li>
                 <li>Notes : <b>'.$customerNotes.'</b></li>
               </ul><br>'. '<br>' .
-    ' To communicate with '.$name.' Send a message to '. $customerEmail.'</b>';
+        ' To communicate with '.$name.' Send a message to '. $customerEmail.'</b>';
 
 //TODO: Change this address
-$to = 'arianeouellette@yahoo.ca';
+    $to = 'arianeouellette@yahoo.ca';
 
-mail($to,$subject,$message,$headers);
+    mail($to,$subject,$message,$headers);
+}
+else {
+    //confirm message
+    $messageEmail = "<div class=\"isa_error\"><i class=\"fa fa-times-circle\"></i>You cannot reserve this shoot</div>";
+}
 
 header("location: ./agenda.php?sendEmail=$messageEmail");
 
