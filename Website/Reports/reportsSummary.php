@@ -40,7 +40,7 @@ if(isset($_SESSION['userSignIn'])){
                     if($textNumBookedShootY != 0 && $totalofferedShootY['totalOfferedShoots'] != 0) {
                         //percentage calculation
                         $percentageBookedCalcul = (($totalBookedShootY['totalShoots']*100)/$totalofferedShootY['totalOfferedShoots']);
-                        $textPBookedHoursY =  $percentageBookedCalcul.' %';
+                        $textPBookedHoursY =  round($percentageBookedCalcul,2).' %';
                     }
                     else{
                         $textPBookedHoursY = '0 %';
@@ -56,8 +56,8 @@ if(isset($_SESSION['userSignIn'])){
                         $noTextAveragePaymentY = 0;
                     }
                     else{
-                        $textAveragePaymentY = '$'.$averagePaymentsY['averagePayments'];
-                        $noTextAveragePaymentY = $averagePaymentsY['averagePayments'];
+                        $textAveragePaymentY = '$'.round($averagePaymentsY['averagePayments'],2);
+                        $noTextAveragePaymentY = round($averagePaymentsY['averagePayments'],2);
                     }
 
 
@@ -357,7 +357,6 @@ for($i=0;$i<5;$i++) {
                     $bookedShoot_resultM = mysqli_query($db, $BookedShoot_summary_M_query);
                     $totalBookedShootM = mysqli_fetch_assoc($bookedShoot_resultM);
                     $textNumBookedShootM = $totalBookedShootM['totalShoots'];
-                    //echo $textNumBookedShootM."<br>";
 
                     // % booked hours (available / booked)
                     $offeredShoot_summary_m_query ="SELECT count(eventId) as totalOfferedShoots FROM events WHERE month(eventStart)='$currentMonth' AND year(eventStart)='$currentYear' AND eventUrl IS NOT NULL ";
@@ -369,7 +368,7 @@ for($i=0;$i<5;$i++) {
                     if($textNumBookedShootM != 0 && $totalofferedShootM['totalOfferedShoots'] != 0) {
                         //percentage calculation
                         $percentageBookedCalculM = (($totalBookedShootM['totalShoots']*100)/$totalofferedShootM['totalOfferedShoots']);
-                        $textPBookedHoursM =  $percentageBookedCalculM.' %';
+                        $textPBookedHoursM =  round($percentageBookedCalculM,2).' %';
                     }
                     else{
                         $textPBookedHoursM = '0 %';
@@ -384,7 +383,7 @@ for($i=0;$i<5;$i++) {
                         $textSpentCustomerM = '$0';
                     }
                     else{
-                        $textSpentCustomerM = '$'.$averagePaymentsM['averagePayments'];
+                        $textSpentCustomerM = '$'.round($averagePaymentsM['averagePayments'],2);
                     }
 
                 // number of giftcards
@@ -540,7 +539,7 @@ for($i=0;$i<5;$i++) {
                     if($textNumBookedShootW != 0 && $totalofferedShootW['totalOfferedShoots'] != 0) {
                         //percentage calculation
                         $percentageBookedCalcul = (($totalBookedShootW['totalShoots']*100)/$totalofferedShootW['totalOfferedShoots']);
-                        $textPBookedHoursW =  $percentageBookedCalcul.' %';
+                        $textPBookedHoursW =  round($percentageBookedCalcul,2).' %';
                     }
                     else{
                         $textPBookedHoursW = '0 %';
@@ -555,7 +554,7 @@ for($i=0;$i<5;$i++) {
                         $textSpentCustomerW = '$0';
                     }
                     else{
-                        $textSpentCustomerW = '$'.$averagePaymentsW['averagePayments'];
+                        $textSpentCustomerW = '$'.round($averagePaymentsW['averagePayments'],2);
                     }
 
                 // number of giftcards
