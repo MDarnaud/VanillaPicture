@@ -45,7 +45,7 @@ if (isset($_POST['sendMessage'])) {
 
         $subject = "Vanilla Website - FAQ";
         // Put right link
-        $message = '<strong>' . $name . ',</strong>' . ' has send you this message :<br>' . $message .
+        $message = '<strong>' . $name . ',</strong>' . ' has sent you this message :<br>' . $message .
             '<br><br> ' . 'If you wish to reply, you can do so via ' . $email . '.';
 
         // Always set content-type when sending HTML email

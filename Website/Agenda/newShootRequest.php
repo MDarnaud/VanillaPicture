@@ -110,6 +110,6 @@ $to = 'arianeouellette@yahoo.ca';
 
 mail($to,$subject,$message,$headers);
 
-echo $message;
+
 header("location: ./agenda.php?sendEmail=$message");
 
