@@ -35,7 +35,7 @@ include '../Header/sessionConnection.php';
             </div>
             <ul class="feature-icons">
                 <li><a href=https://www.instagram.com/vanilla_picture/?hl=fr-ca" class="a_socialMedia"><span class="icon fa-instagram"></span><span class="label">Instagram</span></a></li>
-                <li><a href="http://facebook.com/VANILLAPICTURE/" class="a_socialMedia"><span class="icon fa-facebook"></span><span class="label">Facebook</span></a></li>
+                <li><a href="https://www.facebook.com/sophie.perras.9" class="a_socialMedia"><span class="icon fa-facebook"></span><span class="label">Facebook</span></a></li>
                 <li><a href="#getInTouch" class="a_socialMedia"><span class="icon fa-envelope"></span><span class="label">Gmail</span></a></li>
             </ul>
         </div>
